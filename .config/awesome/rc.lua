@@ -85,18 +85,19 @@ awful.layout.layouts = {
     awful.layout.suit.max,
     awful.layout.suit.floating,
     awful.layout.suit.fair,
---awful.layout.suit.fair.horizontal,
---awful.layout.suit.spiral,
---awful.layout.suit.spiral.dwindle,
---awful.layout.suit.max.fullscreen,
---awful.layout.suit.magnifier,
---awful.layout.suit.corner.nw,
---awful.layout.suit.corner.ne,
---awful.layout.suit.corner.sw,
---awful.layout.suit.corner.se,
+	--awful.layout.suit.fair.horizontal,
+	--awful.layout.suit.spiral,
+	--awful.layout.suit.spiral.dwindle,
+	--awful.layout.suit.max.fullscreen,
+	--awful.layout.suit.magnifier,
+	--awful.layout.suit.corner.nw,
+	--awful.layout.suit.corner.ne,
+	--awful.layout.suit.corner.sw,
+	--awful.layout.suit.corner.se,
 }
 -- }}}
 
+--[[
 -- {{{ Helper functions
 local function client_menu_toggle_fn()
     local instance = nil
@@ -106,11 +107,12 @@ local function client_menu_toggle_fn()
             instance:hide()
             instance = nil
         else
-            instance = awful.menu.clients({ theme = { width = 250 } })
+            instance = awful.menu.clients({ theme = { width = theme.universalsize * 10 } })
         end
     end
 end
 -- }}}
+]]--
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -139,8 +141,11 @@ local tasklist_buttons = gears.table.join(
         -- the client, if needed
         client.focus = c
         c:raise()
-    end),
-    awful.button({ }, 3, client_menu_toggle_fn()))
+    end), awful.button({ }, 3, function (c)
+        -- Without this, the following
+        -- :isvisible() makes no sense
+        c:kill()
+    end)
 
 local function set_wallpaper(s)
     -- Wallpaper
@@ -193,10 +198,10 @@ awful.screen.connect_for_each_screen(function(s)
                 bg     = theme.bg_accent2,
                 widget = wibox.container.background,
             },
-            left  = 2,
-            right = 2,
-            top   = 2,
-            bottom = 2,
+            left  = theme.universalsize / 10,
+            right = theme.universalsize / 10,
+            top   = theme.universalsize / 10,
+            bottom = theme.universalsize / 10,
             widget = wibox.container.margin
         },
     }
@@ -255,8 +260,8 @@ awful.screen.connect_for_each_screen(function(s)
                     wibox.widget.textbox("  "),
                     {
                         systray,
-                        bottom 	= 5,
-                        top 	= 5,
+                        bottom 	= theme.universalsize / 5,
+                        top 	= theme.universalsize / 5,
                         widget = wibox.container.margin,
                     },
                     wibox.widget.textbox("  "),
@@ -310,8 +315,8 @@ awful.screen.connect_for_each_screen(function(s)
                     wibox.widget.textbox(" "),
                     {
                         s.mylayoutbox,
-                        bottom 	= 4,
-                        top 	= 4,
+                        bottom 	= theme.universalsize / 5,
+                        top 	= theme.universalsize / 5,
                         widget = wibox.container.margin,
                     },
                     wibox.widget.textbox(" "),
