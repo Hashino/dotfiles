@@ -17,4 +17,4 @@ alias llm='ll --sort=modified' # list, long, sort by modification date
 alias la='ls -lbhHigUmuSa' # all list
 alias lx='ls -lbhHigUmuSa@' # all list and extended
 alias tree='ls --tree --icons' # tree view
-alias lS='ls -1 --icons --group-directories-first' # one column by just names
+alias lS='ls -1 --icons --group-directories-first' # one column just names
