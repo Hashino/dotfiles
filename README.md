@@ -17,7 +17,7 @@
 
 ---
 
-## Scrennshots
+## Screenshots
 ![simple bg](screenshots/print1.png)
 ![vim](screenshots/print2.png)
 ![rofi laucher](screenshots/rofi_launcher.png)
