@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-picom -b
-
 ## run (only once) processes which spawn with the same name
 #function run {
 #   if (command -v $1 && ! pgrep $1); then
@@ -16,16 +14,6 @@ function run {
     $@&
   fi
 }
-
-
-run thunar --daemon
-run picom -b
-run pasystray --notify=all
-run /usr/lib/xfce-polkit/xfce-polkit
-
-run openrgb --startminimized
-ckb-next --background
-
 
 
 #enviroment variables
