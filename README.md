@@ -1,4 +1,4 @@
-My personal dotfiles. Based on my personal tweaks of the [Nord color scheme](https://www.nordtheme.com/docs/colors-and-palettes)
+#### My personal dotfiles. Based on my personal tweaks of the [Nord color scheme](https://www.nordtheme.com/docs/colors-and-palettes)
 
 
 | Windows Manager | [AwesomeWM](https://awesomewm.org/) | 
@@ -16,3 +16,10 @@ My personal dotfiles. Based on my personal tweaks of the [Nord color scheme](htt
 ###### All of the applications in the table above are avaible in the AUR
 
 ---
+
+## Screenshots
+![simple bg](screenshots/print1.png)
+![vim](screenshots/print2.png)
+![rofi laucher](screenshots/rofi_launcher.png)
+![rofi power-menu](screenshots/rofi_power-menu.png)
+![gtk](screenshots/gtk_gimp.png)
