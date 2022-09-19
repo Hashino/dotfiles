@@ -1,4 +1,3 @@
-# dotfiles
 My personal dotfiles. Based on my personal tweaks of the [Nord color scheme](https://www.nordtheme.com/docs/colors-and-palettes)
 
 
@@ -8,10 +7,11 @@ My personal dotfiles. Based on my personal tweaks of the [Nord color scheme](htt
 | Power Menu | [Rofi Power Menu](https://github.com/jluttine/rofi-power-menu) | 
 | GTK Theme | [Adapta-FrostBlue4-Nokto-Eta](https://github.com/Adapta-Projects/Adapta-Nord) | 
 | Icon Theme | [Papirus Icon Theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) |
+| Cursor Theme | [Custom Built](https://gitlab.com/zoli111/cursor-generator) [Simp1e](https://www.pling.com/p/1405210) |
 | System Font | [Terminus](http://terminus-font.sourceforge.net/) |
 | Terminal Font | [Ubuntu Mono](https://design.ubuntu.com/font/) |
 | Terminal Colors | [Nord Color Scheme](https://www.nordtheme.com/ports) |
 
+###### All of the applications in the table above are avaible in the AUR
 
-
-| text | text |
+---
