@@ -13,7 +13,7 @@
 | Terminal Font | [Ubuntu Mono](https://design.ubuntu.com/font/) |
 | Terminal Colors | [Nord Color Scheme](https://www.nordtheme.com/ports) |
 
-###### All of the applications in the table above are avaible in the AUR
+###### All of the applications on the table above are avaible in the AUR
 
 ---
 
