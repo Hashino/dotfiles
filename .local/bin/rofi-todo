@@ -52,9 +52,9 @@ try:
     while True:
         titles = []
         show_titles()
-
+		
         index, key = r.select(
-            "Notes",
+            "notes:",
             titles,
             key1=("Alt+d", "delete note"),
             key2=("Alt+a", "add note"),
@@ -62,7 +62,13 @@ try:
         )
 
         if key == 0:
-            r.error(notes["notes"][index]["description"])
+            index, key = r.select(
+		        notes["notes"][index]["name"],
+		        [notes["notes"][index]["description"][i:i+45] for i in range(0, len(notes["notes"][index]["description"]), 45)],
+		        "hi",
+		        rofi_args=["-i", "-no-custom", "-l", "15"],
+		    )
+            #r.error(notes["notes"][index]["description"])
 
         elif key == 1:
             del notes["notes"][index]
@@ -73,7 +79,7 @@ try:
                 #r.error("Note deleted.")
 
         elif key == 2:
-            name = r.text_entry("name", rofi_args=["-l", "0"])
+            name = r.text_entry("name:", rofi_args=["-l", "0"])
 
             if name:
                 desc = r.text_entry("description", rofi_args=["-l", "0"])
