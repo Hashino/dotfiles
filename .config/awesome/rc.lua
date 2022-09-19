@@ -97,23 +97,6 @@ awful.layout.layouts = {
 }
 -- }}}
 
---[[
--- {{{ Helper functions
-local function client_menu_toggle_fn()
-    local instance = nil
-
-    return function ()
-        if instance and instance.wibox.visible then
-            instance:hide()
-            instance = nil
-        else
-            instance = awful.menu.clients({ theme = { width = theme.universalsize * 10 } })
-        end
-    end
-end
--- }}}
-]]--
-
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
     awful.button({ }, 1, function(t) t:view_only() end),
@@ -146,6 +129,7 @@ local tasklist_buttons = gears.table.join(
         -- :isvisible() makes no sense
         c:kill()
     end)
+)
 
 local function set_wallpaper(s)
     -- Wallpaper
