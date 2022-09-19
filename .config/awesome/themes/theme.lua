@@ -7,7 +7,7 @@ theme.icon_theme = "Papirus-Dark"
 
 theme.wallpaper = "~/wallpaper.png"
 
-theme.useless_gap   	= 3
+theme.useless_gap   	= theme.universalsize / 8
 theme.gap_single_client = false
 
 theme.bg_normal     = "#2e3440"
@@ -27,7 +27,7 @@ theme.fg_focus      = theme.fg_normal
 theme.fg_urgent     = "#ff0000"
 theme.fg_minimize   = theme.fg_normal
 
-theme.border_width  = 1
+theme.border_width  = theme.universalsize / 20
 theme.border_normal = "#2e3440"
 theme.border_focus  = "#3b4252"
 theme.border_marked = "#2c3040"
@@ -39,9 +39,10 @@ theme.tasklist_plain_task_name  = true
 theme.systray_icon_spacing 	= theme.spacing
 theme.bg_systray 		= theme.bg_accent2
 
-theme.notification_max_width = 500
-theme.notification_max_height = 1000
-theme.notification_icon_size = 128
+theme.notification_max_width = theme.universalsize * 20
+theme.notification_max_height = theme.universalsize * 40
+theme.notification_icon_size = theme.universalsize * 5
+
 theme.notification_opacity = 0.85
 
 theme.notification_font = theme.font
