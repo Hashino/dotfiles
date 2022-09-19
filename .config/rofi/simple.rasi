@@ -1,0 +1,91 @@
+configuration {
+	display-drun: "";
+	display-run: "";
+	display-window: "缾";
+	icon-theme: "Papirus-Light";
+	fixed-num-lines: false;
+	font: "Terminus (TTF) Medium 12";
+}
+
+@import "colors"
+
+scrollbar {
+	width: 0;
+	handle-width: 0;
+}
+
+window {
+	fullscreen: true;
+	background-color: black/70%;
+	border: 0;
+	padding: 38% 40% 25% 40%;
+	children: [mainbox];
+}
+
+mainbox {
+	y-offset: 0%;
+	location: center;
+	anchor: north;
+	spacing: 3;
+	background-color: @transparent;
+	border: 0;
+	transparency: "real";
+	children: [inputbar, listview];
+}
+
+inputbar {
+	background-color: @bg;
+	text-color: @fg;
+	children: [prompt, entry];
+}
+
+prompt {
+	background-color: @transparent;
+	text-color: @fg;
+	padding: 0.5em 0.5em 0.5em 0.5em;
+	border: 0;
+}
+
+entry {
+	background-color: @transparent;
+	text-color: @fg;
+	placeholder: "";
+	padding: 0.5em 0 0.5em 0;
+	border: 0;
+}
+
+listview {
+	background-color: @transparent;
+	cycle: false;
+	dynamic: true;
+	padding: 0 0 0 0;
+	border: 0;
+	columns: 1;
+	spacing: 0;
+	children: [element];
+}
+
+element {
+	padding: 0px;
+	border: 0;
+}
+
+element selected {
+	background-color: @transparent;
+	text-color: @fg;
+	border: 0;
+}
+
+element-text {
+	background-color: @bg	;
+	text-color: @fg;
+	padding: 0.25em 0.2em 0.25em 0.2em;
+	border: 0;
+}
+
+element-text selected {
+	background-color: @bg2;
+	text-color: @fg;
+	padding: 0.2em 0.2em 0.2em 0.2em;
+	border: 0;
+}
