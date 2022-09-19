@@ -1,8 +1,8 @@
 {
   "notes": [
     {
-      "name": "add an install script to dotfiles",
-      "description": "should prompt the user about backup and which configs to copy"
+      "name": "add install script",
+      "description": "shoud have options for backup and to choose which settings to copy"
     }
   ]
 }
