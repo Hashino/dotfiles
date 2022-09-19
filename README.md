@@ -3,6 +3,7 @@ My personal dotfiles. Based on my personal tweaks of the [Nord color scheme](htt
 
 | Windows Manager | [AwesomeWM](https://awesomewm.org/) | 
 | :---:   | :---: | 
+| Compositor | [Picom](https://github.com/yshui/picom) |
 | Task Switcher | [Rofi](https://github.com/davatorium/rofi) | 
 | Power Menu | [Rofi Power Menu](https://github.com/jluttine/rofi-power-menu) | 
 | GTK Theme | [Adapta-FrostBlue4-Nokto-Eta](https://github.com/Adapta-Projects/Adapta-Nord) | 
