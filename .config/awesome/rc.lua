@@ -200,8 +200,8 @@ awful.screen.connect_for_each_screen(function(s)
 
 
     end
-
-
+    s.mylayoutbox = awful.widget.layoutbox(s)
+--[[
     s.mylayoutbox = awful.widget.layoutbox {
         screen = s,
         -- Add buttons, allowing you to change the layout
@@ -212,6 +212,7 @@ awful.screen.connect_for_each_screen(function(s)
             awful.button({ }, 5, function () awful.layout.inc(-1) end),
         }
     }
+]]--
 
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, height = theme.universalsize })
