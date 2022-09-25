@@ -129,12 +129,12 @@ awful.screen.connect_for_each_screen(function(s)
     -- Margin around layoutbox
     s.mylayoutbox = wibox.widget
     {
-		awful.widget.layoutbox(s),
-		bottom 	= theme.universalsize / 6,
-		top 	= theme.universalsize / 6,
-		left	= theme.universalsize / 4,
-		right	= theme.universalsize / 4,
-		widget	= wibox.container.margin,
+        awful.widget.layoutbox(s),
+        bottom 	= theme.universalsize / 6,
+        top 	= theme.universalsize / 6,
+        left	= theme.universalsize / 4,
+        right	= theme.universalsize / 4,
+        widget	= wibox.container.margin,
     }    
     s.mylayoutbox:buttons 
     ({
