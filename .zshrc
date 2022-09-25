@@ -118,5 +118,14 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+alias ls='exa -a --icons --group-directories-first' # just replace ls by exa and allow all other exa arguments
+alias l='ls -lbF' #   list, size, type
+alias ll='ls -la' # long, all
+alias llm='ll --sort=modified' # list, long, sort by modification date
+alias la='ls -lbhHigUmuSa' # all list
+alias lx='ls -lbhHigUmuSa@' # all list and extended
+alias tree='ls --tree --icons' # tree view
+alias lS='ls -1 --icons --group-directories-first' # one column by just names
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
