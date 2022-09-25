@@ -9,7 +9,7 @@
 | GTK Theme | [Adapta-FrostBlue4-Nokto-Eta](https://github.com/Adapta-Projects/Adapta-Nord) | 
 | Icon Theme | [Papirus Icon Theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) |
 | Cursor Theme | [Custom Built](https://gitlab.com/zoli111/cursor-generator) [Simp1e](https://www.pling.com/p/1405210) |
-| System Font | [Terminus](http://terminus-font.sourceforge.net/) |
+| System Font | [Terminus (TTF)](http://terminus-font.sourceforge.net/) |
 | Terminal Font | [Ubuntu Mono](https://design.ubuntu.com/font/) |
 | Terminal Colors | [Nord Color Scheme](https://www.nordtheme.com/ports) |
 
