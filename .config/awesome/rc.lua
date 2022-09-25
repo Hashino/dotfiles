@@ -392,10 +392,13 @@ globalkeys = gears.table.join(
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
         {description = "open a terminal", group = "launcher"}),
-    awful.key({ modkey, Shift     }, "b", function () awful.spawn(browser) end,
+    awful.key({ modkey,           }, "b", function () awful.spawn(browser) end,
         {description = "launch Browser", group = "launcher"}),
     awful.key({ modkey,           }, "e", function () awful.spawn(filemanager) end,
-        {description = "launch filemanager", group = "launcher"}),
+        {description = "launch filemanager", group = "launcher"}),        
+        
+    awful.key({ modkey, "Control" }, "e", function () awful.spawn("sudo thunar") end,
+        {description = "launch filemanager as sudo", group = "launcher"}),
 
 
     -- rofi

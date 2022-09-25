@@ -12,7 +12,7 @@ theme.useless_gap   			= theme.universalsize / 8
 theme.gap_single_client 		= true
 
 
-theme.transparent				= "00000000"
+theme.transparent				= "#2a303b"
 theme.bg_normal     			= theme.transparent
 
 theme.bg_accent1    			= "#2a303b"
