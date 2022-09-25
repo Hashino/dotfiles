@@ -7,8 +7,6 @@ local beautiful	= require("beautiful")
 beautiful.init(awful.util.getdir("config") .. "/themes/theme.lua")
 local menubar 	= require("menubar")
 local naughty 	= require("naughty")
-
-
 --------------------------------------------------------------------------------------------------
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -149,12 +147,12 @@ awful.screen.connect_for_each_screen(function(s)
     -- Systray
     s.systray = wibox.widget
     {
-            wibox.widget.systray(),
-            bottom 	= theme.universalsize / 6,
-            top 	= theme.universalsize / 6,
-            left	= theme.universalsize * (2/3),
-            right	= theme.universalsize * (2/3),
-            widget = wibox.container.margin
+        wibox.widget.systray(),
+        bottom 	= theme.universalsize / 6,
+        top 	= theme.universalsize / 6,
+        left	= theme.universalsize * (2/3),
+        right	= theme.universalsize * (2/3),
+        widget = wibox.container.margin
     }
     
     -- Time and date
