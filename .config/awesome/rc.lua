@@ -76,7 +76,7 @@ editor = "mousepad"
 
 modkey = "Mod4"
 
-spacer = 
+spacer =
 {
     {
         layout = wibox.layout.fixed.horizontal,
@@ -164,7 +164,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "  ", "  ", "  " }, s, awful.layout.layouts[1])
+    awful.tag({ "  "}, s, awful.layout.layouts[1])
 
     -- Create a taglist widget
     --s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
@@ -209,7 +209,7 @@ awful.screen.connect_for_each_screen(function(s)
 	    },
 	    left  = theme.universalsize / 10,
 	    right = theme.universalsize / 10,
-	    widget = wibox.container.margin	    
+	    widget = wibox.container.margin
 	}
 
 
@@ -231,11 +231,11 @@ awful.screen.connect_for_each_screen(function(s)
     }
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = theme.universalsize, bg = "ffffff00" })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = theme.universalsize, bg = theme.transparent })
 
 
     -- Add widgets to the wibox
-    s.mywibox:setup 
+    s.mywibox:setup
 	{
 		{
 		    layout = wibox.layout.align.horizontal,
@@ -247,8 +247,8 @@ awful.screen.connect_for_each_screen(function(s)
 				        wibox.widget.textbox(" "),
 				        {
 				            s.mylayoutbox,
-				            bottom 	= theme.universalsize / 5,
-				            top 	= theme.universalsize / 5,
+				            bottom 	= theme.universalsize / 8,
+				            top 	= theme.universalsize / 8,
 				            widget = wibox.container.margin,
 				        },
 				        wibox.widget.textbox(" "),
@@ -295,7 +295,6 @@ awful.screen.connect_for_each_screen(function(s)
 		            bg = theme.bg_accent2,
 		            widget = wibox.container.background
 		        },
-		        spacer,
 		        {
 		            {
 		                layout = wibox.layout.fixed.horizontal,
@@ -450,7 +449,7 @@ clientkeys = gears.table.join(
             c:raise()
         end ,
         {description = "(un)maximize", group = "client"}),
-        
+
     awful.key({ modkey,           }, "f",  awful.client.floating.toggle                     ,
               {description = "toggle floating", group = "client"})
 )

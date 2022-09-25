@@ -122,8 +122,8 @@ local get_taglist = function(s)
 			buttons = taglist_buttons
 		},
 		id		= "taglist_margin",
-		left	= #s.tags == 0 and 0 or 8,
-		right	= #s.tags == 0 and 0 or 8,
+		left	= #s.tags == 1 and 0 or 8,
+		right	= #s.tags == 1 and 0 or 8,
 		
 		widget	= wibox.container.margin,
 	}	
