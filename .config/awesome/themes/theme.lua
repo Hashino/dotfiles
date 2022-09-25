@@ -10,13 +10,17 @@ theme.wallpaper = "~/wallpaper.png"
 theme.useless_gap   	= theme.universalsize / 8
 theme.gap_single_client = true
 
-theme.bg_normal     = "#2e3440"
 
 theme.transparent	= "00000000"
+theme.bg_normal     = theme.transparent
 
 theme.bg_accent1    = "#2a303b"
 theme.bg_accent2    = "#323845"
 theme.bg_accent3    = "#232935"
+
+--theme.bg_accent1    = "#5BCEFA"
+--theme.bg_accent2    = "#F5A9B8"
+--theme.bg_accent3    = "#FFFFFF"
 
 
 theme.bg_focus      = theme.bg_normal
@@ -24,6 +28,7 @@ theme.bg_urgent     = "#000000"
 theme.bg_systray    = theme.bg_normal
 
 theme.fg_normal     = "#ddeeff"
+--theme.fg_normal     = "#555555"
 theme.fg_focus      = theme.fg_normal
 theme.fg_urgent     = "#ff0000"
 theme.fg_minimize   = theme.fg_normal

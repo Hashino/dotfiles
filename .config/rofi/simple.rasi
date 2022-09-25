@@ -16,7 +16,7 @@ scrollbar {
 
 window {
 	fullscreen: true;
-	background-color: black/70%;
+	background-color: black/80%;
 	border: 0;
 	padding: 38% 40% 25% 40%;
 	children: [mainbox];
