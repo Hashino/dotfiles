@@ -10,7 +10,6 @@ local watch 	= require("awful.widget.watch")
 local wibox 	= require("wibox")
 local gears 	= require("gears")
 -----------------------------------------------------------------------------------------------------------------------
-
 local bar_size			= theme.universalsize * 2
 
 local icon				= ""
@@ -24,12 +23,13 @@ local font				= theme.font_name .. tostring(theme.universalsize / 2)
 local font_icon		 	= theme.font_name .. tostring(theme.universalsize / 2)
 local font_controls 	= theme.font_name .. tostring(theme.universalsize / 2.5)
 
+-- name of the binary of your music player
+--local default_player 	= "spotify"
 local default_player 	= "ncspot"
-
+-- terminal to run the player on. leave blank if using a GUI player
 local default_term		= "lxterminal -e "
 
 local GET_MPD_CMD 		= "playerctl -p " .. default_player .. " -f '{{status}};{{xesam:artist}};{{xesam:title}}' metadata"
-
 -----------------------------------------------------------------------------------------------------------------------
 local mpris_widget = wibox.widget
 {

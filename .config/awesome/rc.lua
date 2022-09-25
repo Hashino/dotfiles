@@ -180,12 +180,44 @@ client.connect_signal("mouse::enter", function(c)
     end
 end)
 -- Change border on focus
-client.connect_signal("focus", function(c) 
+client.connect_signal("focus", function(c)
 	c.border_color = beautiful.border_focus
 end)
-client.connect_signal("unfocus", function(c) 
+client.connect_signal("unfocus", function(c)
     c.border_color = beautiful.border_normal
 end)
+-- Disable borders/titlebars on lone windows
+-- Handle border sizes of clients.
+for s = 1, screen.count() do screen[s]:connect_signal("arrange", function ()
+    local clients = awful.client.visible(s)
+    local layout = awful.layout.getname(awful.layout.get(s))
+
+    for _, c in pairs(clients) do
+        -- No titlebar with only one humanly visible client
+    	if c.maximized then
+            --awful.titlebar.hide(c)
+            c.border_width = 0
+        elseif c.floating or layout == "floating" then
+            --awful.titlebar.show(c)
+            --awful.titlebar.hide(c)
+            c.border_width = theme.border_width
+        elseif layout == "max" or layout == "fullscreen" then
+            --awful.titlebar.hide(c)
+            c.border_width = 0
+        else
+            local tiled = awful.client.tiled(c.screen)
+            if #tiled == 1 then -- and c == tiled[1] then
+                --awful.titlebar.hide(c)
+                c.border_width = 0
+            else
+                --awful.titlebar.show(c)
+                --awful.titlebar.hide(c)
+                c.border_width = theme.border_width
+            end
+        end
+    end
+end)
+end
 -- }}}
 -----------------------------------------------------------------------------------------------------------------------
 -- Set global keys
