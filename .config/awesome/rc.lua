@@ -125,25 +125,6 @@ local taglist_buttons = gears.table.join(
         end
     end))
 
-local tasklist_buttons = gears.table.join(
-    awful.button({ }, 1, function (c)
-        -- Without this, the following
-        -- :isvisible() makes no sense
-        c.minimized = false
-        if not c:isvisible() and c.first_tag then
-            c.first_tag:view_only()
-        end
-        -- This will also un-minimize
-        -- the client, if needed
-        client.focus = c
-        c:raise()
-    end), awful.button({ }, 3, function (c)
-        -- Without this, the following
-        -- :isvisible() makes no sense
-        c:kill()
-    end)
-)
-
 local function set_wallpaper(s)
     -- Wallpaper
     if beautiful.wallpaper then
@@ -169,50 +150,6 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create a taglist widget
     --s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
 
-
-    -- Create a tasklist widget
-    s.mytasklist =
-    {
-		{
-			awful.widget.tasklist
-			{
-				screen   = s,
-				filter   = awful.widget.tasklist.filter.minimizedcurrenttags,
-				buttons  = tasklist_buttons,
-				layout   = {
-				    --max_widget_size = 400,
-				    spacing = 0,
-				    layout  = wibox.layout.flex.horizontal
-				},
-				widget_template =
-				{
-				    {
-				        {
-				            {
-				                id     = "text_role",
-				                widget = wibox.widget.textbox,
-				            },
-				            valign = "center",
-				            halign = "center",
-				            widget = wibox.container.place,
-				        },
-				        bg     = theme.bg_accent2,
-				        widget = wibox.container.background,
-				    },
-				    left  = theme.universalsize / 10,
-				    right = theme.universalsize / 10,
-				    widget = wibox.container.margin
-				},
-			},
-		    bg     = theme.transparent,
-		    widget = wibox.container.background,
-	    },
-	    left  = theme.universalsize / 10,
-	    right = theme.universalsize / 10,
-	    widget = wibox.container.margin
-	}
-
-
     local systray = wibox.widget
     {
             wibox.widget.systray(),
@@ -223,11 +160,10 @@ awful.screen.connect_for_each_screen(function(s)
 		awful.widget.layoutbox(s),
 		bottom 	= theme.universalsize / 6,
         top 	= theme.universalsize / 6,
-        left	= theme.universalsize / 8,
-        right	= theme.universalsize / 8,
+        left	= theme.universalsize / 4,
+        right	= theme.universalsize / 4,
 		widget	= wibox.container.margin,
-    }
-    
+    }    
     s.mylayoutbox:buttons 
     ({
             awful.button({ }, 1, function () awful.layout.inc( 1) end),
@@ -254,13 +190,13 @@ awful.screen.connect_for_each_screen(function(s)
 				    widget = wibox.container.background
 				},
 		        {
-			        require("mytaglist")(s),
+			        require("taglist")(s),
 					bg = theme.bg_accent2,
 					widget = wibox.container.background
 				},
 			},
 		    { -- Middle widget
-		        s.mytasklist,
+		        require("tasklist")(s),
 		        bg = theme.transparent,
 		        widget = wibox.container.background
 		    },

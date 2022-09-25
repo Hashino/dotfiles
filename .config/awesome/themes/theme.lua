@@ -12,12 +12,14 @@ theme.useless_gap   			= theme.universalsize / 8
 theme.gap_single_client 		= true
 
 
-theme.transparent				= "#2a303b"
-theme.bg_normal     			= theme.transparent
+
+theme.bg_normal     			= "#2a303b"
 
 theme.bg_accent1    			= "#2a303b"
 theme.bg_accent2    			= "#323845"
 theme.bg_accent3    			= "#232935"
+
+theme.transparent				= "#00000000"
 
 --theme.bg_accent1    			= "#5BCEFA"
 --theme.bg_accent2    			= "#F5A9B8"

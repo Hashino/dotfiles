@@ -1,41 +1,20 @@
 -------------------------------------------------
--- mpris based Arc Widget for Awesome Window Manager
 -- Modelled after Pavel Makhov's work
 -- @author Mohammed Gaber
 -- requires - playerctl
--- @copyright 2020
--- modified by Hashino
+-- modified by Hashino https://github.com/Hashino/dotfiles
 -------------------------------------------------
 local awful 	= require("awful")
 local beautiful = require("beautiful")
-local naughty 	= require("naughty")
 local watch 	= require("awful.widget.watch")
 local wibox 	= require("wibox")
 local gears 	= require("gears")
 -------------------------------------------------
-
-local bar_size			= 50
-
-local icon				= ""
-local prev				= ""
-local play				= ""
-local pause				= ""
-local next				= ""
-local spacer			= "   "
-
-local font				= theme.font_name .. tostring(theme.universalsize / 2)
-local font_icon		 	= theme.font_name .. tostring(theme.universalsize / 2)
-local font_controls 	= theme.font_name .. tostring(theme.universalsize / 3)
-
-local default_player 	= "ncspot"
-
-local default_term		= "lxterminal -e "
-
-local GET_MPD_CMD 		= "playerctl -p " .. default_player .. " -f '{{status}};{{xesam:artist}};{{xesam:title}}' metadata"
-
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
+local naughty 	= require("naughty")
+
 if awesome.startup_errors then
     naughty.notify({ preset = naughty.config.presets.critical,
                      title = "Oops, there were errors during startup!",
@@ -57,7 +36,26 @@ do
     end)
 end
 -- }}}
+-------------------------------------------------
 
+local bar_size			= 50
+
+local icon				= ""
+local prev				= ""
+local play				= ""
+local pause				= ""
+local next				= ""
+local spacer			= "   "
+
+local font				= theme.font_name .. tostring(theme.universalsize / 2)
+local font_icon		 	= theme.font_name .. tostring(theme.universalsize / 2)
+local font_controls 	= theme.font_name .. tostring(theme.universalsize / 3)
+
+local default_player 	= "ncspot"
+
+local default_term		= "lxterminal -e "
+
+local GET_MPD_CMD 		= "playerctl -p " .. default_player .. " -f '{{status}};{{xesam:artist}};{{xesam:title}}' metadata"
 
 local mpris_widget = wibox.widget
 {
