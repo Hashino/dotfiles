@@ -20,6 +20,6 @@
 ## Screenshots
 ![simple bg](screenshots/print1.png)
 ![vim](screenshots/print2.png)
-![gtk](screenshots/gtk_gimp.png)
+![gtk](screenshots/print3.png)
 ![rofi laucher](screenshots/rofi_launcher.png)
 ![rofi power-menu](screenshots/rofi_power-menu.png)
