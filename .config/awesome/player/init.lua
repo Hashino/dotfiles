@@ -23,9 +23,9 @@ local pause				= ""
 local next				= ""
 local spacer			= "   "
 
-local font				= "Terminus (TTF) Medium 12"
-local font_icon		 	= "Terminus (TTF) Medium 12"
-local font_controls 	= "Terminus (TTF) Medium 10"
+local font				= theme.font_name .. tostring(theme.universalsize / 2)
+local font_icon		 	= theme.font_name .. tostring(theme.universalsize / 2)
+local font_controls 	= theme.font_name .. tostring(theme.universalsize / 3)
 
 local default_player 	= "ncspot"
 

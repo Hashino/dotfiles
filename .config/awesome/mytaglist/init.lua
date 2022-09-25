@@ -104,7 +104,7 @@ local get_taglist = function(s)
 			{
 				{
 					id = 'icon_role', 
-					font = "Terminus (TTF) Medium 9", 
+					font = theme.font_name .. tostring(theme.universalsize / 3), 
 					text = "  ", 
 					widget = wibox.widget.textbox
 				},

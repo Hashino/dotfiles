@@ -2,7 +2,8 @@ theme = {}
 theme.hash = "~/.config/awesome/themes/hashino/"
 theme.universalsize = 24
 
-theme.font          = "Terminus (TTF) Medium " .. tostring(theme.universalsize / 2)
+theme.font_name		= "Terminus (TTF) Medium "
+theme.font          = theme.font_name .. tostring(theme.universalsize / 2)
 theme.icon_theme = "Papirus-Dark"
 
 theme.wallpaper = "~/wallpaper.png"
