@@ -164,7 +164,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "  "}, s, awful.layout.layouts[1])
+    awful.tag({ "  ", "  ", "  ", "  ", "  " }, s, awful.layout.layouts[1])
 
     -- Create a taglist widget
     --s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
@@ -218,19 +218,26 @@ awful.screen.connect_for_each_screen(function(s)
             wibox.widget.systray(),
             widget = wibox.container.margin
     }
-
-    s.mylayoutbox = awful.widget.layoutbox {
-        screen = s,
-        -- Add buttons, allowing you to change the layout
-        buttons = {
+    s.mylayoutbox = wibox.widget
+    {
+		awful.widget.layoutbox(s),
+		bottom 	= theme.universalsize / 6,
+        top 	= theme.universalsize / 6,
+        left	= theme.universalsize / 8,
+        right	= theme.universalsize / 8,
+		widget	= wibox.container.margin,
+    }
+    
+    s.mylayoutbox:buttons 
+    ({
             awful.button({ }, 1, function () awful.layout.inc( 1) end),
             awful.button({ }, 3, function () awful.layout.inc(-1) end),
             awful.button({ }, 4, function () awful.layout.inc( 1) end),
             awful.button({ }, 5, function () awful.layout.inc(-1) end),
-        }
-    }
-
-    -- Create the wibox
+    })
+    
+    
+	-- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, height = theme.universalsize, bg = theme.transparent })
 
 
@@ -242,27 +249,12 @@ awful.screen.connect_for_each_screen(function(s)
 		    {
 		    	layout = wibox.layout.fixed.horizontal,
 				{
-				    {
-				        layout = wibox.layout.fixed.horizontal,
-				        wibox.widget.textbox(" "),
-				        {
-				            s.mylayoutbox,
-				            bottom 	= theme.universalsize / 8,
-				            top 	= theme.universalsize / 8,
-				            widget = wibox.container.margin,
-				        },
-				        wibox.widget.textbox(" "),
-				    },
+				    s.mylayoutbox,
 				    bg = theme.bg_accent3,
 				    widget = wibox.container.background
 				},
 		        {
-				    {
-				        layout = wibox.layout.fixed.horizontal,
-				        --wibox.widget.textbox(" "),
-				        require("mytaglist")(s),
-				        --wibox.widget.textbox(" "),
-					},
+			        require("mytaglist")(s),
 					bg = theme.bg_accent2,
 					widget = wibox.container.background
 				},

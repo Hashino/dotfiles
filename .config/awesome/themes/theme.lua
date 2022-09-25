@@ -1,6 +1,6 @@
 theme = {}
 theme.hash 						= "~/.config/awesome/themes/hashino/"
-theme.universalsize 			= 24
+theme.universalsize 			= 23
 
 theme.font_name					= "Terminus (TTF) Medium "
 theme.font          			= theme.font_name .. tostring(theme.universalsize / 2)
