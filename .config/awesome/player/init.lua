@@ -136,7 +136,7 @@ local function worker()
                 song = string.sub(song, 0, (bar_size - 5)) .. "..."
                 song = " " .. song .. " "
                 --naughty.notify({ title = "size > 35", text = tostring(string.len(song)), timeout = 0 })
-            elseif string.len(song) < (bar_size - 5) then
+            else
             	size = string.len(song)
             	song = string.sub(song, 0, size - 1)
             	for i=1, ((bar_size - string.len(song)) / 2) do
