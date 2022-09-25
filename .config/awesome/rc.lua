@@ -1,12 +1,12 @@
 -- Standard awesome library
-local gears			= require("gears")
-local awful			= require("awful")
+local gears 	= require("gears")
+local awful 	= require("awful")
 require("awful.autofocus")
-local wibox			= require("wibox")
-local beautiful		= require("beautiful")
+local wibox 	= require("wibox")
+local beautiful = require("beautiful")
 beautiful.init(awful.util.getdir("config") .. "/themes/theme.lua")
-local menubar		= require("menubar")
-local naughty		= require("naughty")
+local menubar 	= require("menubar")
+local naughty 	= require("naughty")
 
 
 --------------------------------------------------------------------------------------------------
