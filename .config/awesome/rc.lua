@@ -224,7 +224,7 @@ awful.screen.connect_for_each_screen(function(s)
             },
             { -- Middle widget
                 require("tasklist")(s),
-                bg = theme.transparent,
+                bg = theme.transparent, 
                 widget = wibox.container.background
             },
             { -- Right widgets
@@ -303,26 +303,26 @@ awful.rules.rules =
 
     -- Floating clients.
     { 
-		rule_any = 
-		{
-		    instance = 
-		    {
-		    	
-		    },
-		    class = 
-		    {
-		    	
-	        },
-		    name = 
-		    {
-		        "Event Tester",  -- xev.
-		    },
-		    role = 
-		    {
-		        "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
-		    }
-		}, 
-		properties = { floating = true }},
+        rule_any = 
+        {
+            instance = 
+            {
+                
+            },
+            class = 
+            {
+                
+            },
+            name = 
+            {
+                "Event Tester",  -- xev.
+            },
+            role = 
+            {
+                "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
+            }
+        }, 
+        properties = { floating = true }},
 
 		-- Add titlebars to normal clients and dialogs
 		{ rule_any = {type = { "normal", "dialog" } },
