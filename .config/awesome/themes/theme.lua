@@ -61,7 +61,21 @@ theme.notification_opacity 		= 0.85
 theme.notification_font 		= theme.font
 
 
--- Define the image to load
+
+theme.layout_tile       = theme.hash .. "/icons/tile.png"
+theme.layout_fairh      = theme.hash .. "/icons/fairh.png"
+theme.layout_fairv      = theme.hash .. "/icons/fairv.png"
+theme.layout_floating   = theme.hash .. "/icons/floating.png"
+theme.layout_magnifier  = theme.hash .. "/icons/magnifier.png"
+theme.layout_max        = theme.hash .. "/icons/max.png"
+theme.layout_fullscreen = theme.hash .. "/icons/fullscreen.png"
+theme.layout_tilebottom = theme.hash .. "/icons/tilebottom.png"
+theme.layout_tileleft   = theme.hash .. "/icons/tileleft.png"
+theme.layout_tiletop    = theme.hash .. "/icons/tiletop.png"
+theme.layout_spiral     = theme.hash .. "/icons/spiral.png"
+theme.layout_dwindle    = theme.hash .. "/icons/dwindle.png"
+
+--[[
 theme.titlebar_close_button_normal              = theme.hash .. "/icons/titlebar/close_normal.png"
 theme.titlebar_close_button_focus               = theme.hash .. "/icons/titlebar/close_focus.png"
 
@@ -89,20 +103,7 @@ theme.titlebar_minimize_button_normal_inactive = theme.hash .. "/icons/titlebar/
 theme.titlebar_minimize_button_focus_inactive  = theme.hash .. "/icons/titlebar/minimize_focus_inactive.png"
 theme.titlebar_minimize_button_normal_active   = theme.hash .. "/icons/titlebar/minimize_normal_active.png"
 theme.titlebar_minimize_button_focus_active    = theme.hash .. "/icons/titlebar/minimize_focus_active.png"
-
-
-theme.layout_tile       = theme.hash .. "/icons/tile.png"
-theme.layout_fairh      = theme.hash .. "/icons/fairh.png"
-theme.layout_fairv      = theme.hash .. "/icons/fairv.png"
-theme.layout_floating   = theme.hash .. "/icons/floating.png"
-theme.layout_magnifier  = theme.hash .. "/icons/magnifier.png"
-theme.layout_max        = theme.hash .. "/icons/max.png"
-theme.layout_fullscreen = theme.hash .. "/icons/fullscreen.png"
-theme.layout_tilebottom = theme.hash .. "/icons/tilebottom.png"
-theme.layout_tileleft   = theme.hash .. "/icons/tileleft.png"
-theme.layout_tiletop    = theme.hash .. "/icons/tiletop.png"
-theme.layout_spiral     = theme.hash .. "/icons/spiral.png"
-theme.layout_dwindle    = theme.hash .. "/icons/dwindle.png"
+]]--
 
 
 return theme
