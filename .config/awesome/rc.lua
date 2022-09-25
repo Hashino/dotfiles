@@ -1,11 +1,12 @@
--- Standard awesome library
+-- by Hashino https://github.com/Hashino/dotfiles
+-----------------------------------------------------------------------------------------------------------------------
 local gears 	= require("gears")
 local awful 	= require("awful")
 require("awful.autofocus")
 local wibox 	= require("wibox")
 local beautiful	= require("beautiful")
 beautiful.init(awful.util.getdir("config") .. "/themes/theme.lua")
---------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 local naughty 	= require("naughty")
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -15,7 +16,6 @@ if awesome.startup_errors then
         title = "Oops, there were errors during startup!",
         text = awesome.startup_errors })
 end
-
 -- Handle runtime errors after startup
 do
     local in_error = false
@@ -31,7 +31,7 @@ do
     end)
 end
 -- }}}
---------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 theme.layout_tile 		= gears.color.recolor_image(theme.layout_tile, theme.fg_normal)
 theme.layout_fairh 		= gears.color.recolor_image(theme.layout_fairh, theme.fg_normal)
 theme.layout_fairv 		= gears.color.recolor_image(theme.layout_fairv, theme.fg_normal)
@@ -44,7 +44,7 @@ theme.layout_tileleft 	= gears.color.recolor_image(theme.layout_tileleft, theme.
 theme.layout_tiletop 	= gears.color.recolor_image(theme.layout_tiletop, theme.fg_normal)
 theme.layout_spiral 	= gears.color.recolor_image(theme.layout_spiral, theme.fg_normal)
 theme.layout_dwindle 	= gears.color.recolor_image(theme.layout_dwindle, theme.fg_normal)
---------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 -- This is used later as the default terminal and editor to run.
@@ -53,7 +53,7 @@ browser = "firefox"
 filemanager = "thunar"
 editor = "mousepad"
 modkey = "Mod4"
---------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 thin_spacer =
 {
     {
@@ -66,7 +66,7 @@ thin_spacer =
     bg = theme.transparent,
     widget = wibox.container.background
 }
---------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = 
 {
@@ -88,7 +88,7 @@ awful.layout.layouts =
     --awful.layout.suit.corner.se,
 }
 -- }}}
---------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 local function set_wallpaper(s)
     -- Wallpaper
     if beautiful.wallpaper then
@@ -100,21 +100,17 @@ local function set_wallpaper(s)
         gears.wallpaper.maximized(wallpaper, s, true)
     end
 end
-
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
---------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 -- {{{ Screen setup
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
-
     -- Each screen has its own tag table.
     awful.tag({ "  ", "  ", "  ", "  ", "  " }, s, awful.layout.layouts[1])
-    
 	-- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, height = theme.universalsize, bg = theme.transparent })
-	
 	-- Add widgets to the wibox
     s.mywibox:setup
     {
@@ -160,13 +156,11 @@ awful.screen.connect_for_each_screen(function(s)
     }
 end)
 -- }}}
---------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = require("rules")(s)
---------------------------------------------------------------------------------------------------
-
+-----------------------------------------------------------------------------------------------------------------------
 -- {{{ Signals
-
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function (c)
     -- Set the windows at the slave,
@@ -179,7 +173,6 @@ client.connect_signal("manage", function (c)
         awful.placement.no_offscreen(c)
     end
 end)
-
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)
     if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
@@ -187,54 +180,18 @@ client.connect_signal("mouse::enter", function(c)
         client.focus = c
     end
 end)
-
+-- Change border on focus
 client.connect_signal("focus", function(c) 
+    c.border_width = theme.border_width * 2
 	c.border_color = beautiful.border_focus
 end)
-client.connect_signal("unfocus", function(c) c
-	.border_color = beautiful.border_normal
+client.connect_signal("unfocus", function(c) 
+    c.border_width = theme.border_width
+    c.border_color = beautiful.border_normal
 end)
-
-
---[[
--- Disable borders/titlebars on lone windows
--- Handle border sizes of clients.
-for s = 1, screen.count() do screen[s]:connect_signal("arrange", 
-function ()
-    local clients = awful.client.visible(s)
-    local layout = awful.layout.getname(awful.layout.get(s))
-
-    for _, c in pairs(clients) do
-        -- No titlebar with only one humanly visible client
-    	if c.maximized then
-            ---awful.titlebar.hide(c)
-            --c.border_width = 0
-        elseif c.floating or layout == "floating" then
-            --awful.titlebar.show(c)
-            --awful.titlebar.hide(c)
-            --c.border_width = theme.border_width
-        elseif layout == "max" or layout == "fullscreen" then
-            --awful.titlebar.hide(c)
-            --c.border_width = 0
-        else
-            local tiled = awful.client.tiled(c.screen)
-            if #tiled == 1 then -- and c == tiled[1] then
-                --awful.titlebar.hide(c)
-                --c.border_width = 0
-            else
-                --awful.titlebar.show(c)
-                --awful.titlebar.hide(c)
-                --c.border_width = theme.border_width
-            end
-        end
-    end
-end)
-]]--
-
 -- }}}
-
---------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 -- Set global keys
 root.keys(require("globalkeys")(s))
---------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")

@@ -1,42 +1,15 @@
--------------------------------------------------
+--------------------------------------------------------------------------------------------------
 -- Modelled after Pavel Makhov's work
 -- @author Mohammed Gaber
 -- requires - playerctl
 -- modified by Hashino https://github.com/Hashino/dotfiles
--------------------------------------------------
+--------------------------------------------------------------------------------------------------
 local awful 	= require("awful")
 local beautiful = require("beautiful")
 local watch 	= require("awful.widget.watch")
 local wibox 	= require("wibox")
 local gears 	= require("gears")
--------------------------------------------------
--- {{{ Error handling
--- Check if awesome encountered an error during startup and fell back to
--- another config (This code will only ever execute for the fallback config)
-local naughty 	= require("naughty")
-
-if awesome.startup_errors then
-    naughty.notify({ preset = naughty.config.presets.critical,
-                     title = "Oops, there were errors during startup!",
-                     text = awesome.startup_errors })
-end
-
--- Handle runtime errors after startup
-do
-    local in_error = false
-    awesome.connect_signal("debug::error", function (err)
-        -- Make sure we don't go into an endless error loop
-        if in_error then return end
-        in_error = true
-
-        naughty.notify({ preset = naughty.config.presets.critical,
-                         title = "Oops, an error happened!",
-                         text = tostring(err) })
-        in_error = false
-    end)
-end
--- }}}
--------------------------------------------------
+--------------------------------------------------------------------------------------------------
 
 local bar_size			= 50
 
@@ -57,6 +30,7 @@ local default_term		= "lxterminal -e "
 
 local GET_MPD_CMD 		= "playerctl -p " .. default_player .. " -f '{{status}};{{xesam:artist}};{{xesam:title}}' metadata"
 
+--------------------------------------------------------------------------------------------------
 local mpris_widget = wibox.widget
 {
 	{
@@ -135,12 +109,12 @@ local mpris_widget = wibox.widget
         self:get_children_by_id('next')[1]:set_text(new_next)
     end
 }
-
+--------------------------------------------------------------------------------------------------
 local popup = awful.popup{
     visible = false,
     widget = {}
 }
-
+--------------------------------------------------------------------------------------------------
 local function worker()
 
     -- retrieve song info
@@ -190,5 +164,5 @@ local function worker()
     return mpris_widget
 
 end
-
+--------------------------------------------------------------------------------------------------
 return setmetatable(mpris_widget, {__call = function(_, ...) return worker(...) end})
