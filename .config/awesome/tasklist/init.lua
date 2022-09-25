@@ -32,8 +32,6 @@ do
 end
 -- }}}
 -------------------------------------------------
-
-
 local get_tasklist = function(s)
 
 	local tasklist_buttons = gears.table.join(
@@ -98,5 +96,5 @@ local get_tasklist = function(s)
 	
 	return mytasklist
 end
-
+----------------------------------------------------------------------
 return get_tasklist

@@ -1,9 +1,9 @@
+-- by Hashino https://github.com/Hashino/dotfiles
+-------------------------------------------------
 local awful = require("awful")
 local gears = require("gears")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
-
-----------------------------------------------------------------------
 ----------------------------------------------------------------------
 local naughty 	= require("naughty")
 
@@ -31,10 +31,7 @@ do
     end)
 end
 -- }}}
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 local get_taglist = function(s)
     -- Taglist buttons
     local taglist_buttons = gears.table.join(
@@ -50,10 +47,7 @@ local get_taglist = function(s)
         end), awful.button({}, 5, function(t)
             awful.tag.viewprev(t.screen)
         end))
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 	-- Function to update the tags
 	local update_tags = function(self, c3)
 		local tagicon = self:get_children_by_id('icon_role')[1]
@@ -69,8 +63,6 @@ local get_taglist = function(s)
 		end
 		self:emit_signal_recursive("taglist_changed")
 	end
-	
-----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
 	-- Function to update the margin
@@ -85,8 +77,6 @@ local get_taglist = function(s)
 			end
 		end
 	end
-		
-----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
 	local icon_taglist = wibox.widget
@@ -133,8 +123,5 @@ local get_taglist = function(s)
 	
 	return icon_taglist
 end
-
 ----------------------------------------------------------------------
-----------------------------------------------------------------------
-
 return get_taglist
