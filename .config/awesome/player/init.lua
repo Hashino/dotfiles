@@ -25,7 +25,7 @@ local spacer			= "   "
 
 local font				= "Terminus (TTF) Medium 12"
 local font_icon		 	= "Terminus (TTF) Medium 12"
-local font_controls 	= "Terminus (TTF) Medium 8"
+local font_controls 	= "Terminus (TTF) Medium 10"
 
 local default_player 	= "ncspot"
 
