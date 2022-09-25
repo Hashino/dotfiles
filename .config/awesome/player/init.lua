@@ -11,18 +11,18 @@ local wibox 	= require("wibox")
 local gears 	= require("gears")
 --------------------------------------------------------------------------------------------------
 
-local bar_size			= 50
+local bar_size			= theme.universalsize * 2
 
 local icon				= ""
-local prev				= ""
-local play				= ""
-local pause				= ""
-local next				= ""
+local prev				= ""
+local play				= "  "
+local pause				= "  "
+local next				= ""
 local spacer			= "   "
 
 local font				= theme.font_name .. tostring(theme.universalsize / 2)
 local font_icon		 	= theme.font_name .. tostring(theme.universalsize / 2)
-local font_controls 	= theme.font_name .. tostring(theme.universalsize / 3)
+local font_controls 	= theme.font_name .. tostring(theme.universalsize / 2.5)
 
 local default_player 	= "ncspot"
 
@@ -55,7 +55,10 @@ local mpris_widget = wibox.widget
 				widget = wibox.widget.textbox,
 				buttons = gears.table.join(
 				awful.button({}, 1, nil, function ()
-					awful.spawn("playerctl -p " .. default_player .. " play-pause")
+				    local matcher = function (c)
+				        return awful.rules.match(c, {name = default_player})
+				    end
+				    awful.client.run_or_raise(default_term .. default_player, matcher)
 				end)
 				),
 			},

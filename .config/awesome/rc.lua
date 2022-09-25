@@ -141,7 +141,6 @@ awful.screen.connect_for_each_screen(function(s)
                     bg = theme.bg_accent3,
                     widget = wibox.container.background
                 },
-                thin_spacer,
                 {
                     require("systray")(s),
                     bg = theme.bg_accent2,
@@ -182,11 +181,9 @@ client.connect_signal("mouse::enter", function(c)
 end)
 -- Change border on focus
 client.connect_signal("focus", function(c) 
-    c.border_width = theme.border_width * 2
 	c.border_color = beautiful.border_focus
 end)
 client.connect_signal("unfocus", function(c) 
-    c.border_width = theme.border_width
     c.border_color = beautiful.border_normal
 end)
 -- }}}
