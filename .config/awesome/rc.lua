@@ -132,9 +132,9 @@ awful.screen.connect_for_each_screen(function(s)
     {
 		awful.widget.layoutbox(s),
 		bottom 	= theme.universalsize / 6,
-        top 	= theme.universalsize / 6,
-        left	= theme.universalsize / 4,
-        right	= theme.universalsize / 4,
+		top 	= theme.universalsize / 6,
+		left	= theme.universalsize / 4,
+		right	= theme.universalsize / 4,
 		widget	= wibox.container.margin,
     }    
     s.mylayoutbox:buttons 
