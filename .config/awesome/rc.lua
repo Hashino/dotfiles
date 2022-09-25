@@ -206,43 +206,43 @@ awful.screen.connect_for_each_screen(function(s)
 	
 	-- Add widgets to the wibox
     s.mywibox:setup
-	{
-		{
-		    layout = wibox.layout.align.horizontal,
-		    { -- Left widget
-		    	layout = wibox.layout.fixed.horizontal,
-				{
-				    require("layoutbox")(s),
-				    bg = theme.bg_accent3,
-				    widget = wibox.container.background
-				},
-		        {
-			        require("taglist")(s),
-					bg = theme.bg_accent2,
-					widget = wibox.container.background
-				},
-			},
-		    { -- Middle widget
-		        require("tasklist")(s),
-		        bg = theme.transparent,
-		        widget = wibox.container.background
-		    },
-		    { -- Right widgets
-		        layout = wibox.layout.fixed.horizontal,
-		        {
-		        	require("player"),
-		            bg = theme.bg_accent3,
-		            widget = wibox.container.background
-		        },
-		        thin_spacer,
-		        {
+    {
+        {
+            layout = wibox.layout.align.horizontal,
+            { -- Left widget
+                layout = wibox.layout.fixed.horizontal,
+                {
+                    require("layoutbox")(s),
+                    bg = theme.bg_accent3,
+                    widget = wibox.container.background
+                },
+                {
+                    require("taglist")(s),
+                    bg = theme.bg_accent2,
+                    widget = wibox.container.background
+                },
+            },
+            { -- Middle widget
+                require("tasklist")(s),
+                bg = theme.transparent,
+                widget = wibox.container.background
+            },
+            { -- Right widgets
+                layout = wibox.layout.fixed.horizontal,
+                {
+                    require("player"),
+                    bg = theme.bg_accent3,
+                    widget = wibox.container.background
+                },
+                thin_spacer,
+                {
                     s.systray,
-		            bg = theme.bg_accent2,
-		            widget = wibox.container.background
-		        },
-		        s.myclock,
-		    },
-	    },
+                    bg = theme.bg_accent2,
+                    widget = wibox.container.background
+                },
+                s.myclock,
+            },
+        },
         left	= theme.useless_gap * 2,
         right	= theme.useless_gap * 2,
         widget = wibox.container.margin,
