@@ -76,6 +76,19 @@ editor = "mousepad"
 
 modkey = "Mod4"
 
+spacer = 
+{
+    {
+        layout = wibox.layout.fixed.horizontal,
+        {
+            right	= theme.universalsize / 6,
+            widget = wibox.container.margin,
+        },
+    },
+    bg = theme.transparent,
+    widget = wibox.container.background
+}
+
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
     awful.layout.suit.tile,
@@ -158,48 +171,53 @@ awful.screen.connect_for_each_screen(function(s)
 
 
     -- Create a tasklist widget
-    s.mytasklist = awful.widget.tasklist {
-        screen   = s,
-        filter   = awful.widget.tasklist.filter.minimizedcurrenttags,
-        buttons  = tasklist_buttons,
-        layout   = {
-            --max_widget_size = 400,
-            spacing = 0,
-            layout  = wibox.layout.flex.horizontal
-        },
-        widget_template =
-        {
-            {
-                {
-                    {
-                        id     = "text_role",
-                        widget = wibox.widget.textbox,
-                    },
-                    valign = "center",
-                    halign = "center",
-                    widget = wibox.container.place,
-                },
-                bg     = theme.bg_accent2,
-                widget = wibox.container.background,
-            },
-            left  = theme.universalsize / 10,
-            right = theme.universalsize / 10,
-            top   = theme.universalsize / 10,
-            bottom = theme.universalsize / 10,
-            widget = wibox.container.margin
-        },
-    }
+    s.mytasklist =
+    {
+		{
+			awful.widget.tasklist
+			{
+				screen   = s,
+				filter   = awful.widget.tasklist.filter.minimizedcurrenttags,
+				buttons  = tasklist_buttons,
+				layout   = {
+				    --max_widget_size = 400,
+				    spacing = 0,
+				    layout  = wibox.layout.flex.horizontal
+				},
+				widget_template =
+				{
+				    {
+				        {
+				            {
+				                id     = "text_role",
+				                widget = wibox.widget.textbox,
+				            },
+				            valign = "center",
+				            halign = "center",
+				            widget = wibox.container.place,
+				        },
+				        bg     = theme.bg_accent2,
+				        widget = wibox.container.background,
+				    },
+				    left  = theme.universalsize / 10,
+				    right = theme.universalsize / 10,
+				    widget = wibox.container.margin
+				},
+			},
+		    bg     = theme.transparent,
+		    widget = wibox.container.background,
+	    },
+	    left  = theme.universalsize / 10,
+	    right = theme.universalsize / 10,
+	    widget = wibox.container.margin	    
+	}
 
 
     local systray = wibox.widget
-        {
+    {
             wibox.widget.systray(),
             widget = wibox.container.margin
     }
-    function systray:after_draw_children(cr)
-
-
-    end
 
     s.mylayoutbox = awful.widget.layoutbox {
         screen = s,
@@ -213,104 +231,117 @@ awful.screen.connect_for_each_screen(function(s)
     }
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = theme.universalsize })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = theme.universalsize, bg = "ffffff00" })
 
 
     -- Add widgets to the wibox
-    s.mywibox:setup {
-        layout = wibox.layout.align.horizontal,
-        {
-        	layout = wibox.layout.fixed.horizontal,
+    s.mywibox:setup 
+	{
+		{
+		    layout = wibox.layout.align.horizontal,
 		    {
+		    	layout = wibox.layout.fixed.horizontal,
+				{
+				    {
+				        layout = wibox.layout.fixed.horizontal,
+				        wibox.widget.textbox(" "),
+				        {
+				            s.mylayoutbox,
+				            bottom 	= theme.universalsize / 5,
+				            top 	= theme.universalsize / 5,
+				            widget = wibox.container.margin,
+				        },
+				        wibox.widget.textbox(" "),
+				    },
+				    bg = theme.bg_accent3,
+				    widget = wibox.container.background
+				},
 		        {
-		            layout = wibox.layout.fixed.horizontal,
-		            wibox.widget.textbox(" "),
-		            {
-		                s.mylayoutbox,
-		                bottom 	= theme.universalsize / 5,
-		                top 	= theme.universalsize / 5,
-		                widget = wibox.container.margin,
-		            },
-		            wibox.widget.textbox(" "),
-		        },
-		        bg = theme.bg_accent3,
+				    {
+				        layout = wibox.layout.fixed.horizontal,
+				        --wibox.widget.textbox(" "),
+				        require("mytaglist")(s),
+				        --wibox.widget.textbox(" "),
+					},
+					bg = theme.bg_accent2,
+					widget = wibox.container.background
+				},
+			},
+		    { -- Middle widget
+		        s.mytasklist,
+		        bg = theme.transparent,
 		        widget = wibox.container.background
 		    },
-            {
+		    { -- Right widgets
+		        layout = wibox.layout.fixed.horizontal,
 		        {
-		            layout = wibox.layout.fixed.horizontal,
-		            --wibox.widget.textbox(" "),
-		            require("mytaglist")(s),
-		            --wibox.widget.textbox(" "),
-				},
-				bg = theme.bg_accent2,
-				widget = wibox.container.background
+		        	require("player"),
+		            bg = theme.bg_accent3,
+		            widget = wibox.container.background
+		        },
+		        spacer,
+		        {
+		            {
+		                layout = wibox.layout.fixed.horizontal,
+		                {
+		                    systray,
+		                    bottom 	= theme.universalsize / 6,
+		                    top 	= theme.universalsize / 6,
+		                    left	= theme.universalsize * (2/3),
+		                    right	= theme.universalsize * (2/3),
+		                    widget = wibox.container.margin,
+		                },
+		            },
+		            bg = theme.bg_accent2,
+		            widget = wibox.container.background
+		        },
+		        spacer,
+		        {
+		            {
+		                layout = wibox.layout.fixed.horizontal,
+		                wibox.widget.textbox("  "),
+		                wibox.widget.textclock("%a"),
+		                wibox.widget.textbox("  "),
+		            },
+		            bg = theme.bg_accent1,
+		            widget = wibox.container.background
+		        },
+		        {
+		            {
+		                layout = wibox.layout.fixed.horizontal,
+		                wibox.widget.textbox("  "),
+		                wibox.widget.textclock("%d"),
+		                wibox.widget.textbox("  "),
+		            },
+		            bg = theme.bg_accent2,
+		            widget = wibox.container.background
+		        },
+		        {
+		            {
+		                layout = wibox.layout.fixed.horizontal,
+		                wibox.widget.textbox("  "),
+		                wibox.widget.textclock("%b"),
+		                wibox.widget.textbox("  "),
+		            },
+		            bg = theme.bg_accent3,
+		            widget = wibox.container.background
+		        },
+		        {
+		            {
+		                layout = wibox.layout.fixed.horizontal,
+		                wibox.widget.textbox("  "),
+		                wibox.widget.textclock("%H:%M"),
+		                wibox.widget.textbox("  "),
+		            },
+		            bg = theme.bg_accent1,
+		            widget = wibox.container.background
+		        },
 		    },
 	    },
-        { -- Middle widget
-            s.mytasklist,
-            bg = theme.bg_accent1,
-            widget = wibox.container.background
-        },
-        { -- Right widgets
-            layout = wibox.layout.fixed.horizontal,
-            require("player"),
-            {
-                {
-                    layout = wibox.layout.fixed.horizontal,
-                    wibox.widget.textbox("  "),
-                    {
-                        systray,
-                        bottom 	= theme.universalsize / 5,
-                        top 	= theme.universalsize / 5,
-                        widget = wibox.container.margin,
-                    },
-                    wibox.widget.textbox("  "),
-                },
-                bg = theme.bg_accent2,
-                widget = wibox.container.background
-            },
-            {
-                {
-                    layout = wibox.layout.fixed.horizontal,
-                    wibox.widget.textbox("  "),
-                    wibox.widget.textclock("%a"),
-                    wibox.widget.textbox("  "),
-                },
-                bg = theme.bg_accent1,
-                widget = wibox.container.background
-            },
-            {
-                {
-                    layout = wibox.layout.fixed.horizontal,
-                    wibox.widget.textbox("  "),
-                    wibox.widget.textclock("%d"),
-                    wibox.widget.textbox("  "),
-                },
-                bg = theme.bg_accent2,
-                widget = wibox.container.background
-            },
-            {
-                {
-                    layout = wibox.layout.fixed.horizontal,
-                    wibox.widget.textbox("  "),
-                    wibox.widget.textclock("%b"),
-                    wibox.widget.textbox("  "),
-                },
-                bg = theme.bg_accent3,
-                widget = wibox.container.background
-            },
-            {
-                {
-                    layout = wibox.layout.fixed.horizontal,
-                    wibox.widget.textbox("  "),
-                    wibox.widget.textclock("%H:%M"),
-                    wibox.widget.textbox("  "),
-                },
-                bg = theme.bg_accent1,
-                widget = wibox.container.background
-            },
-        },
+        top 	= theme.universalsize / 12,
+        left	= theme.universalsize / 4,
+        right	= theme.universalsize / 4,
+        widget = wibox.container.margin,
     }
 end)
 

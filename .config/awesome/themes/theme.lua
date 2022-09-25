@@ -8,10 +8,11 @@ theme.icon_theme = "Papirus-Dark"
 theme.wallpaper = "~/wallpaper.png"
 
 theme.useless_gap   	= theme.universalsize / 8
-theme.gap_single_client = false
+theme.gap_single_client = true
 
 theme.bg_normal     = "#2e3440"
 
+theme.transparent	= "00000000"
 
 theme.bg_accent1    = "#282d39"
 theme.bg_accent2    = "#212733"
