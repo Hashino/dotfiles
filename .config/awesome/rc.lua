@@ -157,49 +157,49 @@ awful.screen.connect_for_each_screen(function(s)
     
     -- Time and date
     s.myclock = wibox.widget
-    {
-    	layout = wibox.layout.fixed.horizontal,
+	{
+		layout = wibox.layout.fixed.horizontal,
 		{
-            {
-                layout = wibox.layout.fixed.horizontal,
-                spacer,
-                wibox.widget.textclock("%a"),
-                spacer,
-            },
-            bg = theme.bg_accent1,
-            widget = wibox.container.background
-        },
-        {
-            {
-                layout = wibox.layout.fixed.horizontal,
-                spacer,
-                wibox.widget.textclock("%d"),
-                spacer,
-            },
-            bg = theme.bg_accent2,
-            widget = wibox.container.background
-        },
-        {
-            {
-                layout = wibox.layout.fixed.horizontal,
-                spacer,
-                wibox.widget.textclock("%b"),
-                spacer,
-            },
-            bg = theme.bg_accent3,
-            widget = wibox.container.background
-        },
-        {
-            {
-                layout = wibox.layout.fixed.horizontal,
-                spacer,
-                wibox.widget.textclock("%H:%M"),
-                spacer,
-            },
-            bg = theme.bg_accent1,
-            widget = wibox.container.background
-        },
-    }
+			{
+				layout = wibox.layout.fixed.horizontal,
+				spacer,
+				wibox.widget.textclock("%a"),
+				spacer,
+			},
+			bg = theme.bg_accent1,
+			widget = wibox.container.background
+		},
+		{
+			{
+				layout = wibox.layout.fixed.horizontal,
+				spacer,
+				wibox.widget.textclock("%d"),
+				spacer,
+			},
+			bg = theme.bg_accent2,
+			widget = wibox.container.background
+		},
+		{
+			{
+				layout = wibox.layout.fixed.horizontal,
+				spacer,
+				wibox.widget.textclock("%b"),
+				spacer,
+			},
+			bg = theme.bg_accent3,
+			widget = wibox.container.background
+		},
+		{
+			{
+				layout = wibox.layout.fixed.horizontal,
+				spacer,
+				wibox.widget.textclock("%H:%M"),
+				spacer,
+			},
+			bg = theme.bg_accent1,
+			widget = wibox.container.background
+		},
+	}
     
 	-- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, height = theme.universalsize, bg = theme.transparent })
