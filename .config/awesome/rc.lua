@@ -1,17 +1,15 @@
 -- Standard awesome library
-local gears = require("gears")
-local awful = require("awful")
+local gears 	= require("gears")
+local awful 	= require("awful")
 require("awful.autofocus")
--- Widget and layout library
-local wibox = require("wibox")
--- Theme handling library
+local wibox 	= require("wibox")
 local beautiful = require("beautiful")
 beautiful.init(awful.util.getdir("config") .. "/themes/theme.lua")
--- Notification library
-local naughty = require("naughty")
-local menubar = require("menubar")
+local menubar 	= require("menubar")
+local naughty 	= require("naughty")
 
 
+--------------------------------------------------------------------------------------------------
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -71,6 +69,7 @@ thin_spacer =
     bg = theme.transparent,
     widget = wibox.container.background
 }
+
 spacer =
 {
     {
@@ -83,7 +82,7 @@ spacer =
     bg = theme.transparent,
     widget = wibox.container.background
 }
-
+--------------------------------------------------------------------------------------------------
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
     awful.layout.suit.tile,
@@ -104,7 +103,7 @@ awful.layout.layouts = {
 	--awful.layout.suit.corner.se,
 }
 -- }}}
-
+--------------------------------------------------------------------------------------------------
 local function set_wallpaper(s)
     -- Wallpaper
     if beautiful.wallpaper then
@@ -119,7 +118,8 @@ end
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
-
+--------------------------------------------------------------------------------------------------
+-- {{{ Screen setup
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
@@ -249,7 +249,9 @@ awful.screen.connect_for_each_screen(function(s)
         widget = wibox.container.margin,
     }
 end)
-
+-- }}}
+--------------------------------------------------------------------------------------------------
+-- {{{ Clients
 clientkeys = gears.table.join(
     awful.key({ modkey,           }, "x",      function (c) c:kill()                         end,
         {description = "close", group = "client"}),
@@ -270,8 +272,6 @@ clientkeys = gears.table.join(
     awful.key({ modkey,           }, "f",  awful.client.floating.toggle                     ,
               {description = "toggle floating", group = "client"})
 )
-
-
 
 clientbuttons = gears.table.join(
     awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
@@ -327,7 +327,8 @@ awful.rules.rules = {
     },
 }
 -- }}}
-
+-- }}}
+--------------------------------------------------------------------------------------------------
 
 -- {{{ Signals
 
