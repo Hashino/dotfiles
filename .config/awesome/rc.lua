@@ -337,7 +337,6 @@ awful.screen.connect_for_each_screen(function(s)
 		        },
 		    },
 	    },
-        top 	= theme.universalsize / 12,
         left	= theme.universalsize / 4,
         right	= theme.universalsize / 4,
         widget = wibox.container.margin,
