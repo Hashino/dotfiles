@@ -251,8 +251,9 @@ end)
 -- }}}
 --------------------------------------------------------------------------------------------------
 -- {{{ Clients
-clientkeys = gears.table.join(
-    awful.key({ modkey,           }, "x",      function (c) c:kill()                         end,
+clientkeys = gears.table.join
+(
+    awful.key({ modkey,           }, "x",      function (c) c:kill() end,
         {description = "close", group = "client"}),
     awful.key({ modkey,           }, "n",
         function (c)
@@ -268,19 +269,22 @@ clientkeys = gears.table.join(
         end ,
         {description = "(un)maximize", group = "client"}),
 
-    awful.key({ modkey,           }, "f",  awful.client.floating.toggle                     ,
+    awful.key({ modkey,           }, "f",  awful.client.floating.toggle,
               {description = "toggle floating", group = "client"})
 )
 
-clientbuttons = gears.table.join(
+clientbuttons = gears.table.join
+(
     awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
     awful.button({ modkey }, 1, awful.mouse.client.move),
-    awful.button({ modkey }, 3, awful.mouse.client.resize))
+    awful.button({ modkey }, 3, awful.mouse.client.resize)
+)
 
 
 -- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
-awful.rules.rules = {
+awful.rules.rules = 
+{
     -- All clients will match this rule.
     { rule = { },
         properties = {
