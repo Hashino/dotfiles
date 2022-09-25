@@ -23,7 +23,7 @@ local pause				= ""
 local next				= ""
 local spacer			= "   "
 
-local font				= "Terminus Medium 12"
+local font				= "Terminus (TTF) Medium 12"
 local font_icon		 	= "Terminus (TTF) Medium 12"
 local font_controls 	= "Terminus (TTF) Medium 8"
 

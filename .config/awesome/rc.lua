@@ -219,16 +219,34 @@ awful.screen.connect_for_each_screen(function(s)
     -- Add widgets to the wibox
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
-        { -- Left widgets
+        {
+        	layout = wibox.layout.fixed.horizontal,
+		    {
+		        {
+		            layout = wibox.layout.fixed.horizontal,
+		            wibox.widget.textbox(" "),
+		            {
+		                s.mylayoutbox,
+		                bottom 	= theme.universalsize / 5,
+		                top 	= theme.universalsize / 5,
+		                widget = wibox.container.margin,
+		            },
+		            wibox.widget.textbox(" "),
+		        },
+		        bg = theme.bg_accent3,
+		        widget = wibox.container.background
+		    },
             {
-                layout = wibox.layout.fixed.horizontal,
-                wibox.widget.textbox(" "),
-                require("mytaglist")(s),
-                wibox.widget.textbox(" "),
-        },
-        bg = theme.bg_accent2,
-        widget = wibox.container.background
-        },
+		        {
+		            layout = wibox.layout.fixed.horizontal,
+		            --wibox.widget.textbox(" "),
+		            require("mytaglist")(s),
+		            --wibox.widget.textbox(" "),
+				},
+				bg = theme.bg_accent2,
+				widget = wibox.container.background
+		    },
+	    },
         { -- Middle widget
             s.mytasklist,
             bg = theme.bg_accent1,
@@ -290,21 +308,6 @@ awful.screen.connect_for_each_screen(function(s)
                     wibox.widget.textbox("  "),
                 },
                 bg = theme.bg_accent1,
-                widget = wibox.container.background
-            },
-            {
-                {
-                    layout = wibox.layout.fixed.horizontal,
-                    wibox.widget.textbox(" "),
-                    {
-                        s.mylayoutbox,
-                        bottom 	= theme.universalsize / 5,
-                        top 	= theme.universalsize / 5,
-                        widget = wibox.container.margin,
-                    },
-                    wibox.widget.textbox(" "),
-                },
-                bg = theme.bg_accent2,
                 widget = wibox.container.background
             },
         },
