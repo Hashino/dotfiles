@@ -122,19 +122,19 @@ local get_taglist = function(s)
 			buttons = taglist_buttons
 		},
 		id		= "taglist_margin",
-		right	= 0,
-		left	= 0,
+		left	= #s.tags == 0 and 0 or 8,
+		right	= #s.tags == 0 and 0 or 8,
+		
 		widget	= wibox.container.margin,
-	}
-	
-	
+	}	
 	
 	margin = icon_taglist:get_children_by_id('taglist_margin')[1]
 	margin:connect_signal("taglist_changed", update_margin, margin)
 	
-	update_margin()
-	
 	return icon_taglist
 end
+
+----------------------------------------------------------------------
+----------------------------------------------------------------------
 
 return get_taglist

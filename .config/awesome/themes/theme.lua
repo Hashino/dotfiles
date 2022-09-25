@@ -14,9 +14,9 @@ theme.bg_normal     = "#2e3440"
 
 theme.transparent	= "00000000"
 
-theme.bg_accent1    = "#282d39"
-theme.bg_accent2    = "#212733"
-theme.bg_accent3    = "#1b212c"
+theme.bg_accent1    = "#2a303b"
+theme.bg_accent2    = "#323845"
+theme.bg_accent3    = "#232935"
 
 
 theme.bg_focus      = theme.bg_normal
@@ -29,8 +29,8 @@ theme.fg_urgent     = "#ff0000"
 theme.fg_minimize   = theme.fg_normal
 
 theme.border_width  = theme.universalsize / 20
-theme.border_normal = "#2e3440"
-theme.border_focus  = "#3b4252"
+theme.border_normal = "#353b47"
+theme.border_focus  = "#424959"
 theme.border_marked = "#2c3040"
 
 theme.spacing = theme.universalsize / 2

@@ -164,7 +164,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "" }, s, awful.layout.layouts[1])
+    awful.tag({ "  ", "  ", "  " }, s, awful.layout.layouts[1])
 
     -- Create a taglist widget
     --s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
@@ -623,23 +623,23 @@ for s = 1, screen.count() do screen[s]:connect_signal("arrange", function ()
         -- No titlebar with only one humanly visible client
     	if c.maximized then
             awful.titlebar.hide(c)
-            c.border_width = 0
+            --c.border_width = 0
         elseif c.floating or layout == "floating" then
             --awful.titlebar.show(c)
             awful.titlebar.hide(c)
-            c.border_width = theme.border_width
+            --c.border_width = theme.border_width
         elseif layout == "max" or layout == "fullscreen" then
             awful.titlebar.hide(c)
-            c.border_width = 0
+            --c.border_width = 0
         else
             local tiled = awful.client.tiled(c.screen)
             if #tiled == 1 then -- and c == tiled[1] then
                 awful.titlebar.hide(c)
-                c.border_width = 0
+                --c.border_width = 0
             else
                 --awful.titlebar.show(c)
                 awful.titlebar.hide(c)
-                c.border_width = theme.border_width
+                --c.border_width = theme.border_width
             end
         end
     end
