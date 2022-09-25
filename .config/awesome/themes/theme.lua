@@ -1,6 +1,5 @@
 -- by Hashino https://github.com/Hashino/dotfiles
 -----------------------------------------------------------------------------------------------------------------------
-
 theme = {}
 theme.hash 						= "~/.config/awesome/themes/hashino/"
 theme.universalsize 			= 23
