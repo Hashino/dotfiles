@@ -186,7 +186,6 @@ end)
 client.connect_signal("unfocus", function(c)
     c.border_color = beautiful.border_normal
 end)
--- Disable borders/titlebars on lone windows
 -- Handle border sizes of clients.
 for s = 1, screen.count() do screen[s]:connect_signal("arrange", function ()
     local clients = awful.client.visible(s)
@@ -195,23 +194,16 @@ for s = 1, screen.count() do screen[s]:connect_signal("arrange", function ()
     for _, c in pairs(clients) do
         -- No titlebar with only one humanly visible client
     	if c.maximized then
-            --awful.titlebar.hide(c)
             c.border_width = 0
         elseif c.floating or layout == "floating" then
-            --awful.titlebar.show(c)
-            --awful.titlebar.hide(c)
             c.border_width = theme.border_width
         elseif layout == "max" or layout == "fullscreen" then
-            --awful.titlebar.hide(c)
             c.border_width = 0
         else
             local tiled = awful.client.tiled(c.screen)
             if #tiled == 1 then -- and c == tiled[1] then
-                --awful.titlebar.hide(c)
                 c.border_width = 0
             else
-                --awful.titlebar.show(c)
-                --awful.titlebar.hide(c)
                 c.border_width = theme.border_width
             end
         end
