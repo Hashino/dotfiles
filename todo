@@ -3,6 +3,10 @@
     {
       "name": "add install script",
       "description": "shoud have options for backup and to choose which settings to copy"
+    },
+    {
+      "name": "make theme font size scale",
+      "description": "probably with env variables"
     }
   ]
 }
