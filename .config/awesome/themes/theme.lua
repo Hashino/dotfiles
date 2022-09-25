@@ -11,8 +11,6 @@ theme.wallpaper 				= "~/wallpaper.png"
 theme.useless_gap   			= theme.universalsize / 8
 theme.gap_single_client 		= true
 
-
-
 theme.bg_normal     			= "#2a303b"
 
 theme.bg_accent1    			= "#2a303b"

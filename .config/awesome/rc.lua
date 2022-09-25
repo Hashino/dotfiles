@@ -5,9 +5,8 @@ require("awful.autofocus")
 local wibox 	= require("wibox")
 local beautiful	= require("beautiful")
 beautiful.init(awful.util.getdir("config") .. "/themes/theme.lua")
-local menubar 	= require("menubar")
-local naughty 	= require("naughty")
 --------------------------------------------------------------------------------------------------
+local naughty 	= require("naughty")
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -67,19 +66,6 @@ thin_spacer =
     bg = theme.transparent,
     widget = wibox.container.background
 }
-
-spacer =
-{
-    {
-        layout = wibox.layout.fixed.horizontal,
-        {
-            right	= theme.spacing,
-            widget = wibox.container.margin,
-        },
-    },
-    bg = theme.transparent,
-    widget = wibox.container.background
-}
 --------------------------------------------------------------------------------------------------
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = 
@@ -125,81 +111,6 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Each screen has its own tag table.
     awful.tag({ "  ", "  ", "  ", "  ", "  " }, s, awful.layout.layouts[1])
-        
-    -- Margin around layoutbox
-    s.mylayoutbox = wibox.widget
-    {
-        awful.widget.layoutbox(s),
-        bottom 	= theme.universalsize / 6,
-        top 	= theme.universalsize / 6,
-        left	= theme.universalsize / 4,
-        right	= theme.universalsize / 4,
-        widget	= wibox.container.margin,
-    }    
-    s.mylayoutbox:buttons 
-    ({
-        awful.button({ }, 1, function () awful.layout.inc( 1) end),
-        awful.button({ }, 3, function () awful.layout.inc(-1) end),
-        awful.button({ }, 4, function () awful.layout.inc( 1) end),
-        awful.button({ }, 5, function () awful.layout.inc(-1) end),
-    })
-    
-    -- Systray
-    s.systray = wibox.widget
-    {
-        wibox.widget.systray(),
-        bottom 	= theme.universalsize / 6,
-        top 	= theme.universalsize / 6,
-        left	= theme.universalsize * (2/3),
-        right	= theme.universalsize * (2/3),
-        widget = wibox.container.margin
-    }
-    
-    -- Time and date
-    s.myclock = wibox.widget
-    {
-        layout = wibox.layout.fixed.horizontal,
-        {
-            {
-                layout = wibox.layout.fixed.horizontal,
-                spacer,
-                wibox.widget.textclock("%a"),
-                spacer,
-            },
-            bg = theme.bg_accent1,
-            widget = wibox.container.background
-        },
-        {
-            {
-                layout = wibox.layout.fixed.horizontal,
-                spacer,
-                wibox.widget.textclock("%d"),
-                spacer,
-            },
-            bg = theme.bg_accent2,
-            widget = wibox.container.background
-        },
-        {
-            {
-                layout = wibox.layout.fixed.horizontal,
-                spacer,
-                wibox.widget.textclock("%b"),
-                spacer,
-            },
-            bg = theme.bg_accent3,
-            widget = wibox.container.background
-        },
-        {
-            {
-                layout = wibox.layout.fixed.horizontal,
-                spacer,
-                wibox.widget.textclock("%H:%M"),
-                spacer,
-            },
-            bg = theme.bg_accent1,
-            widget = wibox.container.background
-        },
-    }
     
 	-- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, height = theme.universalsize, bg = theme.transparent })
@@ -230,17 +141,17 @@ awful.screen.connect_for_each_screen(function(s)
             { -- Right widgets
                 layout = wibox.layout.fixed.horizontal,
                 {
-                    require("player"),
+                    require("player")(s),
                     bg = theme.bg_accent3,
                     widget = wibox.container.background
                 },
                 thin_spacer,
                 {
-                    s.systray,
+                    require("systray")(s),
                     bg = theme.bg_accent2,
                     widget = wibox.container.background
                 },
-                s.myclock,
+                require("clock")(s),
             },
         },
         left	= theme.useless_gap * 2,
@@ -250,87 +161,8 @@ awful.screen.connect_for_each_screen(function(s)
 end)
 -- }}}
 --------------------------------------------------------------------------------------------------
--- {{{ Clients
-clientkeys = gears.table.join
-(
-    awful.key({ modkey,           }, "x",      function (c) c:kill() end,
-        {description = "close", group = "client"}),
-    awful.key({ modkey,           }, "n",
-        function (c)
-            -- The client currently has the input focus, so it cannot be
-            -- minimized, since minimized clients can't have the focus.
-            c.minimized = true
-        end ,
-        {description = "minimize", group = "client"}),
-    awful.key({ modkey,           }, "m",
-        function (c)
-            c.maximized = not c.maximized
-            c:raise()
-        end ,
-        {description = "(un)maximize", group = "client"}),
-
-    awful.key({ modkey,           }, "f",  awful.client.floating.toggle,
-              {description = "toggle floating", group = "client"})
-)
-
-clientbuttons = gears.table.join
-(
-    awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
-    awful.button({ modkey }, 1, awful.mouse.client.move),
-    awful.button({ modkey }, 3, awful.mouse.client.resize)
-)
-
-
--- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
-awful.rules.rules = 
-{
-    -- All clients will match this rule.
-    { rule = { },
-        properties = {
-            border_width = beautiful.border_width,
-            border_color = beautiful.border_normal,
-            focus = awful.client.focus.filter,
-            raise = true,
-            keys = clientkeys,
-            buttons = clientbuttons,
-            size_hints_honor = false, -- Remove gaps between terminals
-            screen = awful.screen.preferred,
-            callback = awful.client.setslave,
-            placement = awful.placement.no_overlap+awful.placement.no_offscreen
-        }
-    },
-
-    -- Floating clients.
-    { 
-        rule_any = 
-        {
-            instance = 
-            {
-                
-            },
-            class = 
-            {
-                
-            },
-            name = 
-            {
-                "Event Tester",  -- xev.
-            },
-            role = 
-            {
-                "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
-            }
-        }, 
-        properties = { floating = true }},
-
-		-- Add titlebars to normal clients and dialogs
-        { rule_any = {type = { "normal", "dialog" } },
-        properties = { titlebars_enabled = false }
-    },
-}
--- }}}
--- }}}
+awful.rules.rules = require("rules")(s)
 --------------------------------------------------------------------------------------------------
 
 -- {{{ Signals
@@ -347,7 +179,6 @@ client.connect_signal("manage", function (c)
         awful.placement.no_offscreen(c)
     end
 end)
-
 
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)
