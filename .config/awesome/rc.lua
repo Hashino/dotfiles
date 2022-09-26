@@ -24,7 +24,7 @@ editor      = "mousepad"
 modkey      = "Mod4"
 -----------------------------------------------------------------------------------------------------------------------
 -- Table of layouts to cover with awful.layout.inc, order matters.
-awful.layout.layouts = require("hash.layouts")(s)
+awful.layout.layouts = require("hash.layouts")()
 -----------------------------------------------------------------------------------------------------------------------
 -- Screen setup
 awful.screen.connect_for_each_screen(function(s)
