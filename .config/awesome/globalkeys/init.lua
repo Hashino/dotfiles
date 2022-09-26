@@ -1,17 +1,17 @@
 -- by Hashino https://github.com/Hashino/dotfiles
------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------
 local awful 	= require("awful")
 local gears 	= require("gears")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------
 local get_globalkeys = function()
 	local globalkeys = gears.table.join(
+--------------------------------------------------------------------------------------------------------------------------------------------
 		awful.key({ modkey,           }, "s", hotkeys_popup.show_help,
 		    {description="show help", group="awesome"}),
 		awful.key({ modkey, "Control" }, "r", awesome.restart,
 		    {description = "reload awesome", group = "awesome"}),
-
-
+--------------------------------------------------------------------------------------------------------------------------------------------
 		awful.key({ modkey,           }, "Tab",     awful.tag.viewnext,
 		    {description = "view next tag", group = "tag-nav"}),
 	    awful.key({ modkey,           }, "Right",   awful.tag.viewnext,
@@ -20,8 +20,15 @@ local get_globalkeys = function()
 		    {description = "view pevious tag", group = "tag-nav"}),
 		awful.key({ modkey,           }, "Left",    awful.tag.viewprev,
 		    {description = "view pevious tag", group = "tag-nav"}),
-
-
+	    awful.key({ modkey,           }, "j", function () awful.client.focus.byidx(1) end,
+		    {description = "focus next by index", group = "client"}),
+		awful.key({ modkey,           }, "Down", function () awful.client.focus.byidx(1) end,
+		    {description = "focus next by index", group = "client"}),
+		awful.key({ modkey,           }, "k", function () awful.client.focus.byidx(-1) end,
+		    {description = "focus previous by index", group = "client"}),
+		awful.key({ modkey,           }, "Up", function () awful.client.focus.byidx(-1) end,
+		    {description = "focus previous by index", group = "client"}),
+		    
 		awful.key({ modkey,  "Control"}, "n",
 		    function ()
 		        if #root.tags() < 9 then
@@ -38,18 +45,7 @@ local get_globalkeys = function()
 		        end
 		    end,
 		    {description = "remove tag", group = "tag-nav"}),
-
-
-
-		awful.key({ modkey,           }, "j", function () awful.client.focus.byidx(1) end,
-		    {description = "focus next by index", group = "client"}),
-		awful.key({ modkey,           }, "Down", function () awful.client.focus.byidx(1) end,
-		    {description = "focus next by index", group = "client"}),
-		awful.key({ modkey,           }, "k", function () awful.client.focus.byidx(-1) end,
-		    {description = "focus previous by index", group = "client"}),
-		awful.key({ modkey,           }, "Up", function () awful.client.focus.byidx(-1) end,
-		    {description = "focus previous by index", group = "client"}),
-
+--------------------------------------------------------------------------------------------------------------------------------------------
 		awful.key({ modkey,           }, "d", function ()
 		    if #awful.screen.focused().clients > 0 then
 		        for _, c in ipairs(mouse.screen.selected_tag:clients()) do
@@ -62,8 +58,8 @@ local get_globalkeys = function()
 		    end
 		end,
 		{description = "(un)minimize all clients", group = "client"}),
-
-		-- Standard program
+--------------------------------------------------------------------------------------------------------------------------------------------
+		-- Standard programs
 		awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
 		    {description = "open a terminal", group = "launcher"}),
 		awful.key({ modkey,           }, "b", function () awful.spawn(browser) end,
@@ -73,8 +69,7 @@ local get_globalkeys = function()
 		    
 		awful.key({ modkey, "Control" }, "e", function () awful.spawn("sudo thunar") end,
 		    {description = "launch filemanager as sudo", group = "launcher"}),
-
-
+--------------------------------------------------------------------------------------------------------------------------------------------
 		-- rofi
 		awful.key({ modkey },            "r",     function () awful.spawn("rofi -show run") end,
 		    {description = "rofi run", group = "rofi"}),
@@ -82,17 +77,13 @@ local get_globalkeys = function()
 		    {description = "rofi powermenu", group = "rofi"}),
 		awful.key({ modkey },            "t",     function () awful.spawn("rofi-todo -f todo") end,
 		    {description = "rofi todo", group = "rofi"}),
-
-
-
+--------------------------------------------------------------------------------------------------------------------------------------------
 		--screenshot
 		awful.key({ modkey, "Control" }, "p",     function () awful.spawn("scrot -s -o -f print.png -e 'xclip -selection clipboard -t image/png -i $f'") end,
 		    {description = "screenshot selection", group = "screenshot"}),
 		awful.key({ modkey,           }, "p",     function () awful.spawn("scrot -o -f print.png -e 'xclip -selection clipboard -t image/png -i $f'") end,
 		    {description = "screenshot entire screen", group = "screenshot"}),
-
-
-
+--------------------------------------------------------------------------------------------------------------------------------------------
 		awful.key({ }, "XF86AudioRaiseVolume",     function () awful.spawn("pactl -- set-sink-volume 0 +3%") end,
 		    {description = "volume down", group = "volume"}),
 		awful.key({ }, "XF86AudioLowerVolume",     function () awful.spawn("pactl -- set-sink-volume 0 -3%") end,
