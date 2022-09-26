@@ -2,7 +2,6 @@
 -----------------------------------------------------------------------------------------------------------------------
 local awful 	= require("awful")
 require("awful.autofocus")
-local wibox 	= require("wibox")
 local beautiful	= require("beautiful")
 beautiful.init(awful.util.getdir("config") .. "/theme/theme.lua")
 -----------------------------------------------------------------------------------------------------------------------
