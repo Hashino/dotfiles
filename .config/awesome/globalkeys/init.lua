@@ -5,7 +5,8 @@ local gears 	= require("gears")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 --------------------------------------------------------------------------------------------------------------------------------------------
 local get_globalkeys = function()
-	local globalkeys = gears.table.join(
+	local globalkeys = gears.table.join
+	(
 --------------------------------------------------------------------------------------------------------------------------------------------
 		awful.key({ modkey,           }, "s", hotkeys_popup.show_help,
 		    {description="show help", group="awesome"}),
