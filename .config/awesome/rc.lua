@@ -1,4 +1,4 @@
-c-- by Hashino https://github.com/Hashino/dotfiles
+-- by Hashino https://github.com/Hashino/dotfiles
 -----------------------------------------------------------------------------------------------------------------------
 local gears 	= require("gears")
 local awful 	= require("awful")
