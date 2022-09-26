@@ -4,8 +4,9 @@ local awful 	= require("awful")
 require("awful.autofocus")
 local wibox 	= require("wibox")
 local beautiful	= require("beautiful")
-beautiful.init(awful.util.getdir("config") .. "/themes/theme.lua")
+beautiful.init(awful.util.getdir("config") .. "/theme/theme.lua")
 -----------------------------------------------------------------------------------------------------------------------
+-- Error handling
 require("hash.errors")
 -----------------------------------------------------------------------------------------------------------------------
 -- Variable definitions
@@ -30,9 +31,11 @@ end)
 require("hash.signals")
 -----------------------------------------------------------------------------------------------------------------------
 -- Rules to apply to new clients (through the "manage" signal).
-awful.rules.rules = require("rules")(s)
+awful.rules.rules = require("hash.rules")(s)
 -----------------------------------------------------------------------------------------------------------------------
 -- Set global keys
 root.keys(require("hash.globalkeys")(s))
 -----------------------------------------------------------------------------------------------------------------------
+-- Autorun
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")
+-----------------------------------------------------------------------------------------------------------------------
