@@ -26,6 +26,7 @@ run /usr/lib/xfce-polkit/xfce-polkit
 run sudo openrgb --startminimized
 ckb-next --background
 
+crd --start
 
 
 #enviroment variables

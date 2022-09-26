@@ -23,3 +23,4 @@ alias la='ls -lbhHigUmuSa' # all list
 alias lx='ls -lbhHigUmuSa@' # all list and extended
 alias tree='ls --tree --icons' # tree view
 alias lS='ls -1 --icons --group-directories-first' # one column by just names
+eval $(thefuck --alias)
