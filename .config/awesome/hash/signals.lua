@@ -14,6 +14,7 @@ client.connect_signal("manage", function (c)
         awful.placement.no_offscreen(c)
     end
 end)
+-----------------------------------------------------------------------------------------------------------------------
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)
     if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
@@ -21,14 +22,15 @@ client.connect_signal("mouse::enter", function(c)
         client.focus = c
     end
 end)
+-----------------------------------------------------------------------------------------------------------------------
 -- Change border on focus
 client.connect_signal("focus", function(c)
 	c.border_color = beautiful.border_focus
 end)
-
 client.connect_signal("unfocus", function(c)
     c.border_color = beautiful.border_normal
 end)
+-----------------------------------------------------------------------------------------------------------------------
 -- Handle border sizes of clients.
 for s = 1, screen.count() do screen[s]:connect_signal("arrange", function ()
     local clients = awful.client.visible(s)
@@ -53,3 +55,4 @@ for s = 1, screen.count() do screen[s]:connect_signal("arrange", function ()
     end
 end)
 end
+-----------------------------------------------------------------------------------------------------------------------

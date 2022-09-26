@@ -101,9 +101,8 @@ local mpris_widget = wibox.widget
 		right = 10,
 		widget = wibox.container.margin
     },
-
     layout = wibox.layout.fixed.horizontal,
-
+-----------------------------------------------------------------------------------------------------------------------
     set_text = function(self, new_icon, new_text, new_prev, new_playpause, new_next)
     	self:get_children_by_id('icon')[1]:set_text(new_icon)
         self:get_children_by_id('song')[1]:set_text(new_text)
@@ -114,7 +113,6 @@ local mpris_widget = wibox.widget
 }
 -----------------------------------------------------------------------------------------------------------------------
 local function worker()
-
     -- retrieve song info
     local song, player_status
 
@@ -123,36 +121,32 @@ local function worker()
         player_status = words[1]
         
         song = tostring(words[2]) .. " - " .. tostring(words[3])
-        
-        
+-----------------------------------------------------------------------------------------------------------------------
+        -- Guarantees that player always has the same width
         if song ~= nil then
-        	--naughty.notify({ title = "size", text = tostring(string.len(song)), timeout = 0 })
             if string.len(song) > (bar_size - 5) then
                 song = string.sub(song, 0, (bar_size - 5)) .. "..."
                 song = " " .. song .. " "
-                --naughty.notify({ title = "size > 35", text = tostring(string.len(song)), timeout = 0 })
             else
             	size = string.len(song)
             	song = string.sub(song, 0, size - 1)
             	for i=1, ((bar_size - string.len(song)) / 2) do
             		song =  " " .. song .. " "
             	end
-            	--naughty.notify({ title = "size < 35", text = tostring(string.len(song)), timeout = 0 })
             	if string.len(song) < bar_size then
-            		--naughty.notify({ title = "size << 35", text = tostring(string.len(song)), timeout = 0 })
             		song = song .. " "
             	end
             end
         end
-        --naughty.notify({ title = "size final", text = tostring(string.len(song)), timeout = 0 })
-        
+-----------------------------------------------------------------------------------------------------------------------
+        -- Changes buttons accordingly
         if player_status == "Playing" then
             widget:set_text(icon, song, prev, pause, next)
         elseif player_status == "Paused" then
             widget:set_text(icon, song, prev, play, next)
         elseif player_status == "Stopped" then
             widget:set_text(icon, song, prev, play, next)
-        else -- no player is running
+        else -- no player is running, shows no song/controls
             widget:set_text(icon, "", "", "", "")
         end
     end
@@ -164,3 +158,4 @@ local function worker()
 end
 -----------------------------------------------------------------------------------------------------------------------
 return setmetatable(mpris_widget, {__call = function(_, ...) return worker(...) end})
+-----------------------------------------------------------------------------------------------------------------------

@@ -2,7 +2,7 @@
 -----------------------------------------------------------------------------------------------------------------------
 local naughty 	= require("naughty")
 -----------------------------------------------------------------------------------------------------------------------
--- {{{ Error handling
+-- Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
 if awesome.startup_errors then
@@ -22,5 +22,5 @@ do
             title = "Oops, an error happened!",
             text = tostring(err) })
         in_error = false
-    end)
-end
+    end)end
+-----------------------------------------------------------------------------------------------------------------------
