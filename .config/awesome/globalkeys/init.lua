@@ -12,13 +12,13 @@ local get_globalkeys = function()
 		    {description = "reload awesome", group = "awesome"}),
 
 
-		awful.key({ modkey,           }, "Tab",   awful.tag.viewnext,
+		awful.key({ modkey,           }, "Tab",     awful.tag.viewnext,
 		    {description = "view next tag", group = "tag-nav"}),
 	    awful.key({ modkey,           }, "Right",   awful.tag.viewnext,
 		    {description = "view next tag", group = "tag-nav"}),
-		awful.key({ modkey,    "Shift"}, "Tab",  awful.tag.viewprev,
+		awful.key({ modkey,    "Shift"}, "Tab",     awful.tag.viewprev,
 		    {description = "view pevious tag", group = "tag-nav"}),
-		awful.key({ modkey,           }, "Left",  awful.tag.viewprev,
+		awful.key({ modkey,           }, "Left",    awful.tag.viewprev,
 		    {description = "view pevious tag", group = "tag-nav"}),
 
 
@@ -91,10 +91,12 @@ local get_globalkeys = function()
 		awful.key({ modkey,           }, "p",     function () awful.spawn("scrot -o -f print.png -e 'xclip -selection clipboard -t image/png -i $f'") end,
 		    {description = "screenshot entire screen", group = "screenshot"}),
 
-		awful.key({ }, "XF86AudioLowerVolume",     function () awful.spawn("amixer -q sset Master 5%-") end,
-		    {description = "volume up", group = "volume"}),
-		awful.key({ }, "XF86AudioRaiseVolume",     function () awful.spawn("amixer -q sset Master 5%+") end,
-		    {description = "volume down", group = "volume"})
+
+
+		awful.key({ }, "XF86AudioRaiseVolume",     function () awful.spawn("pactl -- set-sink-volume 0 +3%") end,
+		    {description = "volume down", group = "volume"}),
+		awful.key({ }, "XF86AudioLowerVolume",     function () awful.spawn("pactl -- set-sink-volume 0 -3%") end,
+		    {description = "volume up", group = "volume"})
 	)
 --------------------------------------------------------------------------------------------------------------------------------------------
 	-- Bind all key numbers to tags.
