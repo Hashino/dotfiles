@@ -4,7 +4,7 @@ local wibox 	= require("wibox")
 local beautiful	= require("beautiful")
 local awful 	= require("awful")
 -----------------------------------------------------------------------------------------------------------------------
-awful.tag({ "  ", "  ", "  ", "  ", "  " }, s, awful.layout.layouts[1])
+awful.tag({ "", "", "", "", "" }, s, awful.layout.layouts[1])
 -----------------------------------------------------------------------------------------------------------------------
 local get_wibar = function(s)
     -- Create the wibox

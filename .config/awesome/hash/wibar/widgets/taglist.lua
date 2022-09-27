@@ -15,11 +15,11 @@ local get_taglist = function(s)
     -- Taglist buttons
     local taglist_buttons = gears.table.join
     (
-        awful.button({}, 1, function(t) 
-        	t:view_only() 
+        awful.button({}, 1, function(t)
+        	t:view_only()
 		end),
         awful.button({modkey}, 1, function(t)
-			if client.focus then 
+			if client.focus then
 				client.focus:move_to_tag(t)
 			end
 		end),
@@ -52,8 +52,8 @@ local get_taglist = function(s)
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 	-- Function to update the margin
-	local update_margin = function(self)	
-		if self ~= nil then		
+	local update_margin = function(self)
+		if self ~= nil then
 			self.left	= #s.tags == 1 and 0 or margin_width
 			self.right	= #s.tags == 1 and 0 or margin_width
 		end
@@ -62,29 +62,29 @@ local get_taglist = function(s)
 
 	local icon_taglist = wibox.widget
 	{
-		awful.widget.taglist 
+		awful.widget.taglist
 		{
 			screen = s,
 			filter = awful.widget.taglist.filter.all,
-			layout = 
+			layout =
 			{
-				spacing = 0, 
+				spacing = 0,
 				layout = wibox.layout.fixed.horizontal
 			},
-			widget_template = 
+			widget_template =
 			{
 				{
-					id = 'icon_role', 
+					id = 'icon_role',
 					font = font,
-					text = icon_inactive, 
+					text = icon_inactive,
 					widget = wibox.widget.textbox
 				},
 				left  = theme.universalsize / 8,
 				right = theme.universalsize / 8,
 				widget = wibox.container.margin,
-				
+
 				create_callback = function(self, c3, index, objects)
-					update_tags(self, c3)       
+					update_tags(self, c3)
 				end,
 
 				update_callback = function(self, c3, index, objects)
@@ -96,13 +96,13 @@ local get_taglist = function(s)
 		id		= "taglist_margin",
 		left	= #s.tags == 1 and 0 or margin_width,
 		right	= #s.tags == 1 and 0 or margin_width,
-		
+
 		widget	= wibox.container.margin,
-	}	
-	
+	}
+
 	margin = icon_taglist:get_children_by_id('taglist_margin')[1]
 	margin:connect_signal("taglist_changed", update_margin, margin)
-	
+
 	return icon_taglist
 end
 --------------------------------------------------------------------------------------------------------------------------------------------
