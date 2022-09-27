@@ -34,8 +34,8 @@ local get_tasklist = function(s)
 				screen   = s,
 				filter   = awful.widget.tasklist.filter.minimizedcurrenttags,
 				buttons  = tasklist_buttons,
-				layout   = {
-					--max_widget_size = 400,
+				layout   = 
+				{
 					spacing = 0,
 					layout  = wibox.layout.flex.horizontal
 				},

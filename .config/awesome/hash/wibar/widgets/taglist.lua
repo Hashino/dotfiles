@@ -1,29 +1,39 @@
 -- by Hashino https://github.com/Hashino/dotfiles
--------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 local awful = require("awful")
 local gears = require("gears")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
---------------------------------------------------------------------------------------------------------------------------------------------
-font 	= theme.font_name .. tostring(theme.universalsize * (3/8))
---------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
+font 			= theme.font_name .. tostring(theme.universalsize * (3/8))
+margin_width	= theme.universalsize / 3
+icon_inactive 	= ""
+icon_selected 	= ""
+-----------------------------------------------------------------------------------------------------------------------
 local get_taglist = function(s)
 
     -- Taglist buttons
-    local taglist_buttons = gears.table.join(
-                                awful.button({}, 1,
-                                             function(t) t:view_only() end),
-                                awful.button({modkey}, 1, function(t)
-            if client.focus then client.focus:move_to_tag(t) end
-        end), awful.button({}, 3, awful.tag.viewtoggle),
-                                awful.button({modkey}, 3, function(t)
+    local taglist_buttons = gears.table.join
+    (
+        awful.button({}, 1, function(t) 
+        	t:view_only() 
+		end),
+        awful.button({modkey}, 1, function(t)
+			if client.focus then 
+				client.focus:move_to_tag(t)
+			end
+		end),
+        awful.button({}, 3, awful.tag.viewtoggle),
+        awful.button({modkey}, 3, function(t)
             if client.focus then client.focus:toggle_tag(t) end
-        end), awful.button({}, 4, function(t)
+        end),
+        awful.button({}, 4, function(t)
             awful.tag.viewnext(t.screen)
-        end), awful.button({}, 5, function(t)
+        end),
+        awful.button({}, 5, function(t)
             awful.tag.viewprev(t.screen)
         end))
---------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 	-- Function to update the tags
 	local update_tags = function(self, c3)
 		local tagicon = self:get_children_by_id('icon_role')[1]
@@ -32,9 +42,9 @@ local get_taglist = function(s)
 			tagicon.text	= ""
 		else
 			if c3.selected then
-				tagicon.text = "  "
+				tagicon.text = icon_selected
 			else
-				tagicon.text = "  "
+				tagicon.text = icon_inactive
 			end
 		end
 		self:emit_signal_recursive("taglist_changed")
@@ -42,10 +52,10 @@ local get_taglist = function(s)
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 	-- Function to update the margin
-	local update_margin = function(self)		
+	local update_margin = function(self)	
 		if self ~= nil then		
-			self.left	= #s.tags == 1 and 0 or theme.universalsize / 3
-			self.right	= #s.tags == 1 and 0 or theme.universalsize / 3
+			self.left	= #s.tags == 1 and 0 or margin_width
+			self.right	= #s.tags == 1 and 0 or margin_width
 		end
 	end
 --------------------------------------------------------------------------------------------------------------------------------------------
@@ -66,11 +76,12 @@ local get_taglist = function(s)
 				{
 					id = 'icon_role', 
 					font = font,
-					text = "  ", 
+					text = icon_inactive, 
 					widget = wibox.widget.textbox
 				},
-				--id = 'background_role',
-				widget = wibox.container.background,
+				left  = theme.universalsize / 8,
+				right = theme.universalsize / 8,
+				widget = wibox.container.margin,
 				
 				create_callback = function(self, c3, index, objects)
 					update_tags(self, c3)       
@@ -83,8 +94,8 @@ local get_taglist = function(s)
 			buttons = taglist_buttons
 		},
 		id		= "taglist_margin",
-		left	= #s.tags == 1 and 0 or theme.universalsize / 3,
-		right	= #s.tags == 1 and 0 or theme.universalsize / 3,
+		left	= #s.tags == 1 and 0 or margin_width,
+		right	= #s.tags == 1 and 0 or margin_width,
 		
 		widget	= wibox.container.margin,
 	}	

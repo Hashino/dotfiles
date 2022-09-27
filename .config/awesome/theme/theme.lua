@@ -51,7 +51,7 @@ theme.notification_max_width 	= theme.universalsize * 20
 theme.notification_max_height 	= theme.universalsize * 40
 theme.notification_icon_size 	= theme.universalsize * 5
 theme.notification_width		= theme.notification_max_width
-theme.notification_opacity 		= 0.85
+theme.notification_opacity 		= 0.95
 theme.notification_font 		= theme.font
 -----------------------------------------------------------------------------------------------------------------------
 theme.layout_tile       = theme.hash .. "/icons/tile.png"

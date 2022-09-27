@@ -35,7 +35,7 @@ local get_wibar = function(s)
             { -- Right widgets
                 layout = wibox.layout.fixed.horizontal,
                 {
-                    require("hash.wibar.widgets.player")(s),
+                    require("hash.wibar.widgets.player_spotify_gui")(s),
                     bg = theme.bg_accent3,
                     widget = wibox.container.background
                 },

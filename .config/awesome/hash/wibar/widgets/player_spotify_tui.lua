@@ -1,4 +1,3 @@
---------------------------------------------------------------------------------------------------
 -- Modelled after Pavel Makhov's work
 -- @author Mohammed Gaber
 -- requires - playerctl
@@ -21,13 +20,12 @@ local spacer			= "   "
 
 local font				= theme.font_name .. tostring(theme.universalsize / 2)
 local font_icon		 	= theme.font_name .. tostring(theme.universalsize / 2)
-local font_controls 	= theme.font_name .. tostring(theme.universalsize / 2.5)
+local font_controls 	= theme.font_name .. tostring(theme.universalsize / (5/2))
 
 -- name of the binary of your music player
---local default_player 	= "spotify"
 local default_player 	= "ncspot"
--- terminal to run the player on. leave blank if using a GUI player
-local default_term		= "lxterminal -e "
+-- terminal to run the player on
+local default_term		= terminal .. " -e "
 
 local GET_MPD_CMD 		= "playerctl -p " .. default_player .. " -f '{{status}};{{xesam:artist}};{{xesam:title}}' metadata"
 -----------------------------------------------------------------------------------------------------------------------
