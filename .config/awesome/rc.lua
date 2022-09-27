@@ -8,10 +8,9 @@
 -- | |  | | (_| \__ \ | | | | | | | (_) |  _  | | |_| | (_| |
 -- |_|  |_|\__,_|___/_| |_|_|_| |_|\___/  (_) |_|\__,_|\__,_|
 -----------------------------------------------------------------------------------------------------------------------
-local awful 	= require("awful")
+local awful = require("awful")
+require("beautiful").init(awful.util.getdir("config") .. "/theme/theme.lua")
 require("awful.autofocus")
-local beautiful	= require("beautiful")
-beautiful.init(awful.util.getdir("config") .. "/theme/theme.lua")
 -----------------------------------------------------------------------------------------------------------------------
 -- Error handling
 require("hash.errors")
@@ -37,7 +36,7 @@ end)
 -- Signals
 require("hash.signals")
 -----------------------------------------------------------------------------------------------------------------------
--- Rules to apply to new clients (through the "manage" signal).
+-- Rules to apply to new clients (through the "manage" signal). Also sets client keys
 awful.rules.rules = require("hash.rules")()
 -----------------------------------------------------------------------------------------------------------------------
 -- Set global keys
