@@ -6,7 +6,7 @@ local wibox 	= require("wibox")
 local beautiful = require("beautiful")
 -----------------------------------------------------------------------------------------------------------------------
 local get_tasklist = function(s)
-
+	
 	local tasklist_buttons = gears.table.join(
 		awful.button({ }, 1, function (c)
 		    -- Without this, the following

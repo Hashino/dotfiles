@@ -31,7 +31,7 @@ local default_term		= "lxterminal -e "
 
 local GET_MPD_CMD 		= "playerctl -p " .. default_player .. " -f '{{status}};{{xesam:artist}};{{xesam:title}}' metadata"
 -----------------------------------------------------------------------------------------------------------------------
-local mpris_widget = wibox.widget
+local player_widget = wibox.widget
 {
 	{
 		{
@@ -112,7 +112,7 @@ local mpris_widget = wibox.widget
     end
 }
 -----------------------------------------------------------------------------------------------------------------------
-local function worker()
+local function player_updater()
     -- retrieve song info
     local song, player_status
 
@@ -151,11 +151,11 @@ local function worker()
         end
     end
 	
-    watch(string.format(GET_MPD_CMD, "'" .. default_player .. "'"), 1, update_graphic, mpris_widget)
+    watch(string.format(GET_MPD_CMD, "'" .. default_player .. "'"), 1, update_graphic, player_widget)
 
-    return mpris_widget
+    return player_widget
 
 end
 -----------------------------------------------------------------------------------------------------------------------
-return setmetatable(mpris_widget, {__call = function(_, ...) return worker(...) end})
+return setmetatable(player_widget, {__call = function(_, ...) return player_updater(...) end})
 -----------------------------------------------------------------------------------------------------------------------

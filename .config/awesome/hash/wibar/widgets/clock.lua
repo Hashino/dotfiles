@@ -23,27 +23,7 @@ local get_clock = function()
             {
                 layout = wibox.layout.fixed.horizontal,
                 spacer,
-                wibox.widget.textclock("%a"),
-                spacer,
-            },
-            bg = theme.bg_accent1,
-            widget = wibox.container.background
-        },
-        {
-            {
-                layout = wibox.layout.fixed.horizontal,
-                spacer,
-                wibox.widget.textclock("%d"),
-                spacer,
-            },
-            bg = theme.bg_accent2,
-            widget = wibox.container.background
-        },
-        {
-            {
-                layout = wibox.layout.fixed.horizontal,
-                spacer,
-                wibox.widget.textclock("%b"),
+                wibox.widget.textclock("%a, %d - %b"),
                 spacer,
             },
             bg = theme.bg_accent3,

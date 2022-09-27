@@ -5,9 +5,10 @@ local gears = require("gears")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 --------------------------------------------------------------------------------------------------------------------------------------------
-font = theme.font_name .. tostring(theme.universalsize * (3/8))
+font 	= theme.font_name .. tostring(theme.universalsize * (3/8))
 --------------------------------------------------------------------------------------------------------------------------------------------
 local get_taglist = function(s)
+
     -- Taglist buttons
     local taglist_buttons = gears.table.join(
                                 awful.button({}, 1,
@@ -42,14 +43,9 @@ local get_taglist = function(s)
 
 	-- Function to update the margin
 	local update_margin = function(self)		
-		if self ~= nil then
-			if #s.tags == 1 then
-				self.left	= 0
-				self.right	= 0
-			else		
-				self.left	= 8
-				self.right	= 8
-			end
+		if self ~= nil then		
+			self.left	= #s.tags == 1 and 0 or theme.universalsize / 3
+			self.right	= #s.tags == 1 and 0 or theme.universalsize / 3
 		end
 	end
 --------------------------------------------------------------------------------------------------------------------------------------------
@@ -87,8 +83,8 @@ local get_taglist = function(s)
 			buttons = taglist_buttons
 		},
 		id		= "taglist_margin",
-		left	= #s.tags == 1 and 0 or 8,
-		right	= #s.tags == 1 and 0 or 8,
+		left	= #s.tags == 1 and 0 or theme.universalsize / 3,
+		right	= #s.tags == 1 and 0 or theme.universalsize / 3,
 		
 		widget	= wibox.container.margin,
 	}	
