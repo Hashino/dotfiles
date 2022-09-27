@@ -29,7 +29,7 @@ local get_wibar = function(s)
             },
             { -- Middle widget
                 require("hash.wibar.widgets.tasklist")(s),
-                bg = theme.transparent, 
+                bg = theme.transparent,
                 widget = wibox.container.background
             },
             { -- Right widgets
@@ -49,7 +49,7 @@ local get_wibar = function(s)
         },
         left	= theme.useless_gap * 2,
         right	= theme.useless_gap * 2,
-        widget = wibox.container.margin,
+        widget = wibox.container.margin
     }
 end
 -----------------------------------------------------------------------------------------------------------------------
