@@ -1,7 +1,7 @@
 -- by Hashino https://github.com/Hashino/dotfiles
 -----------------------------------------------------------------------------------------------------------------------
 theme = {}
-theme.hash 						= "~/.config/awesome/theme/hashino/"
+theme.location						= "~/.config/awesome/theme/"
 theme.universalsize 			= 23
 -----------------------------------------------------------------------------------------------------------------------
 theme.font_name					= "Terminus (TTF) Medium "
@@ -54,18 +54,18 @@ theme.notification_width		= theme.notification_max_width
 theme.notification_opacity 		= 0.95
 theme.notification_font 		= theme.font
 -----------------------------------------------------------------------------------------------------------------------
-theme.layout_tile       = theme.hash .. "/icons/tile.png"
-theme.layout_fairh      = theme.hash .. "/icons/fairh.png"
-theme.layout_fairv      = theme.hash .. "/icons/fairv.png"
-theme.layout_floating   = theme.hash .. "/icons/floating.png"
-theme.layout_magnifier  = theme.hash .. "/icons/magnifier.png"
-theme.layout_max        = theme.hash .. "/icons/max.png"
-theme.layout_fullscreen = theme.hash .. "/icons/fullscreen.png"
-theme.layout_tilebottom = theme.hash .. "/icons/tilebottom.png"
-theme.layout_tileleft   = theme.hash .. "/icons/tileleft.png"
-theme.layout_tiletop    = theme.hash .. "/icons/tiletop.png"
-theme.layout_spiral     = theme.hash .. "/icons/spiral.png"
-theme.layout_dwindle    = theme.hash .. "/icons/dwindle.png"
+theme.layout_tile       = theme.location.. "/layout_icons/tile.png"
+theme.layout_fairh      = theme.location.. "/layout_icons/fairh.png"
+theme.layout_fairv      = theme.location.. "/layout_icons/fairv.png"
+theme.layout_floating   = theme.location.. "/layout_icons/floating.png"
+theme.layout_magnifier  = theme.location.. "/layout_icons/magnifier.png"
+theme.layout_max        = theme.location.. "/layout_icons/max.png"
+theme.layout_fullscreen = theme.location.. "/layout_icons/fullscreen.png"
+theme.layout_tilebottom = theme.location.. "/layout_icons/tilebottom.png"
+theme.layout_tileleft   = theme.location.. "/layout_icons/tileleft.png"
+theme.layout_tiletop    = theme.location.. "/layout_icons/tiletop.png"
+theme.layout_spiral     = theme.location.. "/layout_icons/spiral.png"
+theme.layout_dwindle    = theme.location.. "/layout_icons/dwindle.png"
 -----------------------------------------------------------------------------------------------------------------------
 return theme
 -- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80
