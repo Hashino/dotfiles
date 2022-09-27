@@ -93,8 +93,8 @@ local player_widget = wibox.widget
 			},
 			layout = wibox.layout.fixed.horizontal,
 	    },
-		left  = 10,
-		right = 10,
+		left  = theme.universalsize / 2,
+		right = theme.universalsize / 2,
 		widget = wibox.container.margin
     },
     layout = wibox.layout.fixed.horizontal,
