@@ -1,0 +1,16 @@
+{
+    "workbench.colorTheme": "Nord",
+    "workbench.activityBar.visible": false,
+    "workbench.preferredDarkColorTheme": "Nord Deep",
+    "workbench.sideBar.location": "right",
+    "window.menuBarVisibility": "toggle",
+    "Lua.telemetry.enable": true,
+    "files.autoSave": "afterDelay",
+    "editor.fontFamily": "'Ubuntu Mono', 'UbuntuMono Nerd Font', monospace",
+    "files.trimTrailingWhitespace": true,
+    "breadcrumbs.enabled": false,
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "editor.fontLigatures": false,
+    "terminal.integrated.fontFamily": "'Ubuntu Mono','UbuntuMono Nerd Font',monospace"
+}

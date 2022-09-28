@@ -1,0 +1,27 @@
+{
+    "workbench.colorTheme": "Nord",
+    "workbench.activityBar.visible": false,
+    "workbench.preferredDarkColorTheme": "Nord Deep",
+    "workbench.sideBar.location": "right",
+    "window.menuBarVisibility": "toggle",
+    "Lua.telemetry.enable": true,
+    "files.autoSave": "afterDelay",
+    "editor.fontFamily": "'Ubuntu Mono'",
+    "files.trimTrailingWhitespace": true,
+    "breadcrumbs.enabled": false,
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "editor.fontLigatures": false,
+    "terminal.integrated.fontFamily": "'UbuntuMono Nerd Font',monospace",
+    "editor.minimap.enabled": false,
+    "editor.fontSize": 12,
+    "window.zoomLevel": 1,
+    "[lua]": {
+
+        "editor.quickSuggestions": {
+            "comments": "inline",
+            "other": "on",
+            "strings": "on"
+        }
+    }
+}

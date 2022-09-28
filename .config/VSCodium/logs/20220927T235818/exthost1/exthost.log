@@ -1,0 +1,14 @@
+[2022-09-27 23:58:20.284] [exthost] [info] Extension host with pid 44018 started
+[2022-09-27 23:58:20.284] [exthost] [info] Skipping acquiring lock for /home/hashino/.config/VSCodium/User/workspaceStorage/62418b39bcca9229c6b3cbd7ec0cc9ec.
+[2022-09-27 23:58:20.331] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: true, activationEvent: '*'
+[2022-09-27 23:58:20.333] [exthost] [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
+[2022-09-27 23:58:20.335] [exthost] [info] ExtensionService#_doActivateExtension vscode.ipynb, startup: true, activationEvent: '*'
+[2022-09-27 23:58:20.367] [exthost] [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+[2022-09-27 23:58:20.382] [exthost] [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+[2022-09-27 23:58:20.397] [exthost] [info] Eager extensions activated
+[2022-09-27 23:58:20.403] [exthost] [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onStartupFinished'
+[2022-09-27 23:58:20.407] [exthost] [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+[2022-09-27 23:58:20.408] [exthost] [info] ExtensionService#_doActivateExtension ms-vscode.cpptools, startup: false, activationEvent: 'onStartupFinished', root cause: franneck94.vscode-c-cpp-config
+[2022-09-27 23:58:20.502] [exthost] [info] ExtensionService#_doActivateExtension vadimcn.vscode-lldb, startup: false, activationEvent: 'onStartupFinished', root cause: franneck94.vscode-c-cpp-config
+[2022-09-27 23:58:20.623] [exthost] [info] ExtensionService#_doActivateExtension franneck94.vscode-c-cpp-config, startup: false, activationEvent: 'onStartupFinished'
+[2022-09-28 00:02:34.122] [exthost] [info] ExtensionService#_doActivateExtension vscode.simple-browser, startup: false, activationEvent: 'onOpenExternalUri:https'

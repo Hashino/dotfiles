@@ -1,0 +1,6 @@
+[2022-09-27 23:53:38.589] [main] [info] update#setState idle
+[2022-09-27 23:53:39.459] [main] [info] Starting extension host with pid 40868 (fork() took 4 ms).
+[2022-09-27 23:54:08.594] [main] [info] update#setState checking for updates
+[2022-09-27 23:54:08.841] [main] [info] update#setState idle
+[2022-09-27 23:55:24.207] [main] [info] Waiting for extension host with pid 40868 to exit.
+[2022-09-27 23:55:24.209] [main] [info] Extension host with pid 40868 exited with code: 0, signal: null.

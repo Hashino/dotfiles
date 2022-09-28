@@ -1,0 +1,15 @@
+[2022-09-27 23:53:39.774] [exthost] [info] Extension host with pid 40868 started
+[2022-09-27 23:53:39.774] [exthost] [info] Skipping acquiring lock for /home/hashino/.config/VSCodium/User/workspaceStorage/7b6883b3492ebd900aa51993d39366bb.
+[2022-09-27 23:53:39.825] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: true, activationEvent: '*'
+[2022-09-27 23:53:39.827] [exthost] [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
+[2022-09-27 23:53:39.828] [exthost] [info] ExtensionService#_doActivateExtension vscode.ipynb, startup: true, activationEvent: '*'
+[2022-09-27 23:53:39.843] [exthost] [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+[2022-09-27 23:53:39.853] [exthost] [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+[2022-09-27 23:53:39.867] [exthost] [info] Eager extensions activated
+[2022-09-27 23:53:39.886] [exthost] [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onStartupFinished'
+[2022-09-27 23:53:39.890] [exthost] [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+[2022-09-27 23:53:39.892] [exthost] [info] ExtensionService#_doActivateExtension ms-vscode.cpptools, startup: false, activationEvent: 'onStartupFinished', root cause: franneck94.vscode-c-cpp-config
+[2022-09-27 23:53:39.991] [exthost] [info] ExtensionService#_doActivateExtension vadimcn.vscode-lldb, startup: false, activationEvent: 'onStartupFinished', root cause: franneck94.vscode-c-cpp-config
+[2022-09-27 23:53:40.109] [exthost] [info] ExtensionService#_doActivateExtension franneck94.vscode-c-cpp-config, startup: false, activationEvent: 'onStartupFinished'
+[2022-09-27 23:55:24.186] [exthost] [info] Extension host terminating: received terminate message from renderer
+[2022-09-27 23:55:24.199] [exthost] [info] Extension host with pid 40868 exiting with code 0

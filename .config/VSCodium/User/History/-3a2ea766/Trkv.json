@@ -1,0 +1,9 @@
+{
+    "workbench.colorTheme": "Nord",
+    "workbench.activityBar.visible": false,
+    "workbench.preferredDarkColorTheme": "Nord Deep",
+    "workbench.sideBar.location": "right",
+    "window.menuBarVisibility": "toggle",
+    "Lua.telemetry.enable": true,
+    "editor.minimap.enabled": false
+}

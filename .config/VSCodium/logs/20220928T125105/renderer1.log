@@ -1,0 +1,6 @@
+[2022-09-28 12:51:06.541] [renderer1] [critical] Extension 'ms-vscode.js-debug' appears in product.json but enables LESS API proposals than the extension wants.
+package.json (LOSES): portsAttributes, findTextInFiles, workspaceTrust, resolvers, tunnels
+product.json (WINS): portsAttributes, findTextInFiles, workspaceTrust, resolvers
+[2022-09-28 12:51:06.565] [renderer1] [warning] [twxs.cmake]: Cannot register 'cmake.cmakePath'. This property is already registered.
+[2022-09-28 12:51:07.429] [renderer1] [error] [Extension Host] (node:356195) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+(Use `codium --trace-deprecation ...` to show where the warning was created)

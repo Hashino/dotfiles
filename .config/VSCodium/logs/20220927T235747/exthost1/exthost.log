@@ -1,0 +1,15 @@
+[2022-09-27 23:57:48.548] [exthost] [info] Extension host with pid 43499 started
+[2022-09-27 23:57:48.548] [exthost] [info] Skipping acquiring lock for /home/hashino/.config/VSCodium/User/workspaceStorage/ce32418131e11f34855578a1be0f1703.
+[2022-09-27 23:57:48.578] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: true, activationEvent: '*'
+[2022-09-27 23:57:48.580] [exthost] [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
+[2022-09-27 23:57:48.580] [exthost] [info] ExtensionService#_doActivateExtension vscode.ipynb, startup: true, activationEvent: '*'
+[2022-09-27 23:57:48.589] [exthost] [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+[2022-09-27 23:57:48.603] [exthost] [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+[2022-09-27 23:57:48.643] [exthost] [info] Eager extensions activated
+[2022-09-27 23:57:48.648] [exthost] [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onStartupFinished'
+[2022-09-27 23:57:48.652] [exthost] [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+[2022-09-27 23:57:48.653] [exthost] [info] ExtensionService#_doActivateExtension ms-vscode.cpptools, startup: false, activationEvent: 'onStartupFinished', root cause: franneck94.vscode-c-cpp-config
+[2022-09-27 23:57:48.748] [exthost] [info] ExtensionService#_doActivateExtension vadimcn.vscode-lldb, startup: false, activationEvent: 'onStartupFinished', root cause: franneck94.vscode-c-cpp-config
+[2022-09-27 23:57:48.848] [exthost] [info] ExtensionService#_doActivateExtension franneck94.vscode-c-cpp-config, startup: false, activationEvent: 'onStartupFinished'
+[2022-09-27 23:57:54.763] [exthost] [info] Extension host terminating: received terminate message from renderer
+[2022-09-27 23:57:54.777] [exthost] [info] Extension host with pid 43499 exiting with code 0
