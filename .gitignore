@@ -1,0 +1,4 @@
+
+*.log
+.config/VSCodium/User/globalStorage/state.vscdb
+.config/VSCodium/User/globalStorage/storage.json
