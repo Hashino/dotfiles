@@ -8,3 +8,4 @@
 *.lock
 *.vscdb
 *.backup
+.config/VSCodium/User/globalStorage/storage.json
