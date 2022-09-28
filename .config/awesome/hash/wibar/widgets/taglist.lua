@@ -59,7 +59,6 @@ local get_taglist = function(s)
 		self:emit_signal_recursive("taglist_changed")
 	end
 --------------------------------------------------------------------------------------------------------------------------------------------
-
 	-- Function to update the margin
 	local update_margin = function(self)
 		self.left	= #s.tags == 1 and 0 or outer_margin_width
@@ -72,11 +71,11 @@ local get_taglist = function(s)
 		awful.widget.taglist
 		{
 			screen = s,
+			buttons = taglist_buttons,
 			filter = awful.widget.taglist.filter.all,
 			layout =
 			{
-				spacing = 0,
-				layout = wibox.layout.fixed.horizontal
+				layout = wibox.layout.fixed.horizontal,
 			},
 			widget_template =
 			{
@@ -84,7 +83,7 @@ local get_taglist = function(s)
 					id = 'icon_role',
 					font = font,
 					text = icon_inactive,
-					widget = wibox.widget.textbox
+					widget = wibox.widget.textbox,
 				},
 				id 		= 'inner_margin',
 				left 	= #s.tags == 1 and 0 or inner_margin_width,
@@ -97,9 +96,8 @@ local get_taglist = function(s)
 
 				update_callback = function(self, c3, index, objects)
 					update_tags(self, c3)
-				end
+				end,
 			},
-			buttons = taglist_buttons
 		},
 		id		= "outer_margin",
 		left	= #s.tags == 1 and 0 or outer_margin_width,
