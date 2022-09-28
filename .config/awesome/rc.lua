@@ -28,7 +28,7 @@ require("hash.layouts")
 -- Screen setup
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
-    require("hash.wallpaper")
+    require("hash.wallpaper")(s)
     -- Each screen has its own tag table.
 	require("hash.wibar.wibar")(s)
 end)
@@ -37,10 +37,10 @@ end)
 require("hash.signals")
 -----------------------------------------------------------------------------------------------------------------------
 -- Rules to apply to new clients (through the "manage" signal). Also sets client keys
-awful.rules.rules = require("hash.rules")()
+require("hash.rules")
 -----------------------------------------------------------------------------------------------------------------------
 -- Set global keys
-root.keys = require("hash.globalkeys")()
+require("hash.globalkeys")
 -----------------------------------------------------------------------------------------------------------------------
 -- Autorun
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")
