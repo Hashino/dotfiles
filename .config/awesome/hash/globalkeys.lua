@@ -28,7 +28,7 @@ local globalkeys = gears.table.join
 		{description = "focus previous by index", group = "client"}),
 	awful.key({ modkey,           }, "Up", function () awful.client.focus.byidx(-1) end,
 		{description = "focus previous by index", group = "client"}),
-		-----------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
 	awful.key({ modkey,  "Control"}, "n",
 		function ()
 			if #root.tags() < 9 then
@@ -60,48 +60,45 @@ local globalkeys = gears.table.join
 	{description = "(un)minimize all clients", group = "client"}),
 -----------------------------------------------------------------------------------------------------------------------
 	-- Standard programs
-	awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
-		{description = "open a terminal", group = "launcher"}),
-	awful.key({ modkey,           }, "b", function () awful.spawn(browser) end,
-		{description = "launch Browser", group = "launcher"}),
-	awful.key({ modkey,           }, "e", function () awful.spawn(filemanager) end,
-		{description = "launch filemanager", group = "launcher"}),
+	awful.key({ modkey,           }, "Return", function ()
+		awful.spawn(terminal)
+	end, {description = "open a terminal", group = "launcher"}),
+	awful.key({ modkey,           }, "b", function ()
+		awful.spawn(browser)
+	end, {description = "launch Browser", group = "launcher"}),
+	awful.key({ modkey,           }, "e", function ()
+		awful.spawn(filemanager)
+	end, {description = "launch filemanager", group = "launcher"}),
 
-	awful.key({ modkey, "Control" }, "e", function () awful.spawn("sudo thunar") end,
-		{description = "launch filemanager as sudo", group = "launcher"}),
+	awful.key({ modkey, "Control" }, "e", function ()
+		awful.spawn("sudo thunar")
+	end, {description = "launch filemanager as sudo", group = "launcher"}),
 -----------------------------------------------------------------------------------------------------------------------
 	-- rofi
 	awful.key({ modkey },            "r",     function ()
 		awful.spawn("rofi -show run")
-	end,
-		{description = "rofi run", group = "rofi"}),
+	end, {description = "rofi run", group = "rofi"}),
 	awful.key({ modkey },            "l",     function ()
 		awful.spawn("rofi -show power-menu -modi power-menu:rofi-power-menu")
-	end,
-		{description = "rofi powermenu", group = "rofi"}),
+	end, {description = "rofi powermenu", group = "rofi"}),
 	awful.key({ modkey },            "t",     function ()
 		awful.spawn("rofi-todo -f todo")
-	end,
-		{description = "rofi todo", group = "rofi"}),
+	end, {description = "rofi todo", group = "rofi"}),
 -----------------------------------------------------------------------------------------------------------------------
 	--screenshot
 	awful.key({ modkey, "Control" }, "p",     function ()
 		awful.spawn("scrot -s -o -f print.png -e 'xclip -selection clipboard -t image/png -i $f'")
-	end,
-		{description = "screenshot selection", group = "screenshot"}),
+	end, {description = "screenshot selection", group = "screenshot"}),
 	awful.key({ modkey,           }, "p",     function ()
 		awful.spawn("scrot -o -f print.png -e 'xclip -selection clipboard -t image/png -i $f'")
-	end,
-		{description = "screenshot entire screen", group = "screenshot"}),
+	end, {description = "screenshot entire screen", group = "screenshot"}),
 -----------------------------------------------------------------------------------------------------------------------
 	awful.key({ }, "XF86AudioRaiseVolume",     function ()
 		awful.spawn("pactl -- set-sink-volume 0 +3%")
-	end,
-		{description = "volume down", group = "volume"}),
+	end, {description = "volume down", group = "volume"}),
 	awful.key({ }, "XF86AudioLowerVolume",     function ()
 		awful.spawn("pactl -- set-sink-volume 0 -3%")
-	end,
-		{description = "volume up", group = "volume"})
+	end, {description = "volume up", group = "volume"})
 )
 -----------------------------------------------------------------------------------------------------------------------
 -- Bind all key numbers to tags.

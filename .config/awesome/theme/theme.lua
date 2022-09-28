@@ -1,7 +1,7 @@
 -- by Hashino https://github.com/Hashino/dotfiles
 -----------------------------------------------------------------------------------------------------------------------
 theme = {}
-theme.location						= "~/.config/awesome/theme/"
+theme.location					= "~/.config/awesome/theme/"
 theme.universalsize 			= 23
 -----------------------------------------------------------------------------------------------------------------------
 theme.font_name					= "Terminus (TTF) Medium "
