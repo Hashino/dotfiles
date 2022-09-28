@@ -2,3 +2,4 @@
 *.log
 .config/VSCodium/User/globalStorage/state.vscdb
 .config/VSCodium/User/globalStorage/storage.json
+.config/VSCodium/GPUCache/data_1
