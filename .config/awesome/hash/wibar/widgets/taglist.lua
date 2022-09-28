@@ -1,14 +1,16 @@
 -- by Hashino https://github.com/Hashino/dotfiles
 -----------------------------------------------------------------------------------------------------------------------
-local awful = require("awful")
-local gears = require("gears")
-local wibox = require("wibox")
-local beautiful = require("beautiful")
+local awful 	= require("awful")
+local gears 	= require("gears")
+local wibox 	= require("wibox")
+local beautiful	= require("beautiful")
+local naughty 	= require("naughty")
 -----------------------------------------------------------------------------------------------------------------------
-font 			= theme.font_name .. tostring(theme.universalsize * (3/8))
-margin_width	= theme.universalsize / 3
-icon_inactive 	= ""
-icon_selected 	= ""
+font 				= theme.font_name .. tostring(theme.universalsize * (3/8))
+outer_margin_width 	= theme.universalsize / 3
+inner_margin_width 	= outer_margin_width / 3
+icon_inactive 		= ""
+icon_selected 		= ""
 -----------------------------------------------------------------------------------------------------------------------
 local get_taglist = function(s)
 
@@ -32,15 +34,22 @@ local get_taglist = function(s)
         end),
         awful.button({}, 5, function(t)
             awful.tag.viewprev(t.screen)
-        end))
+        end)
+	)
 -----------------------------------------------------------------------------------------------------------------------
 	-- Function to update the tags
 	local update_tags = function(self, c3)
 		local tagicon = self:get_children_by_id('icon_role')[1]
-
+		local inner = self:get_children_by_id('inner_margin')[1]
 		if #s.tags == 1 then
-			tagicon.text	= ""
+			inner.left 		= 0
+			inner.right 	= 0
+
+			tagicon.text 	= ''
 		else
+			inner.left 		= inner_margin_width
+			inner.right 	= inner_margin_width
+
 			if c3.selected then
 				tagicon.text = icon_selected
 			else
@@ -53,10 +62,8 @@ local get_taglist = function(s)
 
 	-- Function to update the margin
 	local update_margin = function(self)
-		if self ~= nil then
-			self.left	= #s.tags == 1 and 0 or margin_width
-			self.right	= #s.tags == 1 and 0 or margin_width
-		end
+		self.left	= #s.tags == 1 and 0 or outer_margin_width
+		self.right	= #s.tags == 1 and 0 or outer_margin_width
 	end
 --------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -79,9 +86,10 @@ local get_taglist = function(s)
 					text = icon_inactive,
 					widget = wibox.widget.textbox
 				},
-				left  = theme.universalsize / 8,
-				right = theme.universalsize / 8,
-				widget = wibox.container.margin,
+				id 		= 'inner_margin',
+				left 	= #s.tags == 1 and 0 or inner_margin_width,
+				right 	= #s.tags == 1 and 0 or inner_margin_width,
+				widget  = wibox.container.margin,
 
 				create_callback = function(self, c3, index, objects)
 					update_tags(self, c3)
@@ -93,14 +101,13 @@ local get_taglist = function(s)
 			},
 			buttons = taglist_buttons
 		},
-		id		= "taglist_margin",
-		left	= #s.tags == 1 and 0 or margin_width,
-		right	= #s.tags == 1 and 0 or margin_width,
+		id		= "outer_margin",
+		left	= #s.tags == 1 and 0 or outer_margin_width,
+		right	= #s.tags == 1 and 0 or outer_margin_width,
 
 		widget	= wibox.container.margin,
 	}
-
-	margin = icon_taglist:get_children_by_id('taglist_margin')[1]
+	margin = icon_taglist:get_children_by_id('outer_margin')[1]
 	margin:connect_signal("taglist_changed", update_margin, margin)
 
 	return icon_taglist

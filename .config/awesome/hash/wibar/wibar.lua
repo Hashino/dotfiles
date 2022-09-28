@@ -1,10 +1,8 @@
 -- by Hashino https://github.com/Hashino/dotfiles
 -----------------------------------------------------------------------------------------------------------------------
 local wibox 	= require("wibox")
-local beautiful	= require("beautiful")
 local awful 	= require("awful")
------------------------------------------------------------------------------------------------------------------------
-awful.tag({ "", "", "", "", "" }, s, awful.layout.layouts[1])
+local beautiful	= require("beautiful")
 -----------------------------------------------------------------------------------------------------------------------
 local get_wibar = function(s)
     -- Create the wibox
