@@ -38,8 +38,7 @@
                             "items": [
                                 {
                                     "id": "workbench.action.reopenClosedEditor",
-                                    "label": "&&Reopen Closed Editor",
-                                    "enabled": false
+                                    "label": "&&Reopen Closed Editor"
                                 },
                                 {
                                     "id": "vscode.menubar.separator"
@@ -767,8 +766,7 @@
                 "items": [
                     {
                         "id": "workbench.action.navigateBack",
-                        "label": "&&Back",
-                        "enabled": false
+                        "label": "&&Back"
                     },
                     {
                         "id": "workbench.action.navigateForward",
@@ -777,8 +775,7 @@
                     },
                     {
                         "id": "workbench.action.navigateToLastEditLocation",
-                        "label": "&&Last Edit Location",
-                        "enabled": false
+                        "label": "&&Last Edit Location"
                     },
                     {
                         "id": "vscode.menubar.separator"
@@ -1469,13 +1466,18 @@
                 "userSettingsLabel": "ctrl+shift+y"
             },
             "workbench.action.terminal.toggleTerminal": {
-                "label": "Ctrl+Shift+´",
+                "label": "Ctrl+`",
                 "isNative": false,
-                "userSettingsLabel": "ctrl+shift+[BracketLeft]"
+                "userSettingsLabel": "ctrl+`"
             },
             "editor.action.toggleWordWrap": {
                 "label": "Alt+Z",
                 "userSettingsLabel": "alt+z"
+            },
+            "workbench.action.navigateBack": {
+                "label": "Ctrl+Alt+-",
+                "isNative": false,
+                "userSettingsLabel": "ctrl+alt+-"
             },
             "workbench.action.navigateForward": {
                 "label": "Ctrl+Shift+-",
@@ -1634,6 +1636,11 @@
                 "label": "Shift+F9",
                 "userSettingsLabel": "shift+f9"
             },
+            "workbench.action.terminal.new": {
+                "label": "Ctrl+Shift+`",
+                "isNative": false,
+                "userSettingsLabel": "ctrl+shift+`"
+            },
             "workbench.action.terminal.split": {
                 "label": "Ctrl+Shift+5",
                 "userSettingsLabel": "ctrl+shift+5"
@@ -1672,7 +1679,7 @@
             "editorPartMinWidth": 220,
             "titleBarHeight": 0,
             "activityBarWidth": 0,
-            "sideBarWidth": 413,
+            "sideBarWidth": 289,
             "statusBarHeight": 22,
             "windowBorder": false
         }

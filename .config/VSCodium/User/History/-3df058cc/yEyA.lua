@@ -76,7 +76,7 @@ rules =
     },
     -- Dialogs are always on top
     {
-        rule_any = { floating = { "dialog" } },
+        rule_any = { floating = true },
         properties = {  ontop  = true },
     },
 }

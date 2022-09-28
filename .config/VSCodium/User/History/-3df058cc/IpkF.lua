@@ -6,7 +6,7 @@ local theme	    = require("beautiful")
 -----------------------------------------------------------------------------------------------------------------------
 clientkeys = gears.table.join
 (
-    awful.key({ modkey }, "x",      function (c) c:kill() end,
+    awful.key({ modkey,           }, "x",      function (c) c:kill() end,
         {description = "close", group = "client"}),
     awful.key({ modkey,           }, "n",
         function (c)
@@ -15,14 +15,14 @@ clientkeys = gears.table.join
             c.minimized = true
         end ,
         {description = "minimize", group = "client"}),
-    awful.key({ modkey }, "m",
+    awful.key({ modkey,           }, "m",
         function (c)
             c.maximized = not c.maximized
             c:raise()
         end ,
         {description = "(un)maximize", group = "client"}),
 
-    awful.key({ modkey }, "f",  awful.client.floating.toggle,
+    awful.key({ modkey,           }, "f",  awful.client.floating.toggle,
         {description = "toggle floating", group = "client"})
 )
 -----------------------------------------------------------------------------------------------------------------------
@@ -76,7 +76,7 @@ rules =
     },
     -- Dialogs are always on top
     {
-        rule_any = { floating = { "dialog" } },
+        rule_any = {type = { "dialog" } },
         properties = {  ontop  = true },
     },
 }

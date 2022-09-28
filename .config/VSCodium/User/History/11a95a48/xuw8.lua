@@ -37,7 +37,6 @@ for s = 1, screen.count() do screen[s]:connect_signal("arrange", function ()
     local layout = awful.layout.getname(awful.layout.get(s))
 
     for _, c in pairs(clients) do
-        c.ontop = false
         -- No titlebar with only one humanly visible client
     	if c.maximized then
             c.border_width = 0
