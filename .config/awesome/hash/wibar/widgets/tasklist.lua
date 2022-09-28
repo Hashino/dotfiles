@@ -6,8 +6,9 @@ local wibox 	= require("wibox")
 local beautiful = require("beautiful")
 -----------------------------------------------------------------------------------------------------------------------
 local get_tasklist = function(s)
-	
-	local tasklist_buttons = gears.table.join(
+
+	local tasklist_buttons = gears.table.join
+	(
 		awful.button({ }, 1, function (c)
 		    -- Without this, the following
 		    -- :isvisible() makes no sense
@@ -19,7 +20,8 @@ local get_tasklist = function(s)
 		    -- the client, if needed
 		    client.focus = c
 		    c:raise()
-		end), awful.button({ }, 3, function (c)
+		end),
+		awful.button({ }, 3, function (c)
 		    -- Without this, the following
 		    -- :isvisible() makes no sense
 		    c:kill()
@@ -34,7 +36,7 @@ local get_tasklist = function(s)
 				screen   = s,
 				filter   = awful.widget.tasklist.filter.minimizedcurrenttags,
 				buttons  = tasklist_buttons,
-				layout   = 
+				layout   =
 				{
 					spacing = 0,
 					layout  = wibox.layout.flex.horizontal
@@ -56,7 +58,7 @@ local get_tasklist = function(s)
 					},
 					left  = theme.universalsize / 10,
 					right = theme.universalsize / 10,
-					widget = wibox.container.margin
+					widget = wibox.container.margin,
 				},
 			},
 			bg     = theme.transparent,
@@ -66,7 +68,7 @@ local get_tasklist = function(s)
 		right = theme.universalsize / 10,
 		widget = wibox.container.margin
 	}
-	
+
 	return mytasklist
 end
 -----------------------------------------------------------------------------------------------------------------------
