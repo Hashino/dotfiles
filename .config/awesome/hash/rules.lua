@@ -6,9 +6,9 @@ local theme	    = require("beautiful")
 -----------------------------------------------------------------------------------------------------------------------
 clientkeys = gears.table.join
 (
-    awful.key({ modkey }, "x",      function (c) c:kill() end,
+    awful.key({ modkey }, "x", function (c) c:kill() end,
         {description = "close", group = "client"}),
-    awful.key({ modkey,           }, "n",
+    awful.key({ modkey }, "n",
         function (c)
             -- The client currently has the input focus, so it cannot be
             -- minimized, since minimized clients can't have the focus.
@@ -22,7 +22,7 @@ clientkeys = gears.table.join
         end ,
         {description = "(un)maximize", group = "client"}),
 
-    awful.key({ modkey }, "f",  awful.client.floating.toggle,
+    awful.key({ modkey }, "f", awful.client.floating.toggle,
         {description = "toggle floating", group = "client"})
 )
 -----------------------------------------------------------------------------------------------------------------------
@@ -33,9 +33,8 @@ clientbuttons = gears.table.join
     awful.button({ modkey }, 3, awful.mouse.client.resize)
 )
 -----------------------------------------------------------------------------------------------------------------------
-rules =
+awful.rules.rules =
 {
-    -- All clients will match this rule.
     { rule = { },
         properties = {
             border_width = theme.border_width,
@@ -47,32 +46,8 @@ rules =
             size_hints_honor = false, -- Remove gaps between terminals
             screen = awful.screen.preferred,
             callback = awful.client.setslave,
-            placement = awful.placement.no_overlap+awful.placement.no_offscreen
+            placement = awful.placement.no_overlap+awful.placement.no_offscreen,
         }
-    },
------------------------------------------------------------------------------------------------------------------------
-    -- Floating clients.
-    {
-        rule_any =
-        {
-            instance =
-            {
-
-            },
-            class =
-            {
-
-            },
-            name =
-            {
-                "Event Tester",  -- xev.
-            },
-            role =
-            {
-                "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
-            }
-        },
-        properties = { floating = true }
     },
     -- Dialogs are always on top
     {
@@ -80,6 +55,4 @@ rules =
         properties = {  ontop  = true },
     },
 }
------------------------------------------------------------------------------------------------------------------------
-awful.rules.rules = rules
 -----------------------------------------------------------------------------------------------------------------------

@@ -19,7 +19,10 @@ run /usr/lib/xfce-polkit/xfce-polkit
 run sudo openrgb --startminimized
 ckb-next --background
 
-crd --start
+crd --start #chrome remote desktop
+
+
 #enviroment variables
 export QT_QPA_PLATFORMTHEME=gtk2
 export PF_INFO="ascii title os kernel wm shell memory palette"
+export TERMINAL=/usr/bin/lxterminal
