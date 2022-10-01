@@ -83,7 +83,7 @@ local globalkeys = gears.table.join
 		awful.spawn("rofi -show run")
 	end, {description = "rofi run", group = "rofi"}),
 	awful.key({ modkey },            "l",     function ()
-		awful.spawn("rofi -show power-menu -modi power-menu:rofi-power-menu")
+		awful.spawn("rofi -show power-menu -modi power-menu:~/.local/bin/rofi-power-menu")
 	end, {description = "rofi powermenu", group = "rofi"}),
 	awful.key({ modkey },            "t",     function ()
 		awful.spawn("rofi-todo -f todo")

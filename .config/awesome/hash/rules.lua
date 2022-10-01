@@ -36,23 +36,23 @@ clientbuttons = gears.table.join
 awful.rules.rules =
 {
     { rule = { },
-        properties = {
-            border_width = theme.border_width,
-            border_color = theme.border_normal,
-            focus = awful.client.focus.filter,
-            raise = true,
-            keys = clientkeys,
-            buttons = clientbuttons,
-            size_hints_honor = false, -- Remove gaps between terminals
-            screen = awful.screen.preferred,
-            callback = awful.client.setslave,
-            placement = awful.placement.no_overlap+awful.placement.no_offscreen,
+        properties =
+        {
+            border_width    = theme.border_width,
+            border_color    = theme.border_normal,
+            focus           = awful.client.focus.filter,
+            raise           = true,
+            keys            = clientkeys,
+            buttons         = clientbuttons,
+            screen          = awful.screen.preferred,
+            callback        = awful.client.setslave,
+            placement       = awful.placement.no_overlap+awful.placement.no_offscreen,
         }
     },
     -- Dialogs are always on top
-    {
-        rule_any = { floating = { "dialog" } },
-        properties = {  ontop  = true },
-    },
+    --{
+    --    rule_any = { floating = true },
+    --    properties = {  ontop  = true },
+    --},
 }
 -----------------------------------------------------------------------------------------------------------------------
