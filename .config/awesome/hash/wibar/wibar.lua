@@ -47,7 +47,7 @@ local get_wibar = function(s)
         },
         left	= theme.useless_gap * 2,
         right	= theme.useless_gap * 2,
-        widget = wibox.container.margin
+        widget  = wibox.container.margin
     }
 end
 -----------------------------------------------------------------------------------------------------------------------

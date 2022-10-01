@@ -19,7 +19,7 @@ local get_clock = function()
     local clock = wibox.widget
     {
         layout = wibox.layout.fixed.horizontal,
-        {
+        { -- Date
             {
                 layout = wibox.layout.fixed.horizontal,
                 spacer,
@@ -29,7 +29,7 @@ local get_clock = function()
             bg = theme.bg_accent3,
             widget = wibox.container.background
         },
-        {
+        { -- Time
             {
                 layout = wibox.layout.fixed.horizontal,
                 spacer,
