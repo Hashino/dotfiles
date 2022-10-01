@@ -1,8 +1,8 @@
 -- by Hashino https://github.com/Hashino/dotfiles
 -----------------------------------------------------------------------------------------------------------------------
-local awful 	= require("awful")
-local gears 	= require("gears")
-local theme	    = require("beautiful")
+local awful     = require("awful")
+local gears     = require("gears")
+local theme     = require("beautiful")
 -----------------------------------------------------------------------------------------------------------------------
 clientkeys = gears.table.join
 (
