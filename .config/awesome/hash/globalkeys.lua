@@ -1,17 +1,19 @@
 -- by Hashino https://github.com/Hashino/dotfiles
 -----------------------------------------------------------------------------------------------------------------------
-local awful 	= require("awful")
-local gears 	= require("gears")
-local hotkeys_popup = require("awful.hotkeys_popup").widget
+local awful 		= require("awful")
+local gears 		= require("gears")
+local hotkeys_popup	= require("awful.hotkeys_popup").widget
 -----------------------------------------------------------------------------------------------------------------------
 local globalkeys = gears.table.join
 (
 -----------------------------------------------------------------------------------------------------------------------
+	-- awesome controls
 	awful.key({ modkey,           }, "s", hotkeys_popup.show_help,
 		{description="show help", group="awesome"}),
 	awful.key({ modkey, "Control" }, "r", awesome.restart,
 		{description = "reload awesome", group = "awesome"}),
 -----------------------------------------------------------------------------------------------------------------------
+	-- client controls
 	awful.key({ modkey,           }, "Tab",     awful.tag.viewnext,
 		{description = "view next tag", group = "tag-nav"}),
 	awful.key({ modkey,           }, "Right",   awful.tag.viewnext,
@@ -28,7 +30,21 @@ local globalkeys = gears.table.join
 		{description = "focus previous by index", group = "client"}),
 	awful.key({ modkey,           }, "Up", function () awful.client.focus.byidx(-1) end,
 		{description = "focus previous by index", group = "client"}),
+
+	awful.key({ modkey,           }, "d", function ()
+		if #awful.screen.focused().clients > 0 then
+			for _, c in ipairs(mouse.screen.selected_tag:clients()) do
+				c.minimized = true
+			end
+		else
+			for _, c in ipairs(mouse.screen.selected_tag:clients()) do
+				c.minimized = false
+			end
+		end
+	end,
+	{description = "(un)minimize all clients", group = "client"}),
 -----------------------------------------------------------------------------------------------------------------------
+	-- tag controls
 	awful.key({ modkey,  "Control"}, "n",
 		function ()
 			if #root.tags() < 9 then
@@ -45,19 +61,7 @@ local globalkeys = gears.table.join
 			end
 		end,
 		{description = "remove tag", group = "tag-nav"}),
------------------------------------------------------------------------------------------------------------------------
-	awful.key({ modkey,           }, "d", function ()
-		if #awful.screen.focused().clients > 0 then
-			for _, c in ipairs(mouse.screen.selected_tag:clients()) do
-				c.minimized = true
-			end
-		else
-			for _, c in ipairs(mouse.screen.selected_tag:clients()) do
-				c.minimized = false
-			end
-		end
-	end,
-	{description = "(un)minimize all clients", group = "client"}),
+
 -----------------------------------------------------------------------------------------------------------------------
 	-- Standard programs
 	awful.key({ modkey,           }, "Return", function ()
@@ -85,7 +89,7 @@ local globalkeys = gears.table.join
 		awful.spawn("rofi-todo -f todo")
 	end, {description = "rofi todo", group = "rofi"}),
 -----------------------------------------------------------------------------------------------------------------------
-	--screenshot
+	-- screenshot
 	awful.key({ modkey, "Control" }, "p",     function ()
 		awful.spawn("scrot -s -o -f print.png -e 'xclip -selection clipboard -t image/png -i $f'")
 	end, {description = "screenshot selection", group = "screenshot"}),
@@ -93,6 +97,7 @@ local globalkeys = gears.table.join
 		awful.spawn("scrot -o -f print.png -e 'xclip -selection clipboard -t image/png -i $f'")
 	end, {description = "screenshot entire screen", group = "screenshot"}),
 -----------------------------------------------------------------------------------------------------------------------
+	-- media
 	awful.key({ }, "XF86AudioRaiseVolume",     function ()
 		awful.spawn("pactl -- set-sink-volume 0 +3%")
 	end, {description = "volume down", group = "volume"}),
