@@ -9,8 +9,8 @@ local get_clock = function()
         {
             layout = wibox.layout.fixed.horizontal,
             {
-                right	= theme.spacing,
-                widget = wibox.container.margin,
+                right   = theme.spacing,
+                widget  = wibox.container.margin,
             },
         },
         bg = theme.transparent,

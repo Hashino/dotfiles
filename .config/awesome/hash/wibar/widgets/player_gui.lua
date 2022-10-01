@@ -100,6 +100,7 @@ local player_widget = wibox.widget
     layout = wibox.layout.fixed.horizontal,
 -----------------------------------------------------------------------------------------------------------------------
     set_text = function(self, new_icon, new_text, new_prev, new_playpause, new_next)
+		--updates widgets by setting the text
     	self:get_children_by_id('icon')[1]:set_text(new_icon)
         self:get_children_by_id('song')[1]:set_text(new_text)
         self:get_children_by_id('prev')[1]:set_text(new_prev)

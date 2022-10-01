@@ -28,6 +28,7 @@ local get_tasklist = function(s)
 		end)
 	)
 -----------------------------------------------------------------------------------------------------------------------
+	-- I'll be real, this one is a mess. I won't even try to explain. good luck
 	local mytasklist =
 	{
 		{
@@ -68,7 +69,6 @@ local get_tasklist = function(s)
 		right = theme.universalsize / 10,
 		widget = wibox.container.margin
 	}
-
 	return mytasklist
 end
 -----------------------------------------------------------------------------------------------------------------------

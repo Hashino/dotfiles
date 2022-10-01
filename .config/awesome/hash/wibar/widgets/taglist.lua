@@ -42,6 +42,7 @@ local get_taglist = function(s)
 		local tagicon = self:get_children_by_id('icon_role')[1]
 		local inner = self:get_children_by_id('inner_margin')[1]
 		if #s.tags == 1 then
+			--hides tags when only 1 tag
 			inner.left 		= 0
 			inner.right 	= 0
 
@@ -56,12 +57,13 @@ local get_taglist = function(s)
 				tagicon.text = icon_inactive
 			end
 		end
+		-- needed so margins get updated to make the widget become invisble when just 1 one tag
 		self:emit_signal_recursive("taglist_changed")
 	end
 -----------------------------------------------------------------------------------------------------------------------
 	-- Function to update the margin
 	local update_margin = function(self)
-		self.left	= #s.tags == 1 and 0 or outer_margin_width
+		self.left	= #s.tags == 1 and 0 or outer_margin_width --hides tags when only 1 tag
 		self.right	= #s.tags == 1 and 0 or outer_margin_width
 	end
 -----------------------------------------------------------------------------------------------------------------------
@@ -99,7 +101,7 @@ local get_taglist = function(s)
 			},
 		},
 		id		= "outer_margin",
-		left	= #s.tags == 1 and 0 or outer_margin_width,
+		left	= #s.tags == 1 and 0 or outer_margin_width, --hides tags when only 1 tag
 		right	= #s.tags == 1 and 0 or outer_margin_width,
 
 		widget	= wibox.container.margin,
