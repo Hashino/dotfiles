@@ -2,57 +2,69 @@
 -----------------------------------------------------------------------------------------------------------------------
 local awful     = require("awful")
 local gears     = require("gears")
+local ruled     = require("ruled")
 local theme     = require("beautiful")
 -----------------------------------------------------------------------------------------------------------------------
-clientkeys = gears.table.join
-(
-    awful.key({ modkey }, "x", function (c) c:kill() end,
-        {description = "close", group = "client"}),
-    awful.key({ modkey }, "n",
-        function (c)
-            -- The client currently has the input focus, so it cannot be
-            -- minimized, since minimized clients can't have the focus.
-            c.minimized = true
-        end ,
-        {description = "minimize", group = "client"}),
-    awful.key({ modkey }, "m",
-        function (c)
-            c.maximized = not c.maximized
-            c:raise()
-        end ,
-        {description = "(un)maximize", group = "client"}),
+-- {{{ Rules
+-- Rules to apply to new clients.
+ruled.client.connect_signal("request::rules", function()
+    -- All clients will match this rule.
+    ruled.client.append_rule {
+        id         = "global",
+        rule       = { },
+        properties = {
+            focus       = awful.client.focus.filter,
+            screen      = awful.screen.preferred,
+            raise       = true,
+            placement   = awful.placement.no_overlap+awful.placement.no_offscreen
+        }
+    }
 
-    awful.key({ modkey }, "f", awful.client.floating.toggle,
-        {description = "toggle floating", group = "client"})
-)
+    -- Floating clients.
+    ruled.client.append_rule
+    {
+        id       = "floating",
+        rule_any =
+        {
+            name =
+            {
+                "Event Tester",  -- xev.
+            },
+            role =
+            {
+                "pop-up",         -- e.g. Google Chrome's (detached) Developer Tools.
+            }
+        },
+        properties = { floating = true }
+    }
+
+    -- Add titlebars to normal clients and dialogs
+    ruled.client.append_rule
+    {
+        id         = "titlebars",
+        rule_any   = { type = { "normal", "dialog" } },
+        properties = { titlebars_enabled = false }
+    }
+
+    -- Set Firefox to always map on the tag named "2" on screen 1.
+    ruled.client.append_rule
+    {
+         rule       = { class = "Firefox" },
+         properties = { screen = 1, tag = "2" }
+    }
+end)
+-- }}}
 -----------------------------------------------------------------------------------------------------------------------
-clientbuttons = gears.table.join
-(
-    awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
-    awful.button({ modkey }, 1, awful.mouse.client.move),
-    awful.button({ modkey }, 3, awful.mouse.client.resize)
-)
------------------------------------------------------------------------------------------------------------------------
-awful.rules.rules =
-{
-    { rule = { },
+ruled.notification.connect_signal('request::rules', function()
+    -- All notifications will match this rule.
+    ruled.notification.append_rule
+    {
+        rule       = { },
         properties =
         {
-            border_width    = theme.border_width,
-            border_color    = theme.border_normal,
-            focus           = awful.client.focus.filter,
-            raise           = true,
-            keys            = clientkeys,
-            buttons         = clientbuttons,
-            screen          = awful.screen.preferred,
-            callback        = awful.client.setslave,
-            placement       = awful.placement.no_overlap+awful.placement.no_offscreen,
+            screen           = awful.screen.preferred,
+            implicit_timeout = 5,
         }
-    },
-    -- Dialogs are always on top
-    --{
-    --    rule_any = { floating = true },
-    --    properties = {  ontop  = true },
-    --},
-}
+    }
+end)
 -----------------------------------------------------------------------------------------------------------------------

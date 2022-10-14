@@ -11,7 +11,7 @@ client.connect_signal("manage", function (c)
         not c.size_hints.user_position
         and not c.size_hints.program_position then
         -- Prevent clients from being unreachable after screen count changes.
-        awful.placement.no_offscreen(c)
+        --awful.placement.no_offscreen(c)
     end
 end)
 -----------------------------------------------------------------------------------------------------------------------
@@ -32,29 +32,30 @@ client.connect_signal("unfocus", function(c)
 end)
 -----------------------------------------------------------------------------------------------------------------------
 -- Handle border sizes of clients.
-for s = 1, screen.count() do screen[s]:connect_signal("arrange", function ()
-    local clients = awful.client.visible(s)
-    local layout = awful.layout.getname(awful.layout.get(s))
+for s = 1, screen.count() do
+    screen[s]:connect_signal("arrange", function ()
+        local clients = awful.client.visible(s)
+        local layout = awful.layout.getname(awful.layout.get(s))
 
-    for _, c in pairs(clients) do
-        c.ontop = false
-        -- No titlebar with only one humanly visible client
-    	if c.maximized then
-            c.border_width = 0
-        elseif c.floating or layout == "floating" then
-            c.border_width = theme.border_width
-            c.ontop = true
-        elseif layout == "max" or layout == "fullscreen" then
-            c.border_width = 0
-        else
-            local tiled = awful.client.tiled(c.screen)
-            if #tiled == 1 then -- and c == tiled[1] then
+        for _, c in pairs(clients) do
+            c.ontop = false
+            -- No titlebar with only one humanly visible client
+            if c.maximized then
+                c.border_width = 0
+            elseif c.floating or layout == "floating" then
+                c.border_width = theme.border_width
+                c.ontop = true
+            elseif layout == "max" or layout == "fullscreen" then
                 c.border_width = 0
             else
-                c.border_width = theme.border_width
+                local tiled = awful.client.tiled(c.screen)
+                if #tiled == 1 then -- and c == tiled[1] then
+                    c.border_width = 0
+                else
+                    c.border_width = theme.border_width
+                end
             end
         end
-    end
-end)
+    end)
 end
 -----------------------------------------------------------------------------------------------------------------------

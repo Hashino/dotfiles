@@ -24,12 +24,13 @@ modkey      = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 require("hash.layouts")
 -----------------------------------------------------------------------------------------------------------------------
+-- Wallpaper
+require("hash.wallpaper")
+-----------------------------------------------------------------------------------------------------------------------
 -- Screen setup
-awful.screen.connect_for_each_screen(function(s)
+screen.connect_signal("request::desktop_decoration", function(s)
     --- Creates starting tags on each screen
     awful.tag({ "" , "" , "" , "", "" }, s, awful.layout.layouts[1])
-    -- Wallpaper
-    require("hash.wallpaper")(s)
     -- Each screen has its own tag table.
 	require("hash.wibar.wibar")(s)
 end)
@@ -37,11 +38,11 @@ end)
 -- Signals
 require("hash.signals")
 -----------------------------------------------------------------------------------------------------------------------
--- Rules to apply to new clients (through the "manage" signal). Also sets client keys
+-- Rules to apply to new clients
 require("hash.rules")
 -----------------------------------------------------------------------------------------------------------------------
--- Set global keys
-require("hash.globalkeys")
+-- Set all keybindings
+require("hash.keybindings")
 -----------------------------------------------------------------------------------------------------------------------
 -- Autorun
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")
