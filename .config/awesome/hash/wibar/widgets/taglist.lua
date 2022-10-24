@@ -9,7 +9,8 @@ local naughty 	= require("naughty")
 font 				= theme.font_name .. tostring(theme.universalsize * (3/8))
 outer_margin_width 	= theme.universalsize / 3
 inner_margin_width 	= outer_margin_width / 3
-icon_inactive 		= ""
+icon_inactive_empty	= ""
+icon_inactive 		= ""
 icon_selected 		= ""
 -----------------------------------------------------------------------------------------------------------------------
 local get_taglist = function(s)
@@ -54,7 +55,11 @@ local get_taglist = function(s)
 			if c3.selected then
 				tagicon.text = icon_selected
 			else
-				tagicon.text = icon_inactive
+				if #c3:clients() == 0 then
+					tagicon.text = icon_inactive_empty
+				else
+					tagicon.text = icon_inactive
+				end
 			end
 		end
 		-- needed so margins get updated to make the widget become invisble when just 1 one tag
@@ -83,7 +88,7 @@ local get_taglist = function(s)
 				{
 					id = 'icon_role',
 					font = font,
-					text = icon_inactive,
+					text = icon_inactive_empty,
 					widget = wibox.widget.textbox,
 				},
 				id 		= 'inner_margin',
