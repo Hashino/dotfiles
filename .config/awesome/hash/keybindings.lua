@@ -164,6 +164,12 @@ client.connect_signal("request::default_keybindings", function()
 
 		awful.key({ modkey }, "f", awful.client.floating.toggle,
 		{description = "toggle floating", group = "client"}),
+		awful.key({ modkey, "Control" }, "f",
+		function (c)
+			c.fullscreen = not c.fullscreen
+			c:raise()
+		end,
+		{description = "toggle fullscreen", group = "client"}),
 	})
 end)
 -----------------------------------------------------------------------------------------------------------------------

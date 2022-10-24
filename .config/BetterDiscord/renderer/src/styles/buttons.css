@@ -1,0 +1,62 @@
+.bd-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3E82E5;
+    color: #FFFFFF;
+    border-radius: 3px;
+    padding: 4px 8px;
+    transition: background-color 0.17s ease, color 0.17s ease, opacity 250ms ease;
+}
+
+.bd-button:hover {
+    background-color: #3875CE;
+}
+
+.bd-button:active {
+    background-color: #3268B7;
+}
+
+.bd-button.bd-button-success {
+    background-color: #43B581;
+}
+
+.bd-button.bd-button-success:hover {
+    background-color: #3CA374;
+}
+
+.bd-button.bd-button-success:active {
+    background-color: #369167;
+}
+
+.bd-button.bd-button-warning {
+    background-color: #FAA61A;
+}
+
+.bd-button.bd-button-warning:hover {
+    background-color: #E19517;
+}
+
+.bd-button.bd-button-warning:active {
+    background-color: #C88515;
+}
+
+.bd-button.bd-button-danger {
+    background-color: #F04747;
+}
+
+.bd-button.bd-button-danger:hover {
+    background-color: #D84040;
+}
+
+.bd-button.bd-button-danger:active {
+    background-color: #C03939;
+}
+
+.bd-button-disabled {
+    opacity: 0.4;
+}
+
+.bd-button-disabled:hover {
+    cursor: not-allowed;
+}

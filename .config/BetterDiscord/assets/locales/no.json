@@ -1,0 +1,80 @@
+{
+    "Panels": {
+        "customcss": "Tilpasset CSS"
+    },
+    "Collections": {
+        "settings": {
+            "name": "Innstillinger",
+            "general": {
+                "name": "Generell",
+                "emotes": {
+                    "name": "Emote-system"
+                },
+                "publicServers": {
+                    "name": "Offentlige Servere"
+                },
+                "showToasts": {
+                    "name": "Vis Toasts"
+                }
+            },
+            "customcss": {
+                "name": "Tilpasset CSS",
+                "customcss": {
+                    "name": "Tilpasset CSS"
+                }
+            }
+        },
+        "emotes": {
+            "name": "Emotes",
+            "general": {
+                "name": "Generell",
+                "download": {
+                    "name": "Last ned Emotes"
+                }
+            },
+            "categories": {
+                "name": "Kategorier",
+                "frankerfacez": {
+                    "name": "FrankerFaceZ"
+                },
+                "bttv": {
+                    "name": "BetterTTV"
+                }
+            }
+        }
+    },
+    "Addons": {
+        "addonSettings": "Innstillinger",
+        "website": "Nettsted",
+        "donate": "Donere",
+        "patreon": "Patreon",
+        "name": "Navn",
+        "author": "Forfatter",
+        "version": "Versjon",
+        "editAddon": "Redigere",
+        "deleteAddon": "Slett"
+    },
+    "CustomCSS": {
+        "update": "Oppdater",
+        "save": "Lagre"
+    },
+    "Emotes": {
+        "favoriteAction": "Favoritt!"
+    },
+    "PublicServers": {
+        "button": "offentlig",
+        "search": "Søk"
+    },
+    "Modals": {
+        "confirmAction": "Er Du Sikker?",
+        "okay": "Okay",
+        "restartNow": "Start på nytt nå",
+        "restartLater": "Start på nytt senere"
+    },
+    "Sorting": {
+        "sortBy": "Sorter etter"
+    },
+    "WindowPrefs": {
+        "disabledInfo": "For å kunne tre i kraft må Discord startes på nytt. Vil du starte på nytt nå?"
+    }
+}

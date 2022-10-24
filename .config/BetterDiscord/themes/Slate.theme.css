@@ -1,0 +1,61 @@
+/**
+ * @name Slate
+ * @author Gibbu#1211 & Tropical#8908
+ * @version 1.1
+ * @invite TeRQEPb
+ * @description An optimized, consistent, and functional theme for Discord based on GitHub's design language.
+ * @source https://github.com/DiscordStyles/Slate/
+ * @website https://discordstyles.github.io/slate-theme/
+*/
+/*
+  Import Source Code
+*/
+@import url("https://discordstyles.github.io/AdjustableServerWidth/base.css");
+@import url("https://discordstyles.github.io/Slate/dist/Slate.css");
+/*
+  Basic Variables
+  See available vars here: https://github.com/DiscordStyles/Slate/wiki
+*/
+:root
+{
+  /* Primary Colors */
+  --link-colour: 48, 144, 255;
+
+  /* Server List */
+  --server-icon-size: 40px;
+  --server-icon-spacing: 10px;
+  --server-container-padding: 8px;
+}
+/*
+  Place any Theme-specific Custom CSS Below here
+*/
+/*Nord Palette*/
+html:root
+{
+    --slate-palette: "Nordic";
+    --text-normal:#d8dee9;
+    --text-muted:#a4b2cc;
+    --background:#2e3440;
+    --background-dark:#2c303a;
+    --background-light:#353c4a;
+    --background-alt:#292f3a;
+    --background-modifier-hover:#3b4252;
+    --background-modifier-active:#434c5e;
+    --toolbar-background-alt: #292f3a;
+    --toolbar-background: #353c4a;
+    --toolbar-background-hover: #3b4252;
+    --toolbar-background-active: #353c4a;
+    --toolbar-search-background: #2e3440;
+    --toolbar-search-border:var(--toolbar-border);
+    --toolbar-border: #232831;
+    --toolbar-text-muted: #a4b2cc;
+    --toolbar-text-normal: #ddeeff;
+    --background-modifier-hover:#3b4252;
+    --background-modifier-active:#434c5e;
+    --guilds-background:#232831;
+    --base-border:#272b35;
+    --accent: 85, 116, 155; /* #55749b */
+    --status-red: 191, 97, 106;
+    --status-green: 163, 190, 140;
+    --status-yellow: 163, 190, 140
+}
