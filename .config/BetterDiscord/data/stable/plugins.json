@@ -1,5 +1,7 @@
 {
     "TypingUsersAvatars": false,
     "ZeresPluginLibrary": false,
-    "BetterFolders": true
+    "BetterFolders": true,
+    "ServerFolders": false,
+    "BDFDB": false
 }

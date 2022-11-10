@@ -11,7 +11,7 @@
 @import url("https://discordstyles.github.io/RadialStatus/dist/RadialStatus.css");
 
 :root {
-  --rs-small-spacing: 2px; /* Gap between avatar and status for members list/dms | MUST end in px */
+  --rs-small-spacing: 0px; /* Gap between avatar and status for members list/dms | MUST end in px */
   --rs-medium-spacing: 3px; /* Gap between avatar and status for User popout | MUST end in px */
   --rs-large-spacing: 4px; /* Gap between avatar and status for User profiles | MUST end in px */
 
