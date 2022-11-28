@@ -57,16 +57,18 @@ local get_tasklist = function(s)
 					    bg     = theme.bg_accent2,
 					    widget = wibox.container.background,
 					},
-					left  = theme.universalsize / 10,
-					right = theme.universalsize / 10,
-					widget = wibox.container.margin,
+					left  	= theme.universalsize / 14,
+					right 	= theme.universalsize / 14,
+					top 	= theme.universalsize / 20,
+					bottom 	= theme.universalsize / 20,
+					widget 	= wibox.container.margin,
 				},
 			},
 			bg     = theme.transparent,
 			widget = wibox.container.background,
 		},
-		left  = theme.universalsize / 10,
-		right = theme.universalsize / 10,
+		left  = theme.universalsize / 20,
+		right = theme.universalsize / 20,
 		widget = wibox.container.margin
 	}
 	return mytasklist
