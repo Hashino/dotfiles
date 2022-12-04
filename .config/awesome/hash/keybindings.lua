@@ -1,9 +1,9 @@
 -- by Hashino https://github.com/Hashino/dotfiles
------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
 local awful 		= require("awful")
 local gears 		= require("gears")
 local hotkeys_popup	= require("awful.hotkeys_popup").widget
------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------
 awful.keyboard.append_global_keybindings
 ({
 	-- awesome controls
@@ -11,7 +11,7 @@ awful.keyboard.append_global_keybindings
 		{description="show help", group="awesome"}),
 	awful.key({ modkey, "Control" }, "r", awesome.restart,
 		{description = "reload awesome", group = "awesome"}),
------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------
 	-- client controls
 	awful.key({ modkey,           }, "Tab",     awful.tag.viewnext,
 		{description = "view next tag", group = "tag-nav"}),
@@ -42,7 +42,7 @@ awful.keyboard.append_global_keybindings
 		end
 	end,
 	{description = "(un)minimize all clients", group = "client"}),
------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------
 	-- tag controls
 	awful.key({ modkey,  "Control"}, "n",
 		function ()
@@ -61,7 +61,7 @@ awful.keyboard.append_global_keybindings
 		end,
 		{description = "remove tag", group = "tag-nav"}),
 
------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------
 	-- Standard programs
 	awful.key({ modkey,           }, "Return", function ()
 		awful.spawn(terminal)
@@ -76,7 +76,7 @@ awful.keyboard.append_global_keybindings
 	awful.key({ modkey, "Control" }, "e", function ()
 		awful.spawn("sudo thunar")
 	end, {description = "launch filemanager as sudo", group = "launcher"}),
------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------
 	-- rofi
 	awful.key({ modkey },            "r",     function ()
 		awful.spawn("rofi -show run")
@@ -87,7 +87,7 @@ awful.keyboard.append_global_keybindings
 	awful.key({ modkey },            "t",     function ()
 		awful.spawn("rofi-todo -f todo")
 	end, {description = "rofi todo", group = "rofi"}),
------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------
 	-- screenshot
 	awful.key({ modkey, "Control" }, "p",     function ()
 		awful.spawn("scrot -s -o -f print.png -e 'xclip -selection clipboard -t image/png -i $f'")
@@ -95,7 +95,7 @@ awful.keyboard.append_global_keybindings
 	awful.key({ modkey,           }, "p",     function ()
 		awful.spawn("scrot -o -f print.png -e 'xclip -selection clipboard -t image/png -i $f'")
 	end, {description = "screenshot entire screen", group = "screenshot"}),
------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------
 	-- media
 	awful.key({ }, "XF86AudioRaiseVolume",     function ()
 		awful.spawn("pactl -- set-sink-volume 0 +3%")
@@ -104,7 +104,7 @@ awful.keyboard.append_global_keybindings
 		awful.spawn("pactl -- set-sink-volume 0 -3%")
 	end, {description = "volume up", group = "volume"})
 })
------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
@@ -134,7 +134,7 @@ for i = 1, 9 do
 			{description = "move focused client to tag #"..i, group = "tag"})
 	})
 end
------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------
 client.connect_signal("request::default_mousebindings", function()
     awful.mouse.append_client_mousebindings({
 		awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
@@ -172,7 +172,7 @@ client.connect_signal("request::default_keybindings", function()
 		{description = "toggle fullscreen", group = "client"}),
 	})
 end)
------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------
 -- Create a launcher widget and a main menu
 myawesomemenu =
 {
@@ -192,9 +192,9 @@ mymainmenu = require("freedesktop").menu.build({
         -- other triads can be put here
     }
 })
------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------
 -- Mouse bindings
 awful.mouse.append_global_mousebindings({
     awful.button({ }, 3, function () mymainmenu:toggle() end),
 })
------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------

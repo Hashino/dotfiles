@@ -2,13 +2,13 @@
 -- @author Mohammed Gaber
 -- requires - playerctl
 -- modified by Hashino https://github.com/Hashino/dotfiles
------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
 local awful 	= require("awful")
 local watch 	= require("awful.widget.watch")
 local wibox 	= require("wibox")
 local gears 	= require("gears")
 local theme	    = require("beautiful")
------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
 local bar_size			= theme.universalsize * 2
 
 local icon				= ""
@@ -26,7 +26,7 @@ local font_controls 	= theme.font_name .. tostring(theme.universalsize / (5/2))
 local default_player 	= "spotify"
 
 local GET_MPD_CMD 		= "playerctl -p " .. default_player .. " -f '{{status}};{{xesam:artist}};{{xesam:title}}' metadata"
------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
 local player_widget = wibox.widget
 {
 	{
@@ -98,7 +98,7 @@ local player_widget = wibox.widget
 		widget = wibox.container.margin
     },
     layout = wibox.layout.fixed.horizontal,
------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
     set_text = function(self, new_icon, new_text, new_prev, new_playpause, new_next)
 		--updates widgets by setting the text
     	self:get_children_by_id('icon')[1]:set_text(new_icon)
@@ -108,7 +108,7 @@ local player_widget = wibox.widget
         self:get_children_by_id('next')[1]:set_text(new_next)
     end
 }
------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
 local function player_updater()
     -- retrieve song info
     local song, player_status
@@ -118,7 +118,7 @@ local function player_updater()
         player_status = words[1]
 
         song = tostring(words[2]) .. " - " .. tostring(words[3])
------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
         -- Guarantees that player always has the same width
         if song ~= nil then
             if string.len(song) > (bar_size - 5) then
@@ -135,7 +135,7 @@ local function player_updater()
             	end
             end
         end
------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
         -- Changes buttons accordingly
         if player_status == "Playing" then
             widget:set_text(icon, song, prev, pause, next)
@@ -153,6 +153,6 @@ local function player_updater()
     return player_widget
 
 end
------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
 return setmetatable(player_widget, {__call = function(_, ...) return player_updater(...) end})
------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------

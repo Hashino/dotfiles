@@ -1,12 +1,12 @@
 -- by Hashino https://github.com/Hashino/dotfiles
------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
 local gears 	= require("gears")
 local awful 	= require("awful")
 local wibox 	= require("wibox")
 local theme	    = require("beautiful")
------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
 local get_layoutbox = function(s)
------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
     theme.layout_tile 		= gears.color.recolor_image(theme.layout_tile, theme.fg_normal)
     theme.layout_fairh 		= gears.color.recolor_image(theme.layout_fairh, theme.fg_normal)
     theme.layout_fairv 		= gears.color.recolor_image(theme.layout_fairv, theme.fg_normal)
@@ -19,7 +19,7 @@ local get_layoutbox = function(s)
     theme.layout_tiletop 	= gears.color.recolor_image(theme.layout_tiletop, theme.fg_normal)
     theme.layout_spiral 	= gears.color.recolor_image(theme.layout_spiral, theme.fg_normal)
     theme.layout_dwindle 	= gears.color.recolor_image(theme.layout_dwindle, theme.fg_normal)
------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
 	local layoutbox = wibox.widget
 	{
 		awful.widget.layoutbox(s),
@@ -38,6 +38,6 @@ local get_layoutbox = function(s)
 	})
 	return layoutbox
 end
------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
 return get_layoutbox
------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
