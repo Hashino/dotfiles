@@ -17,10 +17,9 @@ run pasystray --notify=all
 run /usr/lib/xfce-polkit/xfce-polkit
 
 run sudo openrgb --startminimized
+run crd --start #chrome remote desktop
+
 ckb-next --background
-
-crd --start #chrome remote desktop
-
 
 #enviroment variables
 export QT_QPA_PLATFORMTHEME=gtk2
