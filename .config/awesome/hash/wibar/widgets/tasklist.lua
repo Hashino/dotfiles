@@ -22,8 +22,6 @@ local get_tasklist = function(s)
 		    c:raise()
 		end),
 		awful.button({ }, 3, function (c)
-		    -- Without this, the following
-		    -- :isvisible() makes no sense
 		    c:kill()
 		end)
 	)
