@@ -12,7 +12,7 @@ require("beautiful").init(awful.util.getdir("config") .. "/theme/theme.lua")
 require("awful.autofocus")
 -------------------------------------------------------------------------------------------------------------------
 -- Error handling
-require("hash.errors")--
+require("hash.errors")
 -------------------------------------------------------------------------------------------------------------------
 -- Variable definitions
 terminal    = "lxterminal"
