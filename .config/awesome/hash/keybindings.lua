@@ -195,6 +195,6 @@ mymainmenu = require("freedesktop").menu.build({
 ------------------------------------------------------------------------------------------------------------------
 -- Mouse bindings
 awful.mouse.append_global_mousebindings({
-    awful.button({ }, 3, function () mymainmenu:toggle() end),
+    --awful.button({ }, 3, function () mymainmenu:toggle() end),
 })
 ------------------------------------------------------------------------------------------------------------------
