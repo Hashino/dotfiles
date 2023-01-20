@@ -17,7 +17,7 @@ require("hash.errors")
 -- Variable definitions
 terminal    = "lxterminal"
 browser     = "firefox"
-filemanager = "thunar"
+filemanager = "nemo"
 editor      = "mousepad"
 modkey      = "Mod4"
 -------------------------------------------------------------------------------------------------------------------

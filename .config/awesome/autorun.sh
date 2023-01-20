@@ -11,17 +11,17 @@ function run {
     $@&
   fi
 }
-run thunar --daemon
+#run thunar --daemon
 run picom -b
 run pasystray --notify=all
 run /usr/lib/xfce-polkit/xfce-polkit
 
 run sudo openrgb --startminimized
-run crd --start #chrome remote desktop
 
 ckb-next --background
 
 #enviroment variables
-export QT_QPA_PLATFORMTHEME=gtk2
-export PF_INFO="ascii title os kernel wm shell memory palette"
 export TERMINAL=/usr/bin/lxterminal
+export EDITOR=/usr/bin/mousepad
+
+export PF_INFO="ascii title os kernel wm shell memory palette"
