@@ -23,5 +23,6 @@ ckb-next --background
 #enviroment variables
 export TERMINAL=/usr/bin/lxterminal
 export EDITOR=/usr/bin/mousepad
+export PAGER=/usr/local/bin/moar
 
 export PF_INFO="ascii title os kernel wm shell memory palette"

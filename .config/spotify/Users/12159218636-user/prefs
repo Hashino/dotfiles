@@ -1,0 +1,4 @@
+audio.play_bitrate_non_metered_migrated=true
+ui.hide_hpto=true
+ui.show_friend_feed=false
+app.player.volume=63344
