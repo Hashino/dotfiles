@@ -16,12 +16,12 @@ local get_wibar = function(s)
                 layout = wibox.layout.fixed.horizontal,
                 {
                     require("hash.wibar.widgets.layoutbox")(s),
-                    bg = theme.bg_accent3,
+                    bg = theme.bg_color_3,
                     widget = wibox.container.background
                 },
                 {
                     require("hash.wibar.widgets.taglist")(s),
-                    bg = theme.bg_accent2,
+                    bg = theme.bg_color_2,
                     widget = wibox.container.background
                 },
             },
@@ -34,12 +34,12 @@ local get_wibar = function(s)
                 layout = wibox.layout.fixed.horizontal,
                 {
                     require("hash.wibar.widgets.player_gui")(s),
-                    bg = theme.bg_accent3,
+                    bg = theme.bg_color_3,
                     widget = wibox.container.background
                 },
                 {
                     require("hash.wibar.widgets.systray")(s),
-                    bg = theme.bg_accent2,
+                    bg = theme.bg_color_2,
                     widget = wibox.container.background
                 },
                 require("hash.wibar.widgets.clock")(s),

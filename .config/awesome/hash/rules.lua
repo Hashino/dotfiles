@@ -30,6 +30,7 @@ ruled.notification.connect_signal('request::rules', function()
         {
             screen           = awful.screen.preferred,
             implicit_timeout = 5,
+            position         = "bottom_middle",
         }
     }
 end)

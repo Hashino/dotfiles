@@ -26,7 +26,7 @@ local get_clock = function()
                 wibox.widget.textclock("%a, %d - %b"),
                 spacer,
             },
-            bg = theme.bg_accent3,
+            bg = theme.bg_color_3,
             widget = wibox.container.background
         },
         { -- Time
@@ -36,7 +36,7 @@ local get_clock = function()
                 wibox.widget.textclock("%H:%M"),
                 spacer,
             },
-            bg = theme.bg_accent1,
+            bg = theme.bg_color_1,
             widget = wibox.container.background
         },
     }

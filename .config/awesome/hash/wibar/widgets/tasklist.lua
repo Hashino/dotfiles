@@ -52,7 +52,7 @@ local get_tasklist = function(s)
 					        halign = "center",
 					        widget = wibox.container.place,
 					    },
-					    bg     = theme.bg_accent2,
+					    bg     = theme.bg_color_2,
 					    widget = wibox.container.background,
 					},
 					left  	= theme.universalsize / 14,

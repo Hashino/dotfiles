@@ -9,6 +9,6 @@ app.window.position.x=958
 autologin.canonical_username="12159218636"
 storage.last-location="/home/hashino/.cache/spotify/Storage"
 app.window.position.width=955
-core.clock_delta=-1
+core.clock_delta=0
 app.last-launched-version="1.1.84.716.gc5f8b819"
 app.autostart-configured=true
