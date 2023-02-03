@@ -50,7 +50,7 @@ theme.systray_icon_spacing 		= theme.spacing
 theme.bg_systray 				= theme.bg_color_2
 -------------------------------------------------------------------------------------------------------------------
 theme.notification_bg 			= theme.bg_color_1
-theme.notification_max_width 	= theme.universalsize * 20
+theme.notification_max_width 	= theme.universalsize * 30
 theme.notification_max_height 	= theme.universalsize * 40
 theme.notification_icon_size 	= theme.universalsize * 5
 theme.notification_width		= theme.notification_max_width

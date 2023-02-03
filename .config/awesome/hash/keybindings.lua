@@ -8,7 +8,7 @@ awful.keyboard.append_global_keybindings
 ({
 	-- awesome controls
 	awful.key({ modkey,           }, "s", hotkeys_popup.show_help,
-		{description="show help", group="awesome"}),
+		{description = "show help", group = "awesome"}),
 	awful.key({ modkey, "Control" }, "r", awesome.restart,
 		{description = "reload awesome", group = "awesome"}),
 ------------------------------------------------------------------------------------------------------------------
@@ -60,7 +60,6 @@ awful.keyboard.append_global_keybindings
 			end
 		end,
 		{description = "remove tag", group = "tag-nav"}),
-
 ------------------------------------------------------------------------------------------------------------------
 	-- Standard programs
 	awful.key({ modkey,           }, "Return", function ()
@@ -72,10 +71,6 @@ awful.keyboard.append_global_keybindings
 	awful.key({ modkey,           }, "e", function ()
 		awful.spawn(filemanager)
 	end, {description = "launch filemanager", group = "launcher"}),
-
-	awful.key({ modkey, "Control" }, "e", function ()
-		awful.spawn("sudo thunar")
-	end, {description = "launch filemanager as sudo", group = "launcher"}),
 ------------------------------------------------------------------------------------------------------------------
 	-- rofi
 	awful.key({ modkey },            "r",     function ()
@@ -108,9 +103,7 @@ awful.keyboard.append_global_keybindings
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
-for i = 1, 9 do
-	awful.keyboard.append_global_keybindings
-	({
+for i = 1, 9 do awful.keyboard.append_global_keybindings ({
 		-- View tag only.
 		awful.key({ modkey }, "#" .. i + 9,
 			function ()
@@ -119,8 +112,7 @@ for i = 1, 9 do
 				if tag then
 					tag:view_only()
 				end
-			end,
-			{description = "view tag #"..i, group = "tag"}),
+			end),
 		-- Move client to tag.
 		awful.key({ modkey, "Shift" }, "#" .. i + 9,
 			function ()
@@ -130,8 +122,7 @@ for i = 1, 9 do
 						client.focus:move_to_tag(tag)
 					end
 				end
-			end,
-			{description = "move focused client to tag #"..i, group = "tag"})
+			end)
 	})
 end
 ------------------------------------------------------------------------------------------------------------------
@@ -172,29 +163,4 @@ client.connect_signal("request::default_keybindings", function()
 		{description = "toggle fullscreen", group = "client"}),
 	})
 end)
-------------------------------------------------------------------------------------------------------------------
--- Create a launcher widget and a main menu
-myawesomemenu =
-{
-   { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-   { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor .. " " .. awesome.conffile },
-   { "restart", awesome.restart },
-   { "quit", function() awesome.quit() end },
-}
-mymainmenu = require("freedesktop").menu.build({
-    before = {
-        { "Awesome", myawesomemenu, theme.awesome_icon },
-        -- other triads can be put here
-    },
-    after = {
-        { "Open terminal", terminal },
-        -- other triads can be put here
-    }
-})
-------------------------------------------------------------------------------------------------------------------
--- Mouse bindings
-awful.mouse.append_global_mousebindings({
-    --awful.button({ }, 3, function () mymainmenu:toggle() end),
-})
 ------------------------------------------------------------------------------------------------------------------
