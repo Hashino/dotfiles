@@ -1,16 +1,16 @@
 -- by Hashino https://github.com/Hashino/dotfiles
 -------------------------------------------------------------------------------------------------------------------
-theme                           = {}
-theme.location					= "~/.config/awesome/theme/"
+theme                                   = {}
+theme.location				= "~/.config/awesome/theme/"
 theme.universalsize 			= 24
 -------------------------------------------------------------------------------------------------------------------
-theme.spacing 					= theme.universalsize * (2/3)
+theme.spacing 				= theme.universalsize * (2/3)
 -------------------------------------------------------------------------------------------------------------------
-theme.font_name					= "Terminus (TTF) Medium "
-theme.font_size					= theme.universalsize / 2
-theme.icon_theme 				= "Papirus-Dark"
+theme.font_name				= "Terminus (TTF) Medium "
+theme.font_size			        = theme.universalsize / 2
+theme.icon_theme 			= "Papirus-Dark"
 -------------------------------------------------------------------------------------------------------------------
-theme.wallpaper 				= "~/wallpaper.png"
+theme.wallpaper 			= "~/wallpaper.png"
 -------------------------------------------------------------------------------------------------------------------
 theme.bg_color_1    			= "#2a303b"
 theme.bg_color_2    			= "#323845"
@@ -23,10 +23,10 @@ theme.bg_color_6    			= "#2c3040"
 theme.fg_normal     			= "#ddeeff"
 theme.fg_urgent     			= "#ff0000"
 -------------------------------------------------------------------------------------------------------------------
-theme.useless_gap   			= theme.universalsize / 8
+theme.useless_gap   			= theme.universalsize / 5
 theme.gap_single_client 		= true
 -------------------------------------------------------------------------------------------------------------------
-theme.transparent				= "#00000000"
+theme.transparent			= "#00000000"
 -------------------------------------------------------------------------------------------------------------------
 theme.font          			= theme.font_name .. tostring(theme.font_size)
 -------------------------------------------------------------------------------------------------------------------
@@ -39,25 +39,25 @@ theme.bg_systray    			= theme.bg_normal
 theme.fg_focus      			= theme.fg_normal
 theme.fg_minimize   			= theme.fg_normal
 -------------------------------------------------------------------------------------------------------------------
-theme.border_width  			= theme.universalsize / 20
-theme.border_normal 			= theme.bg_color_4
-theme.border_focus  			= theme.bg_color_5
-theme.border_marked 			= theme.bg_color_6
+theme.border_width                      = theme.universalsize / 20
+theme.border_normal                     = theme.bg_color_4
+theme.border_focus                      = theme.bg_color_5
+theme.border_marked                     = theme.bg_color_6
 -------------------------------------------------------------------------------------------------------------------
-theme.tasklist_plain_task_name  = true
+theme.tasklist_plain_task_name          = true
 -------------------------------------------------------------------------------------------------------------------
-theme.systray_icon_spacing 		= theme.spacing
-theme.bg_systray 				= theme.bg_color_2
+theme.systray_icon_spacing              = theme.spacing
+theme.bg_systray                        = theme.bg_color_2
 -------------------------------------------------------------------------------------------------------------------
-theme.notification_bg 			= theme.bg_color_1
-theme.notification_max_width 	= theme.universalsize * 30
-theme.notification_max_height 	= theme.universalsize * 40
-theme.notification_icon_size 	= theme.universalsize * 5
+theme.notification_bg                   = theme.bg_color_1
+theme.notification_max_width 	        = theme.universalsize * 30
+theme.notification_max_height 	        = theme.universalsize * 40
+theme.notification_icon_size 	        = theme.universalsize * 5
 theme.notification_width		= theme.notification_max_width
 theme.notification_opacity 		= 0.95
-theme.notification_font         = theme.font
-theme.notification_border_width = theme.universalsize / 2
-theme.notification_border_color = theme.bg_color_5
+theme.notification_font                 = theme.font
+theme.notification_border_width         = theme.universalsize / 2
+theme.notification_border_color         = theme.bg_color_5
 -------------------------------------------------------------------------------------------------------------------
 theme.layout_tile       = theme.location.. "/layout_icons/tile.png"
 theme.layout_fairh      = theme.location.. "/layout_icons/fairh.png"
