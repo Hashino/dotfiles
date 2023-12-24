@@ -2,12 +2,6 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="simple"
 
-#tty sessions
-if [ `tput colors` != "256" ]; then
-  ZSH_THEME="simple"
-fi
-
-
 plugins=(
   git
   colored-man-pages
@@ -16,13 +10,24 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+#tere
+tere() {
+    local result=$(command tere "$@")
+    [ -n "$result" ] && cd -- "$result"
+}
+
+#PATH
+export PATH=$PATH:~/.local/bin
 
 #ALIASES
 
-#moar
-alias more=moar
+##tere
+alias d='tere'
 
-#exa
+##moar
+alias more='moar'
+
+##exa
 alias ls='exa -a --icons --group-directories-first' # just replace ls by exa and allow all other exa arguments
 alias l='ls -lbF' #   list, size, type
 alias ll='ls -la' # long, all
@@ -33,10 +38,9 @@ alias tree='ls --tree --icons' # tree view
 alias lS='ls -1 --icons --group-directories-first' # one column by just names
 eval $(thefuck --alias)
 
-#yay-list
-alias yay-list="comm -23 <(yay -Qqe | sort) <({ yay -Qqg base-devel; expac -l '\n' '%E' base; } | sort -u) | fzf --preview 'yay -Qil {}' --layout=reverse --bind 'enter:execute(yay -Qil {} | moar)'"
-
-#vim
+##vim
 alias v='nvim'
 alias vim='v'
 
+#yay-list
+alias yay-list="comm -23 <(yay -Qqe | sort) <({ yay -Qqg base-devel; expac -l '\n' '%E' base; } | sort -u) | fzf --preview 'yay -Qil {}' --layout=reverse --bind 'enter:execute(yay -Qil {} | more)'"
