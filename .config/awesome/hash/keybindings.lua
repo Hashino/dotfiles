@@ -94,10 +94,18 @@ awful.keyboard.append_global_keybindings
 	-- media
 	awful.key({ }, "XF86AudioRaiseVolume",     function ()
 		awful.spawn("pactl -- set-sink-volume 0 +3%")
-	end, {description = "volume down", group = "volume"}),
+	end, {description = "volume +/-", group = "media"}),
 	awful.key({ }, "XF86AudioLowerVolume",     function ()
 		awful.spawn("pactl -- set-sink-volume 0 -3%")
-	end, {description = "volume up", group = "volume"})
+	end, {description = "volume +/-", group = "media"}),
+  
+  -- control
+	awful.key({ }, "XF86MonBrightnessUp",     function ()
+		awful.spawn("brightnessctl s +5%")
+	end, {description = "brightness +/-", group = "control"}),
+	awful.key({ }, "XF86MonBrightnessDown",     function ()
+		awful.spawn("brightnessctl s 5%-")
+	end, {description = "brightness +/-", group = "control"}),
 })
 ------------------------------------------------------------------------------------------------------------------
 -- Bind all key numbers to tags.
