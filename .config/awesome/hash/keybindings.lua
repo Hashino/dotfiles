@@ -6,13 +6,15 @@ local hotkeys_popup	= require("awful.hotkeys_popup").widget
 ------------------------------------------------------------------------------------------------------------------
 awful.keyboard.append_global_keybindings
 ({
-	-- awesome controls
+	--
+  -- awesome controls
 	awful.key({ modkey,           }, "s", hotkeys_popup.show_help,
 		{description = "show help", group = "awesome"}),
 	awful.key({ modkey, "Control" }, "r", awesome.restart,
 		{description = "reload awesome", group = "awesome"}),
 ------------------------------------------------------------------------------------------------------------------
-	-- client controls
+	--
+  -- client controls
 	awful.key({ modkey,           }, "Tab",     awful.tag.viewnext,
 		{description = "view next tag", group = "tag-nav"}),
 	awful.key({ modkey,           }, "Right",   awful.tag.viewnext,
@@ -43,7 +45,8 @@ awful.keyboard.append_global_keybindings
 	end,
 	{description = "(un)minimize all clients", group = "client"}),
 ------------------------------------------------------------------------------------------------------------------
-	-- tag controls
+	--
+  -- tag controls
 	awful.key({ modkey,  "Control"}, "n",
 		function ()
 			if #root.tags() < 9 then
@@ -61,7 +64,8 @@ awful.keyboard.append_global_keybindings
 		end,
 		{description = "remove tag", group = "tag-nav"}),
 ------------------------------------------------------------------------------------------------------------------
-	-- Standard programs
+	--
+  -- Standard programs
 	awful.key({ modkey,           }, "Return", function ()
 		awful.spawn(terminal)
 	end, {description = "open a terminal", group = "launcher"}),
@@ -72,7 +76,8 @@ awful.keyboard.append_global_keybindings
 		awful.spawn(filemanager)
 	end, {description = "launch filemanager", group = "launcher"}),
 ------------------------------------------------------------------------------------------------------------------
-	-- rofi
+	--
+  -- rofi
 	awful.key({ modkey },            "r",     function ()
 		awful.spawn("rofi -show run")
 	end, {description = "rofi run", group = "rofi"}),
@@ -83,7 +88,8 @@ awful.keyboard.append_global_keybindings
 		awful.spawn("rofi-todo -f todo")
 	end, {description = "rofi todo", group = "rofi"}),
 ------------------------------------------------------------------------------------------------------------------
-	-- screenshot
+	--
+  -- screenshot
 	awful.key({ modkey, "Control" }, "p",     function ()
 		awful.spawn("scrot -s -o -f print.png -e 'xclip -selection clipboard -t image/png -i $f'")
 	end, {description = "screenshot selection", group = "screenshot"}),
@@ -91,14 +97,27 @@ awful.keyboard.append_global_keybindings
 		awful.spawn("scrot -o -f print.png -e 'xclip -selection clipboard -t image/png -i $f'")
 	end, {description = "screenshot entire screen", group = "screenshot"}),
 ------------------------------------------------------------------------------------------------------------------
-	-- media
+	--
+  -- media
 	awful.key({ }, "XF86AudioRaiseVolume",     function ()
 		awful.spawn("pactl -- set-sink-volume 0 +3%")
 	end, {description = "volume +/-", group = "media"}),
 	awful.key({ }, "XF86AudioLowerVolume",     function ()
 		awful.spawn("pactl -- set-sink-volume 0 -3%")
 	end, {description = "volume +/-", group = "media"}),
-  
+	awful.key({ }, "XF86AudioMute",     function ()
+		awful.spawn("pactl set-sink-mute 0 toggle")
+	end, {description = "(un)mute", group = "media"}),
+	awful.key({ }, "XF86AudioPlay",     function ()
+		awful.spawn("playerctl play-pause")
+	end, {description = "play/pause", group = "media"}),
+	awful.key({ }, "XF86AudioPrev",     function ()
+		awful.spawn("playerctl previous")
+	end, {description = "previous", group = "media"}),
+	awful.key({ }, "XF86AudioNext",     function ()
+		awful.spawn("playerctl next")
+	end, {description = "next", group = "media"}),
+  --
   -- control
 	awful.key({ }, "XF86MonBrightnessUp",     function ()
 		awful.spawn("brightnessctl s +5%")
