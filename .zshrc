@@ -10,6 +10,8 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 #tere
 tere() {
     local result=$(command tere "$@")
