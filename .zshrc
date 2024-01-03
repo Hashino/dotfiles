@@ -10,7 +10,7 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 #tere
 tere() {
@@ -43,6 +43,17 @@ eval $(thefuck --alias)
 ##vim
 alias v='nvim'
 alias vim='v'
+alias vi='vim'
 
 #yay-list
 alias yay-list="comm -23 <(yay -Qqe | sort) <({ yay -Qqg base-devel; expac -l '\n' '%E' base; } | sort -u) | fzf --preview 'yay -Qil {}' --layout=reverse --bind 'enter:execute(yay -Qil {} | more)'"
+
+#enviroment variables
+export TERMINAL=/usr/bin/gnome-terminal
+export EDITOR=/usr/bin/mousepad
+export PAGER=/usr/local/bin/moar
+
+export PF_INFO="ascii title os kernel wm shell memory palette"
+
+export QT_QPA_PLATFORMTHEME="qt5ct"
+export CALIBRE_USE_DARK_PALETTE=1
