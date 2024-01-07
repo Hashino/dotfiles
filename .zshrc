@@ -38,7 +38,6 @@ alias la='ls -lbhHigUmuSa' # all list
 alias lx='ls -lbhHigUmuSa@' # all list and extended
 alias tree='ls --tree --icons' # tree view
 alias lS='ls -1 --icons --group-directories-first' # one column by just names
-eval $(thefuck --alias)
 
 ##vim
 alias v='nvim'
@@ -50,10 +49,11 @@ alias yay-list="comm -23 <(yay -Qqe | sort) <({ yay -Qqg base-devel; expac -l '\
 
 #enviroment variables
 export TERMINAL=/usr/bin/gnome-terminal
-export EDITOR=/usr/bin/mousepad
+export EDITOR=/usr/bin/nvim
 export PAGER=/usr/local/bin/moar
 
 export PF_INFO="ascii title os kernel wm shell memory palette"
 
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export CALIBRE_USE_DARK_PALETTE=1
+export PATH=$PATH:/home/hashino/.spicetify
