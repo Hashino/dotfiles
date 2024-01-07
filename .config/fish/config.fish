@@ -34,9 +34,9 @@ alias vi 'vim'
 alias yay-list "comm -23 <(yay -Qqe | sort) <({ yay -Qqg base-devel; expac -l '\n' '%E' base; } | sort -u) | fzf --preview 'yay -Qil {}' --layout=reverse --bind 'enter:execute(yay -Qil {} | more)'"
 
 #enviroment variables
-set -x TERMINAL /usr/bin/gnome-terminal
-set -x EDITOR /usr/bin/nvim
-set -x PAGER /usr/local/bin/moar
+set -x TERMINAL gnome-terminal
+set -x EDITOR nvim
+set -x PAGER moar
 
 set -x PF_INFO "ascii title os kernel wm shell memory palette"
 
