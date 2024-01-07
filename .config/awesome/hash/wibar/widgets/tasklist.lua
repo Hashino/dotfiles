@@ -3,7 +3,6 @@
 local awful 	= require("awful")
 local gears 	= require("gears")
 local wibox 	= require("wibox")
-local beautiful = require("beautiful")
 -------------------------------------------------------------------------------------------------------------------
 local get_tasklist = function(s)
 
@@ -35,8 +34,8 @@ local get_tasklist = function(s)
 				screen   = s,
 				filter   = awful.widget.tasklist.filter.minimizedcurrenttags,
 				buttons  = tasklist_buttons,
-				layout   =
-				{
+				layout   = 
+        {
 					spacing = 0,
 					layout  = wibox.layout.flex.horizontal
 				},
@@ -45,28 +44,26 @@ local get_tasklist = function(s)
 					{
 					    {
 					        {
-					            id     = "text_role",
-					            widget = wibox.widget.textbox,
+					            id      = "text_role",
+					            widget  = wibox.widget.textbox,
 					        },
 					        valign = "center",
 					        halign = "center",
 					        widget = wibox.container.place,
 					    },
-					    bg     = theme.bg_color_2,
+					    bg     = Theme.Colors.Background.Neutral,
 					    widget = wibox.container.background,
 					},
-					left  	= theme.universalsize / 14,
-					right 	= theme.universalsize / 14,
-					top 	= theme.universalsize / 20,
-					bottom 	= theme.universalsize / 20,
+					left  	= Theme.UniversalSize / 14,
+					right 	= Theme.UniversalSize / 14,
 					widget 	= wibox.container.margin,
 				},
 			},
-			bg     = theme.transparent,
+			bg     = Theme.Transparent,
 			widget = wibox.container.background,
 		},
-		left  = theme.universalsize / 20,
-		right = theme.universalsize / 20,
+		left  = Theme.UniversalSize / 20,
+		right = Theme.UniversalSize / 20,
 		widget = wibox.container.margin
 	}
 	return mytasklist

@@ -8,29 +8,32 @@
 -- |_|  |_|\__,_|___/_| |_|_|_| |_|\___/  (_) |_|\__,_|\__,_|
 -------------------------------------------------------------------------------------------------------------------
 local awful = require("awful")
-require("beautiful").init(awful.util.getdir("config") .. "/theme/theme.lua")
-require("awful.autofocus")
 -------------------------------------------------------------------------------------------------------------------
 -- Error handling
 require("hash.errors")
 -------------------------------------------------------------------------------------------------------------------
 -- Variable definitions
-terminal    = "lxterminal"
-browser     = "firefox"
-filemanager = "nemo"
-editor      = "mousepad"
-modkey      = "Mod4"
+Global                  = { Apps = {}, Keys = {} }
+Global.ConfigFolder     = awful.util.getdir("config")
+-------------------------------------------------------------------------------------------------------------------
+Global.Apps.Terminal    = "gnome-terminal"
+Global.Apps.Browser     = "firefox"
+Global.Apps.Filemanager = "nemo"
+Global.Apps.Editor      = "mousepad"
+-------------------------------------------------------------------------------------------------------------------
+Global.Keys.ModKey      = "Mod4"
+-------------------------------------------------------------------------------------------------------------------
+-- Libraries
+require("beautiful").init( Global.ConfigFolder .. "/theme/theme.lua")
+require("awful.autofocus")
 -------------------------------------------------------------------------------------------------------------------
 -- Table of layouts to cover with awful.layout.inc, order matters.
 require("hash.layouts")
 -------------------------------------------------------------------------------------------------------------------
--- Wallpaper
-require("hash.wallpaper")
--------------------------------------------------------------------------------------------------------------------
 -- Screen setup
 screen.connect_signal("request::desktop_decoration", function(s)
     --- Creates starting tags on each screen
-    awful.tag({ "" , "" , "" , "", "" }, s, awful.layout.layouts[1])
+    awful.tag({ "", "", "" }, s, awful.layout.layouts[1])
     -- Each screen has its own tag table.
 	require("hash.wibar.wibar")(s)
 end)
@@ -44,6 +47,9 @@ require("hash.rules")
 -- Set all keybindings
 require("hash.keybindings")
 -------------------------------------------------------------------------------------------------------------------
+-- Wallpaper
+require("hash.wallpaper")
+-------------------------------------------------------------------------------------------------------------------
 -- Autorun
-awful.spawn.with_shell("~/.config/awesome/autorun.sh")
+awful.spawn.with_shell(Global.ConfigFolder .. "/autorun.sh")
 -------------------------------------------------------------------------------------------------------------------

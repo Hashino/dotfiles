@@ -1,19 +1,18 @@
 -- by Hashino https://github.com/Hashino/dotfiles
 -------------------------------------------------------------------------------------------------------------------
 local wibox 	= require("wibox")
-local theme	    = require("beautiful")
 -------------------------------------------------------------------------------------------------------------------
 local get_clock = function()
-    spacer =
+    local spacer = wibox.widget
     {
         {
             layout = wibox.layout.fixed.horizontal,
             {
-                right   = theme.spacing,
+                right   = Theme.Spacing,
                 widget  = wibox.container.margin,
             },
         },
-        bg = theme.transparent,
+        bg = Theme.Transparent,
         widget = wibox.container.background
     }
     local clock = wibox.widget
@@ -23,25 +22,35 @@ local get_clock = function()
             {
                 layout = wibox.layout.fixed.horizontal,
                 spacer,
-                wibox.widget.textclock("%a, %d - %b"),
+                wibox.widget
+                {
+                    format  = ("%a, %d - %b"),
+                    font    = Theme.Font,
+                    widget  = wibox.widget.textclock,
+                },
                 spacer,
             },
-            bg = theme.bg_color_3,
-            widget = wibox.container.background
+            bg      = Theme.Colors.Background.Darkest,
+            widget  = wibox.container.background
         },
         { -- Time
             {
                 layout = wibox.layout.fixed.horizontal,
                 spacer,
-                wibox.widget.textclock("%H:%M"),
+                wibox.widget
+                {
+                    format  = "%H:%M",
+                    font    = Theme.Font,
+                    widget  = wibox.widget.textclock,
+                },
                 spacer,
             },
-            bg = theme.bg_color_1,
-            widget = wibox.container.background
+            bg      = Theme.Colors.Background.Dark,
+            widget  = wibox.container.background
         },
     }
     return clock
 end
 -------------------------------------------------------------------------------------------------------------------
 return get_clock
--------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------

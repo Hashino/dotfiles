@@ -1,16 +1,15 @@
 -- by Hashino https://github.com/Hashino/dotfiles
 -------------------------------------------------------------------------------------------------------------------
 local wibox 	= require("wibox")
-local theme	    = require("beautiful")
 -------------------------------------------------------------------------------------------------------------------
 local get_systray = function()
     local systray = wibox.widget
     {
         wibox.widget.systray(),
-        bottom  = theme.universalsize / 6,
-        top     = theme.universalsize / 6,
-        left    = theme.universalsize * (2/3),
-        right   = theme.universalsize * (2/3),
+        bottom  = 7,
+        top     = 7,
+        left    = 12,
+        right   = 12,
         widget  = wibox.container.margin
     }
     return systray

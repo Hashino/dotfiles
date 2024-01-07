@@ -1,17 +1,16 @@
 -- by Hashino https://github.com/Hashino/dotfiles
 -------------------------------------------------------------------------------------------------------------------
-local awful 	= require("awful")
-local gears 	= require("gears")
-local wibox 	= require("wibox")
-local theme	    = require("beautiful")
-local naughty 	= require("naughty")
+local awful 	  = require("awful")
+local gears 	  = require("gears")
+local wibox 	  = require("wibox")
 -------------------------------------------------------------------------------------------------------------------
-font 				= theme.font_name .. tostring(theme.universalsize * (3/8))
-outer_margin_width 	= theme.universalsize / 3
-inner_margin_width 	= outer_margin_width / 3
-icon_inactive_empty	= ""
-icon_inactive 		= ""
-icon_selected 		= ""
+local font			            = Theme.Font_Name .. " " .. tostring((Theme.UniversalSize * (1/2)))
+local outer_margin_width 	  = Theme.UniversalSize * (1/4)
+local inner_margin_width 	  = Theme.UniversalSize * (1/8)
+local outer_margin_vertical = 0
+local icon_inactive_empty	  = ""
+local icon_inactive 		    = ""
+local icon_selected 		    = ""
 -------------------------------------------------------------------------------------------------------------------
 local get_taglist = function(s)
 
@@ -21,13 +20,13 @@ local get_taglist = function(s)
         awful.button({}, 1, function(t)
         	t:view_only()
 		end),
-        awful.button({modkey}, 1, function(t)
+        awful.button({ Global.Keys.ModKey }, 1, function(t)
 			if client.focus then
 				client.focus:move_to_tag(t)
 			end
 		end),
         awful.button({}, 3, awful.tag.viewtoggle),
-        awful.button({modkey}, 3, function(t)
+        awful.button({Global.Keys.ModKey}, 3, function(t)
             if client.focus then client.focus:toggle_tag(t) end
         end),
         awful.button({}, 4, function(t)
@@ -68,14 +67,16 @@ local get_taglist = function(s)
 -------------------------------------------------------------------------------------------------------------------
 	-- Function to update the margin
 	local update_margin = function(self)
-		self.left	= #s.tags == 1 and 0 or outer_margin_width --hides tags when only 1 tag
-		self.right	= #s.tags == 1 and 0 or outer_margin_width
+		self.left     = #s.tags == 1 and 0 or outer_margin_width --hides tags when only 1 tag
+		self.right    = #s.tags == 1 and 0 or outer_margin_width
+    self.top      = #s.tags == 1 and 0 or outer_margin_vertical
+    self.bottom   = #s.tags == 1 and 0 or outer_margin_vertical
 	end
 -------------------------------------------------------------------------------------------------------------------
 	local icon_taglist = wibox.widget
 	{
 		awful.widget.taglist
-		{
+    {
 			screen = s,
 			buttons = taglist_buttons,
 			filter = awful.widget.taglist.filter.all,
@@ -96,22 +97,24 @@ local get_taglist = function(s)
 				right 	= #s.tags == 1 and 0 or inner_margin_width,
 				widget  = wibox.container.margin,
 
-				create_callback = function(self, c3, index, objects)
+				create_callback = function(self, c3)
 					update_tags(self, c3)
 				end,
 
-				update_callback = function(self, c3, index, objects)
+				update_callback = function(self, c3)
 					update_tags(self, c3)
 				end,
 			},
 		},
-		id		= "outer_margin",
-		left	= #s.tags == 1 and 0 or outer_margin_width, --hides tags when only 1 tag
-		right	= #s.tags == 1 and 0 or outer_margin_width,
+		id		  = "outer_margin",
+		left	  = #s.tags == 1 and 0 or outer_margin_width, --hides tags when only 1 tag
+		right	  = #s.tags == 1 and 0 or outer_margin_width,
+    top     = #s.tags == 1 and 0 or outer_margin_vertical,
+    bottom  = #s.tags == 1 and 0 or outer_margin_vertical,
 
 		widget	= wibox.container.margin,
 	}
-	margin = icon_taglist:get_children_by_id('outer_margin')[1]
+	local margin = icon_taglist:get_children_by_id('outer_margin')[1]
 	margin:connect_signal("taglist_changed", update_margin, margin)
 
 	return icon_taglist

@@ -1,79 +1,90 @@
 -- by Hashino https://github.com/Hashino/dotfiles
 -------------------------------------------------------------------------------------------------------------------
-theme                                   = {}
-theme.location				= "~/.config/awesome/theme/"
-theme.universalsize 			= 24
+Theme                                   = {}
+Theme.location				= "~/.config/awesome/theme/"
+Theme.UniversalSize 			= 26
 -------------------------------------------------------------------------------------------------------------------
-theme.spacing 				= theme.universalsize * (2/3)
+Theme.Spacing 				= Theme.UniversalSize * (2/3)
 -------------------------------------------------------------------------------------------------------------------
-theme.font_name				= "Terminus (TTF) Medium "
-theme.font_size			        = theme.universalsize / 2
-theme.icon_theme 			= "Papirus-Dark"
+Theme.useless_gap   			= Theme.UniversalSize / 5
+Theme.gap_single_client 		= true
 -------------------------------------------------------------------------------------------------------------------
-theme.wallpaper 			= "~/wallpaper.png"
+Theme.Font_Name				= "Terminess Nerd Font Mono Regular"
+Theme.Font_Size			        = Theme.UniversalSize  * (2/5)
 -------------------------------------------------------------------------------------------------------------------
-theme.bg_color_1    			= "#2a303b"
-theme.bg_color_2    			= "#323845"
-theme.bg_color_3    			= "#232935"
+Theme.Font                              = Theme.Font_Name .. " " .. tostring(Theme.Font_Size)
 -------------------------------------------------------------------------------------------------------------------
-theme.bg_color_4    			= "#353b47"
-theme.bg_color_5    			= "#5f6677"
-theme.bg_color_6    			= "#2c3040"
+Theme.Wallpaper 			= "~/wallpaper.png"
 -------------------------------------------------------------------------------------------------------------------
-theme.fg_normal     			= "#ddeeff"
-theme.fg_urgent     			= "#ff0000"
+Theme.Colors =
+{
+    Background =
+    {
+	Darkest	= "#232935", --bg_color_3
+        Darker  = "#2a283b", --bg_color_1
+	Dark 	= "#2c3040", --bg_color_6
+        Neutral = "#323845", --bg_color_2
+        Light   = "#353b47", --bg_color_4
+	Lighter = "#5f6677", --bg_color_5
+    },
+    Foreground =
+    {
+        Normal = "#ddeeff",
+        Urgent = "#ff0000",
+    },
+    Transparent = "#00000000"
+}
 -------------------------------------------------------------------------------------------------------------------
-theme.useless_gap   			= theme.universalsize / 5
-theme.gap_single_client 		= true
+Theme.fg_normal     			= Theme.Colors.Foreground.Normal
+Theme.fg_urgent     			= Theme.Colors.Foreground.Urgent
 -------------------------------------------------------------------------------------------------------------------
-theme.transparent			= "#00000000"
+Theme.bg_normal     			= Theme.Colors.Darker
 -------------------------------------------------------------------------------------------------------------------
-theme.font          			= theme.font_name .. tostring(theme.font_size)
+Theme.bg_focus      			= Theme.bg_normal
+Theme.bg_urgent     			= "#000000"
+Theme.bg_systray    			= Theme.bg_normal
 -------------------------------------------------------------------------------------------------------------------
-theme.bg_normal     			= theme.bg_color_1
+Theme.fg_focus      			= Theme.fg_normal
+Theme.fg_minimize   			= Theme.fg_normal
 -------------------------------------------------------------------------------------------------------------------
-theme.bg_focus      			= theme.bg_normal
-theme.bg_urgent     			= "#000000"
-theme.bg_systray    			= theme.bg_normal
+Theme.border_width                      = Theme.UniversalSize / 20
+Theme.border_normal                     = Theme.Colors.Background.Light
+Theme.border_focus                      = Theme.Colors.Background.Lighter
+Theme.border_marked                     = Theme.Colors.Background.Dark
 -------------------------------------------------------------------------------------------------------------------
-theme.fg_focus      			= theme.fg_normal
-theme.fg_minimize   			= theme.fg_normal
+Theme.tasklist_font                     = Theme.Font
+Theme.tasklist_plain_task_name          = true
 -------------------------------------------------------------------------------------------------------------------
-theme.border_width                      = theme.universalsize / 20
-theme.border_normal                     = theme.bg_color_4
-theme.border_focus                      = theme.bg_color_5
-theme.border_marked                     = theme.bg_color_6
+Theme.systray_icon_spacing              = Theme.Spacing * (2/3)
+Theme.bg_systray                        = Theme.Colors.Background.Neutral
 -------------------------------------------------------------------------------------------------------------------
-theme.tasklist_plain_task_name          = true
+Theme.hotkeys_font                      = Theme.Font
 -------------------------------------------------------------------------------------------------------------------
-theme.systray_icon_spacing              = theme.spacing
-theme.bg_systray                        = theme.bg_color_2
+Theme.notification_bg                   = Theme.Colors.Background.Dark
+Theme.notification_max_width 	        = Theme.UniversalSize * 30
+Theme.notification_max_height 	        = Theme.UniversalSize * 40
+Theme.notification_icon_size 	        = Theme.UniversalSize * 5
+Theme.notification_width		= Theme.notification_max_width
+Theme.notification_opacity 		= 0.95
+Theme.notification_font                 = Theme.Font
+Theme.notification_border_width         = Theme.UniversalSize / 2
+Theme.notification_border_color         = Theme.Colors.Background.Lighter
 -------------------------------------------------------------------------------------------------------------------
-theme.notification_bg                   = theme.bg_color_1
-theme.notification_max_width 	        = theme.universalsize * 30
-theme.notification_max_height 	        = theme.universalsize * 40
-theme.notification_icon_size 	        = theme.universalsize * 5
-theme.notification_width		= theme.notification_max_width
-theme.notification_opacity 		= 0.95
-theme.notification_font                 = theme.font
-theme.notification_border_width         = theme.universalsize / 2
-theme.notification_border_color         = theme.bg_color_5
+Theme.layout_tile       = Theme.location.. "/layout_icons/tile.png"
+Theme.layout_fairh      = Theme.location.. "/layout_icons/fairh.png"
+Theme.layout_fairv      = Theme.location.. "/layout_icons/fairv.png"
+Theme.layout_floating   = Theme.location.. "/layout_icons/floating.png"
+Theme.layout_magnifier  = Theme.location.. "/layout_icons/magnifier.png"
+Theme.layout_max        = Theme.location.. "/layout_icons/max.png"
+Theme.layout_fullscreen = Theme.location.. "/layout_icons/fullscreen.png"
+Theme.layout_tilebottom = Theme.location.. "/layout_icons/tilebottom.png"
+Theme.layout_tileleft   = Theme.location.. "/layout_icons/tileleft.png"
+Theme.layout_tiletop    = Theme.location.. "/layout_icons/tiletop.png"
+Theme.layout_spiral     = Theme.location.. "/layout_icons/spiral.png"
+Theme.layout_dwindle    = Theme.location.. "/layout_icons/dwindle.png"
 -------------------------------------------------------------------------------------------------------------------
-theme.layout_tile       = theme.location.. "/layout_icons/tile.png"
-theme.layout_fairh      = theme.location.. "/layout_icons/fairh.png"
-theme.layout_fairv      = theme.location.. "/layout_icons/fairv.png"
-theme.layout_floating   = theme.location.. "/layout_icons/floating.png"
-theme.layout_magnifier  = theme.location.. "/layout_icons/magnifier.png"
-theme.layout_max        = theme.location.. "/layout_icons/max.png"
-theme.layout_fullscreen = theme.location.. "/layout_icons/fullscreen.png"
-theme.layout_tilebottom = theme.location.. "/layout_icons/tilebottom.png"
-theme.layout_tileleft   = theme.location.. "/layout_icons/tileleft.png"
-theme.layout_tiletop    = theme.location.. "/layout_icons/tiletop.png"
-theme.layout_spiral     = theme.location.. "/layout_icons/spiral.png"
-theme.layout_dwindle    = theme.location.. "/layout_icons/dwindle.png"
+Theme.awesome_icon      = Theme.location.. "/layout_icons/awesome.png"
 -------------------------------------------------------------------------------------------------------------------
-theme.awesome_icon      = theme.location.. "/layout_icons/awesome.png"
--------------------------------------------------------------------------------------------------------------------
-return theme
+return Theme
 -- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80
 -------------------------------------------------------------------------------------------------------------------

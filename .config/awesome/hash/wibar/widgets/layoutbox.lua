@@ -1,32 +1,34 @@
 -- by Hashino https://github.com/Hashino/dotfiles
 -------------------------------------------------------------------------------------------------------------------
-local gears 	= require("gears")
-local awful 	= require("awful")
-local wibox 	= require("wibox")
-local theme	    = require("beautiful")
+local gears = require("gears")
+local awful = require("awful")
+local wibox = require("wibox")
+local Theme	= require("beautiful")
 -------------------------------------------------------------------------------------------------------------------
 local get_layoutbox = function(s)
 -------------------------------------------------------------------------------------------------------------------
-    theme.layout_tile 		= gears.color.recolor_image(theme.layout_tile, theme.fg_normal)
-    theme.layout_fairh 		= gears.color.recolor_image(theme.layout_fairh, theme.fg_normal)
-    theme.layout_fairv 		= gears.color.recolor_image(theme.layout_fairv, theme.fg_normal)
-    theme.layout_floating 	= gears.color.recolor_image(theme.layout_floating, theme.fg_normal)
-    theme.layout_magnifier 	= gears.color.recolor_image(theme.layout_magnifier, theme.fg_normal)
-    theme.layout_max 		= gears.color.recolor_image(theme.layout_max, theme.fg_normal)
-    theme.layout_fullscreen	= gears.color.recolor_image(theme.layout_fullscreen, theme.fg_normal)
-    theme.layout_tilebottom	= gears.color.recolor_image(theme.layout_tilebottom, theme.fg_normal)
-    theme.layout_tileleft 	= gears.color.recolor_image(theme.layout_tileleft, theme.fg_normal)
-    theme.layout_tiletop 	= gears.color.recolor_image(theme.layout_tiletop, theme.fg_normal)
-    theme.layout_spiral 	= gears.color.recolor_image(theme.layout_spiral, theme.fg_normal)
-    theme.layout_dwindle 	= gears.color.recolor_image(theme.layout_dwindle, theme.fg_normal)
+local margin = Theme.UniversalSize * (1/5)
+-------------------------------------------------------------------------------------------------------------------
+    Theme.layout_tile 		  = gears.color.recolor_image(Theme.layout_tile, Theme.fg_normal)
+    Theme.layout_fairh 		  = gears.color.recolor_image(Theme.layout_fairh, Theme.fg_normal)
+    Theme.layout_fairv 		  = gears.color.recolor_image(Theme.layout_fairv, Theme.fg_normal)
+    Theme.layout_floating 	= gears.color.recolor_image(Theme.layout_floating, Theme.fg_normal)
+    Theme.layout_magnifier 	= gears.color.recolor_image(Theme.layout_magnifier, Theme.fg_normal)
+    Theme.layout_max 		    = gears.color.recolor_image(Theme.layout_max, Theme.fg_normal)
+    Theme.layout_fullscreen	= gears.color.recolor_image(Theme.layout_fullscreen, Theme.fg_normal)
+    Theme.layout_tilebottom	= gears.color.recolor_image(Theme.layout_tilebottom, Theme.fg_normal)
+    Theme.layout_tileleft 	= gears.color.recolor_image(Theme.layout_tileleft, Theme.fg_normal)
+    Theme.layout_tiletop 	  = gears.color.recolor_image(Theme.layout_tiletop, Theme.fg_normal)
+    Theme.layout_spiral 	  = gears.color.recolor_image(Theme.layout_spiral, Theme.fg_normal)
+    Theme.layout_dwindle 	  = gears.color.recolor_image(Theme.layout_dwindle, Theme.fg_normal)
 -------------------------------------------------------------------------------------------------------------------
 	local layoutbox = wibox.widget
 	{
 		awful.widget.layoutbox(s),
-		bottom 	= theme.universalsize / 6,
-		top 	= theme.universalsize / 6,
-		left	= theme.universalsize / 4,
-		right	= theme.universalsize / 4,
+		bottom 	= margin,
+		top 	  = margin,
+		left	  = margin,
+		right	  = margin,
 		widget	= wibox.container.margin,
 	}
 	layoutbox:buttons

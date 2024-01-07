@@ -7,20 +7,18 @@ local awful 	= require("awful")
 local watch 	= require("awful.widget.watch")
 local wibox 	= require("wibox")
 local gears 	= require("gears")
-local theme	    = require("beautiful")
 -------------------------------------------------------------------------------------------------------------------
-local bar_size			= theme.universalsize * 2
+local bar_size			= Theme.UniversalSize * 2
 
 local icon				= ""
-local prev				= ""
-local play				= "  "
-local pause				= "  "
-local next				= ""
-local spacer			= "   "
+local prev				= " 󰒮 "
+local play				= ""
+local pause				= ""
+local next				= " 󰒭 "
 
-local font				= theme.font_name .. tostring(theme.universalsize / 2)
-local font_icon		 	= theme.font_name .. tostring(theme.universalsize / 2)
-local font_controls 	= theme.font_name .. tostring(theme.universalsize / (5/2))
+local font				      = Theme.Font
+local font_icon		 	    = Theme.Font_Name .. " " .. tostring(Theme.UniversalSize * (4/7))
+local font_controls 	  = Theme.Font_Name .. " " .. tostring(Theme.UniversalSize * (1/2))
 
 -- name of the binary of your music player
 local default_player 	= "spotify"
@@ -93,8 +91,8 @@ local player_widget = wibox.widget
 			},
 			layout = wibox.layout.fixed.horizontal,
 	    },
-		left  = theme.universalsize / 2,
-		right = theme.universalsize / 2,
+		left  = Theme.UniversalSize / 2,
+		right = Theme.UniversalSize / 2,
 		widget = wibox.container.margin
     },
     layout = wibox.layout.fixed.horizontal,

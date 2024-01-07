@@ -2,11 +2,10 @@
 -------------------------------------------------------------------------------------------------------------------
 local wibox 	= require("wibox")
 local awful 	= require("awful")
-local theme	    = require("beautiful")
 -------------------------------------------------------------------------------------------------------------------
 local get_wibar = function(s)
     -- Create the wibox
-    s.wibox = awful.wibar({ position = "top", screen = s, height = theme.universalsize, bg = theme.transparent })
+    s.wibox = awful.wibar({ position = "top", screen = s, height = Theme.UniversalSize, bg = Theme.Colors.Transparent })
 	-- Add widgets to the wibox
     s.wibox:setup
     {
@@ -16,37 +15,37 @@ local get_wibar = function(s)
                 layout = wibox.layout.fixed.horizontal,
                 {
                     require("hash.wibar.widgets.layoutbox")(s),
-                    bg = theme.bg_color_3,
+                    bg = Theme.Colors.Background.Darkest,
                     widget = wibox.container.background
                 },
                 {
                     require("hash.wibar.widgets.taglist")(s),
-                    bg = theme.bg_color_2,
+                    bg = Theme.Colors.Background.Neutral,
                     widget = wibox.container.background
                 },
             },
             { -- Middle widget
                 require("hash.wibar.widgets.tasklist")(s),
-                bg = theme.transparent,
+                bg = Theme.Transparent,
                 widget = wibox.container.background
             },
             { -- Right widgets
                 layout = wibox.layout.fixed.horizontal,
                 {
                     require("hash.wibar.widgets.player_gui")(s),
-                    bg = theme.bg_color_3,
+                    bg = Theme.Colors.Background.Darkest,
                     widget = wibox.container.background
                 },
                 {
                     require("hash.wibar.widgets.systray")(s),
-                    bg = theme.bg_color_2,
+                    bg = Theme.Colors.Background.Neutral,
                     widget = wibox.container.background
                 },
                 require("hash.wibar.widgets.clock")(s),
             },
         },
-        left	= theme.useless_gap * 2,
-        right	= theme.useless_gap * 2,
+        left	= Theme.useless_gap * 2,
+        right	= Theme.useless_gap * 2,
         widget  = wibox.container.margin
     }
 end

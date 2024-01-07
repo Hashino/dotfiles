@@ -1,9 +1,7 @@
 -- by Hashino https://github.com/Hashino/dotfiles
 -------------------------------------------------------------------------------------------------------------------
 local awful     = require("awful")
-local gears     = require("gears")
 local ruled     = require("ruled")
-local theme     = require("beautiful")
 -------------------------------------------------------------------------------------------------------------------
 -- Rules to apply to new clients.
 ruled.client.connect_signal("request::rules", function()

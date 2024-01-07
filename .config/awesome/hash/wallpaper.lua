@@ -2,7 +2,6 @@
 -------------------------------------------------------------------------------------------------------------------
 local wibox     = require("wibox")
 local awful     = require("awful")
-local theme	    = require("beautiful")
 -------------------------------------------------------------------------------------------------------------------
 screen.connect_signal("request::wallpaper", function(s)
     awful.wallpaper
@@ -11,7 +10,7 @@ screen.connect_signal("request::wallpaper", function(s)
         widget =
         {
             {
-                image     = theme.wallpaper,
+                image     = Theme.Wallpaper,
                 upscale   = true,
                 downscale = true,
                 widget    = wibox.widget.imagebox,

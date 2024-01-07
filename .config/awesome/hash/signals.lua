@@ -1,7 +1,6 @@
 -- by Hashino https://github.com/Hashino/dotfiles
 -------------------------------------------------------------------------------------------------------------------
-local awful 	= require("awful")
-local theme	    = require("beautiful")
+local awful 	  = require("awful")
 -------------------------------------------------------------------------------------------------------------------
 client.connect_signal("manage", function (c)
     -- Set the windows at the slave,
@@ -25,10 +24,10 @@ end)
 -------------------------------------------------------------------------------------------------------------------
 -- Change border on focus
 client.connect_signal("focus", function(c)
-	c.border_color = theme.border_focus
+	c.border_color = Theme.border_focus
 end)
 client.connect_signal("unfocus", function(c)
-    c.border_color = theme.border_normal
+    c.border_color = Theme.border_normal
 end)
 -------------------------------------------------------------------------------------------------------------------
 -- Handle border sizes of clients.
@@ -43,7 +42,7 @@ for s = 1, screen.count() do
             if c.maximized then
                 c.border_width = 0
             elseif c.floating or layout == "floating" then
-                c.border_width = theme.border_width
+                c.border_width = Theme.border_width
                 c.ontop = true
             elseif layout == "max" or layout == "fullscreen" then
                 c.border_width = 0
@@ -52,7 +51,7 @@ for s = 1, screen.count() do
                 if #tiled == 1 then -- and c == tiled[1] then
                     c.border_width = 0
                 else
-                    c.border_width = theme.border_width
+                    c.border_width = Theme.border_width
                 end
             end
         end
