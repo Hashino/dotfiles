@@ -58,8 +58,6 @@ Theme.tasklist_plain_task_name          = true
 Theme.systray_icon_spacing              = Theme.Spacing * (2/3)
 Theme.bg_systray                        = Theme.Colors.Background.Neutral
 -------------------------------------------------------------------------------------------------------------------
-Theme.hotkeys_font                      = Theme.Font
--------------------------------------------------------------------------------------------------------------------
 Theme.notification_bg                   = Theme.Colors.Background.Dark
 Theme.notification_max_width 	        = Theme.UniversalSize * 30
 Theme.notification_max_height 	        = Theme.UniversalSize * 40
