@@ -6,7 +6,7 @@
 # TODO: make a fedora version
 
 dotfiles_location="${HOME}/.dotfiles"
-log_file="${dotfiles_location}/.config/install.log"
+log_file="${HOME}/.config/install.log"
 
 rm $log_file
 
