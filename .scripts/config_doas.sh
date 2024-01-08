@@ -1,8 +1,10 @@
 #!/bin/bash
 
-sudo pacman -S doas --noconfirm
+yay -S doas --noconfirm
 
 #sudo echo "/home/${USER}/doas.conf"
 
-sudo echo "permit setenv {PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin} :wheel" >> "${HOME}/doas.conf"
-sudo echo "permit nopass :wheel" >> "${HOME}/doas.conf"
+echo "permit setenv {PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin} :wheel" >> "/etc/doas.conf"
+echo "permit nopass :wheel" >> "/etc/doas.conf"
+
+yay -S doas-sudo-shim --noconfirm
