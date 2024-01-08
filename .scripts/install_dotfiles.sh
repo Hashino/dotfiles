@@ -25,4 +25,4 @@ while read app; do
   apps+="${app} "
 done <"${dotfiles_location}/.scripts/pkg.list"
 
-yay -S $apps
+yay -S $apps --noconfirm
