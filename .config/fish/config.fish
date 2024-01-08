@@ -5,7 +5,7 @@ function tere
 end
 
 #PATH
-#set -x -a PATH $PATH:~/.local/bin
+set -x PATH /bin:/usr/bin:~/.local/bin
 
 #ALIASES
 
