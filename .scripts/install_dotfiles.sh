@@ -35,9 +35,6 @@ check_success () {
   fi
 }
 
-#resets install log
-echo "" > $log_file
-
 cat << "EOF" 
   _               _     _               __ _ _           
  | |             | |   (_)             / _(_) |          
@@ -47,8 +44,14 @@ cat << "EOF"
  |_| |_|\__,_|___/_| |_|_|_| |_|\___(_)_| |_|_|\___||___/
 
 EOF
+
+echo -e "${TITLE}Creating a new log file in: ${QUOTE}${log_file}${NORMAL}"
+echo " "
+#resets install log
+echo "" > $log_file
+
 # clone dotfiles 
-echo -e "${TITLE}Cloning dotfiles${NORMAL}"
+echo -e "${TITLE}Cloning dotfiles...${NORMAL}"
 echo " "
 echo -e -n "cloning ${BLUE}${dotfiles_remote}${NORMAL} to ${BLUE}${dotfiles_local}${NORMAL}"
 
@@ -75,6 +78,9 @@ for app in */ ; do
   
   check_success  
 done
+
+echo -e -n "${TITLE}Removing ${ORANGE}awesome${NORMAL}${TITLE} and installing ${ORANGE}awesome-git${NORMAL}..."
+check_success
 
 echo " "
 echo -e "${TITLE}Installing packages in ${BLUE}${dotfiles_local}/.scripts/pkg.list${NORMAL}${TITLE} using ${BLUE}yay${NORMAL}"
