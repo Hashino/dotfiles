@@ -22,7 +22,8 @@ done
 #pps=""
 
 while read app; do
-  yay -S --noconfirm $app
+  echo "Installing ${app}"
+  yay -S --noconfirm $app >> "${dotfiles_location}/.config/install.log"
 done <"${dotfiles_location}/.scripts/pkg.list"
 
 #yay -S $apps --noconfirm
