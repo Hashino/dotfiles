@@ -5,7 +5,7 @@ function tere
 end
 
 #PATH
-set -x -a PATH $PATH:~/.local/bin
+#set -x -a PATH $PATH:~/.local/bin
 
 #ALIASES
 
@@ -42,4 +42,3 @@ set -x PF_INFO "ascii title os kernel wm shell memory palette"
 
 set -x QT_QPA_PLATFORMTHEME "qt5ct"
 set -x CALIBRE_USE_DARK_PALETTE 1
-set -x PATH $PATH:/home/hashino/.spicetify

@@ -20,7 +20,23 @@ function fish_right_prompt
   set -l duration (math -s 0 "$CMD_DURATION / 1000")
 
   if test $duration -gt 1
-    echo -n (set_color blue)"took "$duration"s "
+    set -l seconds (math "$duration % 60")
+    set -l minutes (math "$(math -s 0 "$duration / 60") % 60")
+    set -l hours (math -s 0 "$(math -s 0 "$duration / 60") / 60")
+    
+    echo -n $blue"took "
+    
+    if test $hours -gt 0
+      echo -n $hours"h "
+    end
+    if test $minutes -gt 0
+      echo -n $minutes"m "
+    end
+    if test $seconds -gt 0
+      echo -n $seconds"s "
+    end
+
+    echo -n $normal
   end
 
   #echo $green 'at' 
