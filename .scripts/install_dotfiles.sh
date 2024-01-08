@@ -79,10 +79,17 @@ for app in */ ; do
   check_success  
 done
 
-echo -e -n "${TITLE}Removing ${ORANGE}awesome${NORMAL}${TITLE} and installing ${ORANGE}awesome-git${NORMAL}..."
+echo " "
+echo -e -n "${TITLE}Removing ${ORANGE}awesome${NORMAL}..."
+yay -Rcns awesome >> $log_file 2>&1
+check_success
+
+echo -e -n "${TITLE} and installing ${ORANGE}awesome-git${NORMAL}..."
+yay -Syu awesome-git >> $log_file 2>&1
 check_success
 
 echo " "
+
 echo -e "${TITLE}Installing packages in ${BLUE}${dotfiles_local}/.scripts/pkg.list${NORMAL}${TITLE} using ${BLUE}yay${NORMAL}"
 echo " "
 
