@@ -27,7 +27,7 @@ done
 
 while read app; do
   echo "Installing ${app}"
-  yay -S $app --noconfirm --askyesremovemake --overwrite &> $log_file
+  yes | yay -S $app --noconfirm --askyesremovemake &> $log_file
 done <"${dotfiles_location}/.scripts/pkg.list"
 
 #yay -S $apps --noconfirm
