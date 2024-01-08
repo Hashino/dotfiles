@@ -68,7 +68,7 @@ for app in */ ; do
   
   echo -e -n "Symlinking ${ORANGE}" 
   echo -e -n $(head -c-2 <<< $app) 
-  echo -e -n "${NORMAL} -> ${BLUE}${remote_config}${NORMAL})"
+  echo -e -n "${NORMAL} -> ${BLUE}${remote_config}${NORMAL}"
   
   #symlink command
   ln -s $remote_config $local_config >> $log_file 2>&1
