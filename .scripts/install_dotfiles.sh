@@ -6,9 +6,13 @@
 # TODO: make a fedora version
 
 dotfiles_location="${HOME}/.dotfiles"
+log_file="${dotfiles_location}/.config/install.log"
+
+rm $log_file
 
 # clone dotfiles
-git clone https://github.com/Hashino/dotfiles $dotfiles_location
+echo "Downloading dotfiles"
+git clone https://github.com/Hashino/dotfiles $dotfiles_location >> $log_file
 
 cd "${dotfiles_location}/.config"
 
@@ -19,11 +23,11 @@ for app in */ ; do
   echo "created symlink in ${local_config} to ${remote_config}"
 done
 
-#pps=""
+#apps=""
 
 while read app; do
   echo "Installing ${app}"
-  yay -S --noconfirm $app >> "${dotfiles_location}/.config/install.log"
+  yay -S --noconfirm $app >> $log_file
 done <"${dotfiles_location}/.scripts/pkg.list"
 
 #yay -S $apps --noconfirm
