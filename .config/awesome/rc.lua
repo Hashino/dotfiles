@@ -16,7 +16,7 @@ require("hash.errors")
 Global                  = { Apps = {}, Keys = {} }
 Global.ConfigFolder     = awful.util.getdir("config")
 -------------------------------------------------------------------------------------------------------------------
-Global.Apps.Terminal    = "gnome-terminal"
+Global.Apps.Terminal    = "lxterminal"
 Global.Apps.Browser     = "firefox"
 Global.Apps.Filemanager = "nemo"
 Global.Apps.Editor      = "mousepad"
