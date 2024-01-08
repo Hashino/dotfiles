@@ -27,4 +27,4 @@ done
 
 #yay -S $apps --noconfirm
 
-yay -Syu --needed - < "${dotfiles_location}/.scripts/pkg.list"
+yay -Syu --needed --noconfirm - < "${dotfiles_location}/.scripts/pkg.list"
