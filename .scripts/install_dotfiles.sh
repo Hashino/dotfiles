@@ -10,7 +10,9 @@ GREEN="\e[32m"
 BLUE="\e[34m"
 NORMAL="\e[0m"
 
-dotfiles_location="${HOME}/.dotfiles"
+dotfiles_remote="https://github.com/Hashino/dotfiles"
+
+dotfiles_local="${HOME}/.dotfiles"
 log_file="${HOME}/.config/install.log"
 
 check_success () {
@@ -24,28 +26,43 @@ check_success () {
 #resets install log
 echo "" > $log_file
 
-# clone dotfiles
-echo "Downloading dotfiles"
+echo "Installing ${BLUE}Hashino's${NORMAL} dotfiles"
 
-git clone https://github.com/Hashino/dotfiles $dotfiles_location &> $log_file
+# clone dotfiles
+echo -n "Cloning ${BLUE}${dotfiles_remote}${NORMAL} to ${BLUE}${NORMAL}"
+
+git clone $dotfiles_remote $dotfiles_local >> $log_file 2>&1
 check_success
 
-cd "${dotfiles_location}/.config"
+cd "${dotfiles_local}/.config"
+
+echo ""
+echo "Creating symlinks between folders in ${BLUE}.dotfiles/.config/${NORMAL} and ${BLUE}~/.config/${NORMAL}"
+echo ""
 
 #creates symlinks to configs in dotfiles inside ~/.config
 for app in */ ; do
-  remote_config="${dotfiles_location}/.config/${app}"
+  remote_config="${dotfiles_local}/.config/${app}"
   local_config="${HOME}/.config/"
   
-  echo "creating symlink in ${local_config} to ${remote_config}"
+  echo -n "Symlinking ${BLUE}${local_config}${NORMAL} to ${BLUE}${remote_config}${NORMAL}"
   
-  ln -s $remote_config $local_config &> $log_file
+  #symlink command
+  ln -s $remote_config $local_config >> $log_file 2>&1
+  
   check_success  
 done
+
+echo ""
+echo "Installing packages in ${BLUE}${dotfiles_local}/.scripts/pkg.list${NORMAL} using ${BLUE}yay${NORMAL}"
+echo ""
 
 #install all packages listed in /.dotfiles/.scripts/pkg.list
 while read app; do
   echo -n "Installing ${app}"
-  yes | yay -S $app --noconfirm --askyesremovemake &> $log_file
+
+  #install command
+  yes | yay -S $app --noconfirm --askyesremovemake >> $log_file 2>&1
+  
   check_success
-done <"${dotfiles_location}/.scripts/pkg.list"
+done <"${dotfiles_local}/.scripts/pkg.list"
