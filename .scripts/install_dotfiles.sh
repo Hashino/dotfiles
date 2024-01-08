@@ -19,10 +19,12 @@ for app in */ ; do
   echo "created symlink in ${local_config} to ${remote_config}"
 done
 
-apps=""
+#pps=""
 
-while read app; do
-  apps+="${app} "
-done <"${dotfiles_location}/.scripts/pkg.list"
+#while read app; do
+#  apps+="${app} "
+#done <"${dotfiles_location}/.scripts/pkg.list"
 
-yay -S $apps --noconfirm
+#yay -S $apps --noconfirm
+
+yay -Syu --needed - < "${dotfiles_location}/.scripts/pkg.list"
