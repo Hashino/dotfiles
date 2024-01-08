@@ -84,7 +84,7 @@ echo -e -n "${TITLE}Removing ${ORANGE}awesome${NORMAL}..."
 yay -Rcns --noconfirm awesome >> $log_file 2>&1
 check_success
 
-echo -e -n "${TITLE} and installing ${ORANGE}awesome-git${NORMAL}..."
+echo -e -n "${TITLE}and installing ${ORANGE}awesome-git${NORMAL}..."
 yay -Syu awesome-git --noconfirm --askyesremovemake --needed >> $log_file 2>&1
 check_success
 
