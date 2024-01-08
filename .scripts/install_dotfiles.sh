@@ -5,10 +5,10 @@
 # meant to be used right after arch install
 # TODO: make a fedora version
 
-RED="\e[31m"
-GREEN="\e[32m"
-BLUE="\e[34m"
-NORMAL="\e[0m"
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+NORMAL='\033[0;37m' 
 
 dotfiles_remote="https://github.com/Hashino/dotfiles"
 
@@ -26,7 +26,7 @@ check_success () {
 #resets install log
 echo "" > $log_file
 
-echo "Installing ${BLUE}Hashino's${NORMAL} dotfiles"
+echo "Installing ${BLUE}Hashino's ${NORMAL}dotfiles"
 
 # clone dotfiles
 echo -n "Cloning ${BLUE}${dotfiles_remote}${NORMAL} to ${BLUE}${NORMAL}"
