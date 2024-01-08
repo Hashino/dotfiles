@@ -21,10 +21,10 @@ done
 
 #pps=""
 
-#while read app; do
-#  apps+="${app} "
-#done <"${dotfiles_location}/.scripts/pkg.list"
+while read app; do
+  yay -S --noconfirm $app
+done <"${dotfiles_location}/.scripts/pkg.list"
 
 #yay -S $apps --noconfirm
 
-yay -Syu --needed --noconfirm - < "${dotfiles_location}/.scripts/pkg.list"
+#yay -Syu --needed --noconfirm - < "${dotfiles_location}/.scripts/pkg.list"
