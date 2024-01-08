@@ -21,6 +21,7 @@ check_success () {
   else
     echo -e " | ${RED}Failed${NORMAL} check ${log_file} for more info"
   fi
+  echo " "
 }
 
 #resets install log
@@ -36,9 +37,9 @@ check_success
 
 cd "${dotfiles_local}/.config"
 
-echo ""
+echo " "
 echo -e "Creating symlinks between folders in ${BLUE}.dotfiles/.config/${NORMAL} and ${BLUE}~/.config/${NORMAL}"
-echo ""
+echo " "
 
 #creates symlinks to configs in dotfiles inside ~/.config
 for app in */ ; do
@@ -53,9 +54,9 @@ for app in */ ; do
   check_success  
 done
 
-echo ""
+echo " "
 echo -e "Installing packages in ${BLUE}${dotfiles_local}/.scripts/pkg.list${NORMAL} using ${BLUE}yay${NORMAL}"
-echo ""
+echo " "
 
 #install all packages listed in /.dotfiles/.scripts/pkg.list
 while read app; do
