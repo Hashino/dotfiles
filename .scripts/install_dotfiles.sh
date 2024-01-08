@@ -12,7 +12,7 @@ rm $log_file
 
 # clone dotfiles
 echo "Downloading dotfiles"
-git clone https://github.com/Hashino/dotfiles $dotfiles_location >> $log_file
+git clone https://github.com/Hashino/dotfiles $dotfiles_location &> $log_file
 
 cd "${dotfiles_location}/.config"
 
@@ -27,7 +27,7 @@ done
 
 while read app; do
   echo "Installing ${app}"
-  yay -S --noconfirm $app >> $log_file
+  yay -S --noconfirm $app &> $log_file
 done <"${dotfiles_location}/.scripts/pkg.list"
 
 #yay -S $apps --noconfirm
