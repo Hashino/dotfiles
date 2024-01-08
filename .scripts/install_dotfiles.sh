@@ -10,7 +10,7 @@ dotfiles_location="${HOME}/.dotfiles"
 # clone dotfiles
 git clone https://github.com/Hashino/dotfiles $dotfiles_location
 
-cd $dotfiles_location
+cd "${dotfiles_location}/.config"
 
 for app in */ ; do
   remote_config="${dotfiles_location}/.config/${app}"
