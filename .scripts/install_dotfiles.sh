@@ -111,17 +111,17 @@ done <"${dotfiles_local}/.scripts/pkg.list"
 
 echo " "
 echo -e -n "${TITLE}Importing ${QUOTE}wallpaper${NORMAL}"
-ln -s "${dotfiles_remote}/wallpaper.png" "${HOME}" >> $log_file 2>&1
+ln -s "${dotfiles_local}/wallpaper.png" "${HOME}" >> $log_file 2>&1
 check_success
 
 echo " "
 echo -e -n "${TITLE}Installing GTK theme ${QUOTE}Adapta-FrostBlue4-Nokto-Eta${NORMAL}"
-ln -s "${dotfiles_remote}/.themes/" "${HOME}/" >> $log_file 2>&1
+ln -s "${dotfiles_local}/.themes/" "${HOME}/" >> $log_file 2>&1
 check_success
 
 echo " "
 echo -e -n "${TITLE}Installing cursor theme ${QUOTE}Simp1e-Nord-Darker-Hash${NORMAL}"
-ln -s "${dotfiles_remote}/.icons/" "${HOME}/" >> $log_file 2>&1
+ln -s "${dotfiles_local}/.icons/" "${HOME}/" >> $log_file 2>&1
 check_success
 
 echo " "
