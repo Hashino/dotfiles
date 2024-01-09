@@ -66,9 +66,18 @@ cat << "EOF"
 EOF
 
 echo -e "${TITLE}Creating a new log file in: ${QUOTE}${log_file}${NORMAL}"
-echo " "
 #resets install log
 echo "" > $log_file
+
+echo " "
+echo -e "${TITLE}Installing ${QUOTE}yay${NORMAL}"
+sudo pacman -S --needed git base-devel --noconfirm && git clone https://aur.archlinux.org/yay.git && cd yay && yes | makepkg -si && cd .. && sudo rm -R yay >> $log_file 2>&1 & spinner $!
+check_success
+
+echo " "
+echo -e "${TITLE}Replacing ${QUOTE}sudo${TITLE} with ${ORANGE}doas"
+curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/replace_sudo_with_doas.sh | bash >> $log_file 2>&1 & spinner $!
+check_success
 
 # clone dotfiles 
 echo -e "${TITLE}Cloning dotfiles...${NORMAL}"
@@ -173,5 +182,26 @@ sudo chsh --shell /bin/fish $user >> $log_file 2>&1
 check_success
 
 echo " "
+echo -e -n "${TITLE}Installing and configuring ${ORANGE}nvim${TITLE}}"
+git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && git clone https://github.com/Hashino/NvChad-Profile/ ~/.config/nvim/lua/custom >> $log_file 2>&1 & spinner $!
+check_success
+echo "nvim will finish configuring the next time you open it"
+
+echo " "
 echo -e "${TITLE}Done${NORMAL}"
-echo "Now restart Xorg"
+
+echo " "
+echo "Restarting Xorg in "
+
+echo -n '5...'
+sleep 1
+echo -n '4...'
+sleep 1
+echo -n '3...'
+sleep 1
+echo -n '2...'
+sleep 1
+echo -n '1...'
+sleep 1
+
+killall Xorg
