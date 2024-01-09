@@ -4,7 +4,7 @@ configuration {
 	display-window: "缾";
 	icon-theme: "Papirus-Light";
 	fixed-num-lines: false;
-	font: "Terminus (TTF) Medium 12";
+	font: "Terminess Nerd Font Regular 12";
 }
 
 @import "colors"

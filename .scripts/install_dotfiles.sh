@@ -145,11 +145,11 @@ sudo ./papirus-folders -C polarnight3 >> $log_file 2>&1
 check_success
 
 echo " "
-echo -e -n "${TITLE}Copying ${QUOTE}.local/ ${NORMAL}${TITLE}to home${NORMAL}"
+echo -e -n "${TITLE}Copying ${QUOTE}.local/${NORMAL}${TITLE} to home${NORMAL}"
 cp -r "${dotfiles_local}/.local/" "${HOME}" >> $log_file 2>&1
 check_success
 
-ech " "
+echo " "
 echo -e -n "${TITLE}Chaging user shell to ${QUOTE}fish${NORMAL}"
 sudo chsh --shell $(which fish) $user >> $log_file 2>&1
 check_success
