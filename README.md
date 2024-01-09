@@ -35,6 +35,10 @@ Install the dotfiles
 ```bash
 curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/install_dotfiles.sh | bash
 ```
+Import the neovim [NvChad configs](https://github.com/Hashino/NvChad-Profile)
+```bash
+git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && git clone https://github.com/Hashino/NvChad-Profile/ ~/.config/nvim/lua/custom && nvim
+```
 
 ## Screenshots
 ![simple bg](screenshots/print1.png)
