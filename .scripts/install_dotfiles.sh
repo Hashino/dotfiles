@@ -49,7 +49,7 @@ spinner() {
   local spinstr='|/-\'
   while [ "$(ps a | awk '{print $1}' | grep $pid)" ]; do
     local temp=${spinstr#?}
-    printf " [%c]  " "$spinstr"
+    printf " %c  " "$spinstr"
     local spinstr=$temp${spinstr%"$temp"}
     sleep $delay
     printf "\b\b\b\b\b\b"
@@ -114,6 +114,8 @@ check_success
 
 echo " "
 echo -e "${TITLE}Installing ${QUOTE}yay${NORMAL}"
+
+cd $HOME
 
 echo -e -n "Cloning yay repo"
 git clone https://aur.archlinux.org/yay.git >> $log_file 2>&1 & spinner $!
