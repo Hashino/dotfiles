@@ -216,6 +216,10 @@ check_success
 echo "Done"
 echo "neovim will finish configuring the next time you open it"
 
+echo -e -n "${TITLE}Uninstalling ${ORANGE}alacritty${NORMAL}"
+yay -Rns alacritty >> $log_file 2>&1 & spinner $!
+check_success
+
 echo " "
 echo -e "${TITLE}Installation Complete${NORMAL}"
 
@@ -233,4 +237,7 @@ sleep 1
 echo -n '1...'
 sleep 1
 
-rm "${HOME}/,bash_logout" && "${HOME}/,bash_profile" && "${HOME}/,bashrc" && killall Xorg
+rm "${HOME}/.bash_logout"
+rm "${HOME}/.bash_profile"
+rm "${HOME}/.bashrc"
+killall Xorg
