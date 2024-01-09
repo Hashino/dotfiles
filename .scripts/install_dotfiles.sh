@@ -130,7 +130,7 @@ echo " "
 
 echo -e -n "Installing ${BLUE}papirus-folders${NORMAL}"
 cd "${HOME}/.config/Papirus-Nord/"
-sudo ./install >> $log_file 2>&1
+echo "Y" | sudo ./install >> $log_file 2>&1
 check_success
 
 echo -e -n "Applying theme"
