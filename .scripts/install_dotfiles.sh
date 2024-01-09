@@ -6,14 +6,16 @@
 # TODO: make a fedora version
 
 
-##########################################################
+##################################################################################################
+# CONFIGURABLE VARIABLES
 
 dotfiles_remote="https://github.com/Hashino/dotfiles"
 
 dotfiles_local="${HOME}/.dotfiles"
 log_file="${HOME}/install.log"
 
-##########################################################
+####################################################################################################
+# GLOBAL VARIABLES
 
 user=${USER}
 
@@ -28,6 +30,8 @@ NORMAL='\033[0;37m'
 TITLE='\033[1;36m'
 QUOTE='\033[4;36m'
 
+####################################################################################################
+# FUNCTIONS
 
 check_success () {
   if [ $? -eq 0 ]; then
@@ -55,13 +59,31 @@ spinner() {
   return $?
 }
 
+####################################################################################################
+# START
+
+cat << "EOF" 
+  _               _     _               __ _ _           
+ | |             | |   (_)             / _(_) |          
+ | |__   __ _ ___| |__  _ _ __   ___  | |_ _| | ___  ___ 
+ | '_ \ / _` / __| '_ \| | '_ \ / _ \ |  _| | |/ _ \/ __|
+ | | | | (_| \__ \ | | | | | | | (_) || | | | |  __/\__ \
+ |_| |_|\__,_|___/_| |_|_|_| |_|\___(_)_| |_|_|\___||___/
+
+EOF
+
 echo -e "${TITLE}Creating a new log file in: ${ORANGE}${log_file}${NORMAL}"
 #resets install log
 echo "" > $log_file
 
 echo " "
-echo -e "${TITLE}Installing base packages first${NORMAL}"
-sudo pacman -Syuuq --needed git base-devel --noconfirm
+echo -e "${TITLE}Elevating permissions"
+sudo echo 
+
+echo " "
+echo -e "${TITLE}Ensuring base packages and git are installed${NORMAL}"
+sudo pacman -Syuuq --needed git base-devel --noconfirm >> $log_file 2>&1 & spinner $!
+check_success
 
 echo " "
 echo -e "${TITLE}Installing ${QUOTE}yay${NORMAL}"
@@ -84,17 +106,6 @@ echo " "
 echo -e -n "${TITLE}Replacing ${QUOTE}sudo${NORMAL}${TITLE} with ${ORANGE}doas${NORMAL}"
 curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/replace_sudo_with_doas.sh | bash >> $log_file 2>&1 & spinner $!
 check_success
-
-
-cat << "EOF" 
-  _               _     _               __ _ _           
- | |             | |   (_)             / _(_) |          
- | |__   __ _ ___| |__  _ _ __   ___  | |_ _| | ___  ___ 
- | '_ \ / _` / __| '_ \| | '_ \ / _ \ |  _| | |/ _ \/ __|
- | | | | (_| \__ \ | | | | | | | (_) || | | | |  __/\__ \
- |_| |_|\__,_|___/_| |_|_|_| |_|\___(_)_| |_|_|\___||___/
-
-EOF
 
 echo " "
 echo -e "${TITLE}Initial setup done. Starting main installation${NORMAL}"
