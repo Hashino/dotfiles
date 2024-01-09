@@ -105,6 +105,11 @@ EOF
 echo -e "${TITLE}Welcome to Hashino's dotfiles install script${NORMAL}"
 
 echo " "
+echo -e -n "${TITLE}Ensuring base packages and git are installed and installing vi${NORMAL}"
+sudo pacman -Syuuq --needed git base-devel vi --noconfirm >> $log_file 2>&1 & spinner $!
+check_success
+
+echo " "
 echo -e "${TITLE}Please choose which packages you want to include/exclude in the install process${NORMAL}"
 curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.list > "${HOME}/pkg.list"
 [ "$is_notebook" == "yes" ] && 
@@ -118,10 +123,6 @@ echo -e "${TITLE}Creating a new log file in: ${ORANGE}${log_file}${NORMAL}"
 #resets install log
 echo "" > $log_file
 
-echo " "
-echo -e -n "${TITLE}Ensuring base packages and git are installed${NORMAL}"
-sudo pacman -Syuuq --needed git base-devel --noconfirm >> $log_file 2>&1 & spinner $!
-check_success
 
 echo " "
 echo -e "${TITLE}Installing ${QUOTE}yay${NORMAL}"
