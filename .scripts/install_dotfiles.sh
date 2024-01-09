@@ -62,8 +62,20 @@ spinner() {
 ####################################################################################################
 # START
 
+echo -e -n "${TITLE}Checking if running on Arch Linux${NORMAL}"
+
+if [ $(awk -F'=' '/^ID=/ {print tolower($2)}' /etc/*-release 2> /dev/null) = "arch" ]; then
+  check_success
+else
+  exit 1;
+fi
+
+sleep 1
+
+#TODO: check if running on laptop
+
 echo " "
-echo -e "${TITLE}Elevating permissions before starting installation${BLUE}"
+echo -e "${TITLE}Elevating permissions before starting installation${ORANGE}"
 sudo clear
 
 echo -e -n "${NORMAL}"
@@ -77,21 +89,31 @@ ____________________________________________________________
 | | | | | (_| \__ \ | | | | | | | (_) || | | | |  __/\__ \ |
 | |_| |_|\__,_|___/_| |_|_|_| |_|\___(_)_| |_|_|\___||___/ |
 |__________________________________________________________|
+
 EOF
 
+echo -e "${TITLE}Welcome to Hashino's dotfiles install script${NORMAL}"
+
+echo " "
+echo -e "${TITLE}Please choose which packages you want to include/exclude in the install process${NORMAL}"
+
+sleep 2
+
+curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.list > "${HOME}/pkg.list"
+nano "${HOME}/pkg.list"
+
+echo " "
 echo -e "${TITLE}Creating a new log file in: ${ORANGE}${log_file}${NORMAL}"
 #resets install log
 echo "" > $log_file
 
 echo " "
-echo -e "${TITLE}Ensuring base packages and git are installed${NORMAL}"
+echo -e -n "${TITLE}Ensuring base packages and git are installed${NORMAL}"
 sudo pacman -Syuuq --needed git base-devel --noconfirm >> $log_file 2>&1 & spinner $!
 check_success
 
 echo " "
 echo -e "${TITLE}Installing ${QUOTE}yay${NORMAL}"
-
-exit 0
 
 echo -e -n "Cloning yay repo"
 git clone https://aur.archlinux.org/yay.git >> $log_file 2>&1 & spinner $!
@@ -162,7 +184,7 @@ check_success
 
 echo " "
 
-echo -e "${TITLE}Installing packages in ${BLUE}${dotfiles_local}/.scripts/pkg.list${NORMAL}${TITLE} using ${BLUE}yay${NORMAL}"
+echo -e "${TITLE}Installing packages in ${BLUE}$~/pkg.list${NORMAL}${TITLE} using ${BLUE}yay${NORMAL}"
 echo " "
 
 #install all packages listed in /.dotfiles/.scripts/pkg.list
@@ -173,7 +195,13 @@ while read app; do
   yes | yay -S $app --noconfirm --askyesremovemake --needed >> $log_file 2>&1 & spinner $!
   check_success
 
-done <"${dotfiles_local}/.scripts/pkg.list"
+done <"${HOME}/pkg.list"
+
+
+
+exit 666
+
+
 
 echo " "
 echo -e -n "${TITLE}Importing ${QUOTE}wallpaper${NORMAL}"
