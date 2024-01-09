@@ -8,14 +8,33 @@
 | Power Menu | [Rofi Power Menu](https://github.com/jluttine/rofi-power-menu) | 
 | GTK Theme | [Adapta-FrostBlue4-Nokto-Eta](https://github.com/Adapta-Projects/Adapta-Nord) | 
 | Icon Theme | [Papirus Icon Theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) |
+| Folder Theme | [Papirus Nord Polar Night 3](https://github.com/Adapta-Projects/Papirus-Nord) |
 | Cursor Theme | [Custom Built](https://gitlab.com/zoli111/cursor-generator) [Simp1e](https://www.pling.com/p/1405210) |
 | System Font | [Terminus (TTF)](http://terminus-font.sourceforge.net/) |
 | Terminal Font | [Ubuntu Mono](https://design.ubuntu.com/font/) |
 | Terminal Colors | [Nord Color Scheme](https://www.nordtheme.com/ports) |
+| Terminal | [Fish](https://github.com/fish-shell/fish-shell) |
+| File Manager | [Nemo](https://github.com/linuxmint/nemo) |
+| Terminal Emulator | [LXTerminal](https://github.com/lxde/lxterminal) |
 
-###### All of the applications on the table above are avaible in the AUR
+###### All of the applications on the table above are avaible in the AUR/arch repositories
 
 ---
+## Install
+#### The install script is meant to be run in the first boot and right after installing yay
+
+Firstly install yay
+```bash
+pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
+```
+(Optional) Replace `sudo` with `doas` with nopass
+```bash
+curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/replace_sudo_with_doas.sh | bash
+```
+Install the dotfiles
+```bash
+curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/install_dotfiles.sh | bash
+```
 
 ## Screenshots
 ![simple bg](screenshots/print1.png)
