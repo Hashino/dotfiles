@@ -55,14 +55,6 @@ spinner() {
   return $?
 }
 
-
-echo -e "${TITLE}Installing base packages first${NORMAL}"
-sudo pacman -Sq --needed git base-devel --noconfirm
-
-echo " "
-echo -e "${TITLE}Initial setup done. Starting main installer${NORMAL}"
-echo " "
-
 cat << "EOF" 
   _               _     _               __ _ _           
  | |             | |   (_)             / _(_) |          
@@ -77,22 +69,14 @@ echo -e "${TITLE}Creating a new log file in: ${QUOTE}${log_file}${NORMAL}"
 #resets install log
 echo "" > $log_file
 
+
+echo " "
+echo -e "${TITLE}Installing base packages first${normal}"
+sudo pacman -Syuuq --needed git base-devel --noconfirm
+
 echo " "
 echo -e "${TITLE}Installing ${QUOTE}yay${NORMAL}"
-
-echo " "
-echo -n "Cloning yay "
-git clone https://aur.archlinux.org/yay.git >> $log_file 2>&1 & spinner $!
-check_success
-
-echo -n "Building yay"
-cd yay
-yes | makepkg -si >> $log_file 2>&1 & spinner $!
-check_success
-
-echo -n "Removing installation files"
-cd "${HOME}"
-sudo rm -R yay
+$(git clone https://aur.archlinux.org/yay.git && cd yay && yes | makepkg -si && cd .. && sudo rm -R yay) >> $log_file 2>&1 & spinner $!
 check_success
 
 echo " "
