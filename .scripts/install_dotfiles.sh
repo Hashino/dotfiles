@@ -142,5 +142,11 @@ echo -e -n "Applying theme"
 sudo ./papirus-folders -C polarnight3 >> $log_file 2>&1
 check_success
 
+ech " "
+echo -e -n "${TITLE}Chaging user shell to ${QUOTE}fish${NORMAL}"
+user=${USER}
+sudo chsh --shell $(which fish) $user
+check_success
+
 echo " "
 echo -e "${TITLE}Done${NORMAL}"
