@@ -15,6 +15,8 @@ log_file="${HOME}/.config/install.log"
 
 ##########################################################
 
+user=${USER}
+
 RED='\033[1;31m'
 GREEN='\033[1;32m'
 BLUE='\033[4;34m'
@@ -142,9 +144,12 @@ echo -e -n "Applying theme"
 sudo ./papirus-folders -C polarnight3 >> $log_file 2>&1
 check_success
 
+echo " "
+echo -e -n "${TITLE}Copying ${QUOTE}.local/ ${NORMAL}${TITLE}to home${NORMAL}"
+cp "${dotfiles_local}/.local/" "${HOME}"
+
 ech " "
 echo -e -n "${TITLE}Chaging user shell to ${QUOTE}fish${NORMAL}"
-user=${USER}
 sudo chsh --shell $(which fish) $user
 check_success
 
