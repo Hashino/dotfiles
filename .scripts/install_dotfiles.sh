@@ -80,6 +80,12 @@ for app in */ ; do
 done
 
 echo " "
+echo -e -n "Importing composer settings"
+echo " "
+
+ln -s "${dotfiles_local}/.config/picom.conf" "${HOME}/.config/picom.conf"
+
+echo " "
 echo -e -n "${TITLE}Removing ${ORANGE}awesome${NORMAL}..."
 yay -Rcns --noconfirm awesome >> $log_file 2>&1
 check_success
@@ -102,6 +108,33 @@ while read app; do
   
   check_success
 done <"${dotfiles_local}/.scripts/pkg.list"
+
+echo " "
+echo -e -n "${TITLE}Installing GTK theme ${QUOTE}Adapta-FrostBlue4-Nokto-Eta${NORMAL}"
+ln -s "${dotfiles_remote}/.themes/" "${HOME}/" >> $log_file 2>&1
+check_success
+
+echo " "
+echo -e -n "${TITLE}Installing cursor theme ${QUOTE}Simp1e-Nord-Darker-Hash${NORMAL}"
+ln -s "${dotfiles_remote}/.icons/" "${HOME}/" >> $log_file 2>&1
+check_success
+
+echo " "
+echo -e "${TITLE}Applying folder theme ${QUOTE}Papirus Nord Polar Night 3${NORMAL}"
+echo " "
+
+echo -e -n "Installing ${BLUE}papirus-folders${NORMAL}"
+cd "${HOME}/.config/Papirus-Nord/"
+sudo ./install
+check_success
+
+echo -e -n "Applying theme"
+sudo ./papirus-folders -C polarnight3
+check_success
+
+echo " "
+
+
 
 echo " "
 echo -e "${TITLE}Done${NORMAL}"
