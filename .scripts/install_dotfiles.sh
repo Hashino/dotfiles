@@ -107,7 +107,7 @@ echo -e "${TITLE}Welcome to Hashino's dotfiles install script${NORMAL}"
 echo " "
 echo -e "${TITLE}Please choose which packages you want to include/exclude in the install process${NORMAL}"
 curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.list > "${HOME}/pkg.list"
-[ "$is_notebook" == "true" ] && 
+[ "$is_notebook" == "yes" ] && 
   ( curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.notebook.list >> "${HOME}/pkg.list")
 
 sleep 2
