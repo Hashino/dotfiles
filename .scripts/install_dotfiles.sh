@@ -126,7 +126,7 @@ check_success
 
 echo " "
 echo -e -n "${TITLE}Applying GTK configs${NORMAL}"
-ln -s "${dotfiles_local}/.icons/" "${HOME}/" >> $log_file 2>&1
+ln -s "${dotfiles_local}/.gtkrc-2.0" "${HOME}/" >> $log_file 2>&1
 check_success
 
 echo " "
