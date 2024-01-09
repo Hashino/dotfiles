@@ -56,7 +56,7 @@ spinner() {
 }
 
 
-echo -e "${TITLE}Installing base packages first${normal}"
+echo -e "${TITLE}Installing base packages first${NORMAL}"
 sudo pacman -Sq --needed git base-devel --noconfirm
 
 cat << "EOF" 
