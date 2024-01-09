@@ -75,7 +75,7 @@ sleep 1
 #TODO: check if running on laptop
 
 echo " "
-echo -e "${TITLE}Elevating permissions before starting installation${ORANGE}"
+echo -e "${TITLE}Elevating permissions before starting installation\033[1;33m"
 sudo clear
 
 echo -e -n "${NORMAL}"
