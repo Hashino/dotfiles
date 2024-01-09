@@ -125,6 +125,11 @@ ln -s "${dotfiles_local}/.icons/" "${HOME}/" >> $log_file 2>&1
 check_success
 
 echo " "
+echo -e -n "${TITLE}Applying GTK configs${NORMAL}"
+ln -s "${dotfiles_local}/.icons/" "${HOME}/" >> $log_file 2>&1
+check_success
+
+echo " "
 echo -e "${TITLE}Applying folder theme ${QUOTE}Papirus Nord Polar Night 3${NORMAL}"
 echo " "
 
