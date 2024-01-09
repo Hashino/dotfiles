@@ -18,6 +18,7 @@ log_file="${HOME}/install.log"
 # GLOBAL VARIABLES
 
 user=${USER}
+is_notebook=""
 
 RED='\033[1;31m'
 GREEN='\033[1;32m'
@@ -72,6 +73,14 @@ sleep 1
 
 #TODO: check if running on laptop
 
+is_notebook = $(cat /sys/class/dmi/id/chassis_type)
+
+if [ is_notebook == 8 ] || [ is_notebook == 8 ] || [ is_notebook == 8 ]; then
+  is_notebook="true"
+else
+  is_notebook="false" 
+fi
+
 echo " "
 echo -e "${TITLE}Elevating permissions before starting installation\033[1;33m"
 sudo clear
@@ -96,6 +105,7 @@ echo " "
 echo -e "${TITLE}Please choose which packages you want to include/exclude in the install process${NORMAL}"
 
 curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.list > "${HOME}/pkg.list"
+
 sleep 2
 nano "${HOME}/pkg.list"
 
@@ -250,15 +260,16 @@ echo " "
 echo -e -n "Cloning ${BLUE}NvChad${NORMAL}"
 git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 >> $log_file 2>&1 & spinner $!
 check_success
+
 echo -e -n "Cloning ${BLUE}custom config${NORMAL}"
 git clone https://github.com/Hashino/NvChad-Profile/ ~/.config/nvim/lua/custom >> $log_file 2>&1 & spinner $!
 check_success
 
-echo "Done"
+echo "${BLUE}Done${NORMAL}"
 echo "neovim will finish configuring the next time you open it"
 
 echo -e -n "${TITLE}Uninstalling ${ORANGE}alacritty${NORMAL}"
-yay -Rns alacritty >> $log_file 2>&1 & spinner $!
+yes | yay -Rns alacritty >> $log_file 2>&1 & spinner $!
 check_success
 
 echo " "
@@ -281,4 +292,5 @@ sleep 1
 rm "${HOME}/.bash_logout"
 rm "${HOME}/.bash_profile"
 rm "${HOME}/.bashrc"
+
 killall Xorg
