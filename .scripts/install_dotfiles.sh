@@ -19,8 +19,6 @@ log_file="${HOME}/install.log"
 
 user=${USER}
 
-global_err=""
-
 RED='\033[1;31m'
 GREEN='\033[1;32m'
 BLUE='\033[4;34m'
