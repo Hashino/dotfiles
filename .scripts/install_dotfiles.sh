@@ -17,6 +17,8 @@ log_file="${HOME}/.config/install.log"
 
 user=${USER}
 
+global_err=""
+
 RED='\033[1;31m'
 GREEN='\033[1;32m'
 BLUE='\033[4;34m'
@@ -35,6 +37,22 @@ check_success () {
     wc -l $log_file | cut -f1 -d" "
     echo -e -n "${NORMAL}"
   fi
+}
+
+spinner() {
+  local pid=$!
+  local delay=0.75
+  local spinstr='|/-\'
+  while [ "$(ps a | awk '{print $1}' | grep $pid)" ]; do
+    local temp=${spinstr#?}
+    printf " [%c]  " "$spinstr"
+    local spinstr=$temp${spinstr%"$temp"}
+    sleep $delay
+    printf "\b\b\b\b\b\b"
+  done
+  printf "    \b\b\b\b"
+  wait $pid # capture exit code
+  return $?
 }
 
 cat << "EOF" 
@@ -57,7 +75,7 @@ echo -e "${TITLE}Cloning dotfiles...${NORMAL}"
 echo " "
 echo -e -n "cloning ${BLUE}${dotfiles_remote}${NORMAL} to ${BLUE}${dotfiles_local}${NORMAL}"
 
-git clone $dotfiles_remote $dotfiles_local >> $log_file 2>&1
+git clone $dotfiles_remote $dotfiles_local >> $log_file 2>&1 & spinner $!
 check_success
 
 cd "${dotfiles_local}/.config"
@@ -85,15 +103,15 @@ echo " "
 echo -e -n "Importing composer settings"
 echo " "
 
-ln -s "${dotfiles_local}/.config/picom.conf" "${HOME}/.config/picom.conf"
+ln -s "${dotfiles_local}/.config/picom.conf" "${HOME}/.config/picom.conf" >> $log_file 2>&1
 
 echo " "
 echo -e -n "${TITLE}Removing ${ORANGE}awesome${NORMAL}..."
-yay -Rcns --noconfirm awesome >> $log_file 2>&1
+yay -Rcns --noconfirm awesome >> $log_file 2>&1 & spinner $!
 check_success
 
 echo -e -n "${TITLE}and installing ${ORANGE}awesome-git${NORMAL}..."
-yay -Syu awesome-git --noconfirm --askyesremovemake --needed >> $log_file 2>&1
+yay -Syu awesome-git --noconfirm --askyesremovemake --needed >> $log_file 2>&1 & spinner $!
 check_success
 
 echo " "
@@ -106,9 +124,9 @@ while read app; do
   echo -e -n "Installing ${BLUE}${app}${NORMAL}"
 
   #install command
-  yes | yay -S $app --noconfirm --askyesremovemake --needed >> $log_file 2>&1
-  
+  yes | yay -S $app --noconfirm --askyesremovemake --needed >> $log_file 2>&1 & spinner $!
   check_success
+
 done <"${dotfiles_local}/.scripts/pkg.list"
 
 echo " "
@@ -137,11 +155,11 @@ echo " "
 
 echo -e -n "Installing ${BLUE}papirus-folders${NORMAL}"
 cd "${HOME}/.config/Papirus-Nord/"
-echo "Y" | sudo ./install >> $log_file 2>&1
+echo "Y" | sudo ./install >> $log_file 2>&1 & spinner $!
 check_success
 
 echo -e -n "Applying theme"
-sudo ./papirus-folders -C polarnight3 >> $log_file 2>&1
+sudo ./papirus-folders -C polarnight3 >> $log_file 2>&1 & spinner $!
 check_success
 
 echo " "
@@ -151,7 +169,7 @@ check_success
 
 echo " "
 echo -e -n "${TITLE}Chaging user shell to ${QUOTE}fish${NORMAL}"
-sudo chsh --shell $(which fish) $user >> $log_file 2>&1
+sudo chsh --shell /bin/fish $user >> $log_file 2>&1
 check_success
 
 echo " "
