@@ -22,7 +22,7 @@
 ---
 ## Install
 
-Install the dotfiles
+This is install script is meant to be run right after a clean arch install with the archinstall script set to desktop>awesome
 ```bash
 curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/install_dotfiles.sh | bash
 ```
