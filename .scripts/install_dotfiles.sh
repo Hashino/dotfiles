@@ -69,23 +69,26 @@ else
   exit 1;
 fi
 
-sleep 1
+sleep 0.5
 
-#TODO: check if running on laptop
+is_notebook=$(cat /sys/class/dmi/id/chassis_type)
 
-is_notebook = $(cat /sys/class/dmi/id/chassis_type)
-
-if [ is_notebook == 8 ] || [ is_notebook == 8 ] || [ is_notebook == 8 ]; then
+if [ "$is_notebook" == "8" ] || [ "$is_notebook" == "9" ] || [ "$is_notebook" == "10" ]; then
+  echo -e "Notebook detected"
   is_notebook="true"
 else
   is_notebook="false" 
 fi
 
+sleep 0.5
+
 echo " "
 echo -e "${TITLE}Elevating permissions before starting installation\033[1;33m"
-sudo clear
+sudo sleep 0.25 #clear
 
 echo -e -n "${NORMAL}"
+
+sleep 0.5
 
 cat << "EOF" 
 ____________________________________________________________
@@ -103,8 +106,9 @@ echo -e "${TITLE}Welcome to Hashino's dotfiles install script${NORMAL}"
 
 echo " "
 echo -e "${TITLE}Please choose which packages you want to include/exclude in the install process${NORMAL}"
-
 curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.list > "${HOME}/pkg.list"
+[ "$is_notebook" == "true" ] && 
+  ( curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.notebook.list >> "${HOME}/pkg.list")
 
 sleep 2
 nano "${HOME}/pkg.list"
