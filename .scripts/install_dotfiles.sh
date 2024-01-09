@@ -59,6 +59,10 @@ spinner() {
 echo -e "${TITLE}Installing base packages first${NORMAL}"
 sudo pacman -Sq --needed git base-devel --noconfirm
 
+echo " "
+echo -e "${TITLE}Initial setup done. Starting main installer${NORMAL}"
+echo " "
+
 cat << "EOF" 
   _               _     _               __ _ _           
  | |             | |   (_)             / _(_) |          
