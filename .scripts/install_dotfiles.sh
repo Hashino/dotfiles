@@ -146,7 +146,7 @@ check_success
 
 echo -e -n "Deleting install files"
 cd .. 
-sudo rm -R yay go >> $log_file 2>&1 & spinner $!
+sudo rm -R yay >> $log_file 2>&1 & spinner $!
 check_success
 
 ####################################################################################################
