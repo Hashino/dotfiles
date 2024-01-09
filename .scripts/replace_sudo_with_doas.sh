@@ -10,5 +10,4 @@ echo "permit nopass :wheel" >> "${HOME}/doas.conf"
 sudo cp "${HOME}/doas.conf" /etc/doas.conf
 rm "${HOME}/doas.conf"
 
-yay -Rns sudo --noconfirm
-yay -S doas-sudo-shim --noconfirm
+yes | yay -S doas-sudo-shim
