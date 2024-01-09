@@ -75,7 +75,7 @@ sudo pacman -S --needed git base-devel --noconfirm && git clone https://aur.arch
 check_success
 
 echo " "
-echo -e "${TITLE}Replacing ${QUOTE}sudo${TITLE} with ${ORANGE}doas"
+echo -e "${TITLE}Replacing ${QUOTE}sudo${TITLE} with ${ORANGE}doas${NORMAL}"
 curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/replace_sudo_with_doas.sh | bash >> $log_file 2>&1 & spinner $!
 check_success
 
