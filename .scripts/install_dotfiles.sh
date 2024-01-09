@@ -110,6 +110,11 @@ while read app; do
 done <"${dotfiles_local}/.scripts/pkg.list"
 
 echo " "
+echo -e -n "${TITLE}Importing ${QUOTE}wallpaper${NORMAL}"
+ln -s "${dotfiles_remote}/wallpaper.png" "${HOME}"
+check_success
+
+echo " "
 echo -e -n "${TITLE}Installing GTK theme ${QUOTE}Adapta-FrostBlue4-Nokto-Eta${NORMAL}"
 ln -s "${dotfiles_remote}/.themes/" "${HOME}/" >> $log_file 2>&1
 check_success
@@ -131,10 +136,6 @@ check_success
 echo -e -n "Applying theme"
 sudo ./papirus-folders -C polarnight3
 check_success
-
-echo " "
-
-
 
 echo " "
 echo -e "${TITLE}Done${NORMAL}"
