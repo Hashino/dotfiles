@@ -25,7 +25,7 @@
 
 Firstly install yay
 ```bash
-sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si && cd .. && sudo rm -R yay
+sudo pacman -S --needed git base-devel --noconfirm && git clone https://aur.archlinux.org/yay.git && cd yay && yes | makepkg -si && cd .. && sudo rm -R yay
 ```
 (Optional) Replace `sudo` with `doas` with nopass
 ```bash
@@ -38,6 +38,12 @@ curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/install
 Import the neovim [NvChad configs](https://github.com/Hashino/NvChad-Profile)
 ```bash
 git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && git clone https://github.com/Hashino/NvChad-Profile/ ~/.config/nvim/lua/custom && nvim
+```
+
+everything all at once (good luck)
+
+```bash
+sudo pacman -S --needed git base-devel --noconfirm && git clone https://aur.archlinux.org/yay.git && cd yay && yes | makepkg -si && cd .. && sudo rm -R yay && curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/replace_sudo_with_doas.sh | bash && curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/install_dotfiles.sh | bash && git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && git clone https://github.com/Hashino/NvChad-Profile/ ~/.config/nvim/lua/custom && nvim
 ```
 
 ## Screenshots
