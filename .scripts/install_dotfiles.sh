@@ -106,25 +106,32 @@ EOF
 echo -e "${TITLE}Welcome to Hashino's dotfiles install script${NORMAL}"
 
 echo " "
-echo -e -n "${TITLE}Ensuring base packages and git are installed and installing vi${NORMAL}"
-sudo pacman -Syuuq --needed git base-devel vi --noconfirm >> $log_file 2>&1 & spinner $!
+echo -e -n "${TITLE}Ensuring base packages and git are installed${NORMAL}"
+sudo pacman -Syu --needed git base-devel --noconfirm >> $log_file 2>&1 & spinner $!
 check_success
 
+cd $HOME
+
+####################################################################################################
+# PACKAGES TO INSTALL
 echo " "
 echo -e "${TITLE}Please choose which packages you want to include/exclude in the install process${NORMAL}"
-curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.list > "${HOME}/pkg.list"
-[ "$is_notebook" == "yes" ] && 
-  ( curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.notebook.list >> "${HOME}/pkg.list")
+curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.list > pkg.list
+[ "$is_notebook" == "true" ] && 
+  ( curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.notebook.list >> pkg.list)
 
 sleep 2
-vi "${HOME}/pkg.list"
+nano pkg.list
 
+####################################################################################################
+# LOG FILE
 echo " "
 echo -e "${TITLE}Creating a new log file in: ${ORANGE}${log_file}${NORMAL}"
 #resets install log
 echo "" > $log_file
 
-
+####################################################################################################
+# YAY
 echo " "
 echo -e "${TITLE}Installing ${QUOTE}yay${NORMAL}"
 
@@ -142,6 +149,8 @@ cd ..
 sudo rm -R yay go >> $log_file 2>&1 & spinner $!
 check_success
 
+####################################################################################################
+# REPLACING SUDO WITH DOAS
 echo " "
 echo -e -n "${TITLE}Replacing ${QUOTE}sudo${NORMAL}${TITLE} with ${ORANGE}doas${NORMAL}"
 curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/replace_sudo_with_doas.sh | bash >> $log_file 2>&1 & spinner $!
@@ -153,13 +162,17 @@ echo " "
 
 sleep 2 & spinner $!
 
-# clone dotfiles 
+####################################################################################################
+# CLONING DOTFILES
 echo -e "${TITLE}Cloning dotfiles...${NORMAL}"
 
 echo -e -n "cloning ${BLUE}${dotfiles_remote}${NORMAL} to ${BLUE}${dotfiles_local}${NORMAL}"
 git clone $dotfiles_remote $dotfiles_local >> $log_file 2>&1 & spinner $!
 check_success
 
+
+####################################################################################################
+# SYMLINKS
 echo " "
 echo -e "${TITLE}Creating symlinks between folders in ${ORANGE}.dotfiles/.config/${NORMAL}${TITLE} and ${BLUE}~/.config/${NORMAL}"
 echo " "
@@ -180,12 +193,16 @@ for app in */ ; do
   check_success  
 done
 
+####################################################################################################
+# COMPOSER
 echo " "
 echo -e -n "Importing composer settings"
 echo " "
 
 ln -s "${dotfiles_local}/.config/picom.conf" "${HOME}/.config/picom.conf" >> $log_file 2>&1
 
+####################################################################################################
+# REPLACING AWESOME WITH GIT VERSION
 echo " "
 echo -e -n "${TITLE}Removing ${ORANGE}awesome${NORMAL}..."
 yay -Rcns --noconfirm awesome >> $log_file 2>&1 & spinner $!
@@ -197,6 +214,8 @@ check_success
 
 echo " "
 
+####################################################################################################
+# INSTALLING PACKAGES
 echo -e "${TITLE}Installing packages in ${BLUE}$~/pkg.list${NORMAL}${TITLE} using ${BLUE}yay${NORMAL}"
 echo " "
 
@@ -210,12 +229,10 @@ while read app; do
 
 done <"${HOME}/pkg.list"
 
-
-
 exit 666
 
-
-
+####################################################################################################
+# THEMING
 echo " "
 echo -e -n "${TITLE}Importing ${QUOTE}wallpaper${NORMAL}"
 ln -s "${dotfiles_local}/wallpaper.png" "${HOME}" >> $log_file 2>&1
@@ -255,13 +272,17 @@ cp -r "${dotfiles_local}/.local/" "${HOME}" >> $log_file 2>&1
 check_success
 
 echo " "
-echo -e -n "${TITLE}Chaging user shell to ${QUOTE}fish${NORMAL}"
+echo -e -n "${TITLE}Changing user shell to ${QUOTE}fish${NORMAL}"
 sudo chsh --shell /bin/fish $user >> $log_file 2>&1
 check_success
 
 echo " "
 echo -e -n "${TITLE}Installing and configuring ${ORANGE}nvim${TITLE}}"
 echo " "
+
+####################################################################################################
+# NEOVIM
+yay -S neovim --noconfirm
 
 echo -e -n "Cloning ${BLUE}NvChad${NORMAL}"
 git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 >> $log_file 2>&1 & spinner $!
@@ -274,6 +295,8 @@ check_success
 echo "${BLUE}Done${NORMAL}"
 echo "neovim will finish configuring the next time you open it"
 
+####################################################################################################
+# CLEANUP
 echo -e -n "${TITLE}Uninstalling ${ORANGE}alacritty${NORMAL}"
 yes | yay -Rns alacritty >> $log_file 2>&1 & spinner $!
 check_success
