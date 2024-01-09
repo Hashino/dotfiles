@@ -116,7 +116,7 @@ curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.lis
   ( curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.notebook.list >> "${HOME}/pkg.list")
 
 sleep 2
-nano "${HOME}/pkg.list"
+vi "${HOME}/pkg.list"
 
 echo " "
 echo -e "${TITLE}Creating a new log file in: ${ORANGE}${log_file}${NORMAL}"
