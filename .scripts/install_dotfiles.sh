@@ -11,7 +11,7 @@
 dotfiles_remote="https://github.com/Hashino/dotfiles"
 
 dotfiles_local="${HOME}/.dotfiles"
-log_file="${HOME}/.config/install.log"
+log_file="${HOME}/install.log"
 
 ##########################################################
 
@@ -55,7 +55,7 @@ spinner() {
   return $?
 }
 
-echo -e "${TITLE}Creating a new log file in: ${QUOTE}${log_file}${NORMAL}"
+echo -e "${TITLE}Creating a new log file in: ${ORANGE}${log_file}${NORMAL}"
 #resets install log
 echo "" > $log_file
 
