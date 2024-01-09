@@ -55,6 +55,37 @@ spinner() {
   return $?
 }
 
+echo -e "${TITLE}Creating a new log file in: ${QUOTE}${log_file}${NORMAL}"
+#resets install log
+echo "" > $log_file
+
+echo " "
+echo -e "${TITLE}Installing base packages first${normal}"
+sudo pacman -Syuuq --needed git base-devel --noconfirm
+
+echo " "
+echo -e "${TITLE}Installing ${QUOTE}yay${NORMAL}"
+
+echo -e -n "Cloning yay repo"
+git clone https://aur.archlinux.org/yay.git >> $log_file 2>&1 & spinner $!
+check_success
+
+echo -e -n "Building yay"
+cd yay
+yes | makepkg -si >> $log_file 2>&1 & spinner $!
+check_success
+
+echo -e -n "Deleting install files"
+cd .. 
+sudo rm -R yay >> $log_file 2>&1 & spinner $!
+check_success
+
+echo " "
+echo -e -n "${TITLE}Replacing ${QUOTE}sudo${NORMAL}${TITLE} with ${ORANGE}doas${NORMAL}"
+curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/replace_sudo_with_doas.sh | bash >> $log_file 2>&1 & spinner $!
+check_success
+
+
 cat << "EOF" 
   _               _     _               __ _ _           
  | |             | |   (_)             / _(_) |          
@@ -65,24 +96,11 @@ cat << "EOF"
 
 EOF
 
-echo -e "${TITLE}Creating a new log file in: ${QUOTE}${log_file}${NORMAL}"
-#resets install log
-echo "" > $log_file
-
-
 echo " "
-echo -e "${TITLE}Installing base packages first${normal}"
-sudo pacman -Syuuq --needed git base-devel --noconfirm
-
+echo -e -n "${TITLE}Initial setup done. Starting main installation${NORMAL}"
 echo " "
-echo -e "${TITLE}Installing ${QUOTE}yay${NORMAL}"
-$(git clone https://aur.archlinux.org/yay.git && cd yay && yes | makepkg -si && cd .. && sudo rm -R yay) >> $log_file 2>&1 & spinner $!
-check_success
 
-echo " "
-echo -e "${TITLE}Replacing ${QUOTE}sudo${TITLE} with ${ORANGE}doas${NORMAL}"
-curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/replace_sudo_with_doas.sh | bash >> $log_file 2>&1 & spinner $!
-check_success
+sleep 2 & spinner $!
 
 # clone dotfiles 
 echo -e "${TITLE}Cloning dotfiles...${NORMAL}"
