@@ -25,7 +25,7 @@
 
 Firstly install yay
 ```bash
-pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
+sudo pacman -S --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si && cd .. && sudo rm -R yay
 ```
 (Optional) Replace `sudo` with `doas` with nopass
 ```bash
