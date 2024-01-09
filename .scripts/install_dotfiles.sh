@@ -146,11 +146,12 @@ check_success
 
 echo " "
 echo -e -n "${TITLE}Copying ${QUOTE}.local/ ${NORMAL}${TITLE}to home${NORMAL}"
-cp "${dotfiles_local}/.local/" "${HOME}"
+cp -r "${dotfiles_local}/.local/" "${HOME}" >> $log_file 2>&1
+check_success
 
 ech " "
 echo -e -n "${TITLE}Chaging user shell to ${QUOTE}fish${NORMAL}"
-sudo chsh --shell $(which fish) $user
+sudo chsh --shell $(which fish) $user >> $log_file 2>&1
 check_success
 
 echo " "
