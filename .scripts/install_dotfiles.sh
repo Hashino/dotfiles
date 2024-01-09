@@ -31,7 +31,7 @@ QUOTE='\033[4;36m'
 
 check_success () {
   if [ $? -eq 0 ]; then
-    echo -e " | ${GREEN}Sucess${NORMAL}"
+    echo -e " | ${GREEN}Success${NORMAL}"
   else
     echo -e -n " | ${RED}Failed${NORMAL} more info in ${BLUE}~/.config/install.log${NORMAL}:${QUOTE}"
     wc -l $log_file | cut -f1 -d" "
