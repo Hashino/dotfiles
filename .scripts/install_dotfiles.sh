@@ -60,7 +60,7 @@ echo -e "${TITLE}Creating a new log file in: ${QUOTE}${log_file}${NORMAL}"
 echo "" > $log_file
 
 echo " "
-echo -e "${TITLE}Installing base packages first${normal}"
+echo -e "${TITLE}Installing base packages first${NORMAL}"
 sudo pacman -Syuuq --needed git base-devel --noconfirm
 
 echo " "
