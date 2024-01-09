@@ -97,25 +97,23 @@ cat << "EOF"
 EOF
 
 echo " "
-echo -e -n "${TITLE}Initial setup done. Starting main installation${NORMAL}"
+echo -e "${TITLE}Initial setup done. Starting main installation${NORMAL}"
 echo " "
 
 sleep 2 & spinner $!
 
 # clone dotfiles 
 echo -e "${TITLE}Cloning dotfiles...${NORMAL}"
-echo " "
-echo -e -n "cloning ${BLUE}${dotfiles_remote}${NORMAL} to ${BLUE}${dotfiles_local}${NORMAL}"
 
+echo -e -n "cloning ${BLUE}${dotfiles_remote}${NORMAL} to ${BLUE}${dotfiles_local}${NORMAL}"
 git clone $dotfiles_remote $dotfiles_local >> $log_file 2>&1 & spinner $!
 check_success
-
-cd "${dotfiles_local}/.config"
 
 echo " "
 echo -e "${TITLE}Creating symlinks between folders in ${ORANGE}.dotfiles/.config/${NORMAL}${TITLE} and ${BLUE}~/.config/${NORMAL}"
 echo " "
 
+cd "${dotfiles_local}/.config"
 #creates symlinks to configs in dotfiles inside ~/.config
 for app in */ ; do
   remote_config="${dotfiles_local}/.config/${app}"
