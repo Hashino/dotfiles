@@ -75,7 +75,20 @@ echo "" > $log_file
 
 echo " "
 echo -e "${TITLE}Installing ${QUOTE}yay${NORMAL}"
-git clone https://aur.archlinux.org/yay.git && cd yay && yes | makepkg -si && cd .. && sudo rm -R yay >> $log_file 2>&1 & spinner $!
+
+echo " "
+echo -n "Cloning yay "
+git clone https://aur.archlinux.org/yay.git >> $log_file 2>&1 & spinner $!
+check_success
+
+echo -n "Building yay"
+cd yay
+yes | makepkg -si >> $log_file 2>&1 & spinner $!
+check_success
+
+echo -n "Removing installation files"
+cd "${HOME}"
+sudo rm -R yay
 check_success
 
 echo " "
