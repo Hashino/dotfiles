@@ -66,20 +66,22 @@ echo " "
 echo -e "${TITLE}Elevating permissions before starting installation${BLUE}"
 sudo clear
 
-cat << "EOF" 
-  _               _     _               __ _ _           
- | |             | |   (_)             / _(_) |          
- | |__   __ _ ___| |__  _ _ __   ___  | |_ _| | ___  ___ 
- | '_ \ / _` / __| '_ \| | '_ \ / _ \ |  _| | |/ _ \/ __|
- | | | | (_| \__ \ | | | | | | | (_) || | | | |  __/\__ \
- |_| |_|\__,_|___/_| |_|_|_| |_|\___(_)_| |_|_|\___||___/
+echo -e -n "${NORMAL}"
 
+cat << "EOF" 
+____________________________________________________________
+|  _               _     _               __ _ _            |
+| | |             | |   (_)             / _(_) |           |
+| | |__   __ _ ___| |__  _ _ __   ___  | |_ _| | ___  ___  |
+| | '_ \ / _` / __| '_ \| | '_ \ / _ \ |  _| | |/ _ \/ __| |
+| | | | | (_| \__ \ | | | | | | | (_) || | | | |  __/\__ \ |
+| |_| |_|\__,_|___/_| |_|_|_| |_|\___(_)_| |_|_|\___||___/ |
+|__________________________________________________________|
 EOF
 
 echo -e "${TITLE}Creating a new log file in: ${ORANGE}${log_file}${NORMAL}"
 #resets install log
 echo "" > $log_file
-
 
 echo " "
 echo -e "${TITLE}Ensuring base packages and git are installed${NORMAL}"
@@ -88,6 +90,8 @@ check_success
 
 echo " "
 echo -e "${TITLE}Installing ${QUOTE}yay${NORMAL}"
+
+exit 0
 
 echo -e -n "Cloning yay repo"
 git clone https://aur.archlinux.org/yay.git >> $log_file 2>&1 & spinner $!
