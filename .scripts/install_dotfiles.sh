@@ -206,12 +206,20 @@ check_success
 
 echo " "
 echo -e -n "${TITLE}Installing and configuring ${ORANGE}nvim${TITLE}}"
-git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && git clone https://github.com/Hashino/NvChad-Profile/ ~/.config/nvim/lua/custom >> $log_file 2>&1 & spinner $!
+echo " "
+
+echo -e -n "Cloning ${BLUE}NvChad${NORMAL}"
+git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 >> $log_file 2>&1 & spinner $!
 check_success
-echo "nvim will finish configuring the next time you open it"
+echo -e -n "Cloning ${BLUE}custom config${NORMAL}"
+git clone https://github.com/Hashino/NvChad-Profile/ ~/.config/nvim/lua/custom >> $log_file 2>&1 & spinner $!
+check_success
+
+echo "Done"
+echo "neovim will finish configuring the next time you open it"
 
 echo " "
-echo -e "${TITLE}Done${NORMAL}"
+echo -e "${TITLE}Installation Complete${NORMAL}"
 
 echo " "
 echo "Removing bash files and restarting Xorg in "
