@@ -62,6 +62,10 @@ spinner() {
 ####################################################################################################
 # START
 
+echo " "
+echo -e "${TITLE}Elevating permissions before starting installation${BLUE}"
+sudo clear
+
 cat << "EOF" 
   _               _     _               __ _ _           
  | |             | |   (_)             / _(_) |          
@@ -76,9 +80,6 @@ echo -e "${TITLE}Creating a new log file in: ${ORANGE}${log_file}${NORMAL}"
 #resets install log
 echo "" > $log_file
 
-echo " "
-echo -e "${TITLE}Elevating permissions"
-sudo echo 
 
 echo " "
 echo -e "${TITLE}Ensuring base packages and git are installed${NORMAL}"
