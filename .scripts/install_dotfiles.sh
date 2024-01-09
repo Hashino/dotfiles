@@ -195,7 +195,7 @@ echo " "
 echo -e "${TITLE}Done${NORMAL}"
 
 echo " "
-echo "Restarting Xorg in "
+echo "Removing bash files and restarting Xorg in "
 
 echo -n '5...'
 sleep 1
@@ -208,4 +208,4 @@ sleep 1
 echo -n '1...'
 sleep 1
 
-killall Xorg
+rm "${HOME}/,bash_logout" && "${HOME}/,bash_profile" && "${HOME}/,bashrc" && killall Xorg
