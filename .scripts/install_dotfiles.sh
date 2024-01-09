@@ -55,6 +55,10 @@ spinner() {
   return $?
 }
 
+
+echo -e "${TITLE}Installing base packages first${normal}"
+sudo pacman -Sq --needed git base-devel --noconfirm
+
 cat << "EOF" 
   _               _     _               __ _ _           
  | |             | |   (_)             / _(_) |          
@@ -71,7 +75,7 @@ echo "" > $log_file
 
 echo " "
 echo -e "${TITLE}Installing ${QUOTE}yay${NORMAL}"
-sudo pacman -S --needed git base-devel --noconfirm && git clone https://aur.archlinux.org/yay.git && cd yay && yes | makepkg -si && cd .. && sudo rm -R yay >> $log_file 2>&1 & spinner $!
+git clone https://aur.archlinux.org/yay.git && cd yay && yes | makepkg -si && cd .. && sudo rm -R yay >> $log_file 2>&1 & spinner $!
 check_success
 
 echo " "
