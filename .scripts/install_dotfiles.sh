@@ -156,3 +156,4 @@ check_success
 
 echo " "
 echo -e "${TITLE}Done${NORMAL}"
+echo "Now restart Xorg"
