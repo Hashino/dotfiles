@@ -13,6 +13,8 @@ screen.connect_signal("request::wallpaper", function(s)
                 image     = Theme.Wallpaper,
                 upscale   = true,
                 downscale = true,
+                horizontal_fit_policy = "fit",
+                vertical_fit_policy   = "fit",
                 widget    = wibox.widget.imagebox,
             },
             valign = "center",
