@@ -86,7 +86,7 @@ sleep 0.5
 
 echo " "
 echo -e "${TITLE}Elevating permissions before starting installation${ORANGE_NORMAL}"
-sudo sleep 0.25 #clear
+sudo clear
 
 echo -e -n "${NORMAL}"
 
@@ -179,7 +179,7 @@ echo -e "${TITLE}Creating symlinks between folders in ${ORANGE}.dotfiles/.config
 echo " "
 
 cd "${dotfiles_local}/.config"
-#creates symlinks to configs in dotfiles inside ~/.config
+#creates symlinks to all folder in dotfiles/.configs/ in ~/.config
 for app in */ ; do
   remote_config="${dotfiles_local}/.config/${app}"
   local_config="${HOME}/.config/"
@@ -213,10 +213,9 @@ echo -e -n "${TITLE}and installing ${ORANGE}awesome-git${NORMAL}..."
 yay -Syu awesome-git --noconfirm --askyesremovemake --needed >> $log_file 2>&1 & spinner $!
 check_success
 
-echo " "
-
 ####################################################################################################
 # INSTALLING PACKAGES
+echo " "
 echo -e "${TITLE}Installing packages in ${BLUE}$~/pkg.list${NORMAL}${TITLE} using ${BLUE}yay${NORMAL}"
 echo " "
 
