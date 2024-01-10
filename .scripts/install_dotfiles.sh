@@ -117,8 +117,19 @@ echo "" > $log_file
 # INSTALLING NEEDED PACKAGES FOR SCRIPT
 echo " "
 echo -e -n "${TITLE}Installing packages needed for the script(${ORANGE_NORMAL}git base-devel nvim${NORMAL})"
-sudo pacman -Syu --needed git base-devel neovim --noconfirm >> $log_file 2>&1 & spinner $!
+sudo pacman -Syu --needed git base-devel neovim opendoas --noconfirm >> $log_file 2>&1 & spinner $!
 check_success
+
+####################################################################################################
+# INSTALLING DOAS AND GIVING IT ACCESS WITHOUT PASSWORD: permit nopass
+echo " "
+echo -e -n "${TITLE}Giving elevated acess without password to doas${NORMAL})"
+
+echo "permit setenv {PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin} :wheel" > "${HOME}/doas.conf"
+echo "permit nopass :wheel" >> "${HOME}/doas.conf"
+
+sudo cp "${HOME}/doas.conf" /etc/doas.conf
+rm "${HOME}/doas.conf"
 
 cd $HOME
 
@@ -133,7 +144,6 @@ curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.lis
 sleep 2
 #had an issue using nano and vi. had to use nvim as a workaround
 nvim pkg.list
-
 
 ####################################################################################################
 # YAY
@@ -158,9 +168,10 @@ check_success
 # REPLACING SUDO WITH DOAS
 echo " "
 echo -e -n "${TITLE}Replacing ${QUOTE}sudo${NORMAL}${TITLE} with ${ORANGE}doas${NORMAL}"
-curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/replace_sudo_with_doas.sh | bash >> $log_file 2>&1 & spinner $!
+yes | yay -S doas-sudo-shim >> $log_file 2>&1 & spinner $!
 check_success
 
+####################################################################################################
 echo " "
 echo -e "${TITLE}Initial setup done. Starting main installation${NORMAL}"
 echo " "
@@ -174,7 +185,6 @@ echo -e "${TITLE}Cloning dotfiles...${NORMAL}"
 echo -e -n "cloning ${BLUE}${dotfiles_remote}${NORMAL} to ${BLUE}${dotfiles_local}${NORMAL}"
 git clone $dotfiles_remote $dotfiles_local >> $log_file 2>&1 & spinner $!
 check_success
-
 
 ####################################################################################################
 # SYMLINKS
@@ -233,6 +243,8 @@ while read app; do
 
 done <"${HOME}/pkg.list"
 
+rm "${HOME}/pkg.list"
+
 ####################################################################################################
 # THEMING
 echo " "
@@ -255,6 +267,7 @@ echo -e -n "${TITLE}Applying GTK configs${NORMAL}"
 ln -s "${dotfiles_local}/.gtkrc-2.0" "${HOME}/" >> $log_file 2>&1
 check_success
 
+#folder theme: papirus nord polar night 3 https://github.com/Adapta-Projects/Papirus-Nord
 echo " "
 echo -e "${TITLE}Applying folder theme ${QUOTE}Papirus Nord Polar Night 3${NORMAL}"
 echo " "
@@ -268,23 +281,23 @@ echo -e -n "Applying theme"
 sudo ./papirus-folders -C polarnight3 >> $log_file 2>&1 & spinner $!
 check_success
 
+#local binaries: rofi-power-menu rofi-todo soundswitch
 echo " "
 echo -e -n "${TITLE}Copying ${QUOTE}.local/${NORMAL}${TITLE} to home${NORMAL}"
 cp -r "${dotfiles_local}/.local/" "${HOME}" >> $log_file 2>&1
 check_success
 
+#setting fish as default shell
 echo " "
 echo -e -n "${TITLE}Changing user shell to ${QUOTE}fish${NORMAL}"
 sudo chsh --shell /bin/fish $user >> $log_file 2>&1
 check_success
 
-echo " "
-echo -e -n "${TITLE}Installing and configuring ${ORANGE}nvim${TITLE}}"
-echo " "
-
 ####################################################################################################
 # NEOVIM
-yay -S neovim --noconfirm
+echo " "
+echo -e -n "${TITLE}Configuring ${ORANGE}nvim${TITLE}}"
+echo " "
 
 echo -e -n "Cloning ${BLUE}NvChad${NORMAL}"
 git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 >> $log_file 2>&1 & spinner $!
@@ -307,7 +320,7 @@ echo " "
 echo -e "${TITLE}Installation Complete${NORMAL}"
 
 echo " "
-echo "Removing bash files and restarting Xorg in "
+echo "Cleaning install files and restarting Xorg in "
 
 echo -n '5...'
 sleep 1

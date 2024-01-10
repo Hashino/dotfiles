@@ -4,10 +4,4 @@
 
 yay -S opendoas --noconfirm
 
-echo "permit setenv {PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin} :wheel" > "${HOME}/doas.conf"
-echo "permit nopass :wheel" >> "${HOME}/doas.conf"
 
-sudo cp "${HOME}/doas.conf" /etc/doas.conf
-rm "${HOME}/doas.conf"
-
-yes | yay -S doas-sudo-shim
