@@ -1,7 +1,7 @@
 ; mousepad GtkAccelMap rc-file         -*- scheme -*-
 ; this file is an automated accelerator map dump
 ;
-; (gtk_accel_path "<Actions>/win.document.tab.tab-size" "")
+; (gtk_accel_path "<Actions>/app.mousepad-plugin-shortcuts" "")
 ; (gtk_accel_path "<Actions>/win.edit.convert.spaces-to-tabs" "")
 ; (gtk_accel_path "<Actions>/app.preferences.view.smart-backspace" "")
 ; (gtk_accel_path "<Actions>/app.preferences.view.highlight-current-line" "")
@@ -50,6 +50,7 @@
 ; (gtk_accel_path "<Actions>/win.edit.convert.strip-trailing-spaces" "")
 ; (gtk_accel_path "<Actions>/win.document.filetype" "")
 ; (gtk_accel_path "<Actions>/win.edit.paste-special.paste-from-history" "")
+; (gtk_accel_path "<Actions>/win.view.select-font" "")
 ; (gtk_accel_path "<Actions>/win.edit.convert.to-lowercase" "")
 ; (gtk_accel_path "<Actions>/win.edit.convert.to-title-case" "")
 ; (gtk_accel_path "<Actions>/app.preferences.window.always-show-tabs" "")
@@ -68,7 +69,7 @@
 ; (gtk_accel_path "<Actions>/win.document.viewer-mode" "")
 ; (gtk_accel_path "<Actions>/app.preferences.view.show-whitespace.trailing" "")
 ; (gtk_accel_path "<Actions>/win.file.reload" "")
-; (gtk_accel_path "<Actions>/win.view.select-font" "")
+; (gtk_accel_path "<Actions>/win.document.tab.tab-size" "")
 ; (gtk_accel_path "<Actions>/win.edit.move.line-down" "<Alt>Down")
 ; (gtk_accel_path "<Actions>/win.document.go-to-tab(8)" "<Alt>9")
 ; (gtk_accel_path "<Actions>/win.document.go-to-tab(1)" "<Alt>2")
