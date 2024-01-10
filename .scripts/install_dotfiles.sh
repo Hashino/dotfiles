@@ -128,10 +128,8 @@ echo -e "${TITLE}Giving elevated acess without password to ${BLUE}doas${NORMAL}"
 echo "permit setenv {PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin} :wheel" > "${HOME}/doas.conf"
 echo "permit nopass :wheel" >> "${HOME}/doas.conf"
 
-sudo cp "${HOME}/doas.conf" /etc/doas.conf
+doas cp "${HOME}/doas.conf" /etc/doas.conf
 rm "${HOME}/doas.conf"
-
-alias sudo='doas'
 
 cd $HOME
 
@@ -163,7 +161,7 @@ check_success
 
 echo -e -n "Deleting install files"
 cd .. 
-sudo rm -R yay >> $log_file 2>&1 & spinner $!
+doas rm -R yay >> $log_file 2>&1 & spinner $!
 check_success
 
 ####################################################################################################
