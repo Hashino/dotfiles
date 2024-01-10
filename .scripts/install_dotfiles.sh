@@ -24,6 +24,7 @@ RED='\033[1;31m'
 GREEN='\033[1;32m'
 BLUE='\033[4;34m'
 ORANGE='\033[4;33m'
+ORANGE_NORMAL='\033[1;33m'
 NORMAL='\033[0;37m'
 
 TITLE='\033[1;36m'
@@ -84,7 +85,7 @@ fi
 sleep 0.5
 
 echo " "
-echo -e "${TITLE}Elevating permissions before starting installation\033[1;33m"
+echo -e "${TITLE}Elevating permissions before starting installation${ORANGE_NORMAL}"
 sudo sleep 0.25 #clear
 
 echo -e -n "${NORMAL}"
@@ -106,7 +107,7 @@ EOF
 echo -e "${TITLE}Welcome to Hashino's dotfiles install script${NORMAL}"
 
 echo " "
-echo -e -n "${TITLE}Ensuring base packages and git are installed${NORMAL}"
+echo -e -n "${TITLE}Ensuring need packages are installed (${ORANGE_NORMAL}git base-devel${NORMAL})"
 sudo pacman -Syu --needed git base-devel ed --noconfirm >> $log_file 2>&1 & spinner $!
 check_success
 
