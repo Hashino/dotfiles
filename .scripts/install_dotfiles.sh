@@ -106,6 +106,15 @@ EOF
 
 echo -e "${TITLE}Welcome to Hashino's dotfiles install script${NORMAL}"
 
+####################################################################################################
+# LOG FILE
+echo " "
+echo -e "${TITLE}Creating a new log file in: ${ORANGE}${log_file}${NORMAL}"
+#resets install log
+echo "" > $log_file
+
+####################################################################################################
+# INSTALLING NEEDED PACKAGES FOR SCRIPT
 echo " "
 echo -e -n "${TITLE}Ensuring needed packages for installation process are installed (${ORANGE_NORMAL}git base-devel nvim${NORMAL})"
 sudo pacman -Syu --needed git base-devel --noconfirm >> $log_file 2>&1 & spinner $!
@@ -125,12 +134,6 @@ sleep 2
 #had an issue using nano and vi. had to use nvim as a workaround
 nvim pkg.list
 
-####################################################################################################
-# LOG FILE
-echo " "
-echo -e "${TITLE}Creating a new log file in: ${ORANGE}${log_file}${NORMAL}"
-#resets install log
-echo "" > $log_file
 
 ####################################################################################################
 # YAY
