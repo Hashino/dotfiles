@@ -220,7 +220,7 @@ check_success
 ####################################################################################################
 # INSTALLING PACKAGES
 echo " "
-echo -e "${TITLE}Installing packages in ${BLUE}$~/pkg.list${NORMAL}${TITLE} using ${BLUE}yay${NORMAL}"
+echo -e "${TITLE}Installing packages in ${BLUE}~/pkg.list${NORMAL}${TITLE} using ${BLUE}yay${NORMAL}"
 echo " "
 
 #install all packages listed in /.dotfiles/.scripts/pkg.list
