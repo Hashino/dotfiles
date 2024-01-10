@@ -108,7 +108,7 @@ echo -e "${TITLE}Welcome to Hashino's dotfiles install script${NORMAL}"
 
 echo " "
 echo -e -n "${TITLE}Ensuring need packages are installed (${ORANGE_NORMAL}git base-devel${NORMAL})"
-sudo pacman -Syu --needed git base-devel ed --noconfirm >> $log_file 2>&1 & spinner $!
+sudo pacman -Syu --needed git base-devel --noconfirm >> $log_file 2>&1 & spinner $!
 check_success
 
 cd $HOME
@@ -122,7 +122,7 @@ curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.lis
   ( curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.notebook.list >> pkg.list)
 
 sleep 2
-ed pkg.list
+nao pkg.list
 
 ####################################################################################################
 # LOG FILE
