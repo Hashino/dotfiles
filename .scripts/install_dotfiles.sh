@@ -116,7 +116,7 @@ echo "" > $log_file
 ####################################################################################################
 # INSTALLING NEEDED PACKAGES FOR SCRIPT
 echo " "
-echo -e -n "${TITLE}Installing packages needed for instalaation (${ORANGE_NORMAL}git base-devel nvim${NORMAL})"
+echo -e -n "${TITLE}Installing packages needed for the script(${ORANGE_NORMAL}git base-devel nvim${NORMAL})"
 sudo pacman -Syu --needed git base-devel neovim --noconfirm >> $log_file 2>&1 & spinner $!
 check_success
 
