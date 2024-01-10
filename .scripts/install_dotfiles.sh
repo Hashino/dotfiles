@@ -123,7 +123,7 @@ check_success
 ####################################################################################################
 # INSTALLING DOAS AND GIVING IT ACCESS WITHOUT PASSWORD: permit nopass
 echo " "
-echo -e -n "${TITLE}Giving elevated acess without password to doas${NORMAL})"
+echo -e "${TITLE}Giving elevated acess without password to ${BLUE}doas${NORMAL}"
 
 echo "permit setenv {PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin} :wheel" > "${HOME}/doas.conf"
 echo "permit nopass :wheel" >> "${HOME}/doas.conf"
