@@ -107,7 +107,7 @@ EOF
 echo -e "${TITLE}Welcome to Hashino's dotfiles install script${NORMAL}"
 
 echo " "
-echo -e -n "${TITLE}Ensuring need packages are installed (${ORANGE_NORMAL}git base-devel${NORMAL})"
+echo -e -n "${TITLE}Ensuring needed packages for installation process are installed (${ORANGE_NORMAL}git base-devel nvim${NORMAL})"
 sudo pacman -Syu --needed git base-devel --noconfirm >> $log_file 2>&1 & spinner $!
 check_success
 
@@ -122,7 +122,8 @@ curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.lis
   ( curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.notebook.list >> pkg.list)
 
 sleep 2
-nao pkg.list
+#had an issue using nano and vi. had to use nvim as a workaround
+nvim pkg.list
 
 ####################################################################################################
 # LOG FILE
