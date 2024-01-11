@@ -131,17 +131,17 @@ echo -e -n "Installing ${BLUE}doas${NORMAL}"
 sudo pacman -S --needed opendoas --noconfirm >> $log_file 2>&1 & spinner $!
 check_success
 
-cd $HOME
+yay -Rd sudo
+alias sudo="/bin/doas"
 
 ####################################################################################################
 # INSTALLING NEEDED PACKAGES FOR SCRIPT
+cd $HOME
+
 echo " "
 echo -e -n "${TITLE}Installing packages needed for the script(${ORANGE_NORMAL}git base-devel nvim${NORMAL})"
 doas pacman -Syu --needed git base-devel neovim --noconfirm >> $log_file 2>&1 & spinner $!
 check_success
-
-yay -Rd sudo
-alias sudo="/bin/doas"
 
 ####################################################################################################
 # YAY
