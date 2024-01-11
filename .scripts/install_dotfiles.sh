@@ -140,7 +140,7 @@ echo -e -n "${TITLE}Installing packages needed for the script(${ORANGE_NORMAL}gi
 doas pacman -Syu --needed git base-devel neovim --noconfirm >> $log_file 2>&1 & spinner $!
 check_success
 
-doas rm /bin/sudo
+yay -Rd sudo
 alias sudo="/bin/doas"
 
 ####################################################################################################
@@ -183,10 +183,11 @@ nvim pkg.list
 
 ####################################################################################################
 echo " "
-echo -e "${TITLE}Initial setup done. Starting main installation${NORMAL}"
+echo -e -n "${TITLE}Initial setup done. Starting main installation${NORMAL}"
 echo " "
 
 sleep 2 & spinner $!
+echo " "
 
 ####################################################################################################
 # CLONING DOTFILES
