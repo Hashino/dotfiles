@@ -117,12 +117,16 @@ echo "" > $log_file
 # INSTALLING DOAS AND GIVING IT ACCESS WITHOUT PASSWORD: permit nopass
 echo " "
 echo -e "${TITLE}Giving elevated acess without password to ${BLUE}doas${NORMAL}"
+echo " "
 
+echo -e "Creating the ${BLUE}doas.conf${NORMAL} with nopass"
 echo "permit setenv {PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin} :wheel" > "${HOME}/doas.conf"
 echo "permit nopass :wheel" >> "${HOME}/doas.conf"
 
 sudo cp "${HOME}/doas.conf" /etc/doas.conf
 rm "${HOME}/doas.conf"
+
+echo -e -n "Installing ${BLUE}doas${NORMAL}"
 
 sudo pacman -S --needed opendoas --noconfirm >> $log_file 2>&1 & spinner $!
 check_success
