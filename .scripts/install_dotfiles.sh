@@ -119,7 +119,7 @@ cd $HOME
 
 echo " "
 echo -e -n "${TITLE}Installing packages needed for the script(${ORANGE_NORMAL}git base-devel nvim opendoas${NORMAL})"
-doas pacman -Syu --needed git base-devel neovim opendoas --noconfirm >> $log_file 2>&1 & spinner $!
+sudo pacman -Syu --needed git base-devel neovim opendoas --noconfirm >> $log_file 2>&1 & spinner $!
 check_success
 
 ####################################################################################################
