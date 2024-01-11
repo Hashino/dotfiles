@@ -141,7 +141,7 @@ fi
 echo " "
 echo -e "${TITLE}Configuring ${ORANGE}doas${TITLE} and replacing ${BLUE}sudo${NORMAL}"
 
-echo -e -n "Creating and moving the ${BLUE}doas.conf${NORMAL} file wit the the chosen option (${doas_option})"
+echo -e -n "Creating and moving the ${BLUE}doas.conf${NORMAL} file with the the chosen option (${doas_option})"
 
 echo "permit setenv {PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin} :wheel" > "${HOME}/doas.conf"
 echo "permit ${doas_option} :wheel" >> "${HOME}/doas.conf"
