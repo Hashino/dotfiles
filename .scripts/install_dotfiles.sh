@@ -139,9 +139,9 @@ fi
 ####################################################################################################
 # INSTALLING DOAS AND REPLACING SUDO
 echo " "
-echo -e -n "${TITLE}Configuring ${ORANGE}doas${NORMAL} and replacing ${BLUE}sudo${NORMAL}"
+echo -e "${TITLE}Configuring ${ORANGE}doas${TITLE} and replacing ${BLUE}sudo${NORMAL}"
 
-echo -e -n "Creating and moving the ${BLUE}doas.conf${NORMAL} file withe the chosen option (${doas_option})"
+echo -e -n "Creating and moving the ${BLUE}doas.conf${NORMAL} file wit the the chosen option (${doas_option})"
 
 echo "permit setenv {PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin} :wheel" > "${HOME}/doas.conf"
 echo "permit ${doas_option} :wheel" >> "${HOME}/doas.conf"
@@ -180,7 +180,7 @@ check_success
 echo -e -n "Deleting install files"
 cd .. 
 doas rm -R yay >> $log_file 2>&1 & spinner $!
-check_succes
+check_success
 
 ####################################################################################################
 # PACKAGES TO INSTALL
