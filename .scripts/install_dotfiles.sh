@@ -151,7 +151,7 @@ check_success
 echo -e -n "Deleting install files"
 cd .. 
 doas rm -R doas-sudo-shim >> $log_file 2>&1 & spinner $!
-check_succes
+check_success
 ####################################################################################################
 # YAY
 echo " "
