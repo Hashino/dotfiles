@@ -131,6 +131,7 @@ echo -e -n "Installing ${BLUE}doas${NORMAL}"
 sudo pacman -S --needed opendoas --noconfirm >> $log_file 2>&1 & spinner $!
 check_success
 
+sudo rm /bin/sudo
 alias sudo="doas"
 
 cd $HOME
