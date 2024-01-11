@@ -27,21 +27,54 @@ BLUE='\033[1;34m'
 ORANGE='\033[1;33m'
 ORANGE_NORMAL='\033[1;33m'
 NORMAL='\033[0;37m'
+BOLD='\033[1;37m'
 
 TITLE='\033[1;36m'
 QUOTE='\033[4;36m'
 
+RES_COL=100
+MOVE_TO_COL="printf \\033[${RES_COL}G"
+
 ####################################################################################################
 # FUNCTIONS
 
-check_success () {
-  if [ $? -eq 0 ]; then
-    echo -e " | ${GREEN}Success${NORMAL}"
-  else
-    echo -e -n " | ${RED}Failed${NORMAL} more info in ${BLUE}~/.config/install.log${NORMAL}:${QUOTE}"
-    wc -l $log_file | cut -f1 -d" "
-    echo -e -n "${NORMAL}"
-  fi
+echo_success() {
+  $MOVE_TO_COL
+  printf "["
+  printf $GREEN
+  printf $" SUCCESS "
+  printf $NORMAL
+  printf "]"
+  printf "\r"
+  return 0
+}
+
+echo_failure() {
+  $MOVE_TO_COL
+  printf "["
+  printf $RED
+  printf $" FAILURE "
+  printf $NORMAL
+  printf "] "
+  printf $BLUE
+  printf "install.log:"
+  printf $QUOTE
+  printf $(wc -l $log_file | cut -f1 -d" ")
+  printf $NORMAL
+  printf "\r"
+  return 1
+}
+
+check_success() {
+  local STRING rc
+
+  STRING=$1
+  printf "$STRING "
+  shift
+  "$@" && echo_success $"$STRING" || echo_failure $"$STRING"
+  rc=$?
+  echo
+  return $rc
 }
 
 spinner() {
@@ -126,9 +159,10 @@ check_success
 ####################################################################################################
 # CHOOSING IF USING PERSIST OR NOPASS
 
-echo " "
+echo -e "${BOLD}"
 read -r -p "Configure doas to use nopass instead of persist? [Y/n]" response
 response=${response,,} # tolower
+echo -e -n "${NORMAL}"
 if [[ $response =~ ^(y| ) ]] || [[ -z $response ]]; then
   doas_option="nopass"
   echo -e "${ORANGE_NORMAL}nopass${NORMAL} option chosen. After selecting the packages to install you can leave the rest of the installation to be done automatically"
