@@ -138,6 +138,8 @@ ____________________________________________________________
 
 EOF
 
+cd ${HOME}
+
 echo -e "${TITLE}Welcome to Hashino's dotfiles install script${NORMAL}"
 
 ####################################################################################################
@@ -163,7 +165,6 @@ curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.lis
   ( curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.notebook.list >> pkg.list)
 
 sleep 2
-#had an issue using nano and vi. had to use nvim as a workaround
 nano pkg.list
 
 ####################################################################################################
