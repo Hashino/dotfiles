@@ -128,7 +128,7 @@ echo " "
 echo -e "${TITLE}Configuring ${ORANGE}doas${NORMAL} with nopass and replacing ${BLUE}sudo${NORMAL}"
 echo " "
 
-echo -e "Creating the ${BLUE}doas.conf${NORMAL} with nopass"
+echo -e -n "Creating the ${BLUE}doas.conf${NORMAL} with nopass"
 echo "permit setenv {PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin} :wheel" > "${HOME}/doas.conf"
 echo "permit nopass :wheel" >> "${HOME}/doas.conf"
 
@@ -143,7 +143,7 @@ echo -e -n "Cloning AUR repository for ${ORANGE_NORMAL}sudo-doas-shim${NORMAL}"
 git clone https://aur.archlinux.org/doas-sudo-shim.git >> $log_file 2>&1 & spinner $!
 check_success
 
-echo -e "Building package"
+echo -e -n "Building package"
 cd doas-sudo-shim
 yes | makepkg -si  >> $log_file 2>&1 & spinner $!
 check_success
