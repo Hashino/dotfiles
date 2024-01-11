@@ -19,6 +19,7 @@ log_file="${HOME}/install.log"
 
 user=${USER}
 is_notebook=""
+doas_option="persist"
 
 RED='\033[1;31m'
 GREEN='\033[1;32m'
@@ -123,6 +124,18 @@ sudo pacman -Syu --needed git base-devel neovim opendoas --noconfirm >> $log_fil
 check_success
 
 ####################################################################################################
+# CHOOSING IF USING PERSIST OR NOPASS
+
+read -r -p "Configure doas to use nopass instead of persist? [Y/n]" response
+response=${response,,} # tolower
+if [[ $response =~ ^(y| ) ]] || [[ -z $response ]]; then
+  doas_option="nopass"
+  echo -e "${ORANGE_NORMAL}nopass${NORMAL} option chosen. After selecting the packages to install you can leave the rest of the installation to be done automatically"
+else
+  echo -e "${RED}WARNING:${NORMAL} Because you chose the ${ORANGE_NORMAL}persist${NORMAL} option, you'll need to mannualy input your password multiple times during this script"
+fi
+
+####################################################################################################
 # INSTALLING DOAS AND GIVING IT ACCESS WITHOUT PASSWORD: permit nopass
 echo " "
 echo -e "${TITLE}Configuring ${ORANGE}doas${NORMAL} with nopass and replacing ${BLUE}sudo${NORMAL}"
@@ -130,7 +143,7 @@ echo " "
 
 echo -e -n "Creating the ${BLUE}doas.conf${NORMAL} with nopass"
 echo "permit setenv {PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin} :wheel" > "${HOME}/doas.conf"
-echo "permit nopass :wheel" >> "${HOME}/doas.conf"
+echo "permit ${doas_option} :wheel" >> "${HOME}/doas.conf"
 
 sudo cp "${HOME}/doas.conf" /etc/doas.conf
 rm "${HOME}/doas.conf"
