@@ -148,13 +148,23 @@ echo -e "${TITLE}Creating a new log file in: ${ORANGE}${log_file}${NORMAL}"
 echo "" > $log_file
 
 ####################################################################################################
-# INSTALLING NEEDED PACKAGES FOR SCRIPT
-cd $HOME
-
+# PACKAGES TO INSTALL
 echo " "
-echo -e -n "${TITLE}Installing packages needed for the script (${ORANGE_NORMAL}git base-devel nvim opendoas${NORMAL})"
-sudo pacman -Syu --needed git base-devel neovim opendoas --noconfirm >> $log_file 2>&1 & spinner $!
-check_success
+echo -e "${TITLE}Please choose which packages you want to include/exclude in the install process${NORMAL}"
+
+echo "# This is the list of packages that are installed by default" > pkg.list
+echo "# After adding/removing the packages you want installed, save and quit the editor" >> pkg.list
+echo "# Lines starting with # will be ignored" >> pkg.list
+
+# getting the list of packages from the repository
+curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.list >> pkg.list
+# if running on a notebook, adds some packages
+[ "$is_notebook" == "true" ] && 
+  ( curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.notebook.list >> pkg.list)
+
+sleep 2
+#had an issue using nano and vi. had to use nvim as a workaround
+nano pkg.list
 
 ####################################################################################################
 # CHOOSING IF USING PERSIST OR NOPASS
@@ -169,6 +179,15 @@ if [[ $response =~ ^(y| ) ]] || [[ -z $response ]]; then
 else
   echo -e "${RED}WARNING:${NORMAL} Because you chose the ${ORANGE_NORMAL}persist${NORMAL} option, you'll need to mannualy input your password multiple times during this script"
 fi
+
+####################################################################################################
+# INSTALLING NEEDED PACKAGES FOR SCRIPT
+cd $HOME
+
+echo " "
+echo -e -n "${TITLE}Installing packages needed for the script (${ORANGE_NORMAL}git base-devel opendoas${NORMAL})"
+sudo pacman -Syu --needed git base-devel opendoas --noconfirm >> $log_file 2>&1 & spinner $!
+check_success
 
 ####################################################################################################
 # INSTALLING DOAS AND REPLACING SUDO
@@ -217,34 +236,14 @@ doas rm -R yay >> $log_file 2>&1 & spinner $!
 check_success
 
 ####################################################################################################
-# PACKAGES TO INSTALL
-echo " "
-echo -e "${TITLE}Please choose which packages you want to include/exclude in the install process${NORMAL}"
-
-echo "# This is the list of packages that are installed by default" > pkg.list
-echo "# After adding/removing the packages you want installed, save and quit the editor" >> pkg.list
-echo "# Lines starting with # will be ignored" >> pkg.list
-
-# getting the list of packages from the repository
-curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.list >> pkg.list
-# if running on a notebook, adds some packages
-[ "$is_notebook" == "true" ] && 
-  ( curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.notebook.list >> pkg.list)
-
-sleep 2
-#had an issue using nano and vi. had to use nvim as a workaround
-nvim pkg.list
-
-####################################################################################################
 echo " "
 echo -e -n "${TITLE}Initial setup done. Starting main installation${NORMAL}"
 sleep 2 & spinner $!
 echo " "
 ####################################################################################################
 # CLONING DOTFILES
-echo -e "${TITLE}Cloning dotfiles...${NORMAL}"
-
-echo -e -n "cloning ${BLUE}${dotfiles_remote}${NORMAL} to ${BLUE}${dotfiles_local}${NORMAL}"
+echo " "
+echo -e -n "${TITLE}Cloning ${BLUE}${dotfiles_remote}${TITLE} to ${BLUE}${dotfiles_local}${NORMAL}"
 git clone $dotfiles_remote $dotfiles_local >> $log_file 2>&1 & spinner $!
 check_success
 

@@ -1,3 +1,6 @@
+# This is the list of packages that are installed by default
+# After adding/removing the packages you want installed, save and quit the editor
+# Lines starting with # will be ignored
 ack
 btop
 calibre
@@ -35,3 +38,7 @@ xfce-polkit
 xsel
 xss-lock
 zip
+network-manager-applet
+pasystray-git
+brightnessctl
+blueman
