@@ -132,7 +132,8 @@ sudo pacman -S --needed opendoas --noconfirm >> $log_file 2>&1 & spinner $!
 check_success
 
 yay -Rd sudo
-alias sudo="/bin/doas"
+#alias sudo="/bin/doas"
+doas ln -s /bin/doas /bin/sudo
 
 ####################################################################################################
 # INSTALLING NEEDED PACKAGES FOR SCRIPT
