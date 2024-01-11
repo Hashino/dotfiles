@@ -116,7 +116,7 @@ echo "" > $log_file
 ####################################################################################################
 # INSTALLING DOAS AND GIVING IT ACCESS WITHOUT PASSWORD: permit nopass
 echo " "
-echo -e "${TITLE}Giving elevated acess without password to ${BLUE}doas${NORMAL}"
+echo -e "${TITLE}Giving elevated access without password to ${BLUE}doas${NORMAL}"
 echo " "
 
 echo -e "Creating the ${BLUE}doas.conf${NORMAL} with nopass"
@@ -132,7 +132,7 @@ sudo pacman -S --needed opendoas --noconfirm >> $log_file 2>&1 & spinner $!
 check_success
 
 sudo rm /bin/sudo
-alias sudo="doas"
+alias sudo="/bin/doas"
 
 cd $HOME
 
@@ -142,18 +142,6 @@ echo " "
 echo -e -n "${TITLE}Installing packages needed for the script(${ORANGE_NORMAL}git base-devel nvim${NORMAL})"
 doas pacman -Syu --needed git base-devel neovim --noconfirm >> $log_file 2>&1 & spinner $!
 check_success
-
-####################################################################################################
-# PACKAGES TO INSTALL
-echo " "
-echo -e "${TITLE}Please choose which packages you want to include/exclude in the install process${NORMAL}"
-curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.list > pkg.list
-[ "$is_notebook" == "true" ] && 
-  ( curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.notebook.list >> pkg.list)
-
-sleep 2
-#had an issue using nano and vi. had to use nvim as a workaround
-nvim pkg.list
 
 ####################################################################################################
 # YAY
@@ -180,6 +168,18 @@ echo " "
 echo -e -n "${TITLE}Replacing ${QUOTE}sudo${NORMAL}${TITLE} with ${ORANGE}doas${NORMAL}"
 yes | yay -S doas-sudo-shim >> $log_file 2>&1 & spinner $!
 check_success
+
+####################################################################################################
+# PACKAGES TO INSTALL
+echo " "
+echo -e "${TITLE}Please choose which packages you want to include/exclude in the install process${NORMAL}"
+curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.list > pkg.list
+[ "$is_notebook" == "true" ] && 
+  ( curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.notebook.list >> pkg.list)
+
+sleep 2
+#had an issue using nano and vi. had to use nvim as a workaround
+nvim pkg.list
 
 ####################################################################################################
 echo " "
