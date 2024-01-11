@@ -175,7 +175,14 @@ check_succes
 # PACKAGES TO INSTALL
 echo " "
 echo -e "${TITLE}Please choose which packages you want to include/exclude in the install process${NORMAL}"
-curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.list > pkg.list
+
+echo "# This is the list of packages that are installed by default" > pkg.list
+echo "# After adding/removing the packages you want installed, save and quit the editor" >> pkg.list
+echo "# Lines starting with # will be ignored" >> pkg.list
+
+# getting the list of packages from the repository
+curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.list >> pkg.list
+# if running on a notebook, adds some packages
 [ "$is_notebook" == "true" ] && 
   ( curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.notebook.list >> pkg.list)
 
