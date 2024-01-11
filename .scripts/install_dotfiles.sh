@@ -140,7 +140,7 @@ echo -e -n "${TITLE}Installing packages needed for the script(${ORANGE_NORMAL}gi
 doas pacman -Syu --needed git base-devel neovim --noconfirm >> $log_file 2>&1 & spinner $!
 check_success
 
-sudo rm /bin/sudo
+doas rm /bin/sudo
 alias sudo="/bin/doas"
 
 ####################################################################################################
