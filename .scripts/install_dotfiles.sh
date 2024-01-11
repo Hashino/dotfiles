@@ -22,8 +22,8 @@ is_notebook=""
 
 RED='\033[1;31m'
 GREEN='\033[1;32m'
-BLUE='\033[4;34m'
-ORANGE='\033[4;33m'
+BLUE='\033[1;34m'
+ORANGE='\033[1;33m'
 ORANGE_NORMAL='\033[1;33m'
 NORMAL='\033[0;37m'
 
@@ -186,11 +186,8 @@ nvim pkg.list
 ####################################################################################################
 echo " "
 echo -e -n "${TITLE}Initial setup done. Starting main installation${NORMAL}"
-echo " "
-
 sleep 2 & spinner $!
 echo " "
-
 ####################################################################################################
 # CLONING DOTFILES
 echo -e "${TITLE}Cloning dotfiles...${NORMAL}"
@@ -249,10 +246,13 @@ echo " "
 #install all packages listed in /.dotfiles/.scripts/pkg.list
 while read app; do
   echo -e -n "Installing ${BLUE}${app}${NORMAL}"
-
-  #install command
-  yes | yay -S $app --noconfirm --askyesremovemake --needed >> $log_file 2>&1 & spinner $!
-  check_success
+  
+  #doesnt process lines that start with '#' to allow comments in the pkg.list file
+  if [[ ! "$app" == \#* ]]; then
+    #install command
+    yes | yay -S $app --noconfirm --askyesremovemake --needed >> $log_file 2>&1 & spinner $!
+    check_success
+  fi
 
 done <"${HOME}/pkg.list"
 
