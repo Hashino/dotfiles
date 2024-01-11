@@ -143,7 +143,7 @@ check_success
 #sudo rm /bin/sudo
 #alias sudo="/bin/doas"
 
-sudo echo "Defaults:${user}      !authenticate" >> /etc/sudoers
+sudo bash -c 'echo "${user} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/99_sudo_include_file'
 
 ####################################################################################################
 # YAY
