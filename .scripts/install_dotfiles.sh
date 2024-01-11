@@ -38,40 +38,30 @@ MOVE_TO_COL="printf \\033[${RES_COL}G"
 ####################################################################################################
 # FUNCTIONS
 
-echo_success() {
-  $MOVE_TO_COL
-  printf "["
-  printf $GREEN
-  printf $" SUCCESS "
-  printf $NORMAL
-  printf "]"
-  printf "\r"
-  return 0
-}
-
-echo_failure() {
-  $MOVE_TO_COL
-  printf "["
-  printf $RED
-  printf $" FAILURE "
-  printf $NORMAL
-  printf "] "
-  printf $BLUE
-  printf "install.log:"
-  printf $QUOTE
-  printf $(wc -l $log_file | cut -f1 -d" ")
-  printf $NORMAL
-  printf "\r"
-  return 1
-}
-
-check_success() {
-  local STRING rc
-
-  STRING=$1
-  printf "$STRING "
-  shift
-  "$@" && echo_success $"$STRING" || echo_failure $"$STRING"
+check_success () {
+  if [ $? -eq 0 ]; then
+    $MOVE_TO_COL
+    printf "["
+    printf $GREEN
+    printf $" SUCCESS "
+    printf $NORMAL
+    printf "]"
+    printf "\r"
+  else
+    $MOVE_TO_COL
+    printf "["
+    printf $RED
+    printf $" FAILURE "
+    printf $NORMAL
+    printf "] "
+    printf $BLUE
+    printf "install.log:"
+    printf $QUOTE
+    printf $(wc -l $log_file | cut -f1 -d" ")
+    printf $NORMAL
+    printf "\n\r"
+    return 1
+  fi
   rc=$?
   echo
   return $rc
@@ -127,14 +117,14 @@ echo -e -n "${NORMAL}"
 sleep 0.5
 
 cat << "EOF" 
-____________________________________________________________
-|  _               _     _               __ _ _            |
-| | |             | |   (_)             / _(_) |           |
-| | |__   __ _ ___| |__  _ _ __   ___  | |_ _| | ___  ___  |
-| | '_ \ / _` / __| '_ \| | '_ \ / _ \ |  _| | |/ _ \/ __| |
-| | | | | (_| \__ \ | | | | | | | (_) || | | | |  __/\__ \ |
-| |_| |_|\__,_|___/_| |_|_|_| |_|\___(_)_| |_|_|\___||___/ |
-|__________________________________________________________|
+ ____________________________________________________________________________________________________________
+|                           _               _     _               __ _ _                                     |
+|                          | |             | |   (_)             / _(_) |                                    |
+|                          | |__   __ _ ___| |__  _ _ __   ___  | |_ _| | ___  ___                           |
+|                          | '_ \ / _` / __| '_ \| | '_ \ / _ \ |  _| | |/ _ \/ __|                          |
+|                          | | | | (_| \__ \ | | | | | | | (_) || | | | |  __/\__ \                          |
+|                          |_| |_|\__,_|___/_| |_|_|_| |_|\___(_)_| |_|_|\___||___/                          |
+|____________________________________________________________________________________________________________|
 
 EOF
 
@@ -151,20 +141,13 @@ echo "" > $log_file
 
 ####################################################################################################
 # PACKAGES TO INSTALL
-echo " "
-echo -e "${TITLE}Please choose which packages you want to include/exclude in the install process${NORMAL}"
-
-echo "# This is the list of packages that are installed by default" > pkg.list
-echo "# After adding/removing the packages you want installed, save and quit the editor" >> pkg.list
-echo "# Lines starting with # will be ignored" >> pkg.list
 
 # getting the list of packages from the repository
-curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.list >> pkg.list
+curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.list > pkg.list
 # if running on a notebook, adds some packages
 [ "$is_notebook" == "true" ] && 
   ( curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.notebook.list >> pkg.list)
 
-sleep 2
 nano pkg.list
 
 ####################################################################################################
@@ -176,7 +159,7 @@ response=${response,,} # tolower
 echo -e -n "${NORMAL}"
 if [[ $response =~ ^(y| ) ]] || [[ -z $response ]]; then
   doas_option="nopass"
-  echo -e "${ORANGE_NORMAL}nopass${NORMAL} option chosen. After selecting the packages to install you can leave the rest of the installation to be done automatically"
+  echo -e "${ORANGE_NORMAL}nopass${NORMAL} option chosen. The rest of the installation will be done automatically"
 else
   echo -e "${RED}WARNING:${NORMAL} Because you chose the ${ORANGE_NORMAL}persist${NORMAL} option, you'll need to mannualy input your password multiple times during this script"
 fi

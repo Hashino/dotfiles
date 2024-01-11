@@ -1,6 +1,6 @@
-# This is the list of packages that are installed by default
-# After adding/removing the packages you want installed, save and quit the editor
-# Lines starting with # will be ignored
+# This is the list of packages that are going to be installed. Change it if necessary"
+# After adding/removing the packages you want to be installed, save and quit the editor
+# Lines starting with # will be ignored"
 ack
 btop
 calibre
