@@ -139,7 +139,7 @@ check_success
 
 echo " "
 echo -e "${TITLE}Replacing ${QUOTE}sudo${NORMAL}${TITLE} with ${ORANGE}doas${NORMAL}"
-echo -e -n "Cloning AUR repository for ${ORANGE_NORMAL}sudo-doas-shim${NORMAL}"
+echo -e -n "Cloning the AUR repository for ${ORANGE_NORMAL}doas-sudo-shim${NORMAL}"
 git clone https://aur.archlinux.org/doas-sudo-shim.git >> $log_file 2>&1 & spinner $!
 check_success
 
@@ -148,16 +148,20 @@ cd doas-sudo-shim
 yes | makepkg -si  >> $log_file 2>&1 & spinner $!
 check_success
 
+echo -e -n "Deleting install files"
+cd .. 
+doas rm -R doas-sudo-shim >> $log_file 2>&1 & spinner $!
+check_succes
 ####################################################################################################
 # YAY
 echo " "
 echo -e "${TITLE}Installing ${QUOTE}yay${NORMAL}"
 
-echo -e -n "Cloning yay repo"
+echo -e -n "Cloning the ${ORANGE}yay${NORMAL} repository "
 git clone https://aur.archlinux.org/yay.git >> $log_file 2>&1 & spinner $!
 check_success
 
-echo -e -n "Building yay"
+echo -e -n "Building ${ORANGE}yay${NORMAL}"
 cd yay
 yes | makepkg -si >> $log_file 2>&1 & spinner $!
 check_success
@@ -165,7 +169,7 @@ check_success
 echo -e -n "Deleting install files"
 cd .. 
 doas rm -R yay >> $log_file 2>&1 & spinner $!
-check_success
+check_succes
 
 ####################################################################################################
 # PACKAGES TO INSTALL
