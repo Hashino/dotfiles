@@ -114,9 +114,18 @@ echo -e "${TITLE}Creating a new log file in: ${ORANGE}${log_file}${NORMAL}"
 echo "" > $log_file
 
 ####################################################################################################
+# INSTALLING NEEDED PACKAGES FOR SCRIPT
+cd $HOME
+
+echo " "
+echo -e -n "${TITLE}Installing packages needed for the script(${ORANGE_NORMAL}git base-devel nvim opendoas${NORMAL})"
+doas pacman -Syu --needed git base-devel neovim opendoas --noconfirm >> $log_file 2>&1 & spinner $!
+check_success
+
+####################################################################################################
 # INSTALLING DOAS AND GIVING IT ACCESS WITHOUT PASSWORD: permit nopass
 echo " "
-echo -e "${TITLE}Giving elevated access without password to ${BLUE}doas${NORMAL}"
+echo -e "${TITLE}Configuring ${ORANGE}doas${NORMAL} with nopass and replacing ${BLUE}sudo${NORMAL}"
 echo " "
 
 echo -e "Creating the ${BLUE}doas.conf${NORMAL} with nopass"
@@ -126,22 +135,17 @@ echo "permit nopass :wheel" >> "${HOME}/doas.conf"
 sudo cp "${HOME}/doas.conf" /etc/doas.conf
 rm "${HOME}/doas.conf"
 
-echo -e -n "Installing ${BLUE}doas${NORMAL}"
-
-sudo pacman -S --needed opendoas --noconfirm >> $log_file 2>&1 & spinner $!
 check_success
 
-doas pacman -Rd sudo
-#alias sudo="/bin/doas"
-doas ln -s /bin/doas /bin/sudo
-
-####################################################################################################
-# INSTALLING NEEDED PACKAGES FOR SCRIPT
-cd $HOME
-
 echo " "
-echo -e -n "${TITLE}Installing packages needed for the script(${ORANGE_NORMAL}git base-devel nvim${NORMAL})"
-doas pacman -Syu --needed git base-devel neovim --noconfirm >> $log_file 2>&1 & spinner $!
+echo -e "${TITLE}Replacing ${QUOTE}sudo${NORMAL}${TITLE} with ${ORANGE}doas${NORMAL}"
+echo -e -n "Cloning AUR repository for ${ORANGE_NORMAL}sudo-doas-shim${NORMAL}"
+git clone https://aur.archlinux.org/doas-sudo-shim.git >> $log_file 2>&1 & spinner $!
+check_success
+
+echo -e "Building package"
+cd doas-sudo-shim
+yes | makepkg -si  >> $log_file 2>&1 & spinner $!
 check_success
 
 ####################################################################################################
@@ -161,13 +165,6 @@ check_success
 echo -e -n "Deleting install files"
 cd .. 
 doas rm -R yay >> $log_file 2>&1 & spinner $!
-check_success
-
-####################################################################################################
-# REPLACING SUDO WITH DOAS
-echo " "
-echo -e -n "${TITLE}Replacing ${QUOTE}sudo${NORMAL}${TITLE} with ${ORANGE}doas${NORMAL}"
-yes | yay -S doas-sudo-shim >> $log_file 2>&1 & spinner $!
 check_success
 
 ####################################################################################################
