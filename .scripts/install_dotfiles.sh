@@ -131,7 +131,7 @@ echo -e -n "Installing ${BLUE}doas${NORMAL}"
 sudo pacman -S --needed opendoas --noconfirm >> $log_file 2>&1 & spinner $!
 check_success
 
-yay -Rd sudo
+doas pacman -Rd sudo
 #alias sudo="/bin/doas"
 doas ln -s /bin/doas /bin/sudo
 
