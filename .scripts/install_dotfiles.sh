@@ -114,13 +114,6 @@ echo -e "${TITLE}Creating a new log file in: ${ORANGE}${log_file}${NORMAL}"
 echo "" > $log_file
 
 ####################################################################################################
-# INSTALLING NEEDED PACKAGES FOR SCRIPT
-echo " "
-echo -e -n "${TITLE}Installing packages needed for the script(${ORANGE_NORMAL}git base-devel nvim${NORMAL})"
-sudo pacman -Syu --needed git base-devel neovim opendoas --noconfirm >> $log_file 2>&1 & spinner $!
-check_success
-
-####################################################################################################
 # INSTALLING DOAS AND GIVING IT ACCESS WITHOUT PASSWORD: permit nopass
 echo " "
 echo -e "${TITLE}Giving elevated acess without password to ${BLUE}doas${NORMAL}"
@@ -128,10 +121,20 @@ echo -e "${TITLE}Giving elevated acess without password to ${BLUE}doas${NORMAL}"
 echo "permit setenv {PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin} :wheel" > "${HOME}/doas.conf"
 echo "permit nopass :wheel" >> "${HOME}/doas.conf"
 
-doas cp "${HOME}/doas.conf" /etc/doas.conf
+sudo cp "${HOME}/doas.conf" /etc/doas.conf
 rm "${HOME}/doas.conf"
 
+sudo pacman -S --needed opendoas --noconfirm >> $log_file 2>&1 & spinner $!
+check_success
+
 cd $HOME
+
+####################################################################################################
+# INSTALLING NEEDED PACKAGES FOR SCRIPT
+echo " "
+echo -e -n "${TITLE}Installing packages needed for the script(${ORANGE_NORMAL}git base-devel nvim${NORMAL})"
+doas pacman -Syu --needed git base-devel neovim --noconfirm >> $log_file 2>&1 & spinner $!
+check_success
 
 ####################################################################################################
 # PACKAGES TO INSTALL
@@ -274,11 +277,11 @@ echo " "
 
 echo -e -n "Installing ${BLUE}papirus-folders${NORMAL}"
 cd "${HOME}/.config/Papirus-Nord/"
-echo "Y" | sudo ./install >> $log_file 2>&1 & spinner $!
+echo "Y" | doas ./install >> $log_file 2>&1 & spinner $!
 check_success
 
 echo -e -n "Applying theme"
-sudo ./papirus-folders -C polarnight3 >> $log_file 2>&1 & spinner $!
+doas ./papirus-folders -C polarnight3 >> $log_file 2>&1 & spinner $!
 check_success
 
 #local binaries: rofi-power-menu rofi-todo soundswitch
@@ -290,7 +293,7 @@ check_success
 #setting fish as default shell
 echo " "
 echo -e -n "${TITLE}Changing user shell to ${QUOTE}fish${NORMAL}"
-sudo chsh --shell /bin/fish $user >> $log_file 2>&1
+doas chsh --shell /bin/fish $user >> $log_file 2>&1
 check_success
 
 ####################################################################################################
