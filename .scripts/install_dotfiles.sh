@@ -119,13 +119,14 @@ echo "" > $log_file
 cd $HOME
 
 echo " "
-echo -e -n "${TITLE}Installing packages needed for the script(${ORANGE_NORMAL}git base-devel nvim opendoas${NORMAL})"
+echo -e -n "${TITLE}Installing packages needed for the script (${ORANGE_NORMAL}git base-devel nvim opendoas${NORMAL})"
 sudo pacman -Syu --needed git base-devel neovim opendoas --noconfirm >> $log_file 2>&1 & spinner $!
 check_success
 
 ####################################################################################################
 # CHOOSING IF USING PERSIST OR NOPASS
 
+echo " "
 read -r -p "Configure doas to use nopass instead of persist? [Y/n]" response
 response=${response,,} # tolower
 if [[ $response =~ ^(y| ) ]] || [[ -z $response ]]; then
@@ -136,22 +137,19 @@ else
 fi
 
 ####################################################################################################
-# INSTALLING DOAS AND GIVING IT ACCESS WITHOUT PASSWORD: permit nopass
+# INSTALLING DOAS AND REPLACING SUDO
 echo " "
-echo -e "${TITLE}Configuring ${ORANGE}doas${NORMAL} with nopass and replacing ${BLUE}sudo${NORMAL}"
-echo " "
+echo -e -n "${TITLE}Configuring ${ORANGE}doas${NORMAL} and replacing ${BLUE}sudo${NORMAL}"
 
-echo -e -n "Creating the ${BLUE}doas.conf${NORMAL} with nopass"
+echo -e -n "Creating and moving the ${BLUE}doas.conf${NORMAL} file withe the chosen option (${doas_option})"
+
 echo "permit setenv {PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin} :wheel" > "${HOME}/doas.conf"
 echo "permit ${doas_option} :wheel" >> "${HOME}/doas.conf"
 
 sudo cp "${HOME}/doas.conf" /etc/doas.conf
 rm "${HOME}/doas.conf"
-
 check_success
 
-echo " "
-echo -e "${TITLE}Replacing ${QUOTE}sudo${NORMAL}${TITLE} with ${ORANGE}doas${NORMAL}"
 echo -e -n "Cloning the AUR repository for ${ORANGE_NORMAL}doas-sudo-shim${NORMAL}"
 git clone https://aur.archlinux.org/doas-sudo-shim.git >> $log_file 2>&1 & spinner $!
 check_success
@@ -265,10 +263,11 @@ echo " "
 
 #install all packages listed in /.dotfiles/.scripts/pkg.list
 while read app; do
-  echo -e -n "Installing ${BLUE}${app}${NORMAL}"
   
   #doesnt process lines that start with '#' to allow comments in the pkg.list file
   if [[ ! "$app" == \#* ]]; then
+    echo -e -n "Installing ${BLUE}${app}${NORMAL}"
+
     #install command
     yes | yay -S $app --noconfirm --askyesremovemake --needed >> $log_file 2>&1 & spinner $!
     check_success
@@ -316,8 +315,8 @@ check_success
 
 #local binaries: rofi-power-menu rofi-todo soundswitch
 echo " "
-echo -e -n "${TITLE}Copying ${QUOTE}.local/${NORMAL}${TITLE} to home${NORMAL}"
-cp -r "${dotfiles_local}/.local/" "${HOME}" >> $log_file 2>&1
+echo -e -n "${TITLE}Symlinking ${QUOTE}.local/${NORMAL}${TITLE} to home${NORMAL}"
+ln -s "${dotfiles_local}/.local/bin" "${HOME}/.local/bin" >> $log_file 2>&1
 check_success
 
 #setting fish as default shell
