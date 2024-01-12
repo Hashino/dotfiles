@@ -394,12 +394,10 @@ sleep 1
 
 cd $HOME
 
-rm .bash_logout
-rm .bash_profile
-rm .bashrc
+rm -f .bash_logout
+rm -f .bash_profile
+rm -f .bashrc
 
-rm .wget-hsts
+rm -f .wget-hsts
 
-rm install_dotfiles.sh
-
-fish -c rm .bash_history && killall Xorg
+rm -f install_dotfiles.sh
