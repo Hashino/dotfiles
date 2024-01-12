@@ -400,6 +400,8 @@ rm -f .bashrc
 
 rm -f .wget-hst
 
-doas rm -R -r go
+doas rm -R .config/yay 
+
+doas rm -R go
 
 rm -f install_dotfiles.sh
