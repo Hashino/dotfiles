@@ -33,13 +33,15 @@ TITLE='\033[1;36m'
 QUOTE='\033[4;36m'
 
 RES_COL=100
-MOVE_TO_COL="printf \\033[${RES_COL}G"
 
 ####################################################################################################
 # FUNCTIONS
 
 check_success () {
   if [ $? -eq 0 ]; then
+    RES_COL=100
+    MOVE_TO_COL="printf \\033[${RES_COL}G"
+    
     $MOVE_TO_COL
     printf "["
     printf $GREEN
@@ -48,17 +50,21 @@ check_success () {
     printf "]"
     printf "\r"
   else
+    error_line="install.log:$(wc -l $log_file | cut -f1 -d" ")"
+    RES_COL=$((100-${#error_line}))
+
+    MOVE_TO_COL="printf \\033[$((${RES_COL}-1))G"
+    
     $MOVE_TO_COL
-    printf "["
+    printf $QUOTE
+    printf $error_line
+    printf $NORMAL
+    printf " ["
     printf $RED
     printf $" FAILURE "
     printf $NORMAL
     printf "] "
     printf $BLUE
-    printf "install.log:"
-    printf $QUOTE
-    printf $(wc -l $log_file | cut -f1 -d" ")
-    printf $NORMAL
     printf "\n\r"
     return 1
   fi
@@ -128,9 +134,9 @@ cat << "EOF"
 
 EOF
 
-cd ${HOME}
-
 echo -e "${TITLE}Welcome to Hashino's dotfiles install script${NORMAL}"
+
+cd ${HOME}
 
 ####################################################################################################
 # LOG FILE
