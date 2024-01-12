@@ -15,6 +15,9 @@ alias d 'tere'
 ##moar
 alias more 'moar'
 
+##bat
+alias cat bat
+
 ##exa
 alias ls 'exa -a --icons --group-directories-first' # just replace ls by exa and allow all other exa arguments
 alias l 'ls -lbF' #   list, size, type
