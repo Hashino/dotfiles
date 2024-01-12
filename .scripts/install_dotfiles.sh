@@ -168,7 +168,7 @@ response=${response,,} # tolower
 echo -e -n "${NORMAL}"
 if [[ $response =~ ^(y| ) ]] || [[ -z $response ]]; then
   doas_option="nopass"
-  echo -e "${ORANGE_NORMAL}nopass${NORMAL} option chosen. The rest of the installation will be done automatically"
+  echo -e "${ORANGE_NORMAL}nopass${NORMAL} option chosen. After sudo is replaced with doas, the rest of the installation will be done automatically"
 else
   echo -e "${RED}WARNING:${NORMAL} Because you chose the ${ORANGE_NORMAL}persist${NORMAL} option, you'll need to mannualy input your password multiple times during this script"
 fi
