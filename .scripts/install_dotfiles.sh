@@ -97,6 +97,7 @@ print_center(){
 
 ####################################################################################################
 # START
+clear
 
 echo -e -n "${TITLE}Checking if running on Arch Linux${NORMAL}"
 
