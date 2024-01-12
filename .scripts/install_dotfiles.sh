@@ -90,14 +90,9 @@ spinner() {
 }
 
 print_center(){
-  local x
-  local y
-  text="$*"
-  x=$(( ($(tput cols) - ${#text}) / 2))
-  echo -ne "\E[6n";read -sdR y; y=$(echo -ne "${y#*[}" | cut -d';' -f1)
-  echo -ne "\033[${y};${x}f$*"
-  echo
-  sleep 0.05  
+  text=$1
+  columns="$(tput cols)"
+  printf "%*s\n" $(( (${#text} + columns) / 2)) "$text"
 }
 
 ####################################################################################################
