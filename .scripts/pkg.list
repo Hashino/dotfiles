@@ -3,6 +3,7 @@
 # Lines starting with # will be ignored"
 ack
 btop
+bat
 calibre
 epapirus-icon-theme
 eza
@@ -24,6 +25,7 @@ picom
 pfetch
 playerctl
 qt5ct
+ripgrep
 rofi
 scrot
 tere

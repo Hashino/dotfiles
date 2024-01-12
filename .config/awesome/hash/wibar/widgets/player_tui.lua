@@ -7,25 +7,23 @@ local awful 	= require("awful")
 local watch 	= require("awful.widget.watch")
 local wibox 	= require("wibox")
 local gears 	= require("gears")
-local theme	    = require("beautiful")
 -------------------------------------------------------------------------------------------------------------------
-local bar_size			= theme.universalsize * 2
+local bar_size			= Theme.universalsize * 2
 
 local icon				= ""
-local prev				= ""
-local play				= "  "
-local pause				= "  "
-local next				= ""
-local spacer			= "   "
+local prev				= " 󰒮 "
+local play				= ""
+local pause				= ""
+local next				= " 󰒭 "
 
-local font				= theme.font_name .. tostring(theme.universalsize / 2)
-local font_icon		 	= theme.font_name .. tostring(theme.universalsize / 2)
-local font_controls 	= theme.font_name .. tostring(theme.universalsize / (5/2))
+local font				= Theme.font_name .. tostring(Theme.universalsize / 2)
+local font_icon		 	= Theme.font_name .. tostring(Theme.universalsize / 2)
+local font_controls 	= Theme.font_name .. tostring(Theme.universalsize / (5/2))
 
 -- name of the binary of your music player
 local default_player 	= "ncspot"
 -- terminal to run the player on
-local default_term		= terminal .. " -e "
+local default_term		= Global.Apps.Terminal .. " -e "
 
 local GET_MPD_CMD 		= "playerctl -p " .. default_player .. " -f '{{status}};{{xesam:artist}};{{xesam:title}}' metadata"
 -------------------------------------------------------------------------------------------------------------------

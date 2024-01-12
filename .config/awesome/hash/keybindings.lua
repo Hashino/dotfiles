@@ -100,7 +100,7 @@ awful.keyboard.append_global_keybindings
 		awful.spawn("pactl set-sink-mute 0 toggle")
 	end, {description = "(un)mute", group = "media"}),
 	awful.key({ }, "XF86AudioPlay",     function ()
-		awful.spawn("playerctl play-pause")
+		awful.spawn("playerctl -a play-pause")
 	end, {description = "play/pause", group = "media"}),
 	awful.key({ }, "XF86AudioPrev",     function ()
 		awful.spawn("playerctl previous")

@@ -343,7 +343,7 @@ check_success
 #local binaries: rofi-power-menu rofi-todo soundswitch
 echo " "
 echo -e -n "${TITLE}Symlinking ${QUOTE}.local/${NORMAL}${TITLE} to home${NORMAL}"
-ln -s "${dotfiles_local}/.local/bin" "${HOME}/.local/bin" >> $log_file 2>&1
+ln -s "${dotfiles_local}/.local/bin" "${HOME}/.local/" >> $log_file 2>&1
 check_success
 
 #setting fish as default shell
