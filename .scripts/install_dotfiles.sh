@@ -398,6 +398,8 @@ rm -f .bash_logout
 rm -f .bash_profile
 rm -f .bashrc
 
-rm -f .wget-hsts
+rm -f .wget-hst
+
+doas rm -R -r go
 
 rm -f install_dotfiles.sh
