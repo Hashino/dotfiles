@@ -90,13 +90,14 @@ spinner() {
 }
 
 print_center(){
-    local x
-    local y
-    text="$*"
-    x=$(( ($(tput cols) - ${#text}) / 2))
-    echo -ne "\E[6n";read -sdR y; y=$(echo -ne "${y#*[}" | cut -d';' -f1)
-    echo -ne "\033[${y};${x}f$*"
-    echo
+  local x
+  local y
+  text="$*"
+  x=$(( ($(tput cols) - ${#text}) / 2))
+  echo -ne "\E[6n";read -sdR y; y=$(echo -ne "${y#*[}" | cut -d';' -f1)
+  echo -ne "\033[${y};${x}f$*"
+  echo
+  sleep 0.05  
 }
 
 ####################################################################################################
@@ -139,6 +140,7 @@ print_center '|  _ \  / _` |/ __||  _ \ | || `_ \  / _ \    |  _|| || | / _ \/ _
 print_center '| | | || (_| |\__ \| | | || || | | || (_) | _ | |  | || ||  __/\__ \'
 print_center '|_| |_| \__,_||___/|_| |_||_||_| |_| \___/ (_)|_|  |_||_| \___||___/'
 
+echo " "
 echo -e "${TITLE}Welcome to Hashino's dotfiles install script${NORMAL}"
 
 cd ${HOME}
