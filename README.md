@@ -31,5 +31,6 @@ wget -q https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/install
 ![simple bg](screenshots/print1.png)
 ![vim](screenshots/print2.png)
 ![gtk](screenshots/print3.png)
+![install script](screenshots/print4.png)
 ![rofi laucher](screenshots/rofi_launcher.png)
 ![rofi power-menu](screenshots/rofi_power-menu.png)
