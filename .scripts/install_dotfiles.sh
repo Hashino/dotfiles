@@ -366,7 +366,7 @@ echo -e -n "Cloning ${BLUE}custom config${NORMAL}"
 git clone https://github.com/Hashino/NvChad-Profile/ ~/.config/nvim/lua/custom >> $log_file 2>&1 & spinner $!
 check_success
 
-echo "${BLUE}Done${NORMAL}"
+echo -e "${BLUE}Done${NORMAL}"
 echo "neovim will finish configuring the next time you open it"
 
 ####################################################################################################
@@ -379,7 +379,7 @@ echo " "
 echo -e "${TITLE}Installation Complete${NORMAL}"
 
 echo " "
-echo "Cleaning install files and restarting Xorg in "
+echo "Deleting install files and restarting Xorg in "
 
 echo -n '5...'
 sleep 1
@@ -392,12 +392,14 @@ sleep 1
 echo -n '1...'
 sleep 1
 
-rm "${HOME}/.bash_logout"
-rm "${HOME}/.bash_profile"
-rm "${HOME}/.bashrc"
+cd $HOME
 
-rm "${HOME}/.wget-hsts"
+rm .bash_logout
+rm .bash_profile
+rm .bashrc
 
-rm "${HOME}/install_dotfiles.sh"
+rm .wget-hsts
 
-fish -c rm "${HOME}/.bash_history" && killall Xorg
+rm install_dotfiles.sh
+
+fish -c rm .bash_history && killall Xorg
