@@ -39,7 +39,7 @@ RES_COL=100
 
 check_success () {
   if [ $? -eq 0 ]; then
-    RES_COL=100
+    RES_COL=$(($(tput cols)-11))
     MOVE_TO_COL="printf \\033[${RES_COL}G"
     
     $MOVE_TO_COL
@@ -51,7 +51,7 @@ check_success () {
     printf "\r"
   else
     error_line="install.log:$(wc -l $log_file | cut -f1 -d" ")"
-    RES_COL=$((100-${#error_line}))
+    RES_COL=$(($(tput cols)-${#error_line}-11))
 
     MOVE_TO_COL="printf \\033[$((${RES_COL}-1))G"
     
@@ -63,7 +63,7 @@ check_success () {
     printf $RED
     printf $" FAILURE "
     printf $NORMAL
-    printf "] "
+    printf "]"
     printf "\n\r"
     return 1
   fi
@@ -87,6 +87,16 @@ spinner() {
   printf "    \b\b\b\b"
   wait $pid # capture exit code
   return $?
+}
+
+print_center(){
+    local x
+    local y
+    text="$*"
+    x=$(( ($(tput cols) - ${#text}) / 2))
+    echo -ne "\E[6n";read -sdR y; y=$(echo -ne "${y#*[}" | cut -d';' -f1)
+    echo -ne "\033[${y};${x}f$*"
+    echo
 }
 
 ####################################################################################################
@@ -121,17 +131,13 @@ echo -e -n "${NORMAL}"
 
 sleep 0.5
 
-cat << "EOF" 
- ____________________________________________________________________________________________________________
-|                           _               _     _               __ _ _                                     |
-|                          | |             | |   (_)             / _(_) |                                    |
-|                          | |__   __ _ ___| |__  _ _ __   ___  | |_ _| | ___  ___                           |
-|                          | '_ \ / _` / __| '_ \| | '_ \ / _ \ |  _| | |/ _ \/ __|                          |
-|                          | | | | (_| \__ \ | | | | | | | (_) || | | | |  __/\__ \                          |
-|                          |_| |_|\__,_|___/_| |_|_|_| |_|\___(_)_| |_|_|\___||___/                          |
-|____________________________________________________________________________________________________________|
 
-EOF
+print_center ' _                  _      _                    __  _  _            '
+print_center '| |                | |    (_)                  / _|(_)| |           '
+print_center '| |__    __ _  ___ | |__   _  _ __    ___     | |_  _ | |  ___  ___ '
+print_center '|  _ \  / _` |/ __||  _ \ | || `_ \  / _ \    |  _|| || | / _ \/ __|'
+print_center '| | | || (_| |\__ \| | | || || | | || (_) | _ | |  | || ||  __/\__ \'
+print_center '|_| |_| \__,_||___/|_| |_||_||_| |_| \___/ (_)|_|  |_||_| \___||___/'
 
 echo -e "${TITLE}Welcome to Hashino's dotfiles install script${NORMAL}"
 
