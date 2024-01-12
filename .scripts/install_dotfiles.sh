@@ -245,7 +245,7 @@ echo " "
 echo -e "${TITLE}Creating symlinks between folders in ${ORANGE}.dotfiles/.config/${NORMAL}${TITLE} and ${BLUE}~/.config/${NORMAL}"
 echo " "
 
-mkdir "${HOME}/.config/"
+mkdir -p "${HOME}/.config/"
 
 cd "${dotfiles_local}/.config"
 #creates symlinks to all folder in dotfiles/.configs/ in ~/.config
