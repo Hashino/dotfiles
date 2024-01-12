@@ -396,4 +396,8 @@ rm "${HOME}/.bash_logout"
 rm "${HOME}/.bash_profile"
 rm "${HOME}/.bashrc"
 
-killall Xorg
+rm "${HOME}/.wget-hsts"
+
+rm "${HOME}/install_dotfiles.sh"
+
+fish -c rm "${HOME}/.bash_history" && killall Xorg
