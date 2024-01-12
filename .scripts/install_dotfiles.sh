@@ -177,7 +177,7 @@ fi
 cd $HOME
 
 echo " "
-echo -e -n "${TITLE}Installing packages needed for the script (${ORANGE_NORMAL}git base-devel opendoas${NORMAL})"
+echo -e -n "${TITLE}Installing packages needed for the script ${NORMAL}(${ORANGE_NORMAL}git base-devel opendoas${NORMAL})"
 sudo pacman -Syu --needed git base-devel opendoas --noconfirm >> $log_file 2>&1 & spinner $!
 check_success
 
