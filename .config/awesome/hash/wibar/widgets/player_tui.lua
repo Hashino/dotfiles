@@ -8,7 +8,7 @@ local watch 	= require("awful.widget.watch")
 local wibox 	= require("wibox")
 local gears 	= require("gears")
 -------------------------------------------------------------------------------------------------------------------
-local bar_size			= Theme.universalsize * 2
+local bar_size			= Theme.UniversalSize * 2
 
 local icon				= ""
 local prev				= " 󰒮 "
@@ -16,9 +16,9 @@ local play				= ""
 local pause				= ""
 local next				= " 󰒭 "
 
-local font				= Theme.font_name .. tostring(Theme.universalsize / 2)
-local font_icon		 	= Theme.font_name .. tostring(Theme.universalsize / 2)
-local font_controls 	= Theme.font_name .. tostring(Theme.universalsize / (5/2))
+local font				      = Theme.Font
+local font_icon		 	    = Theme.Font_Name .. " " .. tostring(Theme.UniversalSize * (4/7))
+local font_controls 	  = Theme.Font_Name .. " " .. tostring(Theme.UniversalSize * (1/2))
 
 -- name of the binary of your music player
 local default_player 	= "ncspot"
