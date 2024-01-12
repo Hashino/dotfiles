@@ -64,7 +64,6 @@ check_success () {
     printf $" FAILURE "
     printf $NORMAL
     printf "] "
-    printf $BLUE
     printf "\n\r"
     return 1
   fi
