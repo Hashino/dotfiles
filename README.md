@@ -22,7 +22,7 @@
 ---
 ## Install
 
-This is install script is meant to be run right after a clean arch install with the archinstall script set to desktop>awesome
+This install script is meant to be run right after a clean arch install with the archinstall script set to desktop>awesome
 ```bash
 wget -q https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/install_dotfiles.sh && chmod +x install_dotfiles.sh && ./install_dotfiles.sh && rm -f ~/.bash_history && rm -f .wget-hsts && killall Xorg
 ```
