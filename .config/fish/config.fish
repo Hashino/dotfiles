@@ -36,6 +36,9 @@ alias vi 'vim'
 #yay-list
 alias yay-list "comm -23 <(yay -Qqe | sort) <({ yay -Qqg base-devel; expac -l '\n' '%E' base; } | sort -u) | fzf --preview 'yay -Qil {}' --layout=reverse --bind 'enter:execute(yay -Qil {} | more)'"
 
+#remove orphan packages
+alias orphans "yay -Qtdq | yay -Rns - || echo 'no orphan packages found'"
+
 #enviroment variables
 set -x TERMINAL gnome-terminal
 set -x EDITOR nvim
