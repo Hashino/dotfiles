@@ -4,6 +4,12 @@ local awful 		    = require("awful")
 ------------------------------------------------------------------------------------------------------------------
 awful.keyboard.append_global_keybindings
 ({
+  -- custom actions
+	awful.key({ Global.Keys.ModKey },            "v",     function ()
+		awful.spawn( Global.Apps.Terminal .. " -e \"nvim -c 'NvimTreeFocus'\"")
+	end, {description = "open nvim", group = "custom actions"}),
+
+  ------------------------------------------------------------------------------------------------------------------
   -- awesome controls
 	awful.key({ Global.Keys.ModKey,           }, "s", require("awful.hotkeys_popup").widget.show_help,
 		{description = "show help", group = "awesome"}),
