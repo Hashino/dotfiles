@@ -1,6 +1,0 @@
-{
-  "line-length": false,
-  "no-inline-html": false,
-  "no-hard-tabs": { "spaces_per_tab": 2 },
-  "ul-style": { "style": "dash" }
-}
