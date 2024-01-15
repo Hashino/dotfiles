@@ -19,7 +19,7 @@ alias more 'moar'
 alias cat bat
 
 ##exa
-alias ls 'exa -a --icons --group-directories-first' # just replace ls by exa and allow all other exa arguments
+alias ls 'eza -a --icons --group-directories-first' # just replace ls by exa and allow all other exa arguments
 alias l 'ls -lbF' #   list, size, type
 alias ll 'ls -la' # long, all
 alias llm 'll --sort modified' # list, long, sort by modification date
@@ -48,4 +48,3 @@ set -x PF_INFO "ascii title os kernel wm shell memory palette"
 
 set -x QT_QPA_PLATFORMTHEME "qt5ct"
 set -x CALIBRE_USE_DARK_PALETTE 1
-fish_add_path /home/hashino/.spicetify
