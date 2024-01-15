@@ -21,9 +21,13 @@ awful.keyboard.append_global_keybindings
 		{description = "view next tag", group = "tag-nav"}),
 	awful.key({ Global.Keys.ModKey,           }, "Right",   awful.tag.viewnext,
 		{description = "view next tag", group = "tag-nav"}),
+	awful.key({ Global.Keys.ModKey,           }, "l",   awful.tag.viewnext,
+		{description = "view next tag", group = "tag-nav"}),
 	awful.key({ Global.Keys.ModKey,    "Shift"}, "Tab",     awful.tag.viewprev,
 		{description = "view pevious tag", group = "tag-nav"}),
 	awful.key({ Global.Keys.ModKey,           }, "Left",    awful.tag.viewprev,
+		{description = "view pevious tag", group = "tag-nav"}),
+	awful.key({ Global.Keys.ModKey,           }, "h",    awful.tag.viewprev,
 		{description = "view pevious tag", group = "tag-nav"}),
 	awful.key({ Global.Keys.ModKey,           }, "j", function () awful.client.focus.byidx(1) end,
 		{description = "focus next by index", group = "client"}),
@@ -80,7 +84,7 @@ awful.keyboard.append_global_keybindings
 	awful.key({ Global.Keys.ModKey },            "r",     function ()
 		awful.spawn("rofi -show run")
 	end, {description = "rofi run", group = "rofi"}),
-	awful.key({ Global.Keys.ModKey },            "l",     function ()
+	awful.key({ Global.Keys.ModKey },            "Escape",     function ()
 		awful.spawn("rofi -show power-menu -modi power-menu:~/.local/bin/rofi-power-menu")
 	end, {description = "rofi powermenu", group = "rofi"}),
 	awful.key({ Global.Keys.ModKey },            "t",     function ()
