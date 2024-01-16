@@ -24,8 +24,6 @@ function fish_prompt
       echo -n -s (set_color -b cyan black) '[' (basename "$VIRTUAL_ENV") ']' $normal ' '
   end
 
-  set -l cwd $green(pwd)$normal
-
   # Display the current directory name
   echo -n -s $green(string replace $HOME '~' (pwd))
 
