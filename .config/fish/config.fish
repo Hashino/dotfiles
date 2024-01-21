@@ -1,7 +1,6 @@
-#tere
-function tere
-    set --local result (command tere $argv)
-    [ -n "$result" ] && cd -- "$result"
+# walk alias
+function
+  set loc (walk $argv); and cd $loc;
 end
 
 #PATH
@@ -9,11 +8,9 @@ set -x PATH /bin:/usr/bin:~/.local/bin
 
 #ALIASES
 
-##tere
-alias d 'tere'
-
 ##moar
 alias more 'moar'
+alias less 'more'
 
 ##bat
 alias cat bat
@@ -46,5 +43,6 @@ set -x PAGER moar
 
 set -x PF_INFO "ascii title os kernel wm shell memory palette"
 
+# i hate qt applications
 set -x QT_QPA_PLATFORMTHEME "qt5ct"
 set -x CALIBRE_USE_DARK_PALETTE 1
