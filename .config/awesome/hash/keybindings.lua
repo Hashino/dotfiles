@@ -9,6 +9,9 @@ awful.keyboard.append_global_keybindings
 		awful.spawn( Global.Apps.Terminal .. " -e \"nvim -c 'NvimTreeFocus'\"")
 	end, {description = "open nvim", group = "custom actions"}),
 
+	awful.key({ Global.Keys.ModKey },            "w",     function ()
+		awful.spawn( Global.Apps.Terminal .. " -e d")
+	end, {description = "open nvim", group = "custom actions"}),
   ------------------------------------------------------------------------------------------------------------------
   -- awesome controls
 	awful.key({ Global.Keys.ModKey,           }, "s", require("awful.hotkeys_popup").widget.show_help,
