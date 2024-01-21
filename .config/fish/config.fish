@@ -4,7 +4,7 @@ function d
 end
 
 #PATH
-set -x PATH /bin:/usr/bin:~/.local/bin
+set -g -x PATH /bin:/usr/bin:/usr/local/bin/:$HOME/.local/bin
 
 #ALIASES
 
