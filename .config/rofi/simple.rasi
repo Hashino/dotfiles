@@ -1,5 +1,5 @@
 configuration {
-	display-run: "";
+	display-run: " ";
 	icon-theme: "Papirus-Light";
 	fixed-num-lines: false;
 	font: "Terminess Nerd Font Regular 12";
