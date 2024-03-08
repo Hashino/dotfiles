@@ -27,8 +27,6 @@ alias lS 'ls -1 --icons --group-directories-first' # one column by just names
 
 ##vim
 alias v 'nvim'
-alias vim 'v'
-alias vi 'vim'
 
 #yay-list
 alias yay-list "comm -23 <(yay -Qqe | sort) <({ yay -Qqg base-devel; expac -l '\n' '%E' base; } | sort -u) | fzf --preview 'yay -Qil {}' --layout=reverse --bind 'enter:execute(yay -Qil {} | more)'"
