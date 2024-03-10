@@ -355,21 +355,21 @@ check_success
 
 ####################################################################################################
 # NEOVIM
-echo " "
-echo -e -n "${TITLE}Configuring ${ORANGE}nvim${TITLE}}"
-echo " "
-
-echo -e -n "Cloning ${BLUE}NvChad${NORMAL}"
-git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 >> $log_file 2>&1 & spinner $!
-check_success
-
-echo -e -n "Cloning ${BLUE}custom config${NORMAL}"
-git clone https://github.com/Hashino/NvChad-Profile/ ~/.config/nvim/lua/custom >> $log_file 2>&1 & spinner $!
-check_success
-
-echo -e "${BLUE}Done${NORMAL}"
-echo "neovim will finish configuring the next time you open it"
-
+#echo " "
+#echo -e -n "${TITLE}Configuring ${ORANGE}nvim${TITLE}}"
+#echo " "
+#
+#echo -e -n "Cloning ${BLUE}NvChad${NORMAL}"
+#git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 >> $log_file 2>&1 & spinner $!
+#check_success
+#
+#echo -e -n "Cloning ${BLUE}custom config${NORMAL}"
+#git clone https://github.com/Hashino/NvChad-Profile/ ~/.config/nvim/lua/custom >> $log_file 2>&1 & spinner $!
+#check_success
+#
+#echo -e "${BLUE}Done${NORMAL}"
+#echo "neovim will finish configuring the next time you open it"
+#
 ####################################################################################################
 # CLEANUP
 echo -e -n "${TITLE}Uninstalling ${ORANGE}alacritty${NORMAL}"
