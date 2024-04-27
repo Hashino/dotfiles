@@ -39,7 +39,7 @@ for s = 1, screen.count() do
         for _, c in pairs(clients) do
             c.ontop = false
             -- No titlebar with only one humanly visible client
-            if c.maximized then
+            if c.maximized or c.fullscreen then
                 c.border_width = 0
             elseif c.floating or layout == "floating" then
                 c.border_width = Theme.border_width
