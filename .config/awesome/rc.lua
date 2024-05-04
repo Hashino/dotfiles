@@ -33,7 +33,7 @@ require("hash.layouts")
 -- Screen setup
 screen.connect_signal("request::desktop_decoration", function(s)
   --- Creates starting tags on each screen
-  awful.tag({ "", "", "" }, s, awful.layout.layouts[1])
+  awful.tag({ "", "", "", "", "" }, s, awful.layout.layouts[1])
   -- Each screen has its own tag table.
   require("hash.wibar.wibar")(s)
 end)

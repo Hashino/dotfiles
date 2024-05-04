@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+remmina -c ~/.local/share/remmina/group_rdp_w10vm_192-168-1-114.remmina & disown & exit

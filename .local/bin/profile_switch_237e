@@ -1,0 +1,22 @@
+#!/bin/bash
+
+curr=$(ddccontrol -r 0xdc dev:/dev/i2c-5 | grep ".*+/")
+
+toset=''
+
+if [ "$curr" = 'Control 0xdc: +/0/8 C [???]' ]; then
+
+toset=2
+
+elif [ "$curr" = 'Control 0xdc: +/2/8 C [???]' ]; then
+
+toset=5
+
+elif [ "$curr" = 'Control 0xdc: +/5/8 C [???]' ]; then
+
+toset=0
+
+fi
+
+ddccontrol -r 0xdc -w $toset dev:/dev/i2c-5
+

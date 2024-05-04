@@ -10,8 +10,8 @@ awful.keyboard.append_global_keybindings
 	end, {description = "open nvim", group = "custom actions"}),
 
 	awful.key({ Global.Keys.ModKey },            "w",     function ()
-		awful.spawn( Global.Apps.Terminal .. " -e d")
-	end, {description = "open nvim", group = "custom actions"}),
+		awful.spawn( "win")
+	end, {description = "turn on windows vm (if it wasn't) and shows it", group = "custom actions"}),
   ------------------------------------------------------------------------------------------------------------------
   -- awesome controls
 	awful.key({ Global.Keys.ModKey,           }, "s", require("awful.hotkeys_popup").widget.show_help,
@@ -44,7 +44,9 @@ awful.keyboard.append_global_keybindings
 	awful.key({ Global.Keys.ModKey,           }, "d", function ()
 		if #awful.screen.focused().clients > 0 then
 			for _, c in ipairs(mouse.screen.selected_tag:clients()) do
-				c.minimized = true
+				if not c.maximized and not c.fullscreen then
+					c.minimized = true
+				end
 			end
 		else
 			for _, c in ipairs(mouse.screen.selected_tag:clients()) do

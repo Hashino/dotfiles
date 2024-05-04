@@ -1,0 +1,18 @@
+#!/bin/bash
+
+curr=$(ddccontrol -r 0x60 dev:/dev/i2c-6 | grep ".*+/")
+
+toset=''
+
+if [ "$curr" = 'Control 0x60: +/17/18 C [Input Source Select (Main)]' ]; then
+
+toset=18
+
+else
+
+toset=17
+
+fi
+
+ddccontrol -r 0x60 -w $toset dev:/dev/i2c-6
+

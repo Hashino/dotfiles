@@ -14,7 +14,7 @@ set -u
 
 # All supported choices
 #all=(shutdown reboot suspend hibernate logout lockscreen)
-all=(lockscreen logout shutdown reboot)
+all=(lockscreen logout suspend shutdown reboot)
 
 # By default, show all (i.e., just copy the array)
 show=("${all[@]}")
@@ -31,7 +31,7 @@ declare -A icons
 icons[lockscreen]=" "
 icons[switchuser]="󰀙 "
 icons[logout]=" "
-icons[suspend]="\uf9b1 "
+icons[suspend]=" "
 icons[hibernate]="\uf7c9 "
 icons[reboot]=" "
 icons[shutdown]=" "

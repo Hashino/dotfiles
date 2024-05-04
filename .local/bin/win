@@ -1,0 +1,6 @@
+
+#!/usr/bin/env bash
+
+sudo virsh start "w10vm"
+
+looking-glass-client -F & disown & exit
