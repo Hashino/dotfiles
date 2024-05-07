@@ -18,7 +18,7 @@ log_file="${HOME}/install.log"
 # GLOBAL VARIABLES
 
 user=${USER}
-is_notebook=""
+branch=""
 doas_option="persist"
 
 RED='\033[1;31m'
@@ -109,13 +109,13 @@ fi
 
 sleep 0.5
 
-is_notebook=$(cat /sys/class/dmi/id/chassis_type)
+branch=$(cat /sys/class/dmi/id/chassis_type)
 
-if [ "$is_notebook" == "8" ] || [ "$is_notebook" == "9" ] || [ "$is_notebook" == "10" ]; then
+if [ "$branch" == "8" ] || [ "$branch" == "9" ] || [ "$branch" == "10" ]; then
   echo -e "Notebook detected"
-  is_notebook="true"
+  branch="notebook"
 else
-  is_notebook="false" 
+  branch="desktop" 
 fi
 
 sleep 0.5
@@ -147,17 +147,6 @@ echo " "
 echo -e "${TITLE}Creating a new log file in: ${ORANGE}${log_file}${NORMAL}"
 #resets install log
 echo "" > $log_file
-
-####################################################################################################
-# PACKAGES TO INSTALL
-
-# getting the list of packages from the repository
-curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.list > pkg.list
-# if running on a notebook, adds some packages
-[ "$is_notebook" == "true" ] && 
-  ( curl -s https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/pkg.notebook.list >> pkg.list)
-
-nano pkg.list
 
 ####################################################################################################
 # CHOOSING IF USING PERSIST OR NOPASS
@@ -237,7 +226,7 @@ echo " "
 # CLONING DOTFILES
 echo " "
 echo -e -n "${TITLE}Cloning ${BLUE}${dotfiles_remote}${TITLE} to ${BLUE}${dotfiles_local}${NORMAL}"
-git clone $dotfiles_remote $dotfiles_local >> $log_file 2>&1 & spinner $!
+git clone $dotfiles_remote $dotfiles_local -b $branch >> $log_file 2>&1 & spinner $!
 check_success
 
 ####################################################################################################
@@ -282,6 +271,13 @@ check_success
 echo -e -n "${TITLE}and installing ${ORANGE}awesome-git${NORMAL}..."
 yay -Syu awesome-git --noconfirm --askyesremovemake --needed >> $log_file 2>&1 & spinner $!
 check_success
+
+####################################################################################################
+# PACKAGES TO INSTALL
+
+cp "${dotfiles_local}/pkg.list" "${HOME}/pkg.list"
+
+nano pkg.list
 
 ####################################################################################################
 # INSTALLING PACKAGES

@@ -1,10 +1,11 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
 SETUVAR --export CALIBRE_USE_DARK_PALETTE:1
+SETUVAR --export CALIBRE_USE_SYSTEM_THEME:1
 SETUVAR --export EDITOR:nvim
 SETUVAR --export PAGER:moar
 SETUVAR --export PF_INFO:ascii\x20title\x20os\x20kernel\x20wm\x20shell\x20memory\x20palette
-SETUVAR --export QT_QPA_PLATFORMTHEME:qt5ct
+SETUVAR --export QT_QPA_PLATFORMTHEME:qt5ct\x3aqt6ct
 SETUVAR --export TERMINAL:lxterminal
 SETUVAR --export XSECURELOCK_AUTH_FOREGROUND_COLOR:\x1d
 SETUVAR --export XSECURELOCK_COMPOSITE_OBSCURER:0

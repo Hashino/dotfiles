@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sudo mount -t cifs //(nmblookup w10vm | awk '{print $1}' -)/Data /media/Data/ -o username=hashino,password=chave

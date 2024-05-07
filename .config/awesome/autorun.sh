@@ -8,7 +8,7 @@
 function run {
   if ! pgrep -f $1 ;
   then
-    $@&
+    $@& > "${HOME}/.local/share/xorg/startup/${1}.log" 2>&1
   fi
 }
 
@@ -18,22 +18,11 @@ run pasystray --notify=all
 
 #run nm-applet
 
-#turns all lights off
-run sudo openrgb --mode static --color 000000
-
-#run ckb-next --profile default  --background --close
-
-ckb-next --profile default  --background --close & disown & exit
-
+ckb-next --profile default  --background --close
 run discord --start-minimized
 
-run /usr/lib/xfce-polkit/xfce-polkit
 
-#set XSECURELOCK_PASSWORD_PROMPT asterisks
-#set XSECURELOCK_COMPOSITE_OBSCURER 0
-#set XSECURELOCK_SHOW_KEYBOARD_LAYOUT 0
-#set XSECURELOCK_AUTH_FOREGROUND_COLOR #ddeeff
-#set XSECURELOCK_FONT "Terminess Nerd Font"
+run /usr/lib/xfce-polkit/xfce-polkit
 
 run dbus-update-activation-environment --all
 run gnome-keyring-daemon --start --components=secrets
