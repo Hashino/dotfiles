@@ -3,7 +3,7 @@
 local wibox 	= require("wibox")
 local awful 	= require("awful")
 -------------------------------------------------------------------------------------------------------------------
-local get_wibar = function(s)
+local function get_wibar(s)
     -- Create the wibox
     s.wibox = awful.wibar({ position = "top", screen = s, height = Theme.UniversalSize, bg = Theme.Colors.Transparent })
 	-- Add widgets to the wibox

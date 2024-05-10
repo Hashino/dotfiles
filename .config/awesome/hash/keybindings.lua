@@ -4,12 +4,21 @@ local awful 		    = require("awful")
 ------------------------------------------------------------------------------------------------------------------
 awful.keyboard.append_global_keybindings
 ({
+  -- monitor control
+  ------------------------------------------------------------------------------------------------------------------
+	awful.key({ Global.Keys.ModKey, "Control" },            "w",     function ()
+		awful.spawn( "input_switch_237e" )
+	end, {description = "open nvim", group = "custom actions"}),
+	awful.key({ Global.Keys.ModKey,           },            "KP_Subtract",     function ()
+		awful.spawn( "profile_switch_237e" )
+	end, {description = "open nvim", group = "custom actions"}),
   -- custom actions
-	awful.key({ Global.Keys.ModKey },            "v",     function ()
+  ------------------------------------------------------------------------------------------------------------------
+	awful.key({ Global.Keys.ModKey            },            "v",     function ()
 		awful.spawn( Global.Apps.Terminal .. " -e \"nvim -c 'NvimTreeFocus'\"")
 	end, {description = "open nvim", group = "custom actions"}),
 
-	awful.key({ Global.Keys.ModKey },            "w",     function ()
+	awful.key({ Global.Keys.ModKey            },            "w",     function ()
 		awful.spawn( "win")
 	end, {description = "turn on windows vm (if it wasn't) and shows it", group = "custom actions"}),
   ------------------------------------------------------------------------------------------------------------------
@@ -41,7 +50,8 @@ awful.keyboard.append_global_keybindings
 	awful.key({ Global.Keys.ModKey,           }, "Up", function () awful.client.focus.byidx(-1) end,
 		{description = "focus previous by index", group = "client"}),
 ------------------------------------------------------------------------------------------------------------------
-	awful.key({ Global.Keys.ModKey,           }, "d", function ()
+--[[
+  awful.key({ Global.Keys.ModKey,           }, "d", function ()
 		if #awful.screen.focused().clients > 0 then
 			for _, c in ipairs(mouse.screen.selected_tag:clients()) do
 				if not c.maximized and not c.fullscreen then
@@ -55,7 +65,8 @@ awful.keyboard.append_global_keybindings
 		end
 	end,
 	{description = "(un)minimize all clients", group = "client"}),
-------------------------------------------------------------------------------------------------------------------
+  ]]
+  --------------------------------------------------------------------------------------------------------------------
   -- tag controls
 	awful.key({ Global.Keys.ModKey,  "Control"}, "n",
 		function ()
@@ -172,13 +183,15 @@ client.connect_signal("request::default_keybindings", function()
 	({
 		awful.key({ Global.Keys.ModKey }, "x", function (c) c:kill() end,
         {description = "close", group = "client"}),
-		awful.key({ Global.Keys.ModKey }, "n",
+		--[[
+      wful.key({ Global.Keys.ModKey }, "n",
 			function (c)
 				-- The client currently has the input focus, so it cannot be
 				-- minimized, since minimized clients can't have the focus.
 				c.minimized = true
 			end ,
 			{description = "minimize", group = "client"}),
+      ]]
 		awful.key({ Global.Keys.ModKey }, "m",
 			function (c)
 				c.maximized = not c.maximized
