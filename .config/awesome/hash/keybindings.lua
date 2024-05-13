@@ -8,10 +8,6 @@ awful.keyboard.append_global_keybindings({
 	awful.key({ Global.Keys.ModKey, "Control" }, "w", function()
 		awful.spawn("input_switch_237e")
 	end, { description = "open nvim", group = "custom actions" }),
-	-- awful.key({ Global.Keys.ModKey }, "KP_Subtract", function()
-	-- 	awful.spawn("profile_switch_237e")
-	-- end, { description = "open nvim", group = "custom actions" }),
-	-- custom actions
 	------------------------------------------------------------------------------------------------------------------
 	awful.key({ Global.Keys.ModKey }, "v", function()
 		awful.spawn(Global.Apps.Terminal .. " -e 'nvim .'")
@@ -123,7 +119,7 @@ awful.keyboard.append_global_keybindings({
 		awful.spawn("rofi -show power-menu -modi power-menu:~/.local/bin/rofi-power-menu")
 	end, { description = "rofi powermenu", group = "rofi" }),
 	awful.key({ Global.Keys.ModKey }, "KP_Subtract", function()
-		awful.spawn("rofi -show monitor-profile -modi monitor-profile:~/.local/bin/temp")
+		awful.spawn("rofi -show monitor-profile -modi monitor-profile:~/.local/bin/monitor_config")
 	end, { description = "rofi powermenu", group = "rofi" }),
 	awful.key({ Global.Keys.ModKey }, "t", function()
 		awful.spawn("rofi-todo -f todo")
