@@ -13,18 +13,18 @@ local awful = require("awful")
 require("hash.errors")
 -----------------------------------------------------------------------------
 -- Variable definitions
-Global                  = { Apps = {}, Keys = {} }
-Global.ConfigFolder     = awful.util.getdir("config")
+Global = { Apps = {}, Keys = {} }
+Global.ConfigFolder = awful.util.getdir("config")
 -----------------------------------------------------------------------------
-Global.Apps.Terminal    = "lxterminal"
-Global.Apps.Browser     = "firefox"
+Global.Apps.Terminal = "lxterminal"
+Global.Apps.Browser = "firefox"
 Global.Apps.Filemanager = "nemo"
-Global.Apps.Editor      = "mousepad"
+Global.Apps.Editor = "mousepad"
 -----------------------------------------------------------------------------
-Global.Keys.ModKey      = "Mod4"
+Global.Keys.ModKey = "Mod4"
 -----------------------------------------------------------------------------
 -- Libraries
-require("beautiful").init( Global.ConfigFolder .. "/theme/theme.lua")
+require("beautiful").init(Global.ConfigFolder .. "/theme/theme.lua")
 require("awful.autofocus")
 -----------------------------------------------------------------------------
 -- Table of layouts to cover with awful.layout.inc, order matters.
@@ -32,10 +32,10 @@ require("hash.layouts")
 -----------------------------------------------------------------------------
 -- Screen setup
 screen.connect_signal("request::desktop_decoration", function(s)
-  --- Creates starting tags on each screen
-  awful.tag({ "", "", "", "", "" }, s, awful.layout.layouts[1])
-  -- Each screen has its own tag table.
-  require("hash.wibar.wibar")(s)
+	--- Creates starting tags on each screen
+	awful.tag({ "", "", "", "", "" }, s, awful.layout.layouts[1])
+	-- Each screen has its own tag table.
+	require("hash.wibar.wibar")(s)
 end)
 -----------------------------------------------------------------------------
 -- Signals
