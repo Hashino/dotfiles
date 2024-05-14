@@ -34,7 +34,6 @@ end
 local function tasklist_update(s, self, buttons, filter, data, update_function)
 	local clients = {}
 
-	local source = self.source or tasklist.source.all_clients or nil
 	local list = capi.client.get()
 
 	for _, c in ipairs(list) do
