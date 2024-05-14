@@ -1,3 +1,4 @@
+-- TODO: clean code
 local capi = { screen = screen, client = client }
 local ipairs = ipairs
 local setmetatable = setmetatable
@@ -23,7 +24,7 @@ tasklist.filter, tasklist.source = {}, {}
 local function tasklist_label(c, tb)
 	tb:set_font(Theme.tasklist_font)
 
-	return "<span color='" .. Theme.fg_focus .. "'>" .. c.class .. " - " .. c.name .. "</span>"
+	return "<span color='" .. Theme.fg_focus .. "'>" .. c.class:lower() .. " - " .. c.name:lower() .. "</span>"
 end
 
 local function create_callback(w, t)
@@ -229,7 +230,6 @@ local get_tasklist = function(s)
 		right = Theme.UniversalSize / 14,
 		widget = wibox.container.margin,
 	}
-	-- I'll be real, this one is a mess. I won't even try to explain. good luck
 	local mytasklist = {
 		{
 			tasklist.new(s, widget_template),
