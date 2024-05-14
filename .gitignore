@@ -1,10 +1,5 @@
-
 *.log
 *.log
 *.old
 *.lock
-*.vscdb
 *.backup
-
-.config/BetterDiscord/*
-!.config/BetterDiscord/themes/*
