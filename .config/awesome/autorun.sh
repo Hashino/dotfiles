@@ -29,3 +29,5 @@ run gnome-keyring-daemon --start --components=secrets
 
 run xset s 1800 5
 run xss-lock -n /usr/lib/xsecurelock/dimmer -l -- xsecurelock
+
+run unclutter -idle 1.5 -root
