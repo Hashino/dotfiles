@@ -37,11 +37,11 @@ local function get_wibar(s)
                     widget = wibox.container.background
                 },
                 {
-                    require("hash.wibar.widgets.systray"),
+                    require("hash.wibar.widgets.systray")(s),
                     bg = Theme.Colors.Background.Neutral,
                     widget = wibox.container.background
                 },
-                require("hash.wibar.widgets.clock"),
+                require("hash.wibar.widgets.clock")(s),
             },
         },
         left	= Theme.useless_gap * 2,
