@@ -32,6 +32,8 @@ alias vim "nvim" # -c 'NvimTreeToggle' ."
 alias nvim "nvim" # -c 'NvimTreeToggle' ." 
 alias neovim "nvim" # -c 'NvimTreeToggle' ." 
 
+alias gitc "git add . && git commit && git push"
+
 #yay-list
 alias yay-list "comm -23 <(yay -Qqe | sort) <({ yay -Qqg base-devel; expac -l '\n' '%E' base; } | sort -u) | fzf --preview 'yay -Qil {}' --layout=reverse --bind 'enter:execute(yay -Qil {} | more)'"
 
