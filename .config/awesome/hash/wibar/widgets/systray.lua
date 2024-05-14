@@ -6,8 +6,8 @@ local get_systray = function()
     local systray = wibox.widget
     {
         wibox.widget.systray(),
-        bottom  = 7,
-        top     = 7,
+        bottom  = 5,
+        top     = 5,
         left    = 12,
         right   = 12,
         widget  = wibox.container.margin
