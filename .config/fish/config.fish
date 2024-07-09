@@ -44,7 +44,7 @@ alias pm "yay -Qqent | fzf --preview 'yay -Qil {}' --layout=reverse --bind 'ente
 #alias orphans "yay -Qtdq | yay -Rns - || echo 'no orphan packages found'"
 
 #enviroment variables
-set -U -x TERMINAL lxterminal
+set -U -x TERMINAL terminator
 set -U -x EDITOR nvim
 set -U -x PAGER moar
 

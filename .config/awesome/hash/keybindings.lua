@@ -1,25 +1,19 @@
 -- by Hashino https://github.com/Hashino/dotfiles
 --------------------------------------------------------------------------------
 local awful = require("awful")
-local naughty = require("naughty")
 --------------------------------------------------------------------------------
 awful.keyboard.append_global_keybindings({
-  awful.key({ Global.Keys.ModKey, "Control" }, "t", function()
-    naughty.notify({ text = client.focus.class })
-  end, { description = "open nvim", group = "custom actions" }),
   -- monitor control
   ------------------------------------------------------------------------------
   awful.key({ Global.Keys.ModKey, "Control" }, "w", function()
     awful.spawn("input_switch_237e")
-  end, { description = "open nvim", group = "custom actions" }),
+  end, { description = "change monitor input", group = "custom actions" }),
   ------------------------------------------------------------------------------
   awful.key({ Global.Keys.ModKey }, "v", function()
     awful.spawn("neovide")
   end, { description = "open neovide", group = "custom actions" }),
 
-  awful.key({ Global.Keys.ModKey }, "w", function()
-      awful.spawn("win")
-    end,
+  awful.key({ Global.Keys.ModKey }, "w", function() awful.spawn("win") end,
     {
       description = "turn on windows vm (if it wasn't) and shows it",
       group =
@@ -27,62 +21,27 @@ awful.keyboard.append_global_keybindings({
     }),
   ------------------------------------------------------------------------------
   -- awesome controls
-  awful.key(
-    { Global.Keys.ModKey },
-    "s",
+  awful.key({ Global.Keys.ModKey }, "s",
     require("awful.hotkeys_popup").widget.show_help,
-    { description = "show help", group = "awesome" }
-  ),
-  awful.key(
-    { Global.Keys.ModKey, "Control" },
-    "r",
-    awesome.restart,
-    { description = "reload awesome", group = "awesome" }
-  ),
+    { description = "show help", group = "awesome" }),
+  awful.key({ Global.Keys.ModKey, "Control" }, "r", awesome.restart,
+    { description = "reload awesome", group = "awesome" }),
   ------------------------------------------------------------------------------
-  -- client controls
+  -- tag navigation
   awful.key({ Global.Keys.ModKey }, "Tab", awful.tag.viewnext,
     { description = "view next tag", group = "tag-nav" }),
-  awful.key(
-    { Global.Keys.ModKey },
-    "Right",
-    awful.tag.viewnext,
-    { description = "view next tag", group = "tag-nav" }
-  ),
   awful.key({ Global.Keys.ModKey }, "l", awful.tag.viewnext,
     { description = "view next tag", group = "tag-nav" }),
-  awful.key(
-    { Global.Keys.ModKey, "Shift" },
-    "Tab",
-    awful.tag.viewprev,
-    { description = "view pevious tag", group = "tag-nav" }
-  ),
-  awful.key(
-    { Global.Keys.ModKey },
-    "Left",
-    awful.tag.viewprev,
-    { description = "view pevious tag", group = "tag-nav" }
-  ),
+
+  awful.key({ Global.Keys.ModKey, "Shift" }, "Tab", awful.tag.viewprev,
+    { description = "view pevious tag", group = "tag-nav" }),
   awful.key({ Global.Keys.ModKey }, "h", awful.tag.viewprev,
     { description = "view pevious tag", group = "tag-nav" }),
-  awful.key({ Global.Keys.ModKey }, "j", function()
-    awful.client.focus.byidx(1)
-  end, { description = "focus next by index", group = "client" }),
-  awful.key({ Global.Keys.ModKey }, "Down", function()
-    awful.client.focus.byidx(1)
-  end, { description = "focus next by index", group = "client" }),
-  awful.key({ Global.Keys.ModKey }, "k", function()
-    awful.client.focus.byidx(-1)
-  end, { description = "focus previous by index", group = "client" }),
-  awful.key({ Global.Keys.ModKey }, "Up", function()
-    awful.client.focus.byidx(-1)
-  end, { description = "focus previous by index", group = "client" }),
   ------------------------------------------------------------------------------
   -- tag controls
   awful.key({ Global.Keys.ModKey, "Control" }, "n", function()
     if #root.tags() < 9 then
-      local t =
-          awful.tag
+      awful.tag
           .add("", {
             screen = awful.screen.focused(),
             layout = awful.layout.layouts[1],
@@ -97,7 +56,7 @@ awful.keyboard.append_global_keybindings({
     end
   end, { description = "remove tag", group = "tag-nav" }),
   ------------------------------------------------------------------------------
-  ----- Standard programs
+  -- launcher
   awful.key({ Global.Keys.ModKey }, "Return", function()
     awful.spawn(Global.Apps.Terminal)
   end, { description = "open a terminal", group = "launcher" }),
@@ -119,10 +78,7 @@ awful.keyboard.append_global_keybindings({
   awful.key({ Global.Keys.ModKey }, "KP_Subtract", function()
     awful.spawn(
       "rofi -show monitor-profile -modi monitor-profile:~/.local/bin/monitor_config")
-  end, { description = "rofi powermenu", group = "rofi" }),
-  awful.key({ Global.Keys.ModKey }, "t", function()
-    awful.spawn("rofi-todo -f todo")
-  end, { description = "rofi todo", group = "rofi" }),
+  end, { description = "rofi monitor config", group = "rofi" }),
   ------------------------------------------------------------------------------
   -- screenshot
   awful.key({ Global.Keys.ModKey, "Control" }, "p", function()
@@ -188,31 +144,14 @@ for i = 1, 9 do
   })
 end
 --------------------------------------------------------------------------------
-client.connect_signal("request::default_mousebindings", function()
-  awful.mouse.append_client_mousebindings({
-    awful.button({}, 1, function(c)
-      client.focus = c
-      c:raise()
-    end),
-    awful.button({ Global.Keys.ModKey }, 1, awful.mouse.client.move),
-    awful.button({ Global.Keys.ModKey }, 3, awful.mouse.client.resize),
-  })
-end)
---------------------------------------------------------------------------------
+-- client default_keybindings
+-- by using this function we can easily get the current select client (c)
 client.connect_signal("request::default_keybindings", function()
   awful.keyboard.append_client_keybindings({
     awful.key({ Global.Keys.ModKey }, "x", function(c)
       c:kill()
     end, { description = "close", group = "client" }),
-    --[[
-      wful.key({ Global.Keys.ModKey }, "n",
-      function (c)
-        -- The client currently has the input focus, so it cannot be
-        -- minimized, since minimized clients can't have the focus.
-        c.minimized = true
-      end ,
-      {description = "minimize", group = "client"}),
-      ]]
+
     awful.key({ Global.Keys.ModKey }, "m", function(c)
       c.maximized = not c.maximized
       c:raise()
@@ -228,6 +167,89 @@ client.connect_signal("request::default_keybindings", function()
       c.fullscreen = not c.fullscreen
       c:raise()
     end, { description = "toggle fullscreen", group = "client" }),
+
+    awful.key({ Global.Keys.ModKey, "Shift" }, "l", function(c)
+      local screen = awful.screen.focused()
+
+      local i = screen.selected_tag.index
+
+      -- if current tag is the last tag, wrap around
+      if i == #screen.tags then
+        i = 1
+      else -- othewise use the next one
+        i = i + 1
+      end
+
+      local next_tag = screen.tags[i]
+
+      if next_tag then
+        c:tags({ next_tag })
+        next_tag:view_only()
+      end
+    end, { description = "move window to next tag", group = "client" }),
+
+    awful.key({ Global.Keys.ModKey, "Shift" }, "h", function(c)
+      local screen = awful.screen.focused()
+
+      local i = screen.selected_tag.index
+
+      -- if current tag is the last tag, wrap around
+      if i == 1 then
+        i = #screen.tags
+      else -- othewise use the next one
+        i = i - 1
+      end
+
+      local previous_tag = screen.tags[i]
+
+      if previous_tag then
+        c:tags({ previous_tag })
+        previous_tag:view_only()
+      end
+    end, { description = "move window to previous tag", group = "client" }),
+
+
+    awful.key({ Global.Keys.ModKey, "Shift" }, "n", function(c)
+      if #root.tags() < 9 then
+        local new_tag = awful.tag
+            .add("", {
+              screen   = awful.screen.focused(),
+              layout   = awful.layout.layouts[1],
+              volatile = true,
+              index    = awful.screen.focused().selected_tag.index + 1,
+            })
+        c:tags({ new_tag })
+
+        new_tag:view_only()
+      end
+    end, { description = "move window to a new tag", group = "client" }),
+
+
+    awful.key({ Global.Keys.ModKey, "Shift" }, "j", function()
+      awful.client.swap.byidx(1)
+    end, { description = "swap window with next", group = "client" }),
+
+    awful.key({ Global.Keys.ModKey, "Shift" }, "k", function()
+      awful.client.swap.byidx(-1)
+    end, { description = "swap window with previous", group = "client" }),
+
+    awful.key({ Global.Keys.ModKey }, "j", function()
+      awful.client.focus.byidx(1)
+    end, { description = "focus next window by index", group = "client" }),
+    awful.key({ Global.Keys.ModKey }, "k", function()
+      awful.client.focus.byidx(-1)
+    end, { description = "focus previous window by index", group = "client" }),
   })
 end)
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+client.connect_signal("request::default_mousebindings", function()
+  awful.mouse.append_client_mousebindings({
+    awful.button({}, 1, function(c)
+      client.focus = c
+      c:raise()
+    end),
+    awful.button({ Global.Keys.ModKey }, 1, awful.mouse.client.move),
+    awful.button({ Global.Keys.ModKey }, 3, awful.mouse.client.resize),
+  })
+end)
+-------------------------------------------------------------------------------

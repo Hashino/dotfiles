@@ -13,15 +13,15 @@ local awful = require("awful")
 require("hash.errors")
 --------------------------------------------------------------------------------
 -- Variable definitions
-Global = { Apps = {}, Keys = {} }
-Global.ConfigFolder = awful.util.getdir("config")
+Global                  = { Apps = {}, Keys = {} }
+Global.ConfigFolder     = awful.util.getdir("config")
 --------------------------------------------------------------------------------
-Global.Apps.Terminal = "terminator"
-Global.Apps.Browser = "firefox"
+Global.Apps.Terminal    = "terminator"
+Global.Apps.Browser     = "firefox"
 Global.Apps.Filemanager = "nemo"
-Global.Apps.Editor = "mousepad"
+Global.Apps.Editor      = "mousepad"
 --------------------------------------------------------------------------------
-Global.Keys.ModKey = "Mod4"
+Global.Keys.ModKey      = "Mod4"
 --------------------------------------------------------------------------------
 -- Libraries
 require("beautiful").init(Global.ConfigFolder .. "/theme/theme.lua")

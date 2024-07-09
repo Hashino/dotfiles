@@ -26,7 +26,8 @@ local font_controls = Theme.Font_Name ..
 local default_player = "spotify"
 
 local GET_MPD_CMD = "playerctl -p " ..
-    default_player .. " -f '{{status}};{{xesam:artist}};{{xesam:title}}' metadata"
+    default_player ..
+    " -f '{{status}};{{xesam:artist}};{{xesam:title}}' metadata"
 --------------------------------------------------------------------------------
 local player_widget = wibox.widget({
   {

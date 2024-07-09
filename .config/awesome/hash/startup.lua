@@ -2,10 +2,16 @@
 --------------------------------------------------------------------------------
 local awful = require("awful")
 --------------------------------------------------------------------------------
-awesome.connect_signal("startup", function(c)
-  awful.spawn("firefox")
-  awful.spawn("spotify")
-  awful.spawn("discord")
+local run_once = function (class)
+  awful.spawn.once(class, {}, function(c)
+    return c.class == class
+  end)
+end
+--------------------------------------------------------------------------------
+awesome.connect_signal("startup", function()
+  run_once("firefox")
+  run_once("spotify")
+  run_once("discord")
 end)
 --------------------------------------------------------------------------------
 client.connect_signal("request::tag", function(c)

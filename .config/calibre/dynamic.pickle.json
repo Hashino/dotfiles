@@ -1,0 +1,18 @@
+{
+  "add books dialog dir": "/media/Data/Iam/Leitura/The Most Notorious -Talker- Runs the World's Greatest Clan",
+  "add books dialog dir-last-used-filter-spec-all-files": false,
+  "database location dialog": "/home/hashino/Downloads/Calibre",
+  "recursive book import root dir dialog": "/media/Data/Iam/Leitura/The Most Notorious -Talker- Runs the World's Greatest Clan",
+  "sort_history": [
+    [
+      "timestamp",
+      false
+    ],
+    [
+      "timestamp",
+      false
+    ]
+  ],
+  "welcome_wizard_device": "default",
+  "welcome_wizard_was_run": true
+}

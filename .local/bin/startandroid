@@ -1,2 +1,0 @@
-#!/usr/bin/env bash
-sudo systemctl restart --now waydroid-container && waydroid show-full-ui

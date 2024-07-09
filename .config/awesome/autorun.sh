@@ -8,7 +8,7 @@
 function run {
   if ! pgrep -f $1 ;
   then
-    $@& > "${HOME}/.local/share/xorg/startup/${1}.log" 2>&1
+    $@& disown > "${HOME}/.local/share/xorg/startup/${1}.log" 2>&1
   fi
 }
 
@@ -19,8 +19,7 @@ run pasystray --notify=all
 #run nm-applet
 
 ckb-next --profile default  --background --close
-run discord --start-minimized
-
+sudo openrgb -p off.orp
 
 run /usr/lib/xfce-polkit/xfce-polkit
 
@@ -30,4 +29,4 @@ run gnome-keyring-daemon --start --components=secrets
 run xset s 1800 5
 run xss-lock -n /usr/lib/xsecurelock/dimmer -l -- xsecurelock
 
-run unclutter -idle 1.5 -root
+run unclutter -idle 3

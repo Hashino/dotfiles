@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+sudo btrfs subvolume delete /backup
+
+sudo btrfs subvolume snapshot / /backup 
+
+yay -Syu
