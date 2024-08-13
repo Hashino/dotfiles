@@ -12,10 +12,9 @@ Theme.gap_single_client         = true
 Theme.Font_Name                 = "Terminess Nerd Font Mono Regular"
 Theme.Font_Size                 = Theme.UniversalSize * (2 / 5)
 --------------------------------------------------------------------------------
-Theme.Font                      = Theme.Font_Name ..
-    " " .. tostring(Theme.Font_Size)
+Theme.Font                      = Theme.Font_Name .. " " .. tostring(Theme.Font_Size)
 --------------------------------------------------------------------------------
-Theme.Wallpaper                 = "~/wallpaper.png"
+Theme.Wallpaper                 = Theme.location .. "/wallpaper.png"
 --------------------------------------------------------------------------------
 Theme.Colors                    =
 {
@@ -77,8 +76,7 @@ Theme.layout_fairv              = Theme.location .. "/layout_icons/fairv.png"
 Theme.layout_floating           = Theme.location .. "/layout_icons/floating.png"
 Theme.layout_magnifier          = Theme.location .. "/layout_icons/magnifier.png"
 Theme.layout_max                = Theme.location .. "/layout_icons/max.png"
-Theme.layout_tilebottom         = Theme.location ..
-    "/layout_icons/tilebottom.png"
+Theme.layout_tilebottom         = Theme.location .. "/layout_icons/tilebottom.png"
 Theme.layout_tileleft           = Theme.location .. "/layout_icons/tileleft.png"
 Theme.layout_tiletop            = Theme.location .. "/layout_icons/tiletop.png"
 Theme.layout_spiral             = Theme.location .. "/layout_icons/spiral.png"

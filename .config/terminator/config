@@ -1,6 +1,8 @@
 [global_config]
   tab_position = hidden
 [keybindings]
+  page_up = Page_Up
+  page_down = Page_Down
 [profiles]
   [[default]]
     background_color = "#2E3440"

@@ -83,12 +83,16 @@ awful.keyboard.append_global_keybindings({
   -- screenshot
   awful.key({ Global.Keys.ModKey, "Control" }, "p", function()
     awful.spawn(
-      "scrot -s -o -f print.png -e 'xclip -selection clipboard -t image/png -i $f'")
+      "flameshot gui")
   end, { description = "screenshot selection", group = "screenshot" }),
-  awful.key({ Global.Keys.ModKey }, "p", function()
-    awful.spawn(
-      "scrot -o -f print.png -e 'xclip -selection clipboard -t image/png -i $f'")
-  end, { description = "screenshot entire screen", group = "screenshot" }),
+  -- awful.key({ Global.Keys.ModKey, "Control" }, "p", function()
+  --   awful.spawn(
+  --     "scrot -s -o -f print.png -e 'xclip -selection clipboard -t image/png -i $f'")
+  -- end, { description = "screenshot selection", group = "screenshot" }),
+  -- awful.key({ Global.Keys.ModKey }, "p", function()
+  --   awful.spawn(
+  --     "scrot -o -f print.png -e 'xclip -selection clipboard -t image/png -i $f'")
+  -- end, { description = "screenshot entire screen", group = "screenshot" }),
   ------------------------------------------------------------------------------
   -- media
   awful.key({}, "XF86AudioRaiseVolume", function()
