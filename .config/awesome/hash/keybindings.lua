@@ -122,6 +122,9 @@ awful.keyboard.append_global_keybindings({
     awful.spawn("brightnessctl s 5%-")
   end, { description = "brightness +/-", group = "control" }),
 })
+
+--------------------------------------------------------------------------------
+-- Client keybindings
 --------------------------------------------------------------------------------
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
@@ -148,17 +151,22 @@ for i = 1, 9 do
   })
 end
 --------------------------------------------------------------------------------
+local function move_client_animated(client, tag)
+  tag:view_only()
+  client:tags({ tag })
+end
+--------------------------------------------------------------------------------
 -- client default_keybindings
 -- by using this function we can easily get the current select client (c)
 client.connect_signal("request::default_keybindings", function()
   awful.keyboard.append_client_keybindings({
-    awful.key({ Global.Keys.ModKey }, "x", function(c)
-      c:kill()
+    awful.key({ Global.Keys.ModKey }, "x", function(client)
+      client:kill()
     end, { description = "close", group = "client" }),
 
-    awful.key({ Global.Keys.ModKey }, "m", function(c)
-      c.maximized = not c.maximized
-      c:raise()
+    awful.key({ Global.Keys.ModKey }, "m", function(client)
+      client.maximized = not client.maximized
+      client:raise()
     end, { description = "(un)maximize", group = "client" }),
 
     awful.key(
@@ -167,32 +175,31 @@ client.connect_signal("request::default_keybindings", function()
       awful.client.floating.toggle,
       { description = "toggle floating", group = "client" }
     ),
-    awful.key({ Global.Keys.ModKey, "Control" }, "f", function(c)
-      c.fullscreen = not c.fullscreen
-      c:raise()
+    awful.key({ Global.Keys.ModKey, "Control" }, "f", function(client)
+      client.fullscreen = not client.fullscreen
+      client:raise()
     end, { description = "toggle fullscreen", group = "client" }),
 
-    awful.key({ Global.Keys.ModKey, "Shift" }, "l", function(c)
+    awful.key({ Global.Keys.ModKey, "Shift" }, "l", function(client)
       local screen = awful.screen.focused()
 
-      local i = screen.selected_tag.index
+      local tag_index = screen.selected_tag.index
 
       -- if current tag is the last tag, wrap around
-      if i == #screen.tags then
-        i = 1
+      if tag_index == #screen.tags then
+        tag_index = 1
       else -- othewise use the next one
-        i = i + 1
+        tag_index = tag_index + 1
       end
 
-      local next_tag = screen.tags[i]
+      local next_tag = screen.tags[tag_index]
 
       if next_tag then
-        c:tags({ next_tag })
-        next_tag:view_only()
+        move_client_animated(client, next_tag)
       end
     end, { description = "move window to next tag", group = "client" }),
 
-    awful.key({ Global.Keys.ModKey, "Shift" }, "h", function(c)
+    awful.key({ Global.Keys.ModKey, "Shift" }, "h", function(client)
       local screen = awful.screen.focused()
 
       local i = screen.selected_tag.index
@@ -207,13 +214,12 @@ client.connect_signal("request::default_keybindings", function()
       local previous_tag = screen.tags[i]
 
       if previous_tag then
-        c:tags({ previous_tag })
-        previous_tag:view_only()
+        move_client_animated(client, previous_tag)
       end
     end, { description = "move window to previous tag", group = "client" }),
 
 
-    awful.key({ Global.Keys.ModKey, "Shift" }, "n", function(c)
+    awful.key({ Global.Keys.ModKey, "Shift" }, "n", function(client)
       if #root.tags() < 9 then
         local new_tag = awful.tag
             .add("", {
@@ -222,9 +228,7 @@ client.connect_signal("request::default_keybindings", function()
               volatile = true,
               index    = awful.screen.focused().selected_tag.index + 1,
             })
-        c:tags({ new_tag })
-
-        new_tag:view_only()
+        move_client_animated(client, new_tag)
       end
     end, { description = "move window to a new tag", group = "client" }),
 
@@ -248,9 +252,9 @@ end)
 ---------------------------------------------------------------------------------
 client.connect_signal("request::default_mousebindings", function()
   awful.mouse.append_client_mousebindings({
-    awful.button({}, 1, function(c)
-      client.focus = c
-      c:raise()
+    awful.button({}, 1, function(client)
+      client.focus = client
+      client:raise()
     end),
     awful.button({ Global.Keys.ModKey }, 1, awful.mouse.client.move),
     awful.button({ Global.Keys.ModKey }, 3, awful.mouse.client.resize),
