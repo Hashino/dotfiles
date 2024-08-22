@@ -29,6 +29,7 @@ wget -q https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/install
 
 ## Screenshots
 ![simple bg](screenshots/print1.png)
+![animations](screenshots/animations.gif)
 ![neovim1](screenshots/print2.png)
 ![neovim2](screenshots/print3.png)
 ![neovim3](screenshots/print4.png)
