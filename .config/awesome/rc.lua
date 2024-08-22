@@ -19,7 +19,7 @@ Global.ConfigFolder     = awful.util.getdir("config")
 Global.Apps.Terminal    = "terminator"
 Global.Apps.Browser     = "firefox"
 Global.Apps.Filemanager = "nemo"
-Global.Apps.Editor      = "mousepad"
+Global.Apps.Editor      = "neovide"
 --------------------------------------------------------------------------------
 Global.Keys.ModKey      = "Mod4"
 --------------------------------------------------------------------------------
