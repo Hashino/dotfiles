@@ -18,9 +18,6 @@ run pasystray --notify=all
 
 #run nm-applet
 
-ckb-next --profile default  --background --close
-sudo openrgb -p off.orp
-
 run /usr/lib/xfce-polkit/xfce-polkit
 
 run dbus-update-activation-environment --all
@@ -30,3 +27,6 @@ run xset s 1800 5
 run xss-lock -n /usr/lib/xsecurelock/dimmer -l -- xsecurelock
 
 run unclutter -idle 3
+
+run openrgb -p default_off.orp
+ckb-next --profile default  --background --close
