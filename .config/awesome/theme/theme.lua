@@ -47,7 +47,7 @@ Theme.bg_systray                = Theme.bg_normal
 Theme.fg_focus                  = Theme.fg_normal
 Theme.fg_minimize               = Theme.fg_normal
 --------------------------------------------------------------------------------
-Theme.border_width              = Theme.UniversalSize / 30
+Theme.border_width              = Theme.UniversalSize / 20
 Theme.border_normal             = Theme.Colors.Background.Lighter
 Theme.border_focus              = Theme.Colors.Foreground.Normal
 Theme.border_marked             = Theme.Colors.Background.Dark
