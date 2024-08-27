@@ -1,10 +1,4 @@
 #!/usr/bin/env bash
-## run (only once) processes which spawn with the same name
-#function run {
-#   if (command -v $1 && ! pgrep $1); then
-#     $@&
-#   fi
-#}
 function run {
   if ! pgrep -f $1 ;
   then
@@ -18,15 +12,20 @@ run pasystray --notify=all
 
 #run nm-applet
 
+# polkit
 run /usr/lib/xfce-polkit/xfce-polkit
 
+# keyring
 run dbus-update-activation-environment --all
 run gnome-keyring-daemon --start --components=secrets
 
+# lock screen
 run xset s 1800 5
 run xss-lock -n /usr/lib/xsecurelock/dimmer -l -- xsecurelock
 
+# makes mouse disappear
 run unclutter -idle 3
 
+# rgb stuff
 run openrgb -p default_off.orp
 ckb-next --profile default  --background --close
