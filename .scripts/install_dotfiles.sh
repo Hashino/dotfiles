@@ -186,7 +186,7 @@ rm "${HOME}/doas.conf"
 check_success
 
 echo -e -n "Cloning the AUR repository for ${ORANGE_NORMAL}doas-sudo-shim${NORMAL}"
-git clone https://aur.archlinux.org/doas-sudo-shim.git >> $log_file 2>&1 & spinner $!
+git clone https://aur.archlinux.org/doas-sudo-shim.git --recurse-submodules >> $log_file 2>&1 & spinner $!
 check_success
 
 echo -e -n "Building package"
@@ -226,7 +226,7 @@ echo " "
 # CLONING DOTFILES
 echo " "
 echo -e -n "${TITLE}Cloning ${BLUE}${dotfiles_remote}${TITLE} to ${BLUE}${dotfiles_local}${NORMAL}"
-git clone $dotfiles_remote $dotfiles_local -b $branch >> $log_file 2>&1 & spinner $!
+git clone $dotfiles_remote $dotfiles_local >> $log_file 2>&1 & spinner $!
 check_success
 
 ####################################################################################################
@@ -276,6 +276,10 @@ check_success
 # PACKAGES TO INSTALL
 
 cp "${dotfiles_local}/pkg.list" "${HOME}/pkg.list"
+
+if [ $branch="notebook" ] then
+  cat "${dotfiles_local}/pkg.notebook.list" >> "${HOME}/pkg.list"
+fi
 
 nano pkg.list
 
@@ -348,12 +352,6 @@ echo " "
 echo -e -n "${TITLE}Changing user shell to ${QUOTE}fish${NORMAL}"
 doas chsh --shell /bin/fish $user >> $log_file 2>&1
 check_success
-
-####################################################################################################
-# NEOVIM
-echo " "
-echo -e -n "${TITLE}Cloning configs for ${QUOTE}neovim${NORMAL}"
-git clone https://github.com/Hashino/hash.nvim/ ~/.config/nvim/ >> $log_file 2>&1 & spinner $!
 
 ####################################################################################################
 # CLEANUP
