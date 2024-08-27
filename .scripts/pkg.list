@@ -1,10 +1,9 @@
-# This is the list of packages that are going to be installed. Change it if necessary"
+# This is the list of packages that are going to be installed. Change it if necessary
 # After adding/removing the packages you want to be installed, save and quit the editor
-# Lines starting with # will be ignored"
+# Lines starting with # will be ignored
 ack
 btop
 bat
-calibre
 epapirus-icon-theme
 eza
 firefox
@@ -26,6 +25,7 @@ nomacs
 noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
+pasystray
 picom
 pfetch
 playerctl
@@ -33,6 +33,7 @@ qt5ct
 qalculate-gtk
 ripgrep
 rofi
+sioyek
 terminator
 tere
 ttf-terminus-nerd

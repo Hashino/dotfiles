@@ -226,7 +226,7 @@ echo " "
 # CLONING DOTFILES
 echo " "
 echo -e -n "${TITLE}Cloning ${BLUE}${dotfiles_remote}${TITLE} to ${BLUE}${dotfiles_local}${NORMAL}"
-git clone $dotfiles_remote $dotfiles_local -b $branch >> $log_file 2>&1 & spinner $!
+git clone --recurse-submodules $dotfiles_remote $dotfiles_local >> $log_file 2>&1 & spinner $!
 check_success
 
 ####################################################################################################
@@ -275,9 +275,13 @@ check_success
 ####################################################################################################
 # PACKAGES TO INSTALL
 
-cp "${dotfiles_local}/pkg.list" "${HOME}/pkg.list"
+cp "${dotfiles_local}/.scripts/pkg.list" "${HOME}/pkg.list"
 
-nano pkg.list
+if [[ $branch="notebook" ]]; then
+  cat "${dotfiles_local}/.scripts/pkg.notebook.list" >> "${HOME}/pkg.list"
+fi
+
+nano "${HOME}/pkg.list"
 
 ####################################################################################################
 # INSTALLING PACKAGES
@@ -348,12 +352,6 @@ echo " "
 echo -e -n "${TITLE}Changing user shell to ${QUOTE}fish${NORMAL}"
 doas chsh --shell /bin/fish $user >> $log_file 2>&1
 check_success
-
-####################################################################################################
-# NEOVIM
-echo " "
-echo -e -n "${TITLE}Cloning configs for ${QUOTE}neovim${NORMAL}"
-git clone https://github.com/Hashino/hash.nvim/ ~/.config/nvim/ >> $log_file 2>&1 & spinner $!
 
 ####################################################################################################
 # CLEANUP
