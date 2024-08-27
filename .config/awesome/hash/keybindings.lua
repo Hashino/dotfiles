@@ -62,7 +62,7 @@ awful.keyboard.append_global_keybindings({
   end, { description = "open a terminal", group = "launcher" }),
   awful.key({ Global.Keys.ModKey }, "b", function()
     awful.spawn(Global.Apps.Browser)
-  end, { description = "launch Browser", group = "launcher" }),
+  end, { description = "launch browser", group = "launcher" }),
   awful.key({ Global.Keys.ModKey }, "e", function()
     awful.spawn(Global.Apps.Filemanager)
   end, { description = "launch filemanager", group = "launcher" }),
@@ -70,7 +70,7 @@ awful.keyboard.append_global_keybindings({
   -- rofi
   awful.key({ Global.Keys.ModKey }, "r", function()
     awful.spawn("rofi -show run")
-  end, { description = "rofi run", group = "rofi" }),
+  end, { description = "rofi run (application launcher)", group = "rofi" }),
   awful.key({ Global.Keys.ModKey }, "Escape", function()
     awful.spawn(
       "rofi -show power-menu -modi power-menu:~/.local/bin/rofi-power-menu")
