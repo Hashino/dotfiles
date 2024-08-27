@@ -2,7 +2,7 @@
 --------------------------------------------------------------------------------
 local wibox = require("wibox")
 --------------------------------------------------------------------------------
-local get_clock = function(s)
+local get_clock = function(_, --[[optional]]color1, --[[optional]]color2)
   local spacer = wibox.widget({
     {
       layout = wibox.layout.fixed.horizontal,
@@ -27,7 +27,7 @@ local get_clock = function(s)
         }),
         spacer,
       },
-      bg = Theme.Colors.Background.Darkest,
+      bg = color1 or Theme.Colors.Background.Darkest,
       widget = wibox.container.background,
     },
     { -- Time
@@ -41,7 +41,7 @@ local get_clock = function(s)
         }),
         spacer,
       },
-      bg = Theme.Colors.Background.Dark,
+      bg = color2 or Theme.Colors.Background.Dark,
       widget = wibox.container.background,
     },
   })
