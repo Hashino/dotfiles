@@ -1,20 +1,36 @@
 #!/bin/bash
 
-monitor_bus=$(ddccontrol -p | grep -o -P '(?<=bus ).*(?=...)')
+# this script only works with my monitor, a Philips 237E
 
-curr_value=$(ddccontrol -r 0x60 $monitor_bus | grep ".*+/")
+full_query=$(ddccontrol -p)
+
+monitor_model=$(echo "$full_query" | grep -o -P '(?<=ID: ).*(?= \[)')
+
+if [ "$monitor_model" != "PHLC0AD" ]; then
+  echo "Wrong monitor model."
+  echo "Supported Model: PHLC0AD"
+  echo "Your Model: "$monitor_model
+  exit 1
+fi
+
+monitor_bus=$(echo "$full_query" | grep -o -P '(?<=bus ).*(?=...)')
+
+inputsource_ctrl=$(echo "$full_query" | grep -E 'id=inputsource' | grep -oP '(?<=address=).+?(?=,)')
+
+echo $inputsource_ctrl
+
+probe=$(ddccontrol -r $inputsource_ctrl $monitor_bus | grep -E 'Control' | grep -oP " [0-9+]+/[0-9]+/[0-9]+ ")
+
+# min=$(echo $probe | cut -d "/" -f 1 | sed -r 's/[+]/0/g')
+curr=$(echo $probe | cut -d "/" -f 2)
+# max=$(echo $probe | cut -d "/" -f 3)
 
 toset=''
 
-if [ "$curr_value" = 'Control 0x60: +/17/18 C [Input Source Select (Main)]' ]; then
-
-toset=18
-
+if [ "$curr" = "17" ]; then
+  toset="18"
 else
-
-toset=17
-
+  toset="17"
 fi
 
-ddccontrol -r 0x60 -w $toset $monitor_bus
-
+ddccontrol -r $inputsource_ctrl -w $toset $monitor_bus
