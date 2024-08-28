@@ -160,7 +160,7 @@ end
 -- by using this function we can easily get the current select client (c)
 client.connect_signal("request::default_keybindings", function()
   awful.keyboard.append_client_keybindings({
-    awful.key({ Global.Keys.ModKey }, "x", function(client)
+    awful.key({ Global.Keys.ModKey }, "q", function(client)
       client:kill()
     end, { description = "close", group = "client" }),
 
