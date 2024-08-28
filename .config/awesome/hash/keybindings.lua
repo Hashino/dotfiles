@@ -3,38 +3,48 @@
 local awful = require("awful")
 --------------------------------------------------------------------------------
 awful.keyboard.append_global_keybindings({
-  -- monitor control
   ------------------------------------------------------------------------------
+  -- custom actions
   awful.key({ Global.Keys.ModKey, "Control" }, "w", function()
     awful.spawn("input_switch_237e")
   end, { description = "change monitor input", group = "custom actions" }),
-  ------------------------------------------------------------------------------
-  awful.key({ Global.Keys.ModKey }, "v", function()
-    awful.spawn("neovide")
-  end, { description = "open neovide", group = "custom actions" }),
+
+  awful.key({ Global.Keys.ModKey }, "v", function() awful.spawn("neovide") end,
+    { description = "open neovide", group = "custom actions" }),
 
   awful.key({ Global.Keys.ModKey }, "w", function() awful.spawn("win") end,
-    {
-      description = "turn on windows vm (if it wasn't) and shows it",
-      group =
-      "custom actions"
-    }),
+    { description = "turn on windows vm (if it wasn't) and shows it", group = "custom actions" }),
+
+  awful.key({ Global.Keys.ModKey }, "c", function()
+      awful.spawn(Global.Apps.Terminal .. ' -e qlock', {
+        floating = true,
+        sticky = true,
+        focus = false,
+        width = 770,
+        height = 310,
+        placement = awful.placement.bottom_right,
+      })
+    end,
+    { description = "open qlock", group = "custom actions" }),
   ------------------------------------------------------------------------------
   -- awesome controls
   awful.key({ Global.Keys.ModKey }, "s",
     require("awful.hotkeys_popup").widget.show_help,
     { description = "show help", group = "awesome" }),
+
   awful.key({ Global.Keys.ModKey, "Control" }, "r", awesome.restart,
     { description = "reload awesome", group = "awesome" }),
   ------------------------------------------------------------------------------
   -- tag navigation
   awful.key({ Global.Keys.ModKey }, "Tab", awful.tag.viewnext,
     { description = "view next tag", group = "tag-nav" }),
+
   awful.key({ Global.Keys.ModKey }, "l", awful.tag.viewnext,
     { description = "view next tag", group = "tag-nav" }),
 
   awful.key({ Global.Keys.ModKey, "Shift" }, "Tab", awful.tag.viewprev,
     { description = "view pevious tag", group = "tag-nav" }),
+
   awful.key({ Global.Keys.ModKey }, "h", awful.tag.viewprev,
     { description = "view pevious tag", group = "tag-nav" }),
   ------------------------------------------------------------------------------
@@ -50,6 +60,7 @@ awful.keyboard.append_global_keybindings({
           :view_only()
     end
   end, { description = "add tag", group = "tag-nav" }),
+
   awful.key({ Global.Keys.ModKey, "Control" }, "x", function()
     if #root.tags() > 1 then
       awful.screen.focused().selected_tag:delete()
@@ -60,56 +71,55 @@ awful.keyboard.append_global_keybindings({
   awful.key({ Global.Keys.ModKey }, "Return", function()
     awful.spawn(Global.Apps.Terminal)
   end, { description = "open a terminal", group = "launcher" }),
+
   awful.key({ Global.Keys.ModKey }, "b", function()
     awful.spawn(Global.Apps.Browser)
   end, { description = "launch browser", group = "launcher" }),
+
   awful.key({ Global.Keys.ModKey }, "e", function()
     awful.spawn(Global.Apps.Filemanager)
   end, { description = "launch filemanager", group = "launcher" }),
-  ------------------------------------------------------------------------------
-  -- rofi
+
   awful.key({ Global.Keys.ModKey }, "r", function()
     awful.spawn("rofi -show run")
-  end, { description = "rofi run (application launcher)", group = "rofi" }),
+  end, { description = "application launcher (rofi)", group = "launcher" }),
+  ------------------------------------------------------------------------------
+  -- rofi utilities
   awful.key({ Global.Keys.ModKey }, "Escape", function()
-    awful.spawn(
-      "rofi -show power-menu -modi power-menu:~/.local/bin/rofi-power-menu")
-  end, { description = "rofi powermenu", group = "rofi" }),
+    awful.spawn("rofi -show power-menu -modi power-menu:~/.local/bin/rofi-power-menu")
+  end, { description = "rofi powermenu", group = "rofi utilities" }),
+
   awful.key({ Global.Keys.ModKey }, "KP_Subtract", function()
-    awful.spawn(
-      "rofi -show monitor-profile -modi monitor-profile:~/.local/bin/monitor_config")
-  end, { description = "rofi monitor config", group = "rofi" }),
+    awful.spawn("rofi -show monitor-profile -modi monitor-profile:~/.local/bin/monitor_config")
+  end, { description = "rofi monitor config", group = "rofi utilities" }),
   ------------------------------------------------------------------------------
   -- screenshot
   awful.key({ Global.Keys.ModKey, "Control" }, "p", function()
     awful.spawn(
       "flameshot gui")
   end, { description = "screenshot selection", group = "screenshot" }),
-  -- awful.key({ Global.Keys.ModKey, "Control" }, "p", function()
-  --   awful.spawn(
-  --     "scrot -s -o -f print.png -e 'xclip -selection clipboard -t image/png -i $f'")
-  -- end, { description = "screenshot selection", group = "screenshot" }),
-  -- awful.key({ Global.Keys.ModKey }, "p", function()
-  --   awful.spawn(
-  --     "scrot -o -f print.png -e 'xclip -selection clipboard -t image/png -i $f'")
-  -- end, { description = "screenshot entire screen", group = "screenshot" }),
   ------------------------------------------------------------------------------
   -- media
   awful.key({}, "XF86AudioRaiseVolume", function()
     awful.spawn("pactl -- set-sink-volume 0 +3%")
   end, { description = "volume +/-", group = "media" }),
+  
   awful.key({}, "XF86AudioLowerVolume", function()
     awful.spawn("pactl -- set-sink-volume 0 -3%")
   end, { description = "volume +/-", group = "media" }),
+
   awful.key({}, "XF86AudioMute", function()
     awful.spawn("pactl set-sink-mute 0 toggle")
   end, { description = "(un)mute", group = "media" }),
+
   awful.key({}, "XF86AudioPlay", function()
     awful.spawn("playerctl -a play-pause")
   end, { description = "play/pause", group = "media" }),
+
   awful.key({}, "XF86AudioPrev", function()
     awful.spawn("playerctl previous")
   end, { description = "previous", group = "media" }),
+
   awful.key({}, "XF86AudioNext", function()
     awful.spawn("playerctl next")
   end, { description = "next", group = "media" }),
@@ -118,6 +128,7 @@ awful.keyboard.append_global_keybindings({
   awful.key({}, "XF86MonBrightnessUp", function()
     awful.spawn("brightnessctl s +5%")
   end, { description = "brightness +/-", group = "control" }),
+
   awful.key({}, "XF86MonBrightnessDown", function()
     awful.spawn("brightnessctl s 5%-")
   end, { description = "brightness +/-", group = "control" }),
@@ -169,12 +180,11 @@ client.connect_signal("request::default_keybindings", function()
       client:raise()
     end, { description = "(un)maximize", group = "client" }),
 
-    awful.key(
-      { Global.Keys.ModKey },
-      "f",
+    awful.key({ Global.Keys.ModKey }, "f",
       awful.client.floating.toggle,
       { description = "toggle floating", group = "client" }
     ),
+
     awful.key({ Global.Keys.ModKey, "Control" }, "f", function(client)
       client.fullscreen = not client.fullscreen
       client:raise()
@@ -218,7 +228,6 @@ client.connect_signal("request::default_keybindings", function()
       end
     end, { description = "move window to previous tag", group = "client" }),
 
-
     awful.key({ Global.Keys.ModKey, "Shift" }, "n", function(client)
       if #root.tags() < 9 then
         local new_tag = awful.tag
@@ -244,6 +253,7 @@ client.connect_signal("request::default_keybindings", function()
     awful.key({ Global.Keys.ModKey }, "j", function()
       awful.client.focus.byidx(1)
     end, { description = "focus next window by index", group = "client" }),
+
     awful.key({ Global.Keys.ModKey }, "k", function()
       awful.client.focus.byidx(-1)
     end, { description = "focus previous window by index", group = "client" }),
