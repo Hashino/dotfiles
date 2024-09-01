@@ -1,8 +1,8 @@
 -- by Hashino https://github.com/Hashino/dotfiles
 --------------------------------------------------------------------------------
-local awful = require("awful")
+local awful    = require("awful")
 --------------------------------------------------------------------------------
-local run_once = function (class)
+local run_once = function(class)
   awful.spawn.once(class, {}, function(c)
     return c.class == class
   end)
@@ -22,4 +22,9 @@ client.connect_signal("request::tag", function(c)
     c:move_to_tag(awful.screen.focused().tags[#awful.screen.focused().tags])
   end
 end)
+--------------------------------------------------------------------------------
+-- Auto update
+require('hash.autoupdate')
+--------------------------------------------------------------------------------
+awful.spawn.with_shell(Global.ConfigFolder .. "/autorun.sh")
 --------------------------------------------------------------------------------

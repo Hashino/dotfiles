@@ -52,5 +52,4 @@ require("hash.wallpaper")
 --------------------------------------------------------------------------------
 -- Autorun
 require("hash.startup")
-awful.spawn.with_shell(Global.ConfigFolder .. "/autorun.sh")
 --------------------------------------------------------------------------------
