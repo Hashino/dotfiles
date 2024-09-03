@@ -103,7 +103,7 @@ awful.keyboard.append_global_keybindings({
   awful.key({}, "XF86AudioRaiseVolume", function()
     awful.spawn("pactl -- set-sink-volume 0 +3%")
   end, { description = "volume +/-", group = "media" }),
-  
+
   awful.key({}, "XF86AudioLowerVolume", function()
     awful.spawn("pactl -- set-sink-volume 0 -3%")
   end, { description = "volume +/-", group = "media" }),

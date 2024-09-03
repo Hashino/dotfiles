@@ -8,12 +8,7 @@ local run_once = function(class)
   end)
 end
 --------------------------------------------------------------------------------
-awesome.connect_signal("startup", function()
-  run_once("firefox")
-  run_once("spotify")
-  run_once("discord")
-end)
---------------------------------------------------------------------------------
+-- makes spotify and discord spawn in specific tags
 client.connect_signal("request::tag", function(c)
   if c.class == "Spotify" then
     c:move_to_tag(awful.screen.focused().tags[#awful.screen.focused().tags - 1])
@@ -27,4 +22,10 @@ awful.spawn.with_shell(Global.ConfigFolder .. "/autorun.sh")
 --------------------------------------------------------------------------------
 -- Auto update
 require('hash.autoupdate')
+--------------------------------------------------------------------------------
+awesome.connect_signal("startup", function()
+  run_once("firefox")
+  run_once("spotify")
+  run_once("discord")
+end)
 --------------------------------------------------------------------------------

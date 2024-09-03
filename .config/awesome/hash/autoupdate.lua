@@ -12,7 +12,7 @@ local updates_file = '/tmp/.lastupdate'
 --  3. creates `.updated` file as flag for the next instance of awesome
 awful.spawn.easy_async_with_shell(
   'sleep 10',
-  -- runs the autoupdate 20 seconds after startup to provide time for 
+  -- runs the autoupdate 20 seconds after startup to provide time for
   -- networkmanager to connect to the internet
   function()
     awful.spawn.easy_async_with_shell(
