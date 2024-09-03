@@ -1,16 +1,17 @@
+-- by Hashino https://github.com/Hashino/dotfiles
 -- TODO: clean code
-local capi = { screen = screen, client = client }
-local ipairs = ipairs
+--------------------------------------------------------------------------------
+local capi         = { screen = screen, client = client }
+local ipairs       = ipairs
 local setmetatable = setmetatable
-local table = table
-local common = require("awful.widget.common")
-local tag = require("awful.tag")
-local timer = require("gears.timer")
-local base = require("wibox.widget.base")
-local gtable = require("gears.table")
-local wibox = require("wibox")
-local awful = require("awful")
-
+local table        = table
+local common       = require("awful.widget.common")
+local tag          = require("awful.tag")
+local timer        = require("gears.timer")
+local base         = require("wibox.widget.base")
+local gtable       = require("gears.table")
+local wibox        = require("wibox")
+local awful        = require("awful")
 --------------------------------------------------------------------------------
 local function get_screen(s)
   return s and screen[s]
@@ -41,7 +42,8 @@ local function tasklist_update(s, self, buttons, filter, data, update_function)
 
   for _, c in ipairs(list) do
     if
-        not (c.skip_taskbar or c.hidden or c.type == "splash" or c.type == "dock" or c.type == "desktop")
+        not (c.skip_taskbar or c.hidden
+          or c.type == "splash" or c.type == "dock" or c.type == "desktop")
         and filter(c, s)
     then
       table.insert(clients, c)
@@ -71,7 +73,14 @@ function tasklist:layout(_, width, height)
 end
 
 --------------------------------------------------------------------------------
-for _, prop in ipairs({ "screen", "filter", "update_function", "widget_template", "source" }) do
+for _, prop in ipairs(
+  {
+    "screen",
+    "filter",
+    "update_function",
+    "widget_template",
+    "source"
+  }) do
   tasklist["set_" .. prop] = function(self, value)
     if value == self._private[prop] then
       return

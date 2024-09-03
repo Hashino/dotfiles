@@ -16,7 +16,7 @@ Theme.Font                      = Theme.Font_Name .. " " .. tostring(Theme.Font_
 --------------------------------------------------------------------------------
 Theme.Wallpaper                 = Theme.location .. "/wallpaper.png"
 --------------------------------------------------------------------------------
-Theme.Colors                    =
+Theme.Colors =
 {
     Background =
     {
@@ -54,6 +54,9 @@ Theme.border_marked             = Theme.Colors.Background.Dark
 --------------------------------------------------------------------------------
 Theme.tasklist_font             = Theme.Font
 Theme.tasklist_plain_task_name  = true
+--------------------------------------------------------------------------------
+Theme.titlebar_bg               = Theme.Colors.Background.Darkest
+Theme.titlebar_fg               = Theme.Colors.Foreground.Normal
 --------------------------------------------------------------------------------
 Theme.systray_icon_spacing      = Theme.Spacing * (2 / 3)
 Theme.bg_systray                = Theme.Colors.Background.Neutral
