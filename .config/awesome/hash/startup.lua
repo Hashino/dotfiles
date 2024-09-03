@@ -23,8 +23,8 @@ client.connect_signal("request::tag", function(c)
   end
 end)
 --------------------------------------------------------------------------------
+awful.spawn.with_shell(Global.ConfigFolder .. "/autorun.sh")
+--------------------------------------------------------------------------------
 -- Auto update
 require('hash.autoupdate')
---------------------------------------------------------------------------------
-awful.spawn.with_shell(Global.ConfigFolder .. "/autorun.sh")
 --------------------------------------------------------------------------------

@@ -1,5 +1,5 @@
 # My personal dotfiles. Based on my personal tweaks of the [Nord Color Scheme](https://www.nordtheme.com/docs/colors-and-palettes)
-
+ 
 | Windows Manager       | [AwesomeWM](https://awesomewm.org/) |
 | :---:                 | :---:                               |
 | Wallpaper             | [.config/awesome/theme/wallpaper.png](.config/awesome/theme/wallpaper.png) |
