@@ -2,7 +2,6 @@
 --------------------------------------------------------------------------------
 local awful = require("awful")
 local ruled = require("ruled")
-local wibox = require("wibox")
 --------------------------------------------------------------------------------
 -- Rules to apply to new clients.
 ruled.client.connect_signal("request::rules", function()
@@ -28,22 +27,11 @@ ruled.client.connect_signal("request::rules", function()
       name  = { "Event Tester" },      -- xev.
       role  = { "pop-up", "toolbox" }, -- e.g. Google Chrome's (detached) Developer Tools.
     },
-    -- TODO: add title bars to floating clients
-    properties = { floating = true, titlebars_enabled = true }
+    properties = { floating = true }
   }
 end)
 --------------------------------------------------------------------------------
-client.connect_signal("request::titlebars", function(c)
-  -- buttons for the titlebar
-  awful.titlebar(c).widget = {
-    { -- Title
-      halign = "center",
-      widget = wibox.widget.textbox(c.class:lower())
-    },
-    layout = wibox.layout.flex.horizontal
-  }
-end)
--- }}}
+-- Notifications rules
 ruled.notification.connect_signal('request::rules', function()
   -- All notifications will match this rule.
   ruled.notification.append_rule

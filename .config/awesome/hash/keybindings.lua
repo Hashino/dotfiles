@@ -17,6 +17,7 @@ awful.keyboard.append_global_keybindings({
 
   awful.key({ Global.Keys.ModKey }, "c", function()
       awful.spawn(Global.Apps.Terminal .. ' -e qlock', {
+        titlebars_enabled = false,
         floating = true,
         sticky = true,
         focus = false,
