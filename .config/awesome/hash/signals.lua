@@ -32,14 +32,6 @@ client.connect_signal("unfocus", function(c)
   c.border_color = Theme.border_normal
 end)
 --------------------------------------------------------------------------------
-client.connect_signal("property::tilebars_enabled", function(c)
-  if c.tilebars_enabled then
-    awful.titlebar.show(c)
-  else
-    awful.titlebar.hide(c)
-  end
-end)
---------------------------------------------------------------------------------
 -- Handle border sizes of clients.
 for s = 1, screen.count() do
   screen[s]:connect_signal("arrange", function()
@@ -48,14 +40,14 @@ for s = 1, screen.count() do
 
     for _, c in pairs(clients) do
       c.ontop = false
-      c.tilebars_enabled = false
+      -- c.tilebars_enabled = false
 
       if c.maximized or c.fullscreen then
         c.border_width = 0
       elseif c.floating or layout == "floating" then
         c.border_width = Theme.border_width
         c.ontop = true
-        c.tilebars_enabled = true
+        -- c.tilebars_enabled = true
       elseif layout == "max" or layout == "fullscreen" then
         c.border_width = 0
       else
@@ -70,6 +62,14 @@ for s = 1, screen.count() do
     end
   end)
 end
+--------------------------------------------------------------------------------
+client.connect_signal("property::tilebars_enabled", function(c)
+  if c.tilebars_enabled then
+    awful.titlebar.show(c)
+  else
+    awful.titlebar.hide(c)
+  end
+end)
 --------------------------------------------------------------------------------
 -- {{{ Title bar
 local instances = {}
@@ -127,13 +127,22 @@ local function titlebar_text(c)
 end
 
 client.connect_signal("request::titlebars", function(c)
+  local buttons = {
+    awful.button({}, 1, function()
+      c:activate { context = "titlebar", action = "mouse_move" }
+    end),
+    awful.button({}, 3, function()
+      c:activate { context = "titlebar", action = "mouse_resize" }
+    end),
+  }
   -- buttons for the titlebar
   awful.titlebar(c).widget = {
     { -- Title
       halign = "center",
       widget = titlebar_text(c)
     },
-    layout = wibox.layout.flex.horizontal
+    buttons = buttons,
+    layout  = wibox.layout.flex.horizontal
   }
 end)
 -- }}}
