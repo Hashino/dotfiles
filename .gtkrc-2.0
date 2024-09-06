@@ -2,7 +2,7 @@
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
 include "/home/hashino/.gtkrc-2.0.mine"
-gtk-theme-name="Adapta-FrostBlue4-Nokto-Eta"
+gtk-theme-name="Nordic-darker-standard-buttons"
 gtk-icon-theme-name="ePapirus-Dark"
 gtk-font-name="Terminess Nerd Font Medium 12"
 gtk-cursor-theme-name="Simp1e-Nord-Darker-Hash"
