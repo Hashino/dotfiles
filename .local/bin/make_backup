@@ -3,13 +3,8 @@
 
 RED='\033[1;31m'
 GREEN='\033[1;32m'
-BLUE='\033[1;34m'
-ORANGE='\033[1;33m'
-ORANGE_NORMAL='\033[1;33m'
 NORMAL='\033[0;37m'
-BOLD='\033[1;37m'
 
-TITLE='\033[1;36m'
 QUOTE='\033[4;36m'
 
 RES_COL=100
@@ -71,13 +66,21 @@ read -r -p "Replace previous system backup with a new one? [Y/n]" response
 response=${response,,} # tolower
 
 if [[ $response =~ ^(y| ) ]] || [[ -z $response ]]; then
-  echo -e -n 'deleting old backup'
-  sudo btrfs subvolume delete /backup >> /dev/null 2>&1 & spinner $!
-  check_success
+  # echo -e -n 'mounting backup volume'
+  # sudo mount /dev/nvme0n1p2 /backup -o 'subvol=backup' >> /dev/null 2>&1 & spinner $!
+  # check_success
+
+  # echo -e -n 'deleting old backup'
+  # sudo btrfs subvolume delete /backup/previous >> /dev/null 2>&1 & spinner $!
+  # check_success
 
   echo -e -n 'creating new backup'
-  sudo btrfs subvolume snapshot / /backup >> /dev/null 2>&1 & spinner $!
+  sudo btrfs subvolume snapshot / /backup/previous >> /dev/null 2>&1 & spinner $!
   check_success
+
+  # echo -e -n 'unmounting backup volume'
+  # sudo umount /backup 2>&1 & spinner $!
+  # check_success
 else
   echo 'no change was made'
 fi
