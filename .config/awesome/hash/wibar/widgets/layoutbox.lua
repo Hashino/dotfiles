@@ -24,14 +24,14 @@ local get_layoutbox = function(s)
   Theme.layout_dwindle    = recolor(Theme.layout_dwindle, Theme.fg_normal)
   ------------------------------------------------------------------------------
   local layoutbox         = wibox.widget
-      {
-        awful.widget.layoutbox(s),
-        bottom = margin,
-        top    = margin,
-        left   = margin,
-        right  = margin,
-        widget = wibox.container.margin,
-      }
+     {
+       awful.widget.layoutbox(s),
+       bottom = margin,
+       top    = margin,
+       left   = margin,
+       right  = margin,
+       widget = wibox.container.margin,
+     }
   layoutbox:buttons
   ({
     awful.button({}, 1, function() awful.layout.inc(1) end),

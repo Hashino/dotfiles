@@ -16,7 +16,7 @@ Theme.Font                      = Theme.Font_Name .. " " .. tostring(Theme.Font_
 --------------------------------------------------------------------------------
 Theme.Wallpaper                 = Theme.location .. "/wallpaper.png"
 --------------------------------------------------------------------------------
-Theme.Colors =
+Theme.Colors                    =
 {
     Background =
     {
@@ -32,7 +32,7 @@ Theme.Colors =
         Normal = "#ddeeff",
         Urgent = "#ff0000",
     },
-    Transparent = "#00000000"
+    Transparent = "#00000000",
 }
 --------------------------------------------------------------------------------
 Theme.fg_normal                 = Theme.Colors.Foreground.Normal

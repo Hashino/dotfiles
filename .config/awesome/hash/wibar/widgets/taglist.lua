@@ -20,13 +20,13 @@ local get_taglist           = function(s)
     awful.button({}, 1, function(t)
       t:view_only()
     end),
-    awful.button({ Global.Keys.ModKey }, 1, function(t)
+    awful.button({ Global.Keys.ModKey, }, 1, function(t)
       if client.focus then
         client.focus:move_to_tag(t)
       end
     end),
     awful.button({}, 3, awful.tag.viewtoggle),
-    awful.button({ Global.Keys.ModKey }, 3, function(t)
+    awful.button({ Global.Keys.ModKey, }, 3, function(t)
       if client.focus then
         client.focus:toggle_tag(t)
       end
@@ -72,7 +72,7 @@ local get_taglist           = function(s)
   -- Function to update the margin
   local update_margin = function(self)
     self.left = #s.tags == 1 and 0 or
-        outer_margin_width --hides tags when only 1 tag
+       outer_margin_width  --hides tags when only 1 tag
     self.right = #s.tags == 1 and 0 or outer_margin_width
     self.top = #s.tags == 1 and 0 or outer_margin_vertical
     self.bottom = #s.tags == 1 and 0 or outer_margin_vertical

@@ -1,0 +1,19 @@
+
+[*.lua]
+
+# optional space/tab
+indent_style = space
+# if indent_style is space, this is valid
+indent_size = 2
+# if indent_style is tab, this is valid
+tab_width = 2
+# none/single/double
+quote_style = double
+trailing_table_separator = always
+call_arg_parentheses = keep
+
+continuation_indent = 3
+
+# this mean utf8 length , if this is 'unset' then the line width is no longer checked
+# this option decides when to chopdown the code
+max_line_length = 100

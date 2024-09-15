@@ -21,7 +21,7 @@ end)
 awful.spawn.with_shell(Global.ConfigFolder .. "/autorun.sh")
 --------------------------------------------------------------------------------
 -- Auto update
-require('hash.autoupdate')
+require("hash.autoupdate")
 --------------------------------------------------------------------------------
 awesome.connect_signal("startup", function()
   run_once("firefox")

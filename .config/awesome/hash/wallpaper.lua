@@ -15,7 +15,7 @@ screen.connect_signal("request::wallpaper", function(s)
       horizontal_fit_policy = "fit",
       vertical_fit_policy   = "fit",
       widget                = wibox.widget.imagebox,
-    }
+    },
   }
 end)
 --------------------------------------------------------------------------------

@@ -8,9 +8,8 @@ local function get_wibar(s)
   s.wibox = awful.wibar({
     position = "top",
     screen = s,
-    height = Theme
-        .UniversalSize,
-    bg = Theme.Colors.Transparent
+    height = Theme.UniversalSize,
+    bg = Theme.Colors.Transparent,
   })
   -- Add widgets to the wibox
   s.wibox:setup
@@ -22,30 +21,30 @@ local function get_wibar(s)
         {
           require("hash.wibar.widgets.layoutbox")(s),
           bg = Theme.Colors.Background.Darkest,
-          widget = wibox.container.background
+          widget = wibox.container.background,
         },
         {
           require("hash.wibar.widgets.taglist")(s),
           bg = Theme.Colors.Background.Neutral,
-          widget = wibox.container.background
+          widget = wibox.container.background,
         },
       },
       { -- Middle widget
         require("hash.wibar.widgets.tasklist")(s),
         bg = Theme.Transparent,
-        widget = wibox.container.background
+        widget = wibox.container.background,
       },
       { -- Right widgets
         layout = wibox.layout.fixed.horizontal,
         {
           require("hash.wibar.widgets.player_gui")(s),
           bg = Theme.Colors.Background.Darkest,
-          widget = wibox.container.background
+          widget = wibox.container.background,
         },
         {
           require("hash.wibar.widgets.systray")(s),
           bg = Theme.Colors.Background.Neutral,
-          widget = wibox.container.background
+          widget = wibox.container.background,
         },
         require("hash.wibar.widgets.clock")(s),
       },
@@ -53,7 +52,7 @@ local function get_wibar(s)
     left   = Theme.useless_gap * 2,
     right  = Theme.useless_gap * 2,
     top    = Theme.useless_gap,
-    widget = wibox.container.margin
+    widget = wibox.container.margin,
   }
 end
 --------------------------------------------------------------------------------

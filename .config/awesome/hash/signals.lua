@@ -2,15 +2,15 @@
 --------------------------------------------------------------------------------
 local awful = require("awful")
 local wibox = require("wibox")
-local capi = { client = client }
+local capi  = { client = client, }
 --------------------------------------------------------------------------------
 client.connect_signal("manage", function(c)
   -- Set the windows at the slave,
   -- i.e. put it at the end of others instead of setting it master.
   -- if not awesome.startup then awful.client.setslave(c) end
   if awesome.startup and
-      not c.size_hints.user_position
-      and not c.size_hints.program_position then
+     not c.size_hints.user_position
+     and not c.size_hints.program_position then
     -- Prevent clients from being unreachable after screen count changes.
     awful.placement.no_offscreen(c)
   end
@@ -19,7 +19,7 @@ end)
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)
   if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
-      and awful.client.focus.filter(c) then
+     and awful.client.focus.filter(c) then
     client.focus = c
   end
 end)
@@ -80,7 +80,7 @@ local instances = {}
 local function update_on_signal(c, signal, widget)
   local sig_instances = instances[signal]
   if sig_instances == nil then
-    sig_instances = setmetatable({}, { __mode = "k" })
+    sig_instances = setmetatable({}, { __mode = "k", })
     instances[signal] = sig_instances
     capi.client.connect_signal(signal, function(cl)
       local widgets = sig_instances[cl]
@@ -93,7 +93,7 @@ local function update_on_signal(c, signal, widget)
   end
   local widgets = sig_instances[c]
   if widgets == nil then
-    widgets = setmetatable({}, { __mode = "v" })
+    widgets = setmetatable({}, { __mode = "v", })
     sig_instances[c] = widgets
   end
   table.insert(widgets, widget)
@@ -129,20 +129,20 @@ end
 client.connect_signal("request::titlebars", function(c)
   local buttons = {
     awful.button({}, 1, function()
-      c:activate { context = "titlebar", action = "mouse_move" }
+      c:activate { context = "titlebar", action = "mouse_move", }
     end),
     awful.button({}, 3, function()
-      c:activate { context = "titlebar", action = "mouse_resize" }
+      c:activate { context = "titlebar", action = "mouse_resize", }
     end),
   }
   -- buttons for the titlebar
   awful.titlebar(c).widget = {
     { -- Title
       halign = "center",
-      widget = titlebar_text(c)
+      widget = titlebar_text(c),
     },
     buttons = buttons,
-    layout  = wibox.layout.flex.horizontal
+    layout  = wibox.layout.flex.horizontal,
   }
 end)
 -- }}}

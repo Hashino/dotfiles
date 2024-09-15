@@ -18,16 +18,16 @@ local next = " 󰒭 "
 
 local font = Theme.Font
 local font_icon = Theme.Font_Name ..
-    " " .. tostring(Theme.UniversalSize * (4 / 7))
+   " " .. tostring(Theme.UniversalSize * (4 / 7))
 local font_controls = Theme.Font_Name ..
-    " " .. tostring(Theme.UniversalSize * (1 / 2))
+   " " .. tostring(Theme.UniversalSize * (1 / 2))
 
 -- name of the binary of your music player
 local default_player = "spotify"
 
 local GET_MPD_CMD = "playerctl -p " ..
-    default_player ..
-    " -f '{{status}};{{xesam:artist}};{{xesam:title}}' metadata"
+   default_player ..
+   " -f '{{status}};{{xesam:artist}};{{xesam:title}}' metadata"
 --------------------------------------------------------------------------------
 local player_widget = wibox.widget({
   {
@@ -40,7 +40,7 @@ local player_widget = wibox.widget({
         buttons = gears.table.join(awful.button({}, 1, nil,
           function()
             local matcher = function(c)
-              return awful.rules.match(c, { instance = default_player })
+              return awful.rules.match(c, { instance = default_player, })
             end
             awful.client.run_or_raise(default_player, matcher)
           end)),
@@ -52,7 +52,7 @@ local player_widget = wibox.widget({
         widget = wibox.widget.textbox,
         buttons = gears.table.join(awful.button({}, 1, nil, function()
           local matcher = function(c)
-            return awful.rules.match(c, { instance = default_player })
+            return awful.rules.match(c, { instance = default_player, })
           end
           awful.client.run_or_raise(default_player, matcher)
         end)),

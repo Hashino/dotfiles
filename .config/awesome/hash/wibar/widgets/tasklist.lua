@@ -1,7 +1,7 @@
 -- by Hashino https://github.com/Hashino/dotfiles
 -- TODO: clean code
 --------------------------------------------------------------------------------
-local capi         = { screen = screen, client = client }
+local capi         = { screen = screen, client = client, }
 local ipairs       = ipairs
 local setmetatable = setmetatable
 local table        = table
@@ -27,8 +27,8 @@ local function tasklist_label(c, tb)
   tb:set_font(Theme.tasklist_font)
 
   return "<span color='" ..
-      Theme.fg_focus ..
-      "'>" .. c.class .. " - " .. c.name:lower() .. "</span>"
+     Theme.fg_focus ..
+     "'>" .. c.class .. " - " .. c.name:lower() .. "</span>"
 end
 
 local function create_callback(w, t)
@@ -42,9 +42,9 @@ local function tasklist_update(s, self, buttons, filter, data, update_function)
 
   for _, c in ipairs(list) do
     if
-        not (c.skip_taskbar or c.hidden
-          or c.type == "splash" or c.type == "dock" or c.type == "desktop")
-        and filter(c, s)
+       not (c.skip_taskbar or c.hidden
+         or c.type == "splash" or c.type == "dock" or c.type == "desktop")
+       and filter(c, s)
     then
       table.insert(clients, c)
     end
@@ -68,7 +68,7 @@ end
 --------------------------------------------------------------------------------
 function tasklist:layout(_, width, height)
   if self._private.base_layout then
-    return { base.place_widget_at(self._private.base_layout, 0, 0, width, height) }
+    return { base.place_widget_at(self._private.base_layout, 0, 0, width, height), }
   end
 end
 
@@ -79,7 +79,7 @@ for _, prop in ipairs(
     "filter",
     "update_function",
     "widget_template",
-    "source"
+    "source",
   }) do
   tasklist["set_" .. prop] = function(self, value)
     if value == self._private[prop] then
@@ -117,7 +117,7 @@ local function update_screen(self, screen, old)
   local list = instances[screen]
 
   if not list then
-    list = setmetatable({}, { __mode = "v" })
+    list = setmetatable({}, { __mode = "v", })
     instances[screen] = list
   end
 
@@ -136,7 +136,7 @@ function tasklist.new(screen, widget_template)
     style = {},
     screen = screen,
     widget_template = widget_template,
-    data = setmetatable({}, { __mode = "k" }),
+    data = setmetatable({}, { __mode = "k", }),
   })
 
   gtable.crush(w, tasklist, true)
@@ -167,7 +167,7 @@ function tasklist.new(screen, widget_template)
   end
 
   if instances == nil then
-    instances = setmetatable({}, { __mode = "k" })
+    instances = setmetatable({}, { __mode = "k", })
     local function us(s)
       local i = instances[get_screen(s)]
       if i then
