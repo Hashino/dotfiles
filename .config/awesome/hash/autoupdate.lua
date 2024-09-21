@@ -91,7 +91,7 @@ if updated ~= nil then
   -- removes file so it doesn't get show on next start
   awful.spawn.with_shell("rm /tmp/.updated")
   naughty.notify({
-    title = "Confis Updated",
+    title = "Configs Updated",
     text = "Showing changes in terminal",
     border_color = Theme.Colors.Foreground.Urgent,
     timeout = 0,
