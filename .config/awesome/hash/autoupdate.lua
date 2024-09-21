@@ -4,8 +4,6 @@ local awful        = require("awful")
 local naughty      = require("naughty")
 --------------------------------------------------------------------------------
 local updates_file = "/tmp/.lastupdate"
-
-
 -- checks if configs need update. if so:
 --  1. figures out how many n commits the configs are behind
 --  2. saves the info of the last n commits to a temporary file

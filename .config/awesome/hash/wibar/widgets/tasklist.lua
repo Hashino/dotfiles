@@ -28,7 +28,7 @@ local function tasklist_label(c, tb)
 
   return "<span color='" ..
      Theme.fg_focus ..
-     "'>" .. c.class .. " - " .. c.name:lower() .. "</span>"
+     "'>" .. c.class:lower() .. " - " .. c.name:lower() .. "</span>"
 end
 
 local function create_callback(w, t)
