@@ -20,7 +20,7 @@ fi
 run picom -b
 
 # audio applet
-run pasystray --notify=all
+run pasystray #--notify=all
 
 # lock screen
 run xset s 1800 5

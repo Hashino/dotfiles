@@ -1,7 +1,9 @@
 -- by Hashino https://github.com/Hashino/dotfiles
 --------------------------------------------------------------------------------
 local awful = require("awful")
+local utils = require("hash.utils")
 --------------------------------------------------------------------------------
+
 awful.keyboard.append_global_keybindings({
   ------------------------------------------------------------------------------
   -- custom actions
@@ -102,10 +104,12 @@ awful.keyboard.append_global_keybindings({
   -- media
   awful.key({}, "XF86AudioRaiseVolume", function()
     awful.spawn("pactl -- set-sink-volume 0 +3%")
+    utils.show_volume_notification()
   end, { description = "volume +/-", group = "media", }),
 
   awful.key({}, "XF86AudioLowerVolume", function()
     awful.spawn("pactl -- set-sink-volume 0 -3%")
+    utils.show_volume_notification()
   end, { description = "volume +/-", group = "media", }),
 
   awful.key({}, "XF86AudioMute", function()
@@ -123,6 +127,10 @@ awful.keyboard.append_global_keybindings({
   awful.key({}, "XF86AudioNext", function()
     awful.spawn("playerctl next")
   end, { description = "next", group = "media", }),
+
+  awful.key({}, "XF86Eject", function()
+    awful.spawn.easy_async("soundswitch", utils.show_volume_notification)
+  end, { description = "switch output device", group = "media", }),
   ------------------------------------------------------------------------------
   -- control
   awful.key({}, "XF86MonBrightnessUp", function()
