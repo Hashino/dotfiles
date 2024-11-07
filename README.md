@@ -1,7 +1,7 @@
 # My personal dotfiles. Based on my personal tweaks of the [Nord Color Scheme](https://www.nordtheme.com/docs/colors-and-palettes)
  
 | Windows Manager       | [AwesomeWM](https://awesomewm.org/) |
-| :---:                 | :---:                               |
+| :---:                 | :---:                                   |
 | Wallpaper             | [.config/awesome/theme/wallpaper.png](.config/awesome/theme/wallpaper.png) |
 | GTK Theme             | [Adapta-FrostBlue4-Nokto-Eta](https://github.com/Adapta-Projects/Adapta-Nord) |
 | Icon Theme            | [Papirus Icon Theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) |
@@ -15,7 +15,7 @@
 | Text Editor           | [Neovim](https://github.com/neovim/neovim) with [Neovide](https://github.com/neovide/neovide) |
 
 | Terminal Emulator     | [Terminator](https://archlinux.org/packages/extra/any/terminator/) |
-| :---:                 | :---:                               |
+| :---:                 | :---:                                         |
 | Shell                 | [Fish](https://github.com/fish-shell/fish-shell) |
 | Terminal Font         | [Ubuntu Mono](https://design.ubuntu.com/font/) |
 | Terminal Colors       | [Nord Color Scheme](https://www.nordtheme.com/ports) |

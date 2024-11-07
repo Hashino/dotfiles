@@ -14,7 +14,7 @@ set -u
 
 # All supported choices
 #all=(shutdown reboot suspend hibernate logout lockscreen)
-all=(lockscreen logout suspend shutdown reboot)
+all=(lockscreen logout sleep shutdown reboot)
 
 # By default, show all (i.e., just copy the array)
 show=("${all[@]}")
@@ -22,7 +22,7 @@ show=("${all[@]}")
 declare -A texts
 texts[lockscreen]="lock screen"
 texts[logout]="log out"
-texts[suspend]="suspend"
+texts[sleep]="sleep"
 texts[hibernate]="hibernate"
 texts[reboot]="reboot"
 texts[shutdown]="shut down"
@@ -31,7 +31,7 @@ declare -A icons
 icons[lockscreen]=" "
 icons[switchuser]="󰀙 "
 icons[logout]=" "
-icons[suspend]=" "
+icons[sleep]=" "
 icons[hibernate]="\uf7c9 "
 icons[reboot]=" "
 icons[shutdown]=" "
@@ -40,7 +40,7 @@ icons[cancel]=" "
 declare -A actions
 actions[lockscreen]="loginctl lock-session $XDG_SESSION_ID"
 actions[logout]="killall Xorg"
-actions[suspend]="systemctl suspend"
+actions[sleep]="systemctl sleep"
 actions[hibernate]="systemctl hibernate"
 actions[reboot]="systemctl reboot"
 actions[shutdown]="systemctl poweroff"

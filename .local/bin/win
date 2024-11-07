@@ -1,6 +1,9 @@
+#!/bin/sh
 
-#!/usr/bin/env bash
+function start_vm() {
+  sudo virsh start "w10vm"
+}
 
-sudo virsh start "w10vm"
+start_vm &
 
-looking-glass-client -F & disown & exit
+looking-glass-client -F & disown
