@@ -25,7 +25,7 @@ function fish_prompt
   end
 
   # Display the current directory name
-  echo -n -s $green(string replace $HOME '~' (pwd))
+  echo -n -s ' ' $green(string replace $HOME '~' (pwd))
 
   # Show git branch and dirty state
   if [ (_git_branch_name) ]
@@ -38,6 +38,6 @@ function fish_prompt
   end
 
   # Terminate with a nice prompt char
-  echo -n -s $normal'  '
+  echo -n -s $normal' '
 
 end

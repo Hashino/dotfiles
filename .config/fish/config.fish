@@ -9,6 +9,7 @@ set -g -x PATH /bin:/usr/bin:/usr/local/bin/:$HOME/.local/bin
 #ALIASES
 
 ##moar
+alias moar 'nvim +Man!'
 alias more 'moar'
 alias less 'more'
 
@@ -46,7 +47,7 @@ alias pm "yay -Qqent | fzf --preview 'yay -Qil {}' --layout=reverse --bind 'ente
 #enviroment variables
 set -U -x TERMINAL terminator
 set -U -x EDITOR nvim
-set -U -x PAGER moar
+set -U -x PAGER 'nvim +Man!'
 
 set -U -x PF_INFO "ascii title os kernel wm shell memory palette"
 

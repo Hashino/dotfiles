@@ -45,10 +45,10 @@ awful.keyboard.append_global_keybindings({
     { description = "view next tag", group = "tag-nav", }),
 
   awful.key({ Global.Keys.ModKey, "Shift", }, "Tab", awful.tag.viewprev,
-    { description = "view pevious tag", group = "tag-nav", }),
+    { description = "view previous tag", group = "tag-nav", }),
 
   awful.key({ Global.Keys.ModKey, }, "h", awful.tag.viewprev,
-    { description = "view pevious tag", group = "tag-nav", }),
+    { description = "view previous tag", group = "tag-nav", }),
   ------------------------------------------------------------------------------
   -- tag controls
   awful.key({ Global.Keys.ModKey, "Control", }, "n", function()
@@ -63,7 +63,7 @@ awful.keyboard.append_global_keybindings({
     end
   end, { description = "add tag", group = "tag-nav", }),
 
-  awful.key({ Global.Keys.ModKey, "Control", }, "x", function()
+  awful.key({ Global.Keys.ModKey, "Control", }, "q", function()
     if #root.tags() > 1 then
       awful.screen.focused().selected_tag:delete()
     end
@@ -73,6 +73,22 @@ awful.keyboard.append_global_keybindings({
   awful.key({ Global.Keys.ModKey, }, "Return", function()
     awful.spawn(Global.Apps.Terminal)
   end, { description = "open a terminal", group = "launcher", }),
+
+  -- BUG: gives error
+  -- TODO: implement same for neovide
+  awful.key({ Global.Keys.ModKey, "Shift", }, "Return", function()
+    if #root.tags() < 9 then
+      local tag = awful.tag
+         .add("", {
+           screen   = awful.screen.focused(),
+           layout   = awful.layout.layouts[1],
+           volatile = true,
+           index    = awful.screen.focused().selected_tag.index + 1,
+         })
+      tag:view_only()
+      awful.spawn(Global.Apps.Terminal, { new_tag = tag, })
+    end
+  end, { description = "open a terminal in a new tag", group = "launcher", }),
 
   awful.key({ Global.Keys.ModKey, }, "b", function()
     awful.spawn(Global.Apps.Browser)
