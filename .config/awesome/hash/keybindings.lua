@@ -130,6 +130,7 @@ awful.keyboard.append_global_keybindings({
 
   awful.key({}, "XF86AudioMute", function()
     awful.spawn("pactl set-sink-mute 0 toggle")
+    utils.show_volume_notification()
   end, { description = "(un)mute", group = "media", }),
 
   awful.key({}, "XF86AudioPlay", function()
