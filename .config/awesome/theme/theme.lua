@@ -2,7 +2,7 @@
 --------------------------------------------------------------------------------
 Theme                           = {}
 Theme.location                  = "~/.config/awesome/theme/"
-Theme.UniversalSize             = require("awful.screen").focused().dpi * (3/8)
+Theme.UniversalSize             = 32
 --------------------------------------------------------------------------------
 Theme.Spacing                   = Theme.UniversalSize * (2 / 3)
 --------------------------------------------------------------------------------

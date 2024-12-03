@@ -39,7 +39,7 @@ icons[cancel]=" "
 
 declare -A actions
 actions[lockscreen]="loginctl lock-session $XDG_SESSION_ID"
-actions[logout]="killall Xorg"
+actions[logout]="sudo systemctl restart display-manager"
 actions[sleep]="systemctl sleep"
 actions[hibernate]="systemctl hibernate"
 actions[reboot]="systemctl reboot"
