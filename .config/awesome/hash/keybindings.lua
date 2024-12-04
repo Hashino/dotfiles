@@ -36,6 +36,16 @@ awful.keyboard.append_global_keybindings({
 
   awful.key({ Global.Keys.ModKey, "Control", }, "r", awesome.restart,
     { description = "reload awesome", group = "awesome", }),
+  --------------------------------------------------------------------------------
+  -- screen controls
+  awful.key({ Global.Keys.ModKey, "Control", }, "j", function()
+    awful.screen.focus_relative(1)
+  end, { description = "focus next screen", group = "tag-nav", }),
+
+  awful.key({ Global.Keys.ModKey, "Control", }, "k", function()
+    awful.screen.focus_relative(-1)
+  end, { description = "focus previous screen", group = "tag-nav", }),
+
   ------------------------------------------------------------------------------
   -- tag navigation
   awful.key({ Global.Keys.ModKey, }, "Tab", awful.tag.viewnext,
@@ -58,8 +68,7 @@ awful.keyboard.append_global_keybindings({
            screen = awful.screen.focused(),
            layout = awful.layout.layouts[1],
            index  = awful.screen.focused().selected_tag.index + 1,
-         })
-         :view_only()
+         }):view_only()
     end
   end, { description = "add tag", group = "tag-nav", }),
 
@@ -74,8 +83,6 @@ awful.keyboard.append_global_keybindings({
     awful.spawn(Global.Apps.Terminal)
   end, { description = "open a terminal", group = "launcher", }),
 
-  -- BUG: gives error
-  -- TODO: implement same for neovide
   awful.key({ Global.Keys.ModKey, "Shift", }, "Return", function()
     if #root.tags() < 9 then
       local tag = awful.tag
@@ -86,9 +93,23 @@ awful.keyboard.append_global_keybindings({
            index    = awful.screen.focused().selected_tag.index + 1,
          })
       tag:view_only()
-      awful.spawn(Global.Apps.Terminal, { new_tag = tag, })
+      awful.spawn(Global.Apps.Terminal)
     end
   end, { description = "open a terminal in a new tag", group = "launcher", }),
+
+  awful.key({ Global.Keys.ModKey, "Shift", }, "v", function()
+    if #root.tags() < 9 then
+      local tag = awful.tag
+         .add("", {
+           screen   = awful.screen.focused(),
+           layout   = awful.layout.layouts[1],
+           volatile = true,
+           index    = awful.screen.focused().selected_tag.index + 1,
+         })
+      tag:view_only()
+      awful.spawn("neovide")
+    end
+  end, { description = "open a neovide in a new tag", group = "launcher", }),
 
   awful.key({ Global.Keys.ModKey, }, "b", function()
     awful.spawn(Global.Apps.Browser)
