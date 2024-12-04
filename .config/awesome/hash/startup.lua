@@ -25,7 +25,5 @@ require("hash.autoupdate")
 --------------------------------------------------------------------------------
 awesome.connect_signal("startup", function()
   run_once("firefox")
-  run_once("spotify")
-  run_once("discord")
 end)
 --------------------------------------------------------------------------------
