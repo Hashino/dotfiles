@@ -23,7 +23,7 @@ local font_controls = Theme.Font_Name ..
    " " .. tostring(Theme.UniversalSize * (1 / 2))
 
 -- name of the binary of your music player
-local default_player = "spotify"
+local default_player = "spotify_player"
 
 local GET_MPD_CMD = "playerctl -p " ..
    default_player ..
