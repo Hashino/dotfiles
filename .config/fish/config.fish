@@ -1,6 +1,8 @@
 # walk alias
-function d
-  set loc (walk $argv); and cd $loc;
+function r 
+  set tempfile "/tmp/ranger"
+  ranger --choosedir=$tempfile
+  cd -- $(cat $tempfile) || return
 end
 
 #PATH
