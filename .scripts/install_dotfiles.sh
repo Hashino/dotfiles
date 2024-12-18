@@ -221,6 +221,7 @@ check_success
 echo " "
 echo -e -n "${TITLE}Initial setup done. Starting main installation${NORMAL}"
 sleep 2 & spinner $!
+cd $HOME
 echo " "
 ####################################################################################################
 # CLONING DOTFILES

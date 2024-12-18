@@ -14,6 +14,8 @@ if [ "$computer_type" == "8" ] || [ "$computer_type" == "9" ] || [ "$computer_ty
   run nm-applet
   # battery indicator
   run cbatticon
+
+  run xset s 1800 5
 fi
 
 # compositor
@@ -23,7 +25,6 @@ run picom -b
 run pasystray #--notify=all
 
 # lock screen
-run xset s 1800 5
 run xss-lock -n /usr/lib/xsecurelock/dimmer -l -- xsecurelock
 
 # makes mouse disappear
@@ -39,3 +40,5 @@ run gnome-keyring-daemon --start --components=secrets
 # rgb stuff
 run openrgb -p default_off.orp
 ckb-next --profile default --background --close
+
+crd --start
