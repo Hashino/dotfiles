@@ -1,4 +1,4 @@
-# open ranger and cd to its final directory
+# walk alias
 function r 
   set tempfile "/tmp/ranger"
   ranger --choosedir=$tempfile
