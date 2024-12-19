@@ -111,6 +111,20 @@ awful.keyboard.append_global_keybindings({
     end
   end, { description = "open a neovide in a new tag", group = "launcher", }),
 
+  awful.key({ Global.Keys.ModKey, "Shift", }, "r", function()
+    if #root.tags() < 9 then
+      local tag = awful.tag
+         .add("", {
+           screen   = awful.screen.focused(),
+           layout   = awful.layout.layouts[1],
+           volatile = true,
+           index    = awful.screen.focused().selected_tag.index + 1,
+         })
+      tag:view_only()
+      awful.spawn("rofi -show run")
+    end
+  end, { description = "open launcher in a new tag", group = "launcher", }),
+
   awful.key({ Global.Keys.ModKey, }, "b", function()
     awful.spawn(Global.Apps.Browser)
   end, { description = "launch browser", group = "launcher", }),
