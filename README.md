@@ -26,15 +26,28 @@
 ---
 ## Install
 
-This install script is meant to be run right after a clean arch install with the archinstall script set to desktop>awesome
+This install script is meant to be run right after the first boot into the
+desktop of a clean arch install with the archinstall script set to `desktop : awesome`
+
+> [!WARNING]
+> this install script replaces the `sudo` command with `opendoas` and sets it to
+> either *persist** or *nopass* (check opendoas manpage for more info) for the
+> wheel usergroup
+
 ```bash
 wget -q https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/install_dotfiles.sh && chmod +x install_dotfiles.sh && ./install_dotfiles.sh && rm -f ~/.bash_history && rm -f .wget-hsts && killall Xorg
 ```
 
-## Update
+This install script was validated to work on 24ebcf8
+
+# Update
 
 After commit [2baca85](https://github.com/Hashino/dotfiles/commit/2baca85b2871d204b779bf2e5d7e2800e8de7c01), the dotfiles should auto update on login. Restarting
-awesome also triggers the auto update process
+awesome also triggers the auto update process.
+
+> [!INFO]
+> If this behaviour is undesidered, either fork the repository or dettach your
+> local copy from remote (by deleting `~/.dotfiles/.git`)
 
 ## Screenshots
 ![simple bg](screenshots/print1.png)
