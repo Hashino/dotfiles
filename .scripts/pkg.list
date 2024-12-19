@@ -2,8 +2,9 @@
 # After adding/removing the packages you want to be installed, save and quit the editor
 # Lines starting with # will be ignored
 ack
-btop
 bat
+btop
+efibootmgr
 epapirus-icon-theme
 eza
 firefox
@@ -12,15 +13,16 @@ fish-done
 flameshot
 fzf
 gimp
+github-cli
 gucharmap
 mandoc
 man-pages
 moar
 mousepad
 nemo
-nemo-fileroller
+nemo-engrampa
 neovide
-neovim
+neovim-nightly-bin
 nomacs
 nordic-darker-standard-buttons-theme-git
 noto-fonts
@@ -32,20 +34,26 @@ pfetch
 playerctl
 qt5ct
 qalculate-gtk
+ranger
+rascii
 ripgrep
 rofi
 sioyek-git
+tealdeer
 terminator
 tere
+tranmission-gtk
 ttf-terminus-nerd
 ttf-ubuntu-mono-nerd
 ttf-ubuntu-nerd
 tumbler
 unclutter
 unzip
+vlc
 xarchiver
 xclip
 xfce-polkit
+xorg-xkill
 xsel
 xss-lock
 xsecurelock
