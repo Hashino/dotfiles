@@ -251,15 +251,15 @@ for app_config in */ ; do
   remote_config="${dotfiles_local}/.config/${app_config}"
   local_config="${HOME}/.config/"
 
-  echof $NORMAL "Symlinking ${ORANGE}${remote_config}${NORMAL} -> ${BLUE}${local_config}${app_config}" 1
-
   app_name=${app_config::-1}
 
   #remove command
   mv "${local_config}${app_name}" "${local_config}${app_name}_old" >> $log_file 2>&1
   if [ $? -eq 0 ]; then
-    echof $ORANGE_NORMAL "old config found for: ${app_config} moved to ${app_config}_old"
+    echof $ORANGE_NORMAL "old config found for: ${app_name} moved to ${app_name}_old"
   fi
+
+  echof $NORMAL "Symlinking ${ORANGE}${remote_config}${NORMAL} -> ${BLUE}${local_config}${app_config}" 1
 
   #symlink command
   ln -s $remote_config $local_config >> $log_file 2>&1
@@ -314,7 +314,7 @@ while read app; do
     echof $NORMAL "Installing ${BLUE}${app}${NORMAL}" 1
 
     #install command
-    yay -S $app --noconfirm --removemake --needed >> $log_file 2>&1 & spinner $!
+    yes | yay -S $app --removemake --needed >> $log_file 2>&1 & spinner $!
     check_success
   fi
 

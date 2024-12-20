@@ -38,7 +38,7 @@ desktop of a clean arch install with the archinstall script set to `desktop : aw
 wget -q https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/install_dotfiles.sh && chmod +x install_dotfiles.sh && ./install_dotfiles.sh && rm -f ~/.bash_history && rm -f .wget-hsts && killall Xorg
 ```
 
-This install script was validated to work on 24ebcf8
+This install script was validated to work on f584352
 
 # Update
 
