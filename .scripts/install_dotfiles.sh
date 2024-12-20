@@ -256,7 +256,7 @@ for app_config in */ ; do
   #remove command
   mv "${local_config}${app_name}" "${local_config}${app_name}_old" >> $log_file 2>&1
   if [ $? -eq 0 ]; then
-    echof $ORANGE_NORMAL "old config found for: ${app_name} moved to ${app_name}_old"
+    echof $ORANGE_NORMAL "old config found for ${ORANGE}${app_name} ${ORANGE_NORMAL}moved to ${ORANGE}${app_name}_old"
   fi
 
   echof $NORMAL "Symlinking ${ORANGE}${remote_config}${NORMAL} -> ${BLUE}${local_config}${app_config}" 1
