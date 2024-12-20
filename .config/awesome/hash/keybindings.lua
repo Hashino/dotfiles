@@ -139,11 +139,11 @@ awful.keyboard.append_global_keybindings({
   ------------------------------------------------------------------------------
   -- rofi utilities
   awful.key({ Global.Keys.ModKey, }, "Escape", function()
-    awful.spawn("rofi -show power-menu -modi power-menu:~/.local/bin/rofi-power-menu")
+    awful.spawn("rofi -show power-menu -modi power-menu:~/.dotfiles/.local/bin/rofi-power-menu")
   end, { description = "rofi powermenu", group = "rofi utilities", }),
 
   awful.key({ Global.Keys.ModKey, }, "KP_Subtract", function()
-    awful.spawn("rofi -show monitor-profile -modi monitor-profile:~/.local/bin/monitor_config")
+    awful.spawn("rofi -show monitor-profile -modi monitor-profile:~/.dotfiles/.local/bin/monitor_config")
   end, { description = "rofi monitor config", group = "rofi utilities", }),
   ------------------------------------------------------------------------------
   -- screenshot

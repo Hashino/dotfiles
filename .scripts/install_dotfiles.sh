@@ -242,11 +242,17 @@ cd "${dotfiles_local}/.config"
 for app in */ ; do
   remote_config="${dotfiles_local}/.config/${app}"
   local_config="${HOME}/.config/"
-  
-  echo -e -n "Symlinking ${ORANGE}" 
-  echo -e -n $(head -c-2 <<< $app) 
-  echo -e -n "${NORMAL} -> ${BLUE}${remote_config}${NORMAL}"
-  
+
+  app_name=${app_config::-1}
+
+  #remove command
+  mv "${local_config}${app_name}" "${local_config}${app_name}_old" >> $log_file 2>&1
+  if [ $? -eq 0 ]; then
+    echof $ORANGE_NORMAL "old config found for ${ORANGE}${app_name} ${ORANGE_NORMAL}moved to ${ORANGE}${app_name}_old"
+  fi
+
+  echof $NORMAL "Symlinking ${ORANGE}${remote_config}${NORMAL} -> ${BLUE}${local_config}${app_config}" 1
+
   #symlink command
   ln -s $remote_config $local_config >> $log_file 2>&1
   

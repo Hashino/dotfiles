@@ -15,7 +15,6 @@ gimp
 gucharmap
 mandoc
 man-pages
-moar
 mousepad
 nemo
 nemo-fileroller
@@ -36,7 +35,7 @@ ripgrep
 rofi
 sioyek-git
 terminator
-tere
+tranmission-gtk
 ttf-terminus-nerd
 ttf-ubuntu-mono-nerd
 ttf-ubuntu-nerd
