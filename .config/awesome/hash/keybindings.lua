@@ -3,6 +3,19 @@
 local awful = require("awful")
 local utils = require("hash.utils")
 --------------------------------------------------------------------------------
+local function spawn_in_new_tag(app)
+  if #root.tags() < 9 then
+    local tag = awful.tag
+       .add("", {
+         screen   = awful.screen.focused(),
+         layout   = awful.layout.layouts[1],
+         volatile = true,
+         index    = awful.screen.focused().selected_tag.index + 1,
+       })
+    tag:view_only()
+    awful.spawn(app)
+  end
+end
 
 awful.keyboard.append_global_keybindings({
   ------------------------------------------------------------------------------
@@ -10,9 +23,6 @@ awful.keyboard.append_global_keybindings({
   awful.key({ Global.Keys.ModKey, "Control", }, "w", function()
     awful.spawn("input_switch_237e")
   end, { description = "change monitor input", group = "custom actions", }),
-
-  awful.key({ Global.Keys.ModKey, }, "v", function() awful.spawn("neovide") end,
-    { description = "open neovide", group = "custom actions", }),
 
   awful.key({ Global.Keys.ModKey, }, "w", function() awful.spawn("win") end,
     { description = "turn on windows vm (if it wasn't) and shows it", group = "custom actions", }),
@@ -90,63 +100,45 @@ awful.keyboard.append_global_keybindings({
   end, { description = "previous tag layout", group = "tag", }),
   ------------------------------------------------------------------------------
   -- launcher
+
   awful.key({ Global.Keys.ModKey, }, "Return", function()
     awful.spawn(Global.Apps.Terminal)
   end, { description = "open a terminal", group = "launcher", }),
 
   awful.key({ Global.Keys.ModKey, "Shift", }, "Return", function()
-    if #root.tags() < 9 then
-      local tag = awful.tag
-         .add("", {
-           screen   = awful.screen.focused(),
-           layout   = awful.layout.layouts[1],
-           volatile = true,
-           index    = awful.screen.focused().selected_tag.index + 1,
-         })
-      tag:view_only()
-      awful.spawn(Global.Apps.Terminal)
-    end
+    spawn_in_new_tag(Global.Apps.Terminal)
   end, { description = "open a terminal in a new tag", group = "launcher", }),
 
+  awful.key({ Global.Keys.ModKey, }, "v", function() awful.spawn("neovide") end,
+    { description = "open neovide", group = "launcher", }),
+
   awful.key({ Global.Keys.ModKey, "Shift", }, "v", function()
-    if #root.tags() < 9 then
-      local tag = awful.tag
-         .add("", {
-           screen   = awful.screen.focused(),
-           layout   = awful.layout.layouts[1],
-           volatile = true,
-           index    = awful.screen.focused().selected_tag.index + 1,
-         })
-      tag:view_only()
-      awful.spawn("neovide")
-    end
+    spawn_in_new_tag("neovide")
   end, { description = "open a neovide in a new tag", group = "launcher", }),
 
+  awful.key({ Global.Keys.ModKey, }, "r", function()
+    awful.spawn("rofi -show run")
+  end, { description = "application launcher", group = "launcher", }),
+
   awful.key({ Global.Keys.ModKey, "Shift", }, "r", function()
-    if #root.tags() < 9 then
-      local tag = awful.tag
-         .add("", {
-           screen   = awful.screen.focused(),
-           layout   = awful.layout.layouts[1],
-           volatile = true,
-           index    = awful.screen.focused().selected_tag.index + 1,
-         })
-      tag:view_only()
-      awful.spawn("rofi -show run")
-    end
+    spawn_in_new_tag("rofi -show run")
   end, { description = "open launcher in a new tag", group = "launcher", }),
 
   awful.key({ Global.Keys.ModKey, }, "b", function()
     awful.spawn(Global.Apps.Browser)
   end, { description = "launch browser", group = "launcher", }),
 
+  awful.key({ Global.Keys.ModKey, "Shift", }, "b", function()
+    spawn_in_new_tag(Global.Apps.Browser)
+  end, { description = "launch browser in a new tag", group = "launcher", }),
+
   awful.key({ Global.Keys.ModKey, }, "e", function()
     awful.spawn(Global.Apps.Filemanager)
   end, { description = "launch filemanager", group = "launcher", }),
 
-  awful.key({ Global.Keys.ModKey, }, "r", function()
-    awful.spawn("rofi -show run")
-  end, { description = "application launcher (rofi)", group = "launcher", }),
+  awful.key({ Global.Keys.ModKey, "Shift", }, "e", function()
+    spawn_in_new_tag(Global.Apps.Filemanager)
+  end, { description = "launch filemanager in a new tag", group = "launcher", }),
   ------------------------------------------------------------------------------
   -- rofi utilities
   awful.key({ Global.Keys.ModKey, }, "Escape", function()
@@ -154,7 +146,8 @@ awful.keyboard.append_global_keybindings({
   end, { description = "rofi powermenu", group = "rofi utilities", }),
 
   awful.key({ Global.Keys.ModKey, }, "KP_Subtract", function()
-    awful.spawn("rofi -show monitor-profile -modi monitor-profile:~/.dotfiles/.local/bin/monitor_config")
+    awful.spawn(
+      "rofi -show monitor-profile -modi monitor-profile:~/.dotfiles/.local/bin/monitor_config")
   end, { description = "rofi monitor config", group = "rofi utilities", }),
   ------------------------------------------------------------------------------
   -- screenshot
