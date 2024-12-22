@@ -5,6 +5,12 @@ function r
   cd -- $(cat $tempfile) || return
 end
 
+function n 
+  set tempfile "/tmp/navfs"
+  navfs --file=$tempfile
+  cd -- $(cat $tempfile) || return
+end
+
 #PATH
 set -g -x PATH /bin:/usr/bin:/usr/local/bin/:$HOME/.dotfiles/.local/bin:$HOME/.local/bin
 
