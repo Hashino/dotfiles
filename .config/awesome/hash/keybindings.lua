@@ -70,13 +70,24 @@ awful.keyboard.append_global_keybindings({
            index  = awful.screen.focused().selected_tag.index + 1,
          }):view_only()
     end
-  end, { description = "add tag", group = "tag-nav", }),
+  end, { description = "add tag", group = "tag", }),
 
   awful.key({ Global.Keys.ModKey, "Control", }, "q", function()
     if #root.tags() > 1 then
       awful.screen.focused().selected_tag:delete()
     end
-  end, { description = "remove tag", group = "tag-nav", }),
+  end, { description = "remove tag", group = "tag", }),
+
+  awful.key({ Global.Keys.ModKey, "Control", }, "j", function()
+    if #root.tags() > 1 then
+      awful.layout.inc(1)
+    end
+  end, { description = "next tag layout", group = "tag", }),
+  awful.key({ Global.Keys.ModKey, "Control", }, "k", function()
+    if #root.tags() > 1 then
+      awful.layout.inc(-1)
+    end
+  end, { description = "previous tag layout", group = "tag", }),
   ------------------------------------------------------------------------------
   -- launcher
   awful.key({ Global.Keys.ModKey, }, "Return", function()
