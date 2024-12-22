@@ -38,6 +38,7 @@ awful.keyboard.append_global_keybindings({
       })
     end,
     { description = "open qlock", group = "custom actions", }),
+
   ------------------------------------------------------------------------------
   -- awesome controls
   awful.key({ Global.Keys.ModKey, }, "s",
@@ -46,6 +47,7 @@ awful.keyboard.append_global_keybindings({
 
   awful.key({ Global.Keys.ModKey, "Control", }, "r", awesome.restart,
     { description = "reload awesome", group = "awesome", }),
+
   --------------------------------------------------------------------------------
   -- screen controls
   awful.key({ Global.Keys.ModKey, "Control", }, "j", function()
@@ -69,6 +71,7 @@ awful.keyboard.append_global_keybindings({
 
   awful.key({ Global.Keys.ModKey, }, "h", awful.tag.viewprev,
     { description = "view previous tag", group = "tag-nav", }),
+
   ------------------------------------------------------------------------------
   -- tag controls
   awful.key({ Global.Keys.ModKey, "Control", }, "n", function()
@@ -98,9 +101,9 @@ awful.keyboard.append_global_keybindings({
       awful.layout.inc(-1)
     end
   end, { description = "previous tag layout", group = "tag", }),
+
   ------------------------------------------------------------------------------
   -- launcher
-
   awful.key({ Global.Keys.ModKey, }, "Return", function()
     awful.spawn(Global.Apps.Terminal)
   end, { description = "open a terminal", group = "launcher", }),
@@ -139,6 +142,7 @@ awful.keyboard.append_global_keybindings({
   awful.key({ Global.Keys.ModKey, "Shift", }, "e", function()
     spawn_in_new_tag(Global.Apps.Filemanager)
   end, { description = "launch filemanager in a new tag", group = "launcher", }),
+
   ------------------------------------------------------------------------------
   -- rofi utilities
   awful.key({ Global.Keys.ModKey, }, "Escape", function()
@@ -149,12 +153,14 @@ awful.keyboard.append_global_keybindings({
     awful.spawn(
       "rofi -show monitor-profile -modi monitor-profile:~/.dotfiles/.local/bin/monitor_config")
   end, { description = "rofi monitor config", group = "rofi utilities", }),
+
   ------------------------------------------------------------------------------
   -- screenshot
   awful.key({ Global.Keys.ModKey, "Control", }, "p", function()
     awful.spawn(
       "flameshot gui")
   end, { description = "screenshot selection", group = "screenshot", }),
+
   ------------------------------------------------------------------------------
   -- media
   awful.key({}, "XF86AudioRaiseVolume", function()
@@ -187,6 +193,7 @@ awful.keyboard.append_global_keybindings({
   awful.key({}, "XF86Eject", function()
     awful.spawn.easy_async("soundswitch", utils.show_volume_notification)
   end, { description = "switch output device", group = "media", }),
+
   ------------------------------------------------------------------------------
   -- control
   awful.key({}, "XF86MonBrightnessUp", function()
@@ -305,7 +312,6 @@ client.connect_signal("request::default_keybindings", function()
       end
     end, { description = "move window to a new tag", group = "client", }),
 
-
     awful.key({ Global.Keys.ModKey, "Shift", }, "j", function()
       awful.client.swap.byidx(1)
     end, { description = "swap window with next", group = "client", }),
@@ -323,6 +329,7 @@ client.connect_signal("request::default_keybindings", function()
     end, { description = "focus previous window by index", group = "client", }),
   })
 end)
+
 ---------------------------------------------------------------------------------
 client.connect_signal("request::default_mousebindings", function()
   awful.mouse.append_client_mousebindings({
