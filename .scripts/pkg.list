@@ -39,7 +39,6 @@ ripgrep
 rofi
 sioyek-git
 tealdeer
-terminator
 tranmission-gtk
 ttf-terminus-nerd
 ttf-ubuntu-mono-nerd
@@ -49,6 +48,7 @@ unclutter
 unzip
 vlc
 xarchiver
+wezterm
 xclip
 xfce-polkit
 xorg-xkill
