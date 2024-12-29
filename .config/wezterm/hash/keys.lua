@@ -1,10 +1,9 @@
-local wezterm = require 'wezterm'
+local wezterm = require('wezterm')
 
 return {
   {
     key = 'C',
     mods = 'CTRL',
-    action = wezterm.action.CopyTo 'ClipboardAndPrimarySelection',
+    action = wezterm.action.ActivateCopyMode
   },
-  require('hash.scrollback'),
 }

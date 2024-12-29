@@ -5,16 +5,10 @@ config.colors = require('hash.colors')
 
 config.font = wezterm.font("UbuntuMono Nerd Font",
   { weight = "Regular", stretch = "Normal", style = "Normal" })
+
 config.font_size = 18.0
 
-config.keys = {
-  {
-    key = 'C',
-    mods = 'CTRL',
-    action = wezterm.action.CopyTo 'ClipboardAndPrimarySelection',
-  },
-}
-
+config.keys = require("hash.keys")
 config.hide_tab_bar_if_only_one_tab = true
 
 return config
