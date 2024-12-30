@@ -5,4 +5,4 @@
 *.backup
 .config/gtk-3.0/bookmarks
 **/.tasks
-.config/ranger/plugins/__pycache__/__init__.cpython-312.pyc
+.config/ranger/plugins/__pycache__/*

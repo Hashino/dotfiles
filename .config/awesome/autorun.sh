@@ -25,6 +25,7 @@ run picom -b
 run pasystray #--notify=all
 
 # lock screen
+run xssproxy
 run xss-lock -n /usr/lib/xsecurelock/dimmer -l -- xsecurelock
 
 # makes mouse disappear
