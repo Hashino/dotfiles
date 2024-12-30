@@ -98,7 +98,7 @@ if updated ~= nil then
   })
   -- shows the update changes to the user
   awful.spawn(Global.Apps.Terminal ..
-    " --command='cat " .. updates_file .. "'", {
+    " -e nvim " .. updates_file , {
       floating = true,
       width = 800,
       placement = awful.placement.bottom_right,
