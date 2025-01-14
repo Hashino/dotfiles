@@ -30,7 +30,8 @@ local function get_wibar(s)
         },
       },
       { -- Middle widget
-        require("hash.wibar.widgets.tasklist")(s),
+        -- require("hash.wibar.widgets.tasklist")(s),
+        require("hash.wibar.widgets.todo")(s),
         bg = Theme.Transparent,
         widget = wibox.container.background,
       },
