@@ -14,6 +14,8 @@ if [ "$computer_type" == "8" ] || [ "$computer_type" == "9" ] || [ "$computer_ty
   run nm-applet
   # battery indicator
   run cbatticon
+  # bluetooth applet
+  run blueman-applet
 fi
 
 # compositor

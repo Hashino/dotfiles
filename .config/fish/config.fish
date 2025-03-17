@@ -49,3 +49,6 @@ set -U -x PF_INFO "ascii title os kernel wm shell memory palette"
 
 # i hate qt applications
 set -U -x QT_QPA_PLATFORMTHEME qt5ct:qt6ct
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/hashino/.l/.local/bin/google-cloud-sdk/path.fish.inc' ]; . '/home/hashino/.l/.local/bin/google-cloud-sdk/path.fish.inc'; end
