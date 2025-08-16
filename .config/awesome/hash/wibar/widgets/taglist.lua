@@ -11,33 +11,10 @@ local outer_margin_vertical = 0
 
 local icon_inactive_empty   = ""
 local icon_inactive_single  = ""
-local icon_inactive_many    = ""
+local icon_inactive_many    = "" --""
 local icon_selected         = ""
 --------------------------------------------------------------------------------
 local get_taglist           = function(s)
-  -- Taglist buttons
-  local taglist_buttons = gears.table.join(
-    awful.button({}, 1, function(t)
-      t:view_only()
-    end),
-    awful.button({ Global.Keys.ModKey, }, 1, function(t)
-      if client.focus then
-        client.focus:move_to_tag(t)
-      end
-    end),
-    awful.button({}, 3, awful.tag.viewtoggle),
-    awful.button({ Global.Keys.ModKey, }, 3, function(t)
-      if client.focus then
-        client.focus:toggle_tag(t)
-      end
-    end),
-    awful.button({}, 4, function(t)
-      awful.tag.viewnext(t.screen)
-    end),
-    awful.button({}, 5, function(t)
-      awful.tag.viewprev(t.screen)
-    end)
-  )
   --------------------------------------------------------------------------------
   -- Function to update the tags
   local update_tags = function(self, c3)
@@ -72,7 +49,7 @@ local get_taglist           = function(s)
   -- Function to update the margin
   local update_margin = function(self)
     self.left = #s.tags == 1 and 0 or
-       outer_margin_width  --hides tags when only 1 tag
+       outer_margin_width --hides tags when only 1 tag
     self.right = #s.tags == 1 and 0 or outer_margin_width
     self.top = #s.tags == 1 and 0 or outer_margin_vertical
     self.bottom = #s.tags == 1 and 0 or outer_margin_vertical
@@ -81,7 +58,11 @@ local get_taglist           = function(s)
   local icon_taglist = wibox.widget({
     awful.widget.taglist({
       screen = s,
-      buttons = taglist_buttons,
+      buttons = gears.table.join(
+        awful.button({}, 1, function(t)
+          t:view_only()
+        end)
+      ),
       filter = awful.widget.taglist.filter.all,
       layout = {
         layout = wibox.layout.fixed.horizontal,

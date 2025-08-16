@@ -12,8 +12,7 @@ local function get_wibar(s)
     bg = Theme.Colors.Transparent,
   })
   -- Add widgets to the wibox
-  s.wibox:setup
-  {
+  s.wibox:setup {
     {
       layout = wibox.layout.align.horizontal,
       { -- Left widget
@@ -30,15 +29,14 @@ local function get_wibar(s)
         },
       },
       { -- Middle widget
-        -- require("hash.wibar.widgets.tasklist")(s),
-        require("hash.wibar.widgets.todo")(s),
+        require("hash.wibar.widgets.tasklist")(s),
         bg = Theme.Transparent,
         widget = wibox.container.background,
       },
       { -- Right widgets
         layout = wibox.layout.fixed.horizontal,
         {
-          require("hash.wibar.widgets.player_gui")(s),
+          require("hash.wibar.widgets.spotify")(s),
           bg = Theme.Colors.Background.Darkest,
           widget = wibox.container.background,
         },

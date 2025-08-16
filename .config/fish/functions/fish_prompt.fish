@@ -8,7 +8,6 @@ end
 
 function fish_prompt
   set -l cyan (set_color cyan)
-  set -l yellow (set_color yellow)
   set -l red (set_color red)
   set -l blue (set_color blue)
   set -l green (set_color green)
@@ -25,7 +24,7 @@ function fish_prompt
   end
 
   # Display the current directory name
-  echo -n -s ' ' $green(string replace $HOME '~' (pwd))
+  echo -n -s $green(string replace $HOME '~' (pwd))
 
   # Show git branch and dirty state
   if [ (_git_branch_name) ]

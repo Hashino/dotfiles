@@ -1,6 +1,3 @@
-# Display the compressed current working path on the right
-# If the previous command returned any kind of error code, display that too
-
 function fish_right_prompt
   set -l last_status $status
   set -l cyan (set_color cyan)
@@ -10,8 +7,6 @@ function fish_right_prompt
   set -l green (set_color green)
   set -l normal (set_color normal)
   set -l bold (set_color -o)
-
-  #echo -n -s $cyan (prompt_pwd)
 
   if test $last_status -ne 0
     echo -n (set_color red)"["$last_status"] "(set_color normal)
@@ -39,6 +34,5 @@ function fish_right_prompt
     echo -n $normal
   end
 
-  #echo $green 'at' 
   echo -n (set_color -o brblack)(date +%H:%M:%S)(set_color normal)
 end

@@ -2,6 +2,7 @@ local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
 config.colors = require('hash.colors')
+config.window_background_opacity = 0.8
 
 config.font = wezterm.font("UbuntuMono Nerd Font",
   { weight = "Regular", stretch = "Normal", style = "Normal" })
@@ -12,5 +13,8 @@ config.keys = require("hash.keys")
 config.hide_tab_bar_if_only_one_tab = true
 
 config.window_close_confirmation = "NeverPrompt"
+
+local modal = wezterm.plugin.require("https://github.com/MLFlexer/modal.wezterm")
+modal.apply_to_config(config)
 
 return config
