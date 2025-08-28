@@ -23,7 +23,6 @@ declare -A texts
 texts[lockscreen]="lock screen"
 texts[logout]="log out"
 texts[sleep]="sleep"
-texts[hibernate]="hibernate"
 texts[reboot]="reboot"
 texts[shutdown]="shut down"
 
@@ -32,7 +31,6 @@ icons[lockscreen]=" "
 icons[switchuser]="󰀙 "
 icons[logout]=" "
 icons[sleep]=" "
-icons[hibernate]="\uf7c9 "
 icons[reboot]=" "
 icons[shutdown]=" "
 icons[cancel]=" "
@@ -67,12 +65,15 @@ function check_valid {
 
 # Parse command-line options
 parsed=$(getopt --options=h --longoptions=help,dry-run,confirm:,choices:,choose:,symbols,no-symbols --name "$0" -- "$@")
+
 if [ $? -ne 0 ]; then
     echo 'Terminating...' >&2
     exit 1
 fi
+
 eval set -- "$parsed"
 unset parsed
+
 while true; do
     case "$1" in
         "-h"|"--help")

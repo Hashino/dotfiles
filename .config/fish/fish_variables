@@ -6,7 +6,7 @@ SETUVAR --export EDITOR:nvim
 SETUVAR --export PAGER:nvim\x20\x2bMan\x21
 SETUVAR --export PF_INFO:ascii\x20title\x20os\x20kernel\x20wm\x20shell\x20memory\x20palette
 SETUVAR --export QT_QPA_PLATFORMTHEME:qt5ct\x3aqt6ct
-SETUVAR --export TERMINAL:terminator
+SETUVAR --export TERMINAL:wezterm
 SETUVAR --export XSECURELOCK_AUTH_FOREGROUND_COLOR:\x1d
 SETUVAR --export XSECURELOCK_COMPOSITE_OBSCURER:0
 SETUVAR --export XSECURELOCK_FONT:Terminess\x20Nerd\x20Font

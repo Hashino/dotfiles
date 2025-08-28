@@ -41,7 +41,7 @@ alias nvim "nvim" # -c 'NvimTreeToggle' ."
 alias pm "yay -Qqent | fzf --preview 'yay -Qil {}' --layout=reverse --bind 'enter:execute(yay -Qil {} | less)' --bind 'ctrl-u:execute(yay -Rns {})' --bind 'ctrl-o:execute(yay -Qtdq | yay -Rns - )' --header='[ENTER] = Details    [CTRL+U] = Uninstall    [CTRL+O] = Remove Orphans' "
 
 #enviroment variables
-set -U -x TERMINAL terminator
+set -U -x TERMINAL wezterm
 set -U -x EDITOR nvim
 set -U -x PAGER 'nvim +Man!'
 

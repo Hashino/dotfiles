@@ -3,7 +3,7 @@
 
 include "/home/hashino/.gtkrc-2.0.mine"
 gtk-theme-name="Nordic-darker-standard-buttons"
-gtk-icon-theme-name="ePapirus-Dark"
+gtk-icon-theme-name="Papirus"
 gtk-font-name="Terminess Nerd Font Medium 14"
 gtk-cursor-theme-name="Simp1e-Nord-Darker-Hash"
 gtk-cursor-theme-size=0
