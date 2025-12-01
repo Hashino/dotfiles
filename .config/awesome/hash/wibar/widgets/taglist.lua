@@ -72,7 +72,7 @@ local get_taglist           = function(s)
   -- Function to update the margin
   local update_margin = function(self)
     self.left = #s.tags == 1 and 0 or
-       outer_margin_width  --hides tags when only 1 tag
+       outer_margin_width --hides tags when only 1 tag
     self.right = #s.tags == 1 and 0 or outer_margin_width
     self.top = #s.tags == 1 and 0 or outer_margin_vertical
     self.bottom = #s.tags == 1 and 0 or outer_margin_vertical

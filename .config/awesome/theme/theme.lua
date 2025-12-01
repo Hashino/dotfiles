@@ -88,5 +88,4 @@ Theme.layout_dwindle            = Theme.location .. "/layout_icons/dwindle.png"
 Theme.awesome_icon              = Theme.location .. "/layout_icons/awesome.png"
 --------------------------------------------------------------------------------
 return Theme
--- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80
 --------------------------------------------------------------------------------
