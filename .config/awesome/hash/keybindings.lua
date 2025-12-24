@@ -60,14 +60,9 @@ awful.keyboard.append_global_keybindings({
 
   ------------------------------------------------------------------------------
   -- tag navigation
-  awful.key({ Global.Keys.ModKey, }, "Tab", awful.tag.viewnext,
-    { description = "view next tag", group = "tag-nav", }),
 
   awful.key({ Global.Keys.ModKey, }, "l", awful.tag.viewnext,
     { description = "view next tag", group = "tag-nav", }),
-
-  awful.key({ Global.Keys.ModKey, "Shift", }, "Tab", awful.tag.viewprev,
-    { description = "view previous tag", group = "tag-nav", }),
 
   awful.key({ Global.Keys.ModKey, }, "h", awful.tag.viewprev,
     { description = "view previous tag", group = "tag-nav", }),
@@ -91,16 +86,17 @@ awful.keyboard.append_global_keybindings({
     end
   end, { description = "remove tag", group = "tag", }),
 
-  awful.key({ Global.Keys.ModKey, "Control", }, "j", function()
-    if #root.tags() > 1 then
-      awful.layout.inc(1)
-    end
-  end, { description = "next tag layout", group = "tag", }),
-  awful.key({ Global.Keys.ModKey, "Control", }, "k", function()
-    if #root.tags() > 1 then
-      awful.layout.inc(-1)
-    end
-  end, { description = "previous tag layout", group = "tag", }),
+  -- awful.key({ Global.Keys.ModKey, "Alt", }, "j", function()
+  --   if #root.tags() > 1 then
+  --     awful.layout.inc(1)
+  --   end
+  -- end, { description = "next tag layout", group = "tag", }),
+  --
+  -- awful.key({ Global.Keys.ModKey, "Alt", }, "k", function()
+  --   if #root.tags() > 1 then
+  --     awful.layout.inc(-1)
+  --   end
+  -- end, { description = "previous tag layout", group = "tag", }),
 
   ------------------------------------------------------------------------------
   -- launcher
@@ -157,8 +153,8 @@ awful.keyboard.append_global_keybindings({
   ------------------------------------------------------------------------------
   -- screenshot
   awful.key({ Global.Keys.ModKey, "Control", }, "p", function()
-    awful.spawn(
-      "flameshot gui")
+    -- awful.spawn("flameshot gui")
+    awful.screenshot()
   end, { description = "screenshot selection", group = "screenshot", }),
 
   ------------------------------------------------------------------------------
