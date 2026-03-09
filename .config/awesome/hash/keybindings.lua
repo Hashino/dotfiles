@@ -153,8 +153,8 @@ awful.keyboard.append_global_keybindings({
   ------------------------------------------------------------------------------
   -- screenshot
   awful.key({ Global.Keys.ModKey, "Control", }, "p", function()
-    -- awful.spawn("flameshot gui")
-    awful.screenshot()
+    awful.spawn("flameshot gui")
+    -- awful.screenshot()
   end, { description = "screenshot selection", group = "screenshot", }),
 
   ------------------------------------------------------------------------------
