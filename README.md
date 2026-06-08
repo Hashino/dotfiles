@@ -14,7 +14,7 @@
 | File Manager          | [Nemo](https://github.com/linuxmint/nemo) |
 | Text Editor           | [Neovim](https://github.com/neovim/neovim) with [Neovide](https://github.com/neovide/neovide) |
 
-| Terminal Emulator     | [Terminator](https://archlinux.org/packages/extra/any/terminator/) |
+| Terminal Emulator     | [Wezterm](https://archlinux.org/packages/extra/x86_64/wezterm/) |
 | :---:                 | :---:                         |
 | Shell                 | [Fish](https://github.com/fish-shell/fish-shell) |
 | Terminal Font         | [Ubuntu Mono](https://design.ubuntu.com/font/) |

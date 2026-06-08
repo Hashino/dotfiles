@@ -16,10 +16,10 @@ require("hash.errors")
 Global                  = { Apps = {}, Keys = {}, }
 Global.ConfigFolder     = awful.util.getdir("config")
 --------------------------------------------------------------------------------
-Global.Apps.Terminal    = "terminator"
+Global.Apps.Terminal    = "wezterm"
 Global.Apps.Browser     = "firefox"
 Global.Apps.Filemanager = "nemo"
-Global.Apps.Editor      = "neovide"
+Global.Apps.Editor      = "nvim"
 --------------------------------------------------------------------------------
 Global.Keys.ModKey      = "Mod4"
 --------------------------------------------------------------------------------
