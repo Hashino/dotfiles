@@ -23,6 +23,9 @@ alias less 'more'
 ##bat
 alias cat bat
 
+# Auto-restore: continuar sessão mais recente ao digitar pi
+alias pic='pi -c'
+
 ##exa
 alias ls 'eza -a --icons --group-directories-first' # just replace ls by exa and allow all other exa arguments
 alias l 'ls -lbF' #   list, size, type
@@ -52,3 +55,7 @@ set -U -x QT_QPA_PLATFORMTHEME qt5ct:qt6ct
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/hashino/.l/.local/bin/google-cloud-sdk/path.fish.inc' ]; . '/home/hashino/.l/.local/bin/google-cloud-sdk/path.fish.inc'; end
+
+# Pi
+fish_add_path "$HOME/.local/bin"
+

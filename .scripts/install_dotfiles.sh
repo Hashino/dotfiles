@@ -322,6 +322,17 @@ done <"${HOME}/pkg.list"
 rm "${HOME}/pkg.list"
 
 ##############################################################################
+# NEOVIM
+
+
+echo " "
+echof ${TITLE} "Configuring ${QUOTE}neovim${NORMAL}"
+echo " "
+
+git clone https://github.com/Hashino/hash.nvim $HOME/.config/nvim >> $log_file 2>&1 & spinner $!
+check_success
+
+##############################################################################
 # THEMING
 
 echo " "
