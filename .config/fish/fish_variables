@@ -13,4 +13,5 @@ SETUVAR --export XSECURELOCK_FONT:Terminess\x20Nerd\x20Font
 SETUVAR --export XSECURELOCK_PASSWORD_PROMPT:asterisks
 SETUVAR --export XSECURELOCK_SHOW_KEYBOARD_LAYOUT:0
 SETUVAR __fish_initialized:4300
+SETUVAR fish_color_command:blue
 SETUVAR fish_user_paths:/home/hashino/\x2elocal/bin\x1e/home/hashino/\x2edotfiles/\x2elocal/bin
