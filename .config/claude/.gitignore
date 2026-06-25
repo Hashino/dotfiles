@@ -1,0 +1,10 @@
+# Defensive whitelist: this dir must only ever hold PORTABLE claude-code config.
+# The live config dir is ~/.config/claude (a real dir, set via CLAUDE_CONFIG_DIR);
+# runtime state, transcripts, .claude.json and credentials stay there and must
+# NEVER land in this (public) repo. Ignore everything except the safe items.
+/*
+!/.gitignore
+!/settings.json
+!/settings.local.json
+!/local-plugins/
+!/skills

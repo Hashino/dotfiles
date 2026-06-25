@@ -1,0 +1,14 @@
+{
+  "name": "local-plugins",
+  "owner": {
+    "name": "hashino"
+  },
+  "plugins": [
+    {
+      "name": "lua-lsp-vim",
+      "description": "Lua language server that recognizes the `vim` global everywhere",
+      "version": "1.0.0",
+      "source": "./lua-lsp-vim"
+    }
+  ]
+}

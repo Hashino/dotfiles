@@ -1,0 +1,16 @@
+{
+  "name": "lua-lsp-vim",
+  "version": "1.0.0",
+  "description": "Lua language server that recognizes the `vim` global everywhere",
+  "lspServers": {
+    "lua": {
+      "command": "lua-language-server",
+      "args": [
+        "--configpath=${CLAUDE_PLUGIN_ROOT}/luarc.json"
+      ],
+      "extensionToLanguage": {
+        ".lua": "lua"
+      }
+    }
+  }
+}

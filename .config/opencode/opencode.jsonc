@@ -1,0 +1,19 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "mistralai/nemotron-3-ultra-free",
+  "provider": {
+    "gpt-oss": {
+      "api": "openai",
+      "name": "gpt-oss",
+      "options": {
+        "apiKey": "{env:OPENROUTER_API_KEY}",
+        "baseURL": "https://openrouter.ai/api/v1"
+      },
+      "models": {
+        "openai/gpt-oss-120b:free": {
+          "name": "gpt-oss-120b:free"
+        }
+      }
+    }
+  }
+}

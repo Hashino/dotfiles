@@ -6,3 +6,6 @@
 .config/gtk-3.0/bookmarks
 **/.tasks
 .config/ranger/plugins/__pycache__/__init__.cpython-312.pyc
+
+# local machine secrets (api keys) — never commit
+.config/fish/conf.d/secrets.fish

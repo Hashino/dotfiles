@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(**)",
+      "Write(**)",
+      "Edit(**)"
+    ],
+    "ask": [
+      "Bash(sudo)",
+      "Bash(sudo *)",
+      "Bash(sudo:*)"
+    ],
+    "defaultMode": "auto"
+  },
+  "model": "claude-opus-4-8",
+  "enabledPlugins": {
+    "tui-use@tui-use": true,
+    "lua-lsp-vim@local-plugins": true,
+    "clangd-lsp@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "tui-use": {
+      "source": {
+        "source": "github",
+        "repo": "onesuper/tui-use"
+      }
+    },
+    "local-plugins": {
+      "source": {
+        "source": "directory",
+        "path": "/home/hashino/.config/claude/local-plugins"
+      }
+    }
+  },
+  "effortLevel": "medium",
+  "showThinkingSummaries": true,
+  "theme": "dark",
+  "verbose": true
+}
