@@ -21,6 +21,11 @@ Global.Apps.Browser     = "firefox"
 Global.Apps.Filemanager = "nemo"
 Global.Apps.Editor      = "neovide"
 --------------------------------------------------------------------------------
+-- XDG environment variables
+os.env["BROWSER"]     = Global.Apps.Browser
+os.env["EDITOR"]      = Global.Apps.Editor
+os.env["TERMINAL"]    = Global.Apps.Terminal
+--------------------------------------------------------------------------------
 Global.Keys.ModKey      = "Mod4"
 --------------------------------------------------------------------------------
 -- Libraries
