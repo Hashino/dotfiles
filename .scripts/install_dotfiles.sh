@@ -267,6 +267,27 @@ for app_config in */ ; do
 done
 
 ##############################################################################
+# CLAUDE CODE: ~/.claude -> ~/.config/claude
+# Claude Code's plugin subsystem hardcodes ~/.claude for its marketplace/plugin
+# metadata even when CLAUDE_CONFIG_DIR points elsewhere (we set it to
+# ~/.config/claude in fish's config.fish). Without this symlink the two code
+# paths disagree and every marketplace fails to load with "cache-miss",
+# breaking plugin loading and installs. The symlink keeps both resolving to the
+# same versioned config dir.
+
+echo " "
+echof ${TITLE} "Symlinking ${ORANGE}~/.claude${TITLE} -> ${BLUE}~/.config/claude" 1
+
+# move an existing real ~/.claude aside (matches the config-symlink pattern above)
+if [ -e "${HOME}/.claude" ] && [ ! -L "${HOME}/.claude" ]; then
+  mv "${HOME}/.claude" "${HOME}/.claude_old" >> $log_file 2>&1
+  echof $ORANGE_NORMAL "existing ~/.claude moved to ~/.claude_old"
+fi
+
+ln -sfn "${HOME}/.config/claude" "${HOME}/.claude" >> $log_file 2>&1
+check_success
+
+##############################################################################
 # COMPOSER
 
 echo " "

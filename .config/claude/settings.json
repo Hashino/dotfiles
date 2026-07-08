@@ -12,11 +12,12 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "claude-opus-4-8",
+  "model": "opus[1m]",
   "enabledPlugins": {
     "tui-use@tui-use": true,
     "lua-lsp-vim@local-plugins": true,
-    "clangd-lsp@claude-plugins-official": true
+    "clangd-lsp@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "tui-use": {
@@ -30,9 +31,14 @@
         "source": "directory",
         "path": "/home/hashino/.config/claude/local-plugins"
       }
+    },
+    "claude-plugins-official": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-plugins-official"
+      }
     }
   },
-  "effortLevel": "medium",
   "showThinkingSummaries": true,
   "theme": "dark",
   "verbose": true
