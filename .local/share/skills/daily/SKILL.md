@@ -421,3 +421,23 @@ Esta skill é viva. Sempre que a rotina exigir algo que não está escrito aqui 
 um passo novo, um erro recorrente, uma decisão que eu tive que tomar sozinho —
 **atualize este arquivo no mesmo turno**. Ordem pedida pelo dono em
 18/09/2026: a skill vem antes da execução e é corrigida durante ela.
+
+## Rodando no Cowork (Claude Desktop)
+
+Os passos acima foram escritos pro Claude Code; no Cowork a mecânica muda em
+três pontos, o resto é igual:
+
+- **Sem `run_in_background`**: comandos longos (`farm.py batch`) vão num
+  terminal próprio, com o log aberto em arquivo — não confie em output de
+  tarefa viva. O mesmo vale pro `kill`: terminal próprio, um comando só.
+- **Memória é pasta em disco**: não existe a memória do Claude Code aqui. Os
+  arquivos estão em
+  `~/.config/claude/projects/-home-hashino-Projects-wilson3/memory/` — ler
+  antes, escrever depois, atualizar o `MEMORY.md`.
+- **Deploy é terminal normal**: `git add/commit/push` no repo que mudou, sem
+  worktree nem permissão automática. Segurança de senha do git-crypt segue no
+  `CLAUDE.md` do repo dotfiles.
+
+Se esta sessão Cowork **não tiver terminal**, ela é só a metade do upload
+(browser no portal do Adobe/KDP/Play com o login do dono) — a produção
+continua na sessão Code.
