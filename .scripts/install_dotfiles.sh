@@ -236,6 +236,35 @@ git clone --recurse-submodules $dotfiles_remote $dotfiles_local >> $log_file 2>&
 check_success
 
 ##############################################################################
+# ENCRYPTED PRIVATE CONFIG
+# Parts of this repo are encrypted with git-crypt (see .gitattributes). The
+# symmetric key lives sealed with a passphrase in .scripts/git-crypt.key.gpg,
+# so a fresh machine needs nothing but the passphrase. Everyone else gets the
+# public config and the encrypted files stay as unreadable blobs, which breaks
+# nothing.
+
+echo " "
+echo -e "${BOLD}"
+read -r -p "Are you Hashino? (unlocks the encrypted private config) [y/N]" response
+response=${response,,} # tolower
+echo -e -n "${NORMAL}"
+
+if [[ $response =~ ^y ]]; then
+  echof $NORMAL "Installing ${ORANGE}git-crypt" 1
+  yes | yay -S git-crypt --removemake --needed >> $log_file 2>&1 & spinner $!
+  check_success
+
+  # the passphrase is typed here: no spinner and no output redirection
+  if "${dotfiles_local}/.scripts/unlock_secrets.sh" "${dotfiles_local}"; then
+    echof ${GREEN} "Private config unlocked"
+  else
+    echof ${RED} "WARNING:${NORMAL} continuing with the private files locked. Run ${ORANGE}${dotfiles_local}/.scripts/unlock_secrets.sh${NORMAL} later to try again"
+  fi
+else
+  echof ${NORMAL} "Skipping the encrypted private config (nothing else is affected)"
+fi
+
+##############################################################################
 # SYMLINKS
 
 echo " "

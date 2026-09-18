@@ -1,2 +1,9 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# ── git-crypt ────────────────────────────────────────────────────────────────
+# Conteúdo criptografado dentro deste repo público. O nome do arquivo CONTINUA
+# visível; só o conteúdo é cifrado. Destrancar: .scripts/unlock_secrets.sh
+.config/claude/projects/*/memory/** filter=git-crypt diff=git-crypt
+.private/** filter=git-crypt diff=git-crypt
+*.secret filter=git-crypt diff=git-crypt

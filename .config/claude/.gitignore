@@ -8,3 +8,13 @@
 !/settings.local.json
 !/local-plugins/
 !/skills
+!/commands/
+
+# Memória do Claude (conteúdo criptografado com git-crypt; ver .gitattributes).
+# Só a pasta memory/ de cada projeto entra — transcript (.jsonl) e o resto do
+# estado de runtime continuam fora.
+!/projects/
+/projects/*
+!/projects/*/
+/projects/*/*
+!/projects/*/memory/
