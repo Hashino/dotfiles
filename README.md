@@ -40,6 +40,27 @@ wget -q https://raw.githubusercontent.com/Hashino/dotfiles/main/.scripts/install
 
 This install script was validated to work on f584352
 
+## Encrypted files
+
+A few paths in this repo are encrypted with [git-crypt](https://github.com/AGWA/git-crypt)
+(personal notes and machine-local secrets — see `.gitattributes`). **Nothing you
+need is in there.** Cloning, installing and running everything works with those
+files left as unreadable blobs; the install script asks *"Are you Hashino?"* and
+skips them on a "no".
+
+File **names** stay visible, only contents are encrypted.
+
+For the owner, on a fresh machine:
+
+```bash
+./.scripts/unlock_secrets.sh      # asks for the passphrase
+```
+
+The git-crypt key itself is committed sealed with that passphrase
+(`.scripts/git-crypt.key.gpg`, GPG symmetric AES-256), which is what makes a
+clean reinstall need nothing but the passphrase. To seal it again after
+rotating: `./.scripts/seal_secrets.sh`.
+
 # Update
 
 After commit [2baca85](https://github.com/Hashino/dotfiles/commit/2baca85b2871d204b779bf2e5d7e2800e8de7c01), the dotfiles should auto update on login. Restarting
