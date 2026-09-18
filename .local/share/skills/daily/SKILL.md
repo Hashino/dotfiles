@@ -25,8 +25,8 @@ que o nicho está escolhido.
 ## 0. Faxina e abertura das frentes
 
 ```bash
-cd ~/Projects/stockfarm && python3 farm.py limpar && python3 farm.py status
-cd ~/Projects/kdpfarm && python3 scripts/limpar.py
+cd ~/Projects/wilson3/stockfarm && python3 farm.py limpar && python3 farm.py status
+cd ~/Projects/wilson3/kdpfarm && python3 scripts/limpar.py
 ```
 
 `farm.py limpar` apaga os JPG que já cumpriram o papel — os de lote
@@ -41,7 +41,7 @@ Se o orçamento do dia couber imagens, dispare já em background
 (`run_in_background: true`, timeout alto — leva ~15-25 min):
 
 ```bash
-cd ~/Projects/stockfarm && python3 farm.py batch
+cd ~/Projects/wilson3/stockfarm && python3 farm.py batch
 ```
 
 Antes de disparar o lote, **sonde com uma imagem**
@@ -90,7 +90,7 @@ cair muito mais do que o número de imagens geradas.
 
 ---
 
-## 1. Ferramentas (repo `~/Projects/ferramentas`)
+## 1. Ferramentas (repo `~/Projects/wilson3/ferramentas`)
 
 A fonte da verdade é o `CLAUDE.md` do repo. **Leia-o antes**; o resumo abaixo
 existe para não pular etapa, não para substituí-lo.
@@ -98,7 +98,7 @@ existe para não pular etapa, não para substituí-lo.
 Repita N vezes, **uma ferramenta por ciclo, um commit por ciclo**:
 
 ```bash
-cd ~/Projects/ferramentas
+cd ~/Projects/wilson3/ferramentas
 python3 scripts/proxima.py --n 12   # fila inteira num passe só
 ```
 
@@ -289,12 +289,12 @@ concluir que o processo travou.
 
 ---
 
-## 2. Imagens (repo `~/Projects/stockfarm`)
+## 2. Imagens (repo `~/Projects/wilson3/stockfarm`)
 
 Quando o `batch` terminar:
 
 ```bash
-cd ~/Projects/stockfarm
+cd ~/Projects/wilson3/stockfarm
 python3 farm.py qc-pending      # caminhos das imagens novas
 ```
 
@@ -320,7 +320,7 @@ python3 farm.py limpar
 
 ---
 
-## 3. Um livro novo (repo `~/Projects/kdpfarm`)
+## 3. Um livro novo (repo `~/Projects/wilson3/kdpfarm`)
 
 Um livro por dia, pedido dele em 18/09/2026. A fonte da verdade é o
 `CLAUDE.md` do repo — **leia antes**; o resumo abaixo é para não pular etapa.
@@ -330,7 +330,7 @@ disco). O upload no KDP é manual e é dele.
 ### 3.1 Escolher o nicho
 
 ```bash
-cd ~/Projects/kdpfarm
+cd ~/Projects/wilson3/kdpfarm
 python3 scripts/descobrir.py 5 --checar 120
 python3 scripts/conferir.py "<a frase do topo>"
 ```
