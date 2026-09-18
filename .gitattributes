@@ -7,3 +7,5 @@
 .config/claude/projects/*/memory/** filter=git-crypt diff=git-crypt
 .private/** filter=git-crypt diff=git-crypt
 *.secret filter=git-crypt diff=git-crypt
+.config/nvim/.env filter=git-crypt diff=git-crypt
+.config/fish/conf.d/secrets.fish filter=git-crypt diff=git-crypt

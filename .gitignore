@@ -7,5 +7,5 @@
 **/.tasks
 .config/ranger/plugins/__pycache__/__init__.cpython-312.pyc
 
-# local machine secrets (api keys) — never commit
-.config/fish/conf.d/secrets.fish
+# local machine secrets — cifradas com git-crypt (ver CLAUDE.md e .gitattributes)
+.config/fish/conf.d/secrets.fish.example
