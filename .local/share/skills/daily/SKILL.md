@@ -383,6 +383,13 @@ script lê da própria ficha. Entregue a ele o caminho da pasta do livro — a
 ficha `<slug>.md` é o único arquivo que ele precisa abrir para copiar tudo
 nas telas do painel.
 
+**O mesmo EPUB sobe também na Google Play Books** (Partner Center,
+`play.google.com/books/publish`) — ebook + **audiolivro auto-narrado em pt-BR
+de graça** (um clique por título; ver memória `google-play-books-canal`).
+Trava: livro em KDP Select NÃO pode estar lá — os livros daqui nunca entram
+em Select. Depois do ebook ao vivo na conta dele, o audiolivro é criar e
+publicar.
+
 ### 3.4 As cotas são compartilhadas
 
 A triagem do kdpfarm usa a **mesma conta Groq** do ferramentas e o **mesmo
