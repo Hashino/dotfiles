@@ -26,11 +26,13 @@ que o nicho está escolhido.
 
 ```bash
 cd ~/Projects/stockfarm && python3 farm.py limpar && python3 farm.py status
+cd ~/Projects/kdpfarm && python3 scripts/limpar.py
 ```
 
-`limpar` apaga os JPG que já cumpriram o papel — os de lote **enviado** e os
-reprovados no QC. Pedido dele em 18/09/2026: as gerações do dia anterior não
-ficam no disco. É seguro por construção (o que espera QC ou está em lote não
+`farm.py limpar` apaga os JPG que já cumpriram o papel — os de lote
+**enviado** e os reprovados no QC. `scripts/limpar.py` do kdpfarm apaga todo
+livro que não seja o do dia (mesma doutrina, pedido dele em 18/09/2026: o que
+já foi entregue não ocupa disco). É seguro por construção (o que espera QC ou está em lote não
 enviado não é tocado) e o `manifest.jsonl` continua com o histórico inteiro;
 some só o binário. `--seco` mostra antes de apagar. Em dois dias de operação
 `images/` já tinha 48 MB.
@@ -346,17 +348,24 @@ python3 scripts/conferir.py "<a frase do topo>"
 
 ### 3.2 Escrever
 
-Um livro do repo tem ~16 mil palavras em 15 capítulos — é o item mais caro do
-dia, mais caro que as 10 ferramentas juntas. Copie a estrutura de um livro
-pronto (`livros/demitir-sem-destruir/`):
+Um livro tem ~16 mil palavras em ~15 capítulos — é o item mais caro do
+dia, mais caro que as 10 ferramentas juntas. A estrutura é o template
+`livros/example/` (definida por ele em 18/09/2026):
 
 ```
-livros/<slug>/01-....md ... 15-apendices.md
-livros/<slug>/meta.json          {"titulo","subtitulo","autor"}
-livros/<slug>/README.md          pendências antes de publicar
-livros/<slug>.md                 ficha: campos do KDP, por que o nicho, keywords
-livros/<slug>-descricao.md       versão limpa + a versão em HTML do KDP
+livros/<slug>/chapters/NN-*.md   o manuscrito
+livros/<slug>/<slug>.md          a FICHA DE PUBLICAÇÃO — o único arquivo que
+                                 ele abre: Título, Subtítulo, Autor, Descrição
+                                 (texto + HTML do KDP), Categorias, Keywords
+livros/<slug>/<slug>.epub        sai do montar_epub.py
 ```
+
+Sem meta.json, README, ficha de pesquisa nem descrição em arquivo separado.
+**O trabalho dele é só o upload**: o manuscrito sai pronto — nunca pedir
+revisão de capítulo, nunca deixar pendência editorial na ficha. Categorias: a
+árvore da loja brasileira só existe no dropdown do painel do KDP — a ficha
+sugere o caminho (ex.: Loja Kindle › Saúde, família e desenvolvimento pessoal
+› Psicologia e aconselhamento) e ele confirma o nó.
 
 Regras que o KDP cobra e que mudam o texto: conteúdo original paga 70% de
 royalty (domínio público paga 35%), o teto é de 3 livros/dia por conta, e a
@@ -369,9 +378,10 @@ capa do Cover Creator não conta como imagem de IA.
 python3 scripts/montar_epub.py livros/<slug>
 ```
 
-EPUB, não DOCX: é o formato que o Kindle já fala. Entregue a ele o caminho do
-`.epub`, a descrição em HTML e as 7 palavras-chave — é o que ele cola nas três
-telas do painel.
+EPUB, não DOCX: é o formato que o Kindle já fala. Título, subtítulo e autor o
+script lê da própria ficha. Entregue a ele o caminho da pasta do livro — a
+ficha `<slug>.md` é o único arquivo que ele precisa abrir para copiar tudo
+nas telas do painel.
 
 ### 3.4 As cotas são compartilhadas
 
@@ -392,8 +402,9 @@ dá para escolher o nicho na mão lendo as frases colhidas.
 ## 4. Fechamento
 
 Relatório curto: quantas ferramentas foram ao ar (com as URLs), quantas
-imagens passaram no QC e onde está a pasta do lote, e o caminho do EPUB do
-livro do dia. O que sobra para ele é **só o upload** — Adobe e KDP.
+imagens passaram no QC e onde está a pasta do lote, e o caminho da pasta do
+livro do dia. O que sobra para ele é **só o upload** — Adobe e KDP. Sem
+pedidos de revisão: o manuscrito sai pronto.
 
 ---
 
