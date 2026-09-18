@@ -31,10 +31,20 @@ trap 'shred -u "${chave}" 2>/dev/null || rm -f "${chave}"' EXIT
 git -C "${repo}" crypt export-key "${chave}"
 
 echo "Escolha a senha que vai destrancar este repo numa máquina nova."
-gpg --symmetric --armor \
+echo "Frase longa, 4+ palavras. Se esquecer, o conteúdo cifrado morre com ela."
+
+read -rsp "Senha: " s1; echo
+read -rsp "De novo: " s2; echo
+[ -n "${s1}" ] || { echo "senha vazia — abortado"; exit 1; }
+[ "${s1}" = "${s2}" ] || { echo "as duas não batem — abortado"; exit 1; }
+
+# --passphrase-fd 0 em vez de --passphrase: senha em argumento aparece no ps.
+printf '%s' "${s1}" | gpg --batch --quiet --pinentry-mode loopback --passphrase-fd 0 \
+    --symmetric --armor \
     --cipher-algo AES256 \
     --s2k-mode 3 --s2k-digest-algo SHA512 --s2k-count 65011712 \
     --output "${saida}" --yes "${chave}"
+unset s1 s2
 
 echo
 echo "selado em: ${saida}"
