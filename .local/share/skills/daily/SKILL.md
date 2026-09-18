@@ -356,7 +356,8 @@ dia, mais caro que as 10 ferramentas juntas. A estrutura é o template
 livros/<slug>/chapters/NN-*.md   o manuscrito
 livros/<slug>/<slug>.md          a FICHA DE PUBLICAÇÃO — o único arquivo que
                                  ele abre: Título, Subtítulo, Autor, Descrição
-                                 (texto + HTML do KDP), Categorias, Keywords
+                                 (plain text; cola igual no KDP e na Play),
+                                 Categorias, Keywords
 livros/<slug>/<slug>.epub        sai do montar_epub.py
 ```
 
