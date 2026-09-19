@@ -1,24 +1,41 @@
 ---
 name: daily
-description: Rotina diária de produção do Hashino — publica N ferramentas novas em hashino.xyz (repo ferramentas), gera o lote de imagens do dia para o Adobe Stock (repo stockfarm) e escreve um livro novo para o KDP (repo kdpfarm). Use quando ele pedir "/daily", "roda o diário", "faz as ferramentas e as imagens de hoje", "gera o lote de hoje" ou "escreve o livro do dia".
+description: Rotina diária de produção do Hashino — publica N ferramentas novas em hashino.xyz (repo ferramentas), gera E FAZ UPLOAD do lote de imagens do dia no Adobe Stock (repo stockfarm) e escreve E FAZ UPLOAD de um livro novo no KDP e na Google Play Books (repo kdpfarm). Use quando ele pedir "/daily", "roda o diário", "faz as ferramentas e as imagens de hoje", "gera o lote de hoje" ou "escreve o livro do dia".
 ---
 
-# /daily — a rotina de produção do dia
+# /daily — a rotina de produção do dia, do zero ao ar
 
-Três linhas de produção independentes: **ferramentas**, **imagens** e
-**livro**. O trabalho é meu; o dele é só **subir os arquivos** — no portal do
-Adobe e no painel do KDP. Nunca peça a ele para rodar `git push` — eu commito
-e publico (ver memória `deploy-eu-que-faco`).
+Três linhas de produção: **ferramentas**, **imagens** e **livro**. Desde
+19/09/2026 o upload também é meu — o Chrome que eu controlo (extensão
+"Claude in Chrome") é o MESMO navegador do Cowork, e já está logado no
+Adobe, no KDP e na Play Books. Isso fecha o buraco que causou os bugs do dia
+anterior: antes o Cowork fazia upload mas não tinha terminal pra avisar; eu
+tenho os dois no mesmo lugar agora.
+
+**Objetivo explícito do dono (19/09/2026): depois do `/daily` rodar, a
+ÚNICA coisa que sobra pra ele é finalizar o upload do Adobe no ponto do
+CAPTCHA.** KDP e Play Books terminam sozinhos, sem pausa — as decisões de
+cada campo já estão tomadas (§3.4). Se qualquer coisa além do captcha do
+Adobe exigir a mão dele (login caído, 2FA, pendência de conta), isso é
+desvio do objetivo, não o esperado — registre como tal no fechamento. Nunca
+peça pra ele rodar `git push` — eu commito e publico (ver memória
+`deploy-eu-que-faco`).
+
+**Isso só funciona em sessão interativa com o Chrome conectado** (`/chrome`
+já rodado por ele nesta sessão). Num disparo headless/cron (ver seção
+própria mais abaixo) não existe navegador conectado — a produção acontece
+igual, mas o upload fica pendente até uma sessão interativa retomar.
 
 **Argumento:** número de ferramentas a publicar (padrão 10).
-`/daily 3` = 3 ferramentas + o lote de imagens + o livro do dia.
+`/daily 3` = 3 ferramentas + o lote de imagens + o livro do dia, todos com
+upload incluído.
 
 **Ordem:** comece a geração das imagens em background **antes** das
 ferramentas — são ~20 chamadas de API que levam minutos e não competem com o
-meu tempo. Depois construa as ferramentas enquanto isso roda, e só então faça
-o QC das imagens (que exige minha leitura, uma a uma). O livro fica por
-último: é o item mais longo e o único que não depende de cota externa depois
-que o nicho está escolhido.
+meu tempo. Depois construa as ferramentas enquanto isso roda, e só então
+faça o QC das imagens (que exige minha leitura, uma a uma) e o upload delas.
+O livro fica por último: é o item mais longo e o único que não depende de
+cota externa depois que o nicho está escolhido — o upload dele fecha o dia.
 
 ---
 
@@ -46,6 +63,14 @@ Se o orçamento do dia couber imagens, dispare já em background
 ```bash
 cd ~/Projects/wilson3/stockfarm && python3 farm.py batch
 ```
+
+**Nunca passe `--max` aqui.** Pedido do dono em 19/09/2026: o lote do dia
+tem que consumir a cota inteira da Cloudflare, não uma fatia arbitrária.
+`cmd_batch`/`cmd_generate` sem `--max` já fazem isso sozinhos — o loop só
+para quando `estado["used"] + 417 > CAP_DIA` (orçamento estourado) ou o
+backlog acaba, o que vier primeiro; `cmd_batch` garante backlog suficiente
+antes de disparar. Um `--max` baixo (usado hoje só pra TESTE do workflow,
+nunca no `/daily` de verdade) deixa neurônios do dia sem uso.
 
 Antes de disparar o lote, **sonde com uma imagem**
 (`python3 farm.py generate 1`): responde em segundos e diz a verdade sobre a
@@ -313,10 +338,48 @@ python3 farm.py reject <id> "motivo curto"
 python3 farm.py finish           # keywords via Groq + empacota o lote
 ```
 
-Entregue `upload/<lote>/` (JPGs + `metadata.csv`) e as linhas do portal que o
-`finish` imprime. Não existe mais "marcar como enviado" — o upload é dele
-(ou do Cowork), e a limpeza acontece sozinha no §0 do PRÓXIMO `/daily`,
-cegamente. Se ele não subir antes de o `/daily` rodar de novo, perde o lote.
+`finish` empacota `upload/<lote>/` (JPGs + `metadata.csv`).
+
+### Upload no Adobe Stock — via Chrome, direto desta sessão
+
+Conhecimento herdado do Cowork (skill `/upload`, testado em produção antes
+de 19/09/2026 — ver `Upload-v7.zip` na sede se precisar do texto original).
+Ferramentas: `tabs_context_mcp`, `navigate`, `find`, `computer`,
+`file_upload`, `read_page`, `javascript_tool`, `get_page_text` (carregue via
+`ToolSearch select:mcp__claude-in-chrome__...` se ainda não estiverem
+carregadas).
+
+1. `navigate` até `contributor.stock.adobe.com` (aba já logada — se pedir
+   login, é o único ponto em que PARO e aviso o dono; nunca digito senha).
+2. Abra o modal de upload (`?upload=1` ou botão Upload). **`file_upload`
+   sozinho não aciona o app** — dispare um evento `drop` sintético com
+   `DataTransfer` na drop zone (`javascript_tool`). Diferente do Cowork: aqui
+   os arquivos já estão no disco da própria máquina, então não precisa de
+   `device_stage_files` — use o caminho direto de `upload/<lote>/`.
+3. Depois das imagens no ar, **"Upload CSV"** com o `metadata.csv` do lote —
+   aplica título, keywords, categoria e releases de uma vez. Confira a
+   contagem (linhas do CSV = imagens) antes do Submit.
+4. Marque **"Created using generative AI tools"** em cada imagem.
+5. Marque os dois checkboxes de termo (guidelines + suspensão) e Submit.
+6. **O Adobe pede CAPTCHA no envio final — não existe como resolver isso por
+   aqui.** Deixe a janela do captcha aberta NA MESMA aba (nunca navegue essa
+   aba pra outra página com o captcha pendente — derruba a janela) e avise o
+   dono. Enquanto ele resolve, siga pro livro (§3) numa aba diferente — não
+   trava o resto do dia.
+7. **Confirme visualmente antes de limpar**: `get_page_text` na fila de
+   moderação tem que mostrar as imagens do lote como "In Review"/"Submitted"
+   (não "Draft", não erro) — só depois que o captcha for resolvido.
+8. Só com a confirmação do passo 7:
+   ```bash
+   cd ~/Projects/wilson3/stockfarm && python3 farm.py limpar
+   ```
+
+Se o painel recusar alguma imagem (motivo aparece na tela), NÃO reenvie —
+anote e rode `farm.py reject <id> "motivo"` na sessão, mantendo as outras.
+
+Se a sessão não pedir login e o Chrome não estiver conectado (`/chrome`
+ainda não rodado, ou sessão headless), pare aqui e diga isso no relatório
+final — o lote fica em `upload/` esperando a próxima sessão interativa.
 
 ---
 
@@ -380,18 +443,100 @@ python3 scripts/montar_epub.py livros/<slug>
 ```
 
 EPUB, não DOCX: é o formato que o Kindle já fala. Título, subtítulo e autor o
-script lê da própria ficha. Entregue a ele o caminho da pasta do livro — a
-ficha `<slug>.md` é o único arquivo que ele precisa abrir para copiar tudo
-nas telas do painel.
+script lê da própria ficha. A ficha `<slug>.md` é a fonte de tudo que entra
+nos dois painéis: título, subtítulo, descrição (plain text, cola igual nos
+dois), categorias sugeridas, 7 keywords.
 
-**O mesmo EPUB sobe também na Google Play Books** (Partner Center,
-`play.google.com/books/publish`) — ebook + **audiolivro auto-narrado em pt-BR
-de graça** (um clique por título; ver memória `google-play-books-canal`).
-Trava: livro em KDP Select NÃO pode estar lá — os livros daqui nunca entram
-em Select. Depois do ebook ao vivo na conta dele, o audiolivro é criar e
-publicar.
+### 3.4 Upload — KDP e Google Play Books, via Chrome
 
-### 3.4 As cotas são compartilhadas
+Conhecimento herdado do Cowork (skill `/upload`, testado em produção antes
+de 19/09/2026). Mesma mecânica do §2: `navigate`/`find`/`computer`/
+`file_upload`/`javascript_tool` na aba já logada. Livro em **KDP Select NÃO
+pode estar na Play Books** — os livros daqui nunca entram em Select.
+
+**Decisões já tomadas — execute sem perguntar de novo:**
+- Autor: **Pedro Alcantra** (a ficha já traz isso; só confirme que bateu).
+- KDP declaração de IA: Texto = **Sim**, "Entire work, with minimal or no
+  editing" (ferramenta: Claude); Imagens = **None** (Cover Creator não
+  conta); Traduções = None.
+- KDP conteúdo: DRM = **Sim, aplicar**. Acessibilidade das imagens = **"I
+  don't know…"**, marcar "I confirm that my answers are accurate".
+- KDP termos/direitos: marcar e publicar aceitando os termos do KDP.
+- KDP preço: royalty **70%**, **KDP Select DESMARCADO**, todos os
+  territórios. Preço = o da ficha; sem isso, **R$ 14,99** (citar no
+  relatório) — digite com ponto (`14.99`).
+- KDP capa: Cover Creator → "Skip This Step" na imagem → um design de
+  "Non-image designs" (o verde) → Preview → "Save & Submit".
+- Play Books criação: Add book → "Sell ebook on Google Play" → book ID
+  **"Get a Google book ID (GGKEY)"** (nunca ISBN) → idioma **Portuguese**
+  (autocomplete: `ctrl+a` pra limpar o campo, digite "Portug") → gênero
+  BISAC mais próximo (digite o nome em inglês do gênero — filtro por
+  código/palavra curta pode não filtrar) → preço em BRL, WORLD, igual ao KDP.
+- Play Books audiolivro: pt-BR, uma voz neutra e consistente entre livros,
+  publicar (NÃO tente ouvir o preview — nenhum modelo Claude aceita áudio
+  como entrada; confirme só visualmente: status virou "Processando"/
+  "Publicado").
+
+**KDP (`kdp.amazon.com`):**
+1. Bookshelf → Adicionar novo título → Idioma Português.
+2. Preencha título/subtítulo/autor/descrição/categorias/keywords lendo a
+   ficha — copie o texto exato. **Descrição**: o editor é CKEditor 4;
+   `javascript_tool` com `CKEDITOR.instances.editor1.setData(html)` em vez
+   de digitar campo a campo.
+3. `file_upload` do `<slug>.epub`.
+4. Aplique as decisões acima (declaração de IA, conteúdo, preço, capa).
+5. **Checkbox "I confirm that my answers are accurate"**: clique por `ref`
+   pode marcar visualmente sem o formulário registrar (erro "Confirm your
+   answers are accurate…" ao salvar). Há duas caixas (seção de IA e seção
+   de acessibilidade) — clique por coordenada de verdade, desmarque e marque
+   de novo, só então "Save and Continue". A página muda de altura ao
+   carregar o preview: `scroll_to` antes do clique por `ref`. A página
+   também é mais larga que a janela — prefira `find` a coordenada fixa.
+6. Publicar. **Confirme visualmente**: Bookshelf lista o título com status
+   "Em revisão" (não "Rascunho incompleto") antes de seguir.
+
+**Google Play Books (`play.google.com/books/publish`):**
+1. A landing mostra "Sign in"/"Get started" **mesmo com a sessão logada** —
+   não é sinal de deslogado. Clique "Sign in": entra direto no Partner
+   Center, sem pedir senha. Só pare se pedir senha/2FA/captcha de verdade.
+2. Add book → aplique as decisões acima (Sell ebook, GGKEY, idioma, BISAC,
+   preço).
+3. **Anexar o EPUB**: não há `input[type=file]` no DOM. Antes de clicar em
+   "Upload a file" → "Browse", injete (`javascript_tool`)
+   `HTMLInputElement.prototype.click` sobrescrito pra, no caso `type=file`,
+   só anexar o input ao `body` sem abrir o seletor nativo; depois `find`
+   "file input" e `file_upload` normalmente pelo `ref`.
+4. **Descrição longa**: colar o texto inteiro de uma vez pode travar o
+   renderer e derrubar a extensão do Chrome. Cole em pedaços (um parágrafo
+   por vez) ou escreva via `javascript_tool` direto no campo.
+5. Publicar. **Confirme visualmente**: título aparece na lista com o EPUB
+   anexado (não "Sem arquivo").
+6. Com o ebook ao vivo: Criar audiolivro auto-narrado (decisão acima).
+
+**Pendência de conta que trava a Play Books**: se aparecer "Ebook payment
+sales territory is missing… update in the Payment Center" com "Worldwide (0
+country)", é pendência de cadastro de pagamento — NÃO mexa em configuração
+de conta nem em dado financeiro. Deixe o rascunho salvo, reporte e pare a
+Play Books aí (isso também bloqueia o audiolivro).
+
+**Se o Chrome cair no meio** (`tabs_context_mcp` diz que a extensão
+desconectou): aguarde e reconsulte — abas e rascunhos ficam salvos no
+servidor do lado de cá.
+
+Só com as duas confirmações visuais (KDP + Play), rode:
+
+```bash
+cd ~/Projects/wilson3/kdpfarm && python3 scripts/limpar.py
+```
+
+Se qualquer confirmação falhar, NÃO limpe — reporte o que travou e deixe o
+livro em `livros/<slug>/` para a próxima sessão retomar.
+
+**Sobre TeePublic e print-on-demand**: pesquisado e registrado em memória
+(`pod-print-on-demand`) em 19/09/2026 — **não faz parte do pipeline ainda**,
+por pedido explícito do dono. Não subir nada lá sem instrução nova.
+
+### 3.5 As cotas são compartilhadas
 
 A triagem do kdpfarm usa a **mesma conta Groq** do ferramentas e o **mesmo
 crédito de Serper**. Com 200.000 tokens/dia por modelo, as três frentes
@@ -409,10 +554,11 @@ dá para escolher o nicho na mão lendo as frases colhidas.
 
 ## 4. Fechamento
 
-Relatório curto: quantas ferramentas foram ao ar (com as URLs), quantas
-imagens passaram no QC e onde está a pasta do lote, e o caminho da pasta do
-livro do dia. O que sobra para ele é **só o upload** — Adobe e KDP. Sem
-pedidos de revisão: o manuscrito sai pronto.
+Relatório curto: quantas ferramentas foram ao ar (com as URLs); se as
+imagens subiram no Adobe (confirmado visualmente) ou ficaram esperando
+Chrome conectado; se o livro subiu no KDP e na Play Books (confirmado
+visualmente) ou ficou pendente. Sem pedidos de revisão de manuscrito: ele
+sai pronto. O que sobra pra ele é só 2FA/CAPTCHA e login quando pedir.
 
 ---
 
@@ -447,22 +593,19 @@ Se detectar que está rodando headless (variável de ambiente ausente de TTY,
 ou simplesmente por precaução sempre que for chamado como `claude -p`), tratar
 esta seção como regra, não como sugestão.
 
-## Rodando no Cowork (Claude Desktop)
+**O upload (§2/§3.4) não roda headless.** As ferramentas `mcp__claude-in-chrome__*`
+dependem da extensão conectada nesta sessão especificamente (`/chrome`
+rodado por ele) — o timer do systemd não tem isso. Rodando via cron: gere,
+faça QC, empacote/monte o EPUB, e PARE — deixe tudo em `upload/`/`livros/`
+esperando. Relate no fechamento que o upload ficou pendente de sessão
+interativa. Não tente rodar `farm.py limpar`/`kdpfarm limpar` nesse caso —
+nada foi confirmado visualmente, e cegar aqui apaga trabalho não entregue.
 
-Os passos acima foram escritos pro Claude Code; no Cowork a mecânica muda em
-três pontos, o resto é igual:
+## Cowork (Claude Desktop) — obsoleto desde 19/09/2026
 
-- **Sem `run_in_background`**: comandos longos (`farm.py batch`) vão num
-  terminal próprio, com o log aberto em arquivo — não confie em output de
-  tarefa viva. O mesmo vale pro `kill`: terminal próprio, um comando só.
-- **Memória é pasta em disco**: não existe a memória do Claude Code aqui. Os
-  arquivos estão em
-  `~/.config/claude/projects/-home-hashino-Projects-wilson3/memory/` — ler
-  antes, escrever depois, atualizar o `MEMORY.md`.
-- **Deploy é terminal normal**: `git add/commit/push` no repo que mudou, sem
-  worktree nem permissão automática. Segurança de senha do git-crypt segue no
-  `CLAUDE.md` do repo dotfiles.
-
-Se esta sessão Cowork **não tiver terminal**, ela é só a metade do upload
-(browser no portal do Adobe/KDP/Play com o login do dono) — a produção
-continua na sessão Code.
+Existia uma skill `/upload` separada, pro Cowork fazer upload num navegador
+próprio. Ficou obsoleta: o Chrome que esta sessão controla (`mcp__claude-in-chrome__*`)
+é o MESMO navegador do Cowork, já logado — o upload agora é parte deste
+`/daily`, seções §2 e §3.4, sem precisar de outra sessão nem handoff. Se o
+dono mencionar "/upload" ou o Cowork, isso é sobre um mecanismo antigo — ver
+memória `cowork-sem-terminal` pra história completa do porquê da mudança.
