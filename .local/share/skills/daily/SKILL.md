@@ -14,12 +14,14 @@ tenho os dois no mesmo lugar agora.
 
 **Objetivo explícito do dono (19/09/2026): depois do `/daily` rodar, a
 ÚNICA coisa que sobra pra ele é finalizar o upload do Adobe no ponto do
-CAPTCHA.** KDP e Play Books terminam sozinhos, sem pausa — as decisões de
-cada campo já estão tomadas (§3.4). Se qualquer coisa além do captcha do
-Adobe exigir a mão dele (login caído, 2FA, pendência de conta), isso é
-desvio do objetivo, não o esperado — registre como tal no fechamento. Nunca
-peça pra ele rodar `git push` — eu commito e publico (ver memória
-`deploy-eu-que-faco`).
+CAPTCHA — e a essa altura o disco já deve estar limpo.** KDP e Play Books
+terminam sozinhos, sem pausa. **O `/daily` NUNCA para no meio pra confirmar
+nada com ele** — só bloqueio técnico real (login caído, 2FA, CAPTCHA,
+pendência de conta) para o run, e mesmo aí é a última coisa antes do
+relatório final, não uma pergunta no meio do caminho. Todas as decisões de
+campo já estão tomadas (§2, §3.4) — nunca pedir aprovação de valor, texto ou
+categoria. Nunca peça pra ele rodar `git push` — eu commito e publico (ver
+memória `deploy-eu-que-faco`).
 
 **Isso só funciona em sessão interativa com o Chrome conectado** (`/chrome`
 já rodado por ele nesta sessão). Num disparo headless/cron (ver seção
@@ -46,16 +48,23 @@ cd ~/Projects/wilson3/stockfarm && python3 farm.py limpar && python3 farm.py sta
 cd ~/Projects/wilson3/kdpfarm && python3 scripts/limpar.py
 ```
 
-**Sem tag de "enviado" desde 19/09/2026** — removida depois de dois bugs no
-mesmo dia (o Cowork faz upload mas não tem terminal pra marcar nada; uma
-tentativa de automatizar a marcação apagou um lote que não tinha sido
-enviado). Agora `farm.py limpar` apaga CEGAMENTE tudo em `upload/` e as
-imagens fonte já empacotadas; `scripts/limpar.py` do kdpfarm apaga TODO
-livro em `livros/`. Isso só é seguro porque virou regra do dono, não do
-código: **nunca rodar `/daily` de novo sem ter subido o lote/livro
-anterior** — a existência do arquivo é o único sinal que resta. `--seco`
-mostra o que seria apagado antes de rodar de verdade; rode sempre antes se
-não tiver certeza se ontem foi upado.
+**A limpeza de verdade não acontece mais aqui — acontece logo depois do
+upload, dentro de §2/§3.4, no mesmo `/daily`.** Este `farm.py limpar` do
+início é só uma REDE DE SEGURANÇA pra sobra de um run anterior que morreu no
+meio (headless que caiu, sessão que travou) — normalmente não encontra nada,
+porque o run de ontem já limpou o que subiu antes de terminar.
+
+Histórico de por que isso mudou (19/09/2026, dois incidentes no mesmo dia):
+primeiro a tag de "enviado" foi removida (o Cowork fazia upload mas não
+tinha terminal pra marcar nada — `farm.py limpar` virou cego, apagando tudo
+sem checar). Depois, rodando `/daily` de novo horas mais tarde, essa faxina
+cega no INÍCIO do run apagou um livro (Truco) que tinha sido escrito
+naquela mesma sessão mas cuja limpeza nunca tinha rodado — porque na hora
+ele foi escrito ainda não existia o costume de limpar logo após o upload.
+Sorte: já tinha sido upado, nada se perdeu de verdade. Mas o desenho era
+frágil. Consertado: **cada upload confirmado dispara a limpeza IMEDIATAMENTE
+depois dele**, no mesmo run — nunca esperando o começo do dia seguinte. Essa
+faxina do §0 continua existindo só pra cobrir run que não chegou até o fim.
 
 Se o orçamento do dia couber imagens, dispare já em background
 (`run_in_background: true`, timeout alto — leva ~15-25 min):
@@ -349,8 +358,14 @@ Ferramentas: `tabs_context_mcp`, `navigate`, `find`, `computer`,
 `ToolSearch select:mcp__claude-in-chrome__...` se ainda não estiverem
 carregadas).
 
-1. `navigate` até `contributor.stock.adobe.com` (aba já logada — se pedir
-   login, é o único ponto em que PARO e aviso o dono; nunca digito senha).
+**Regra de 19/09/2026: o `/daily` nunca pausa pra confirmar nada com o dono.**
+As únicas paradas aceitáveis são bloqueio técnico de verdade — login caído,
+2FA, CAPTCHA — porque nenhum modelo resolve isso, não porque eu escolhi
+parar. Fora isso, o run segue sozinho do início ao fim, sem pedir aprovação
+de passo nenhum.
+
+1. `navigate` até `contributor.stock.adobe.com` (aba já logada). Só PARE
+   aqui se pedir login/senha de verdade — nunca digito senha.
 2. Abra o modal de upload (`?upload=1` ou botão Upload). **`file_upload`
    sozinho não aciona o app** — dispare um evento `drop` sintético com
    `DataTransfer` na drop zone (`javascript_tool`). Diferente do Cowork: aqui
@@ -361,25 +376,31 @@ carregadas).
    contagem (linhas do CSV = imagens) antes do Submit.
 4. Marque **"Created using generative AI tools"** em cada imagem.
 5. Marque os dois checkboxes de termo (guidelines + suspensão) e Submit.
-6. **O Adobe pede CAPTCHA no envio final — não existe como resolver isso por
-   aqui.** Deixe a janela do captcha aberta NA MESMA aba (nunca navegue essa
-   aba pra outra página com o captcha pendente — derruba a janela) e avise o
-   dono. Enquanto ele resolve, siga pro livro (§3) numa aba diferente — não
-   trava o resto do dia.
-7. **Confirme visualmente antes de limpar**: `get_page_text` na fila de
-   moderação tem que mostrar as imagens do lote como "In Review"/"Submitted"
-   (não "Draft", não erro) — só depois que o captcha for resolvido.
-8. Só com a confirmação do passo 7:
+6. **Assim que o Submit disparar, limpe — não espere o captcha:**
    ```bash
    cd ~/Projects/wilson3/stockfarm && python3 farm.py limpar
    ```
+   Os arquivos já saíram da máquina e estão no servidor do Adobe como
+   submissão pendente; o captcha tranca só a CONFIRMAÇÃO final do lado
+   deles, não afeta o que já foi transmitido. Não tem porquê guardar cópia
+   local esperando isso — pedido explícito do dono em 19/09/2026: quando
+   ele vier resolver o captcha, o disco já deve estar limpo.
+7. **O Adobe pede CAPTCHA no envio final — isso, sim, é bloqueio técnico
+   real.** Deixe a janela do captcha aberta NA MESMA aba (nunca navegue
+   essa aba pra outra página com o captcha pendente — derruba a janela) e
+   siga pro resto do `/daily` (livro, §3) numa aba diferente. O captcha vai
+   pro relatório final (§4) como a única pendência real do dia — não é uma
+   pausa no meio, é a última coisa que sobra.
 
-Se o painel recusar alguma imagem (motivo aparece na tela), NÃO reenvie —
-anote e rode `farm.py reject <id> "motivo"` na sessão, mantendo as outras.
+Se o painel recusar alguma imagem (motivo aparece na tela) ANTES do passo 6,
+NÃO reenvie — anote e rode `farm.py reject <id> "motivo"` mantendo as outras.
+Depois do passo 6 os arquivos já não existem mais localmente pra reenviar de
+qualquer forma.
 
-Se a sessão não pedir login e o Chrome não estiver conectado (`/chrome`
-ainda não rodado, ou sessão headless), pare aqui e diga isso no relatório
-final — o lote fica em `upload/` esperando a próxima sessão interativa.
+Se o Chrome não estiver conectado (`/chrome` ainda não rodado, ou sessão
+headless), pare aqui — sem navegador não tem como nem começar — e registre
+isso no relatório final; o lote fica em `upload/` esperando a próxima sessão
+interativa (aí sim a limpeza espera, porque nada foi transmitido ainda).
 
 ---
 
