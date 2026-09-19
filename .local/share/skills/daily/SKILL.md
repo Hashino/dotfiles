@@ -29,13 +29,16 @@ cd ~/Projects/wilson3/stockfarm && python3 farm.py limpar && python3 farm.py sta
 cd ~/Projects/wilson3/kdpfarm && python3 scripts/limpar.py
 ```
 
-`farm.py limpar` apaga os JPG que já cumpriram o papel — os de lote
-**enviado** e os reprovados no QC. `scripts/limpar.py` do kdpfarm apaga todo
-livro que não seja o do dia (mesma doutrina, pedido dele em 18/09/2026: o que
-já foi entregue não ocupa disco). É seguro por construção (o que espera QC ou está em lote não
-enviado não é tocado) e o `manifest.jsonl` continua com o histórico inteiro;
-some só o binário. `--seco` mostra antes de apagar. Em dois dias de operação
-`images/` já tinha 48 MB.
+**Sem tag de "enviado" desde 19/09/2026** — removida depois de dois bugs no
+mesmo dia (o Cowork faz upload mas não tem terminal pra marcar nada; uma
+tentativa de automatizar a marcação apagou um lote que não tinha sido
+enviado). Agora `farm.py limpar` apaga CEGAMENTE tudo em `upload/` e as
+imagens fonte já empacotadas; `scripts/limpar.py` do kdpfarm apaga TODO
+livro em `livros/`. Isso só é seguro porque virou regra do dono, não do
+código: **nunca rodar `/daily` de novo sem ter subido o lote/livro
+anterior** — a existência do arquivo é o único sinal que resta. `--seco`
+mostra o que seria apagado antes de rodar de verdade; rode sempre antes se
+não tiver certeza se ontem foi upado.
 
 Se o orçamento do dia couber imagens, dispare já em background
 (`run_in_background: true`, timeout alto — leva ~15-25 min):
@@ -311,12 +314,9 @@ python3 farm.py finish           # keywords via Groq + empacota o lote
 ```
 
 Entregue `upload/<lote>/` (JPGs + `metadata.csv`) e as linhas do portal que o
-`finish` imprime. Quando ele confirmar o envio:
-
-```bash
-python3 farm.py done <lote>
-python3 farm.py limpar
-```
+`finish` imprime. Não existe mais "marcar como enviado" — o upload é dele
+(ou do Cowork), e a limpeza acontece sozinha no §0 do PRÓXIMO `/daily`,
+cegamente. Se ele não subir antes de o `/daily` rodar de novo, perde o lote.
 
 ---
 
@@ -422,6 +422,30 @@ Esta skill é viva. Sempre que a rotina exigir algo que não está escrito aqui 
 um passo novo, um erro recorrente, uma decisão que eu tive que tomar sozinho —
 **atualize este arquivo no mesmo turno**. Ordem pedida pelo dono em
 18/09/2026: a skill vem antes da execução e é corrigida durante ela.
+
+## Rodando via cron/headless (`claude -p`, sem terminal interativo)
+
+Descoberto em 19/09/2026, do jeito caro: o timer diário (`systemctl --user`)
+chama `claude -p --dangerously-skip-permissions "/daily"`, e **`-p` encerra o
+processo assim que o turno de texto termina** — não existe "aguardar
+notificação de tarefa em background" como nesta sessão interativa. O primeiro
+disparo (12:31–12:38) fez a faxina, mandou `farm.py batch` e
+`proxima.py --n 12` pro fundo, escreveu "vou aguardar as notificações" e
+**morreu ali**: 0 ferramentas publicadas, 6 imagens geradas sem QC, nenhum
+livro. 7 minutos de CPU e nada fechado.
+
+**Regra pro modo headless: nada de `run_in_background`.** Cada comando longo
+(`farm.py batch`, `proxima.py --n N`) roda em **primeiro plano**, com timeout
+generoso (`timeout 1800 python3 farm.py batch`, por exemplo) — o processo só
+avança pro próximo passo quando o anterior genuinamente terminou, e só
+responde (e portanto só morre) depois que o `/daily` inteiro, ferramentas +
+imagens QC'd + livro, está de fato fechado. É mais lento que a sessão
+interativa (perde o paralelismo de "gerar imagem enquanto escrevo
+ferramenta"), mas é a diferença entre terminar e morrer pela metade.
+
+Se detectar que está rodando headless (variável de ambiente ausente de TTY,
+ou simplesmente por precaução sempre que for chamado como `claude -p`), tratar
+esta seção como regra, não como sugestão.
 
 ## Rodando no Cowork (Claude Desktop)
 
