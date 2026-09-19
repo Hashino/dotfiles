@@ -376,15 +376,19 @@ de passo nenhum.
    contagem (linhas do CSV = imagens) antes do Submit.
 4. Marque **"Created using generative AI tools"** em cada imagem.
 5. Marque os dois checkboxes de termo (guidelines + suspensão) e Submit.
-6. **Assim que o Submit disparar, limpe — não espere o captcha:**
+6. **Assim que o Submit disparar, registre e limpe — não espere o
+   captcha:**
    ```bash
-   cd ~/Projects/wilson3/stockfarm && python3 farm.py limpar
+   cd ~/Projects/wilson3/stockfarm && python3 farm.py enviado <lote> && python3 farm.py limpar
    ```
-   Os arquivos já saíram da máquina e estão no servidor do Adobe como
-   submissão pendente; o captcha tranca só a CONFIRMAÇÃO final do lado
-   deles, não afeta o que já foi transmitido. Não tem porquê guardar cópia
-   local esperando isso — pedido explícito do dono em 19/09/2026: quando
-   ele vier resolver o captcha, o disco já deve estar limpo.
+   `enviado` é só registro/histórico (voltou em 19/09/2026 — agora quem sobe
+   é a mesma sessão que gera, então a tag deixou de ser ponto de falha); não
+   controla a limpeza, que continua incondicional. Os arquivos já saíram da
+   máquina e estão no servidor do Adobe como submissão pendente; o captcha
+   tranca só a CONFIRMAÇÃO final do lado deles, não afeta o que já foi
+   transmitido. Não tem porquê guardar cópia local esperando isso — pedido
+   explícito do dono: quando ele vier resolver o captcha, o disco já deve
+   estar limpo.
 7. **O Adobe pede CAPTCHA no envio final — isso, sim, é bloqueio técnico
    real.** Deixe a janela do captcha aberta NA MESMA aba (nunca navegue
    essa aba pra outra página com o captcha pendente — derruba a janela) e
@@ -434,7 +438,7 @@ python3 scripts/conferir.py "<a frase do topo>"
 
 Um livro tem ~16 mil palavras em ~15 capítulos — é o item mais caro do
 dia, mais caro que as 10 ferramentas juntas. A estrutura é o template
-`livros/example/` (definida por ele em 18/09/2026):
+definida pelo dono em 18/09/2026 (não existe pasta `example/` física — é só este molde):
 
 ```
 livros/<slug>/chapters/NN-*.md   o manuscrito
