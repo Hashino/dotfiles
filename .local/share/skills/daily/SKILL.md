@@ -1,6 +1,6 @@
 ---
 name: daily
-description: Rotina diária de produção do Hashino — publica N ferramentas novas em hashino.xyz (repo ferramentas), gera E FAZ UPLOAD do lote de imagens do dia no Adobe Stock (repo stockfarm), escreve E FAZ UPLOAD de um livro novo no KDP e na Google Play Books (repo kdpfarm), e fecha com uma busca de vaga guiada por JOB_HUNT.md. Use quando ele pedir "/daily", "roda o diário", "faz as ferramentas e as imagens de hoje", "gera o lote de hoje" ou "escreve o livro do dia".
+description: Rotina diária de produção do Hashino — publica N ferramentas novas em hashino.xyz (repo ferramentas), gera E FAZ UPLOAD do lote de imagens do dia no Adobe Stock (repo stockfarm), escreve E FAZ UPLOAD de um livro novo no KDP e na Google Play Books (repo kdpfarm), e fecha com uma busca de vaga guiada por JOB_HUNT.md e uma busca de bounty/contest guiada por BOUNTY_HUNT.md. Use quando ele pedir "/daily", "roda o diário", "faz as ferramentas e as imagens de hoje", "gera o lote de hoje" ou "escreve o livro do dia".
 ---
 
 # /daily — a rotina de produção do dia, do zero ao ar
@@ -584,7 +584,8 @@ imagens subiram no Adobe (confirmado visualmente) ou ficaram esperando
 Chrome conectado; se o livro subiu no KDP e na Play Books (confirmado
 visualmente) ou ficou pendente. Sem pedidos de revisão de manuscrito: ele
 sai pronto. O que sobra pra ele é só 2FA/CAPTCHA e login quando pedir. A
-busca de vaga (§5) entra neste mesmo relatório, por último.
+busca de vaga (§5) e a de bounty/contest (§6) entram neste mesmo
+relatório, por último, nessa ordem.
 
 ---
 
@@ -620,6 +621,48 @@ da verdade é `~/Projects/wilson3/JOB_HUNT.md` (perfil, filtros §8, sinais
   (JOB_HUNT.md pede isso explicitamente — nunca omitir o contra).
 - Se nenhuma vaga nova e genuína passar nos filtros, diga isso claramente no
   relatório — não force uma sugestão fraca só pra ter o que entregar.
+
+---
+
+## 6. Busca de bounty/contest (guiada por `BOUNTY_HUNT.md`)
+
+Pedido do dono em 20/09/2026, mesma lógica da §5: depois da vaga de emprego,
+a outra última coisa que o `/daily` faz é procurar **um** bounty, grant ou
+contest pago em cripto que se encaixe no perfil — nos moldes do que já foi
+submetido (Arc Microgrants, Chain Jam/HONGBAO, Spout Finance, ver memória
+`canais-renda-reprovados` e as demais memórias de cada programa). A fonte da
+verdade é `~/Projects/wilson3/BOUNTY_HUNT.md` (filtros §2, sinais §3, fontes
+§4, playbook §8) — **leia-o inteiro antes de cada rodada**.
+
+- **Registro contra repetição**: `~/Projects/wilson3/bounty_hunt_log.md`
+  guarda todo programa já avaliado até veredito (submetido, aprovado,
+  expirado ou reprovado). Leia primeiro e nunca reavalie um programa que já
+  está lá com veredito fechado — mesmo mecanismo do `job_hunt_log.md`.
+- Comece pela **API do Superteam Earn** (endpoints em `BOUNTY_HUNT.md` §4.1),
+  filtrando pela região Brasil antes de olhar o board global (regra 15 da
+  `renda-criterios-de-triagem`: regional vale ~5x o global). Aplique os
+  **filtros duros do §2** direto nos campos do JSON (`agentAccess`,
+  `isPaused`, `region`, `_count.Submission`) antes de abrir qualquer página.
+- Também busque **grants/hackathons ligados a chain/protocolo recém-lançado**
+  (WebSearch, ver §4.3/§4.4 do `BOUNTY_HUNT.md`) — foi assim que os dois
+  melhores leads (Arc, Chain Jam) apareceram, nenhum via agregador genérico.
+- **Descoberta é barata, submissão não é.** Só escreva uma submissão de
+  verdade quando o programa passar na régua do §5 do `BOUNTY_HUNT.md`
+  (filtros limpos + artefato reaproveitável em `~/Projects/wilson3/bounties/`
+  ou bounty puramente de análise/escrita) — senão reporte como lead, sem
+  construir às cegas.
+- **Nunca submeta nada no lugar dele sem ele ver antes.** Diferente da §5
+  (que é só descoberta), aqui pode existir uma submissão de verdade — mas o
+  rascunho vai para o relatório final primeiro; submissão fica pendente da
+  aprovação dele, igual ao captcha do Adobe.
+- Ache ou avalie um programa → **grave a linha no `bounty_hunt_log.md` antes
+  de reportar**, com o veredito, mesmo quando o veredito é reprovação — é o
+  que impede reavaliar o mesmo programa morto amanhã.
+- Reporte no fechamento (§4): nome do programa, prêmio/estrutura, prazo,
+  onde ele passa pelo §2, quais sinais do §3 ele bate, e o motivo mais forte
+  pra não dar certo — nunca omitir o contra.
+- Se nenhum programa novo passar nos filtros, diga isso claramente no
+  relatório.
 
 ---
 
