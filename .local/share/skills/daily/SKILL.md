@@ -1,6 +1,6 @@
 ---
 name: daily
-description: Rotina diária de produção do Hashino — publica N ferramentas novas em hashino.xyz (repo ferramentas), gera E FAZ UPLOAD do lote de imagens do dia no Adobe Stock (repo stockfarm) e escreve E FAZ UPLOAD de um livro novo no KDP e na Google Play Books (repo kdpfarm). Use quando ele pedir "/daily", "roda o diário", "faz as ferramentas e as imagens de hoje", "gera o lote de hoje" ou "escreve o livro do dia".
+description: Rotina diária de produção do Hashino — publica N ferramentas novas em hashino.xyz (repo ferramentas), gera E FAZ UPLOAD do lote de imagens do dia no Adobe Stock (repo stockfarm), escreve E FAZ UPLOAD de um livro novo no KDP e na Google Play Books (repo kdpfarm), e fecha com uma busca de vaga guiada por JOB_HUNT.md. Use quando ele pedir "/daily", "roda o diário", "faz as ferramentas e as imagens de hoje", "gera o lote de hoje" ou "escreve o livro do dia".
 ---
 
 # /daily — a rotina de produção do dia, do zero ao ar
@@ -583,7 +583,43 @@ Relatório curto: quantas ferramentas foram ao ar (com as URLs); se as
 imagens subiram no Adobe (confirmado visualmente) ou ficaram esperando
 Chrome conectado; se o livro subiu no KDP e na Play Books (confirmado
 visualmente) ou ficou pendente. Sem pedidos de revisão de manuscrito: ele
-sai pronto. O que sobra pra ele é só 2FA/CAPTCHA e login quando pedir.
+sai pronto. O que sobra pra ele é só 2FA/CAPTCHA e login quando pedir. A
+busca de vaga (§5) entra neste mesmo relatório, por último.
+
+---
+
+## 5. Busca de vaga (guiada por `JOB_HUNT.md`)
+
+Pedido do dono em 20/09/2026: a ÚLTIMA coisa que o `/daily` faz — depois que
+ferramentas, imagens e livro já fecharam (ou ficaram pendentes de
+captcha/login/conta) — é procurar **uma** vaga de emprego pra ele. A fonte
+da verdade é `~/Projects/wilson3/JOB_HUNT.md` (perfil, filtros §8, sinais
+§9) — **leia-o inteiro antes de cada rodada**; o perfil pode mudar entre um
+`/daily` e outro.
+
+- **Registro contra repetição**: `~/Projects/wilson3/job_hunt_log.md` guarda
+  toda vaga já sugerida (data, cargo, empresa, link). Leia esse arquivo
+  primeiro e nunca repita um link que já está nele — é o mecanismo do
+  próprio JOB_HUNT.md §11 ("Keep a record of everything already suggested
+  and exclude it").
+- Use WebSearch/WebFetch pra achar candidatas reais e verificáveis — nunca
+  invente vaga nem link. Prefira fontes onde dá pra confirmar que a vaga
+  ainda está aberta (data de postagem, "apply" ativo).
+- Aplique primeiro os **filtros duros do §8** (qualquer um bate = descarta
+  sem pontuar), só depois os **sinais positivos do §9** (pontuam a favor,
+  não decidem sozinhos). Devolva só a MELHOR vaga que passou nos dois e que
+  não está no log — o próprio JOB_HUNT.md pede uma por rodada, não uma lista.
+- **Isso é descoberta, não candidatura.** Nunca abra formulário de aplicação,
+  nunca gere currículo/carta, nunca envie nada em nome dele.
+- Ache a vaga → **grave a linha no `job_hunt_log.md` antes de reportar**
+  (data, cargo, empresa, link) — assim uma sessão que quebra no meio do
+  relatório final não perde o registro e não risca repetir a mesma vaga
+  amanhã.
+- Reporte no fechamento (§4): cargo e empresa, o link, onde ela passa pelo
+  §8, quais sinais do §9 ela bate, e o motivo mais forte pra não dar certo
+  (JOB_HUNT.md pede isso explicitamente — nunca omitir o contra).
+- Se nenhuma vaga nova e genuína passar nos filtros, diga isso claramente no
+  relatório — não force uma sugestão fraca só pra ter o que entregar.
 
 ---
 
