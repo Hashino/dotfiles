@@ -23,14 +23,34 @@ campo já estão tomadas (§2, §3.4) — nunca pedir aprovação de valor, text
 categoria. Nunca peça pra ele rodar `git push` — eu commito e publico (ver
 memória `deploy-eu-que-faco`).
 
-**Isso só funciona em sessão interativa com o Chrome conectado** (`/chrome`
-já rodado por ele nesta sessão). Num disparo headless/cron (ver seção
-própria mais abaixo) não existe navegador conectado — a produção acontece
-igual, mas o upload fica pendente até uma sessão interativa retomar.
+**Se não houver sessão do Chrome conectada na hora do upload (§2/§3.4), eu
+mesmo posso subir um Chromium com o profile Default dele** (testado e
+confirmado em 21/09/2026) — não preciso mais esperar ele rodar `/chrome`
+antes. Ver a subseção "Subindo o Chromium sozinho" logo abaixo. Só trato
+como "sem Chrome de verdade" se isso falhar ou se a página pedir
+login/senha/2FA reais — aí sim gero, faço QC, empacoto/monto o EPUB, e
+paro, deixando pendente pra próxima sessão interativa (vale pro modo comum
+e pro headless/cron, ver seção própria mais abaixo).
 
 **Argumento:** número de ferramentas a publicar (padrão 10).
 `/daily 3` = 3 ferramentas + o lote de imagens + o livro do dia, todos com
 upload incluído.
+
+### Subindo o Chromium sozinho, quando não há sessão conectada
+
+```bash
+nohup chromium --profile-directory=Default > /dev/null 2>&1 &
+disown
+```
+
+Esse é o profile de verdade dele: já tem a extensão "Claude in Chrome"
+instalada e as sessões do Adobe/KDP/Play Books logadas — nada de perfil
+novo, nada de `--user-data-dir` separado. Depois de subir, chame
+`tabs_context_mcp`; a extensão costuma conectar sozinha, mas pode levar uns
+segundos — se vier "extension not connected" na primeira tentativa, espere
+~3s e tente de novo antes de desistir. Confirme que é sessão de verdade
+navegando pra uma página que exige login (ex.: `kdp.amazon.com/en_US/bookshelf`)
+e conferindo que abre direto, sem pedir senha.
 
 **Ordem:** comece a geração das imagens em background **antes** das
 ferramentas — são ~20 chamadas de API que levam minutos e não competem com o
@@ -401,10 +421,12 @@ NÃO reenvie — anote e rode `farm.py reject <id> "motivo"` mantendo as outras.
 Depois do passo 6 os arquivos já não existem mais localmente pra reenviar de
 qualquer forma.
 
-Se o Chrome não estiver conectado (`/chrome` ainda não rodado, ou sessão
-headless), pare aqui — sem navegador não tem como nem começar — e registre
-isso no relatório final; o lote fica em `upload/` esperando a próxima sessão
-interativa (aí sim a limpeza espera, porque nada foi transmitido ainda).
+Se o Chrome não estiver conectado, tente subir o Chromium sozinho primeiro
+(ver "Subindo o Chromium sozinho" no topo deste arquivo) antes de desistir.
+Só pare aqui — sem navegador não tem como nem começar — se isso falhar de
+verdade, e registre isso no relatório final; o lote fica em `upload/`
+esperando a próxima sessão interativa (aí sim a limpeza espera, porque nada
+foi transmitido ainda).
 
 ---
 
@@ -711,12 +733,17 @@ Se detectar que está rodando headless (variável de ambiente ausente de TTY,
 ou simplesmente por precaução sempre que for chamado como `claude -p`), tratar
 esta seção como regra, não como sugestão.
 
-**O upload (§2/§3.4) não roda headless.** As ferramentas `mcp__claude-in-chrome__*`
-dependem da extensão conectada nesta sessão especificamente (`/chrome`
-rodado por ele) — o timer do systemd não tem isso. Rodando via cron: gere,
-faça QC, empacote/monte o EPUB, e PARE — deixe tudo em `upload/`/`livros/`
-esperando. Relate no fechamento que o upload ficou pendente de sessão
-interativa. Não tente rodar `farm.py limpar`/`kdpfarm limpar` nesse caso —
+**O upload (§2/§3.4) agora pode rodar headless também**, desde que eu suba o
+Chromium sozinho (ver "Subindo o Chromium sozinho" no topo) — não depende
+mais de ele ter rodado `/chrome` antes. A diferença pro modo `-p`: como o
+processo morre assim que o turno de texto termina, subir o Chromium e
+esperar a extensão conectar tem que acontecer **em primeiro plano, dentro
+do mesmo turno**, nunca com `run_in_background` — a mesma regra do resto
+desta seção. Se o Chromium não subir, a extensão não conectar depois de
+tentar de novo, ou a página pedir login/senha/2FA reais: aí sim trate como
+sem Chrome — gere, faça QC, empacote/monte o EPUB, e PARE, deixe tudo em
+`upload/`/`livros/` esperando, relate no fechamento que ficou pendente de
+sessão interativa. Não tente rodar `farm.py limpar`/`kdpfarm limpar` nesse caso —
 nada foi confirmado visualmente, e cegar aqui apaga trabalho não entregue.
 
 ## Cowork (Claude Desktop) — obsoleto desde 19/09/2026
