@@ -501,6 +501,20 @@ pode estar na Play Books** — os livros daqui nunca entram em Select.
   publicar (NÃO tente ouvir o preview — nenhum modelo Claude aceita áudio
   como entrada; confirme só visualmente: status virou "Processando"/
   "Publicado").
+- **O audiolivro auto-narrado exige o ebook "live on Google Play" — não
+  "publicado no nosso lado".** Descoberto em 21/09/2026: publiquei o ebook
+  (toast "Congratulations! You've successfully added your book"), fui direto
+  para "Create an auto-narrated audiobook", selecionei o ebook certo, e o
+  campo Book ID recusou com "Book must be live on Google Play" mesmo minutos
+  depois. Se a conta estiver em "preliminary policy review" (banner amarelo
+  no topo do Partner Center, comum em conta nova ou recém-verificada), o
+  aviso do próprio banner é literal: "changes will not go live... allow up
+  to 30 days". **Não insista tentando de novo na mesma sessão** — registre
+  o ebook como publicado, o audiolivro como pendente de propagação, e tente
+  de novo num `/daily` futuro (ou quando o dono confirmar que o banner de
+  revisão sumiu). Isso é diferente da pendência de conta de pagamento
+  (território ausente) já documentada abaixo — aqui a conta está OK, é só
+  questão de tempo de propagação/revisão.
 
 **KDP (`kdp.amazon.com`):**
 1. Bookshelf → Adicionar novo título → Idioma Português.
