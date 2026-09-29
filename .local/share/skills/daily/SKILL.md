@@ -679,6 +679,26 @@ verdade é `~/Projects/wilson3/BOUNTY_HUNT.md` (filtros §2, sinais §3, fontes
   `renda-criterios-de-triagem`: regional vale ~5x o global). Aplique os
   **filtros duros do §2** direto nos campos do JSON (`agentAccess`,
   `isPaused`, `region`, `_count.Submission`) antes de abrir qualquer página.
+- **Varredura por formato, não só por região** (29/09/2026): depois do
+  filtro de região, rode um filtro de TÍTULO em todas as abertas —
+  `feedback|teardown|review|test|beta|research|analy|report|ux|bug`. Medido
+  no histórico: o Superteam publica **3 a 5 por mês** nesse formato (mediana
+  ~25 submissões, prêmios 350–1.500), o formato que já venceu (Spout).
+  Dia sem nenhuma é vale, não fonte seca. `HUMAN_ONLY` não reprova sozinho
+  (ver §2.2 do `BOUNTY_HUNT.md`) e **leia a seção Reward no FIM da
+  descrição**: a série "Breakpoint" (10×550) paga ingresso, não dinheiro.
+- **DoraHacks via Playwright MCP** (`mcp__playwright__browser_navigate` +
+  `browser_evaluate` com `document.body.innerText`) — curl/WebFetch batem no
+  WAF, mas o Playwright abre sem login. Liste `https://dorahacks.io/hackathon`
+  e anote os "Ongoing" com prêmio em dinheiro e **poucos BUIDLs** (o card
+  mostra a contagem); abra o `/detail` só desses. Programas de pagamento
+  recorrente por uso (ex.: Anna AI App Builder, US$50/mês a partir de 200
+  MAU) são lead de longo prazo, não de mês.
+- **Fontes já testadas e mortas — não revisitar** (29/09/2026): Bountycaster
+  (`/api/v1/bounties/open` devolve vazio), Pump.fun GO (mídia de memecoin),
+  Algora / collaborators.build / label `bounty` no GitHub (enxame de PRs),
+  Circle Developer Bounties (acabou no Group 1, 2024), Talent Protocol
+  Builder Rewards (ranking contra milhares, por temporada).
 - Também busque **grants/hackathons ligados a chain/protocolo recém-lançado**
   (WebSearch, ver §4.3/§4.4 do `BOUNTY_HUNT.md`) — foi assim que os dois
   melhores leads (Arc, Chain Jam) apareceram, nenhum via agregador genérico.
